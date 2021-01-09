@@ -3,7 +3,7 @@ import { ICrypter } from "./ICrypter";
 
 export class XORCrypter implements ICrypter {
 
-    private static INDEX: number = 2;
+    private static readonly INDEX: number = 2;
 
     private table: Buffer;
 

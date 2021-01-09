@@ -9,7 +9,8 @@ import { XORCrypter } from "./crypters/XorCrypter";
 import { Rand32 } from "./Rand32";
 
 export class Cipher {
-    private HEADER_SIZE: number = 6;
+
+    private static readonly HEADER_SIZE: number = 6;
 
     private version: number;
     private encryptSeq: ICrypter[];
@@ -91,7 +92,7 @@ export class Cipher {
     public writeHeader(packet: Buffer): Packet {
         const encSeq = this.encodeSeqBase();
 
-        const writer = new PacketWriter(packet.length + this.HEADER_SIZE);
+        const writer = new PacketWriter(packet.length + Cipher.HEADER_SIZE);
         writer.writeUShort(encSeq);
         writer.writeInt(packet.length);
         writer.write(packet);
@@ -108,7 +109,7 @@ export class Cipher {
         }
 
         const packetSize = packet.readInt();
-        if (packet.length < packetSize + this.HEADER_SIZE) {
+        if (packet.length < packetSize + Cipher.HEADER_SIZE) {
             console.log("Packet has invalid length: " + packet.length);
         }
 

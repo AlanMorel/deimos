@@ -1,6 +1,7 @@
 import { BitConverter } from "./BitConverter";
 
 export class Rand32 {
+
     private s1: number;
     private s2: number;
     private s3: number;

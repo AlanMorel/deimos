@@ -2,7 +2,7 @@ import { Packet } from "./Packet";
 
 export class PacketWriter extends Packet {
 
-    private static DEFAULT_SIZE: number = 64;
+    private static readonly DEFAULT_SIZE: number = 1 << 6;
 
     public constructor(size: number = PacketWriter.DEFAULT_SIZE) {
         super(Buffer.alloc(size));

@@ -2,6 +2,7 @@ import * as net from "net";
 import { Session } from "./Session";
 
 export class Server {
+
     protected server: net.Server;
     protected host: string;
     protected port: number;

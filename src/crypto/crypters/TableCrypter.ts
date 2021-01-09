@@ -3,8 +3,8 @@ import { ICrypter } from "./ICrypter";
 
 export class TableCrypter implements ICrypter {
 
-    private static INDEX: number = 3;
-    private static TABLE_SIZE: number = 256;
+    private static readonly INDEX: number = 3;
+    private static readonly TABLE_SIZE: number = 1 << 8;
 
     private decrypted: Buffer;
     private encrypted: Buffer;

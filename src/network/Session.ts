@@ -7,8 +7,9 @@ import { Packet } from "../tools/Packet";
 import { PacketReader } from "../tools/PacketReader";
 
 export class Session {
-    private static version: number = 12;
-    private static blockIV: number = 12;
+
+    private static readonly version: number = 12;
+    private static readonly blockIV: number = 12;
 
     public id: number;
     public socket: Socket;

@@ -1,10 +1,11 @@
 import { BitConverter } from "./BitConverter";
 
 export class BufferStream {
-    private DEFAULT_SIZE: number = 1 << 12;
-    private HEADER_SIZE: number = 6;
 
-    private buffer: Buffer = Buffer.alloc(this.DEFAULT_SIZE);
+    private static readonly DEFAULT_SIZE: number = 1 << 12;
+    private static readonly HEADER_SIZE: number = 6;
+
+    private buffer: Buffer = Buffer.alloc(BufferStream.DEFAULT_SIZE);
     private cursor: number = 0;
 
     public write(packet: Buffer): void {
@@ -25,12 +26,12 @@ export class BufferStream {
     }
 
     public read(): Buffer | null {
-        if (this.cursor < this.HEADER_SIZE) {
+        if (this.cursor < BufferStream.HEADER_SIZE) {
             return null;
         }
 
         const packetSize = BitConverter.toInt32(this.buffer, 2);
-        const bufferSize = this.HEADER_SIZE + packetSize;
+        const bufferSize = BufferStream.HEADER_SIZE + packetSize;
 
         if (this.cursor < bufferSize) {
             return null;
