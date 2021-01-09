@@ -17,4 +17,9 @@ export class BitConverter {
         const u32bytes = buffer.slice(startIndex, startIndex + 4);
         return new Uint32Array(u32bytes)[0];
     }
+
+    public static toInt16(buffer: Buffer, startIndex: number): number {
+        const u16bytes = buffer.slice(startIndex, startIndex + 4);
+        return new Uint16Array(u16bytes)[0];
+    }
 }

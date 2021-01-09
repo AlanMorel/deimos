@@ -1,5 +1,6 @@
 import { Socket } from 'net';
 import { RecvOp } from '../constants/RecvOp';
+import { SendOp } from '../constants/SendOp';
 import { BitConverter } from "../crypto/BitConverter";
 import { BufferStream } from "../crypto/BufferStream";
 import { Cipher } from "../crypto/Cipher";
@@ -38,7 +39,9 @@ export class Session {
     public send(packet: Packet): void {
         packet = this.sendCipher.transform(packet.buffer);
 
-        console.log("[SEND]: " + packet.toString());
+        const opcode = SendOp[BitConverter.toInt16(packet.buffer, 0)];
+
+        console.log("SEND (" + opcode + "): " + packet.toString());
 
         this.socket.write(packet.toArray());
     }
@@ -47,7 +50,7 @@ export class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        console.log("[HANDSHAKE]: " + packet.toString());
+        console.log("HANDSHAKE: " + packet.toString());
 
         this.socket.write(packet.buffer);
     }
@@ -57,16 +60,16 @@ export class Session {
         this.bufferStream.write(data);
 
         let buffer = this.bufferStream.read();
+
         while (buffer !== null) {
             const packet = this.recvCipher.transform(buffer);
             const reader = new PacketReader(packet.buffer);
 
-            console.log("[RECV]: " + packet.toString());
-            // TODO: handle incoming packet
-
             const opcode = RecvOp[reader.readShort()];
 
-            console.log(opcode);
+            console.log("RECV (" + opcode + "): " + packet.toString());
+
+            // TODO: handle incoming packet
 
             buffer = this.bufferStream.read();
         }
