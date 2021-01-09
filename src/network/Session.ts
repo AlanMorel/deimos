@@ -1,12 +1,13 @@
-import { Socket } from 'net';
-import { RecvOp } from '../constants/RecvOp';
-import { SendOp } from '../constants/SendOp';
+import { Socket } from "net";
+import { RecvOp } from "../constants/RecvOp";
+import { SendOp } from "../constants/SendOp";
 import { BitConverter } from "../crypto/BitConverter";
 import { BufferStream } from "../crypto/BufferStream";
 import { Cipher } from "../crypto/Cipher";
 import { RequestVersionPacket } from "../packets/RequestVersionPacket";
 import { Packet } from "../tools/Packet";
 import { PacketReader } from "../tools/PacketReader";
+import { PacketRouter } from "./PacketRouter";
 
 export class Session {
 
@@ -20,10 +21,12 @@ export class Session {
     private sendCipher: Cipher;
 
     private bufferStream: BufferStream;
+    private packetRouter: PacketRouter;
 
-    public constructor(id: number, socket: Socket) {
+    public constructor(id: number, socket: Socket, packetRouter: PacketRouter) {
         this.id = id;
         this.socket = socket;
+        this.packetRouter = packetRouter;
 
         const ivRecv = BitConverter.toInt(Cipher.generateIv());
         const ivSend = BitConverter.toInt(Cipher.generateIv());
@@ -39,9 +42,10 @@ export class Session {
     public send(packet: Packet): void {
         packet = this.sendCipher.transform(packet.buffer);
 
-        const opcode = SendOp[BitConverter.toInt16(packet.buffer, 0)];
+        const opcode = BitConverter.toInt16(packet.buffer, 0);
+        const sendOpcode = SendOp[opcode];
 
-        console.log("SEND (" + opcode + "): " + packet.toString());
+        console.log("SEND (" + sendOpcode + "): " + packet.toString());
 
         this.socket.write(packet.toArray());
     }
@@ -65,11 +69,16 @@ export class Session {
             const packet = this.recvCipher.transform(buffer);
             const reader = new PacketReader(packet.buffer);
 
-            const opcode = RecvOp[reader.readShort()];
+            const opcode = reader.readShort();
+            const recvOpcode = RecvOp[opcode];
 
-            console.log("RECV (" + opcode + "): " + packet.toString());
+            console.log("RECV (" + recvOpcode + "): " + packet.toString());
 
-            // TODO: handle incoming packet
+            const packetHandler = this.packetRouter.getHandler(opcode);
+
+            if (packetHandler) {
+                packetHandler.handle(reader, this);
+            }
 
             buffer = this.bufferStream.read();
         }
