@@ -7,45 +7,45 @@ import { Packet } from "../tools/Packet";
 import { PacketReader } from "../tools/PacketReader";
 
 export class Session {
-    version: number = 12;
-    blockIV: number = 12;
+    private static version: number = 12;
+    private static blockIV: number = 12;
 
-    id: number;
-    socket: net.Socket;
+    public id: number;
+    public socket: net.Socket;
 
-    ivRecv: number;
-    ivSend: number;
+    private recvCipher: Cipher;
+    private sendCipher: Cipher;
 
-    recvCipher: Cipher;
-    sendCipher: Cipher;
-
-    bufferStream: BufferStream;
+    private bufferStream: BufferStream;
 
     constructor(id: number, socket: net.Socket) {
         this.id = id;
         this.socket = socket;
 
-        this.ivRecv = BitConverter.toInt(Cipher.generateIv());
-        this.ivSend = BitConverter.toInt(Cipher.generateIv());
+        const ivRecv = BitConverter.toInt(Cipher.generateIv());
+        const ivSend = BitConverter.toInt(Cipher.generateIv());
 
-        this.recvCipher = Cipher.decryptor(this.version, this.ivRecv, this.blockIV);
-        this.sendCipher = Cipher.encryptor(this.version, this.ivSend, this.blockIV);
+        this.recvCipher = Cipher.decryptor(Session.version, ivRecv, Session.blockIV);
+        this.sendCipher = Cipher.encryptor(Session.version, ivSend, Session.blockIV);
 
         this.bufferStream = new BufferStream();
+
+        this.sendHandshake(0, ivRecv, ivSend);
     }
 
     public send(packet: Packet): void {
         packet = this.sendCipher.transform(packet.buffer);
+
         console.log("[SEND]: " + packet.toString());
+
         this.socket.write(packet.toArray());
     }
 
-    public sendHandshake(type: number): void {
-        let packet = RequestVersionPacket.handshake(this.version, this.ivRecv, this.ivSend, this.blockIV, type);
+    public sendHandshake(type: number, ivRecv: number, ivSend: number): void {
+        let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        console.log("Sending handshake:");
-        console.log(packet.toString());
+        console.log("[HANDSHAKE]: " + packet.toString());
 
         this.socket.write(packet.buffer);
     }
