@@ -4,7 +4,6 @@ import { Rand32 } from "./Rand32";
 export class TableCrypter implements ICrypter {
 
     private static INDEX: number = 3;
-
     private static TABLE_SIZE: number = 256;
 
     private decrypted: Buffer;

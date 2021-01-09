@@ -8,23 +8,23 @@ export class BufferStream {
     private cursor: number = 0;
 
     public write(packet: Buffer): void {
-        const offset = 0;
-        const length = packet.length;
 
-        if (this.buffer.length - this.cursor < length) {
+        if (this.buffer.length - this.cursor < packet.length) {
             let newSize = this.buffer.length * 2;
-            while (newSize < this.cursor + length) {
+            while (newSize < this.cursor + packet.length) {
                 newSize *= 2;
             }
             const newBuffer = Buffer.alloc(newSize);
             this.buffer.copy(newBuffer, 0, 0, this.cursor);
             this.buffer = newBuffer;
         }
-        packet.copy(this.buffer, this.cursor, offset, this.cursor + length);
-        this.cursor += length;
+
+        packet.copy(this.buffer, this.cursor, 0, this.cursor + packet.length);
+
+        this.cursor += packet.length;
     }
 
-    public tryRead(): Buffer | null {
+    public read(): Buffer | null {
         if (this.cursor < this.HEADER_SIZE) {
             return null;
         }

@@ -4,6 +4,7 @@ import { BufferStream } from "../crypto/BufferStream";
 import { Cipher } from "../crypto/Cipher";
 import { RequestVersionPacket } from "../packets/RequestVersionPacket";
 import { Packet } from "../tools/Packet";
+import { PacketReader } from "../tools/PacketReader";
 
 export class Session {
     version: number = 12;
@@ -47,5 +48,23 @@ export class Session {
         console.log(packet.toString());
 
         this.socket.write(packet.buffer);
+    }
+
+    public onData(data: Buffer): void {
+
+        this.bufferStream.write(data);
+
+        let buffer = this.bufferStream.read();
+        while (buffer !== null) {
+            const packet = this.recvCipher.transform(buffer);
+            const reader = new PacketReader(packet.buffer);
+
+            console.log("[RECV]: " + packet.toString());
+
+            const opcode = reader.readShort();
+            // TODO: handle incoming packet
+
+            buffer = this.bufferStream.read();
+        }
     }
 }

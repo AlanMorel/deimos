@@ -56,9 +56,11 @@ export class Cipher {
         const cryptSeq: ICrypter[] = new Array<ICrypter>();
         while (blockIV > 0) {
             const crypter: ICrypter = crypt[blockIV % 10];
+
             if (crypter != null) {
                 cryptSeq.push(crypter);
             }
+
             blockIV = Math.floor(blockIV / 10);
         }
         return cryptSeq;

@@ -1,6 +1,7 @@
 import { ICrypter } from "./ICrypter";
 
 export class RearrangeCrypter implements ICrypter {
+
     private static INDEX: number = 1;
 
     public static getIndex(version: number): number {
