@@ -1,12 +1,12 @@
-import * as crypto from 'crypto';
-import { Packet } from '../tools/Packet';
-import { PacketReader } from '../tools/PacketReader';
-import { PacketWriter } from '../tools/PacketWriter';
-import { ICrypter } from './ICrypter';
-import { Rand32 } from './Rand32';
-import { RearrangeCrypter } from './RearrangeCrypter';
-import { TableCrypter } from './TableCrypter';
-import { XORCrypter } from './XorCrypter';
+import * as crypto from "crypto";
+import { Packet } from "../tools/Packet";
+import { PacketReader } from "../tools/PacketReader";
+import { PacketWriter } from "../tools/PacketWriter";
+import { ICrypter } from "./ICrypter";
+import { Rand32 } from "./Rand32";
+import { RearrangeCrypter } from "./RearrangeCrypter";
+import { TableCrypter } from "./TableCrypter";
+import { XORCrypter } from "./XorCrypter";
 
 export class Cipher {
     private HEADER_SIZE: number = 6;
@@ -22,9 +22,9 @@ export class Cipher {
     constructor(version: number, iv: number, blockIV: number) {
         this.version = version;
         this.iv = iv;
-        this.transform = (buffer: Buffer) => new Packet(buffer);
+        this.transform = (buffer: Buffer): Packet => new Packet(buffer);
 
-        let cryptSeq = this.initCryptSeq(version, blockIV);
+        const cryptSeq = this.initCryptSeq(version, blockIV);
         this.encryptSeq = cryptSeq;
 
         cryptSeq.reverse();
@@ -48,14 +48,14 @@ export class Cipher {
     }
 
     private initCryptSeq(version: number, blockIV: number): Array<ICrypter> {
-        let crypt: ICrypter[] = new Array<ICrypter>(4);
+        const crypt: ICrypter[] = new Array<ICrypter>(4);
         crypt[RearrangeCrypter.getIndex(version)] = new RearrangeCrypter();
         crypt[XORCrypter.getIndex(version)] = new XORCrypter(version);
         crypt[TableCrypter.getIndex(version)] = new TableCrypter(version);
 
-        let cryptSeq: ICrypter[] = new Array<ICrypter>();
+        const cryptSeq: ICrypter[] = new Array<ICrypter>();
         while (blockIV > 0) {
-            let crypter: ICrypter = crypt[blockIV % 10];
+            const crypter: ICrypter = crypt[blockIV % 10];
             if (crypter != null) {
                 cryptSeq.push(crypter);
             }
@@ -65,18 +65,18 @@ export class Cipher {
     }
 
     private encrypt(packet: Buffer): Packet {
-        for (let crypter of this.encryptSeq) {
+        for (const crypter of this.encryptSeq) {
             crypter.encrypt(packet);
         }
         return this.writeHeader(packet);
     }
 
     private decrypt(packet: Buffer): Packet {
-        let reader = new PacketReader(packet);
-        let packetSize = this.readHeader(reader);
+        const reader = new PacketReader(packet);
+        const packetSize = this.readHeader(reader);
 
         packet = reader.read(packetSize);
-        for (let crypter of this.decryptSeq) {
+        for (const crypter of this.decryptSeq) {
             crypter.decrypt(packet);
         }
         return new Packet(packet);
@@ -98,12 +98,14 @@ export class Cipher {
     }
 
     public readHeader(packet: PacketReader): number {
-        let encSeq: number = packet.readUShort();
-        let decSeq: number = this.decodeSeqBase(encSeq);
+        const encSeq: number = packet.readUShort();
+        const decSeq: number = this.decodeSeqBase(encSeq);
+
         if (decSeq != this.version) {
             console.log("Packet has invalid sequence header: " + decSeq);
         }
-        let packetSize = packet.readInt();
+
+        const packetSize = packet.readInt();
         if (packet.length < packetSize + this.HEADER_SIZE) {
             console.log("Packet has invalid length: " + packet.length);
         }
@@ -113,13 +115,17 @@ export class Cipher {
 
     private encodeSeqBase(): number {
         const encSeq = this.version ^ (this.iv >>> 16);
+
         this.advanceIV();
+
         return encSeq;
     }
 
     private decodeSeqBase(encSeq: number): number {
-        let decSeq: number = (this.iv >>> 16) ^ encSeq;
+        const decSeq: number = (this.iv >>> 16) ^ encSeq;
+
         this.advanceIV();
+
         return decSeq;
     }
 }

@@ -13,6 +13,7 @@ module.exports = {
         "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "@typescript-eslint/explicit-function-return-type": ["error"],
+        "@typescript-eslint/no-inferrable-types": "off",
         indent: 2,
         semi: 2,
         quotes: 2,

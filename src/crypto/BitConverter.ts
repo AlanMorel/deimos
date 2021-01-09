@@ -1,15 +1,15 @@
 export class BitConverter {
 
-    public static getBytes(int: number) {
-        let b = Buffer.alloc(8);
-        b[0] = int;
-        b[1] = int >> 8
-        b[2] = int >> 16
-        b[3] = int >> 24
-        return b
+    public static getBytes(int: number): Buffer {
+        const buffer = Buffer.alloc(8);
+        buffer[0] = int;
+        buffer[1] = int >> 8;
+        buffer[2] = int >> 16;
+        buffer[3] = int >> 24;
+        return buffer;
     }
 
-    public static toInt(buffer: Buffer) {
+    public static toInt(buffer: Buffer): number {
         return (buffer[0] | buffer[1] << 8 | buffer[2] << 16 | buffer[3] << 24) >>> 0;
     }
 

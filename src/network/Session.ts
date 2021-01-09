@@ -1,9 +1,9 @@
-import * as net from 'net';
-import { BitConverter } from '../crypto/BitConverter';
-import { BufferStream } from '../crypto/BufferStream';
-import { Cipher } from '../crypto/Cipher';
-import { RequestVersionPacket } from '../packets/RequestVersionPacket';
-import { Packet } from '../tools/Packet';
+import * as net from "net";
+import { BitConverter } from "../crypto/BitConverter";
+import { BufferStream } from "../crypto/BufferStream";
+import { Cipher } from "../crypto/Cipher";
+import { RequestVersionPacket } from "../packets/RequestVersionPacket";
+import { Packet } from "../tools/Packet";
 
 export class Session {
     version: number = 12;

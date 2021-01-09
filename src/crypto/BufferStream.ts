@@ -16,7 +16,7 @@ export class BufferStream {
             while (newSize < this.cursor + length) {
                 newSize *= 2;
             }
-            let newBuffer = Buffer.alloc(newSize);
+            const newBuffer = Buffer.alloc(newSize);
             this.buffer.copy(newBuffer, 0, 0, this.cursor);
             this.buffer = newBuffer;
         }
@@ -29,13 +29,14 @@ export class BufferStream {
             return null;
         }
 
-        let packetSize = BitConverter.toInt32(this.buffer, 2);
-        let bufferSize = this.HEADER_SIZE + packetSize;
+        const packetSize = BitConverter.toInt32(this.buffer, 2);
+        const bufferSize = this.HEADER_SIZE + packetSize;
+
         if (this.cursor < bufferSize) {
             return null;
         }
 
-        let packet = Buffer.alloc(bufferSize);
+        const packet = Buffer.alloc(bufferSize);
         this.buffer.copy(packet, 0, 0, bufferSize);
 
         this.cursor -= bufferSize;

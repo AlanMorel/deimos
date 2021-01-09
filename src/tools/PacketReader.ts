@@ -70,7 +70,7 @@ export class PacketReader extends Packet {
         for (let i = 0; i < length; i++) {
             stringBuffer[i] = this.readByte();
         }
-        return stringBuffer.toString('ascii');
+        return stringBuffer.toString("ascii");
     }
 
     public readMapleAsciiString(): string {

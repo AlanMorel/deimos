@@ -8,18 +8,18 @@ export class RearrangeCrypter implements ICrypter {
     }
 
     public encrypt(src: Buffer): void {
-        let len = src.length >> 1;
+        const len = src.length >> 1;
         for (let i = 0; i < len; i++) {
-            let swap = src[i];
+            const swap = src[i];
             src[i] = src[i + len];
             src[i + len] = swap;
         }
     }
 
     public decrypt(src: Buffer): void {
-        let len = src.length >> 1;
+        const len = src.length >> 1;
         for (let i = 0; i < len; i++) {
-            let swap = src[i];
+            const swap = src[i];
             src[i] = src[i + len];
             src[i + len] = swap;
         }

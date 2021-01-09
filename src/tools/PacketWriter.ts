@@ -13,7 +13,7 @@ export class PacketWriter extends Packet {
         return this.buffer.length - this.length;
     }
 
-    private ensureCapacity(length: number) {
+    private ensureCapacity(length: number): void {
         if (length <= this.getRemaining()) {
             return;
         }
@@ -24,13 +24,13 @@ export class PacketWriter extends Packet {
         this.resizeBuffer(newSize);
     }
 
-    public resizeBuffer(newSize: number) {
+    public resizeBuffer(newSize: number): void {
         const newBuffer = Buffer.alloc(newSize);
         this.buffer.copy(newBuffer);
         this.buffer = newBuffer;
     }
 
-    public seek(position: number) {
+    public seek(position: number): void {
         if (position < 0 || position > this.length) {
             return;
         }
@@ -39,7 +39,7 @@ export class PacketWriter extends Packet {
     }
 
     public write(buffer: Buffer): void {
-        for (let byte of new Int8Array(buffer)) {
+        for (const byte of new Int8Array(buffer)) {
             this.writeByte(byte);
         }
     }
@@ -85,7 +85,7 @@ export class PacketWriter extends Packet {
     }
 
     public writeAsciiString(str: string): void {
-        this.write(Buffer.from(str, 'utf-8'));
+        this.write(Buffer.from(str, "utf-8"));
     }
 
     public writeMapleAsciiString(str: string): void {
@@ -94,7 +94,7 @@ export class PacketWriter extends Packet {
     }
 
     public writeHexString(value: string): void {
-        value = value.replace(/\s/g, '');
-        this.write(Buffer.from(value, 'hex'));
+        value = value.replace(/\s/g, "");
+        this.write(Buffer.from(value, "hex"));
     }
 }

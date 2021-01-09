@@ -1,6 +1,6 @@
-import * as net from 'net';
-import { PacketReader } from '../tools/PacketReader';
-import { Session } from './Session';
+import * as net from "net";
+import { PacketReader } from "../tools/PacketReader";
+import { Session } from "./Session";
 
 export class Server {
     protected server: net.Server;
@@ -15,7 +15,7 @@ export class Server {
     }
 
     async start(): Promise<boolean> {
-        this.server.on('connection', (socket) => {
+        this.server.on("connection", (socket) => {
             const session = new Session(0, socket);
             this.onConnection(this.setupConnection(session));
         });
@@ -24,7 +24,7 @@ export class Server {
     }
 
     setupConnection(session: Session): Session {
-        session.socket.on('data', (data) => this.onData(session, data));
+        session.socket.on("data", (data) => this.onData(session, data));
         return session;
     }
 
@@ -39,12 +39,12 @@ export class Server {
 
         let buffer = session.bufferStream.tryRead();
         while (buffer !== null) {
-            let packet = session.recvCipher.transform(buffer);
-            let reader = new PacketReader(packet.buffer);
+            const packet = session.recvCipher.transform(buffer);
+            const reader = new PacketReader(packet.buffer);
 
             console.log("[RECV]: " + packet.toString());
 
-            let opcode = reader.readShort();
+            const opcode = reader.readShort();
             // TODO: handle incoming packet
 
             buffer = session.bufferStream.tryRead();
