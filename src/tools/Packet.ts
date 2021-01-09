@@ -3,7 +3,7 @@ export class Packet {
     public buffer: Buffer;
     public length: number;
 
-    constructor(buffer: Buffer) {
+    public constructor(buffer: Buffer) {
         this.buffer = buffer;
         this.length = buffer.length;
     }

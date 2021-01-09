@@ -6,7 +6,7 @@ export class Server {
     protected host: string;
     protected port: number;
 
-    constructor(host: string, port: number) {
+    public constructor(host: string, port: number) {
         this.port = port;
         this.host = host;
         this.server = net.createServer();
@@ -19,7 +19,7 @@ export class Server {
 
             console.log(`Server received a client connection: session ${session.id} @ ${session.socket.remoteAddress}`);
 
-            this.setupConnection(session)
+            this.setupConnection(session);
         });
         this.server.listen(this.port, this.host);
         return true;

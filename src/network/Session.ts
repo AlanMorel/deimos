@@ -18,7 +18,7 @@ export class Session {
 
     private bufferStream: BufferStream;
 
-    constructor(id: number, socket: net.Socket) {
+    public constructor(id: number, socket: net.Socket) {
         this.id = id;
         this.socket = socket;
 

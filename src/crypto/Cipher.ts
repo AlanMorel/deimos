@@ -19,7 +19,7 @@ export class Cipher {
 
     public transform: (buffer: Buffer) => Packet;
 
-    constructor(version: number, iv: number, blockIV: number) {
+    private constructor(version: number, iv: number, blockIV: number) {
         this.version = version;
         this.iv = iv;
         this.transform = (buffer: Buffer): Packet => new Packet(buffer);

@@ -7,7 +7,7 @@ export class XORCrypter implements ICrypter {
 
     private table: Buffer;
 
-    constructor(version: number) {
+    public constructor(version: number) {
         this.table = Buffer.alloc(2);
 
         const rand1: Rand32 = new Rand32(version);

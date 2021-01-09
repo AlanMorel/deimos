@@ -4,7 +4,7 @@ export class PacketReader extends Packet {
 
     private position: number;
 
-    constructor(buffer: Buffer, skip: number = 0) {
+    public constructor(buffer: Buffer, skip: number = 0) {
         super(buffer);
         this.position = skip;
     }

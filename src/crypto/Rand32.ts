@@ -5,7 +5,7 @@ export class Rand32 {
     private s2: number;
     private s3: number;
 
-    constructor(seed: number) {
+    public constructor(seed: number) {
         const rand = Rand32.crtRand(seed);
         const rand2 = Rand32.crtRand(rand);
 

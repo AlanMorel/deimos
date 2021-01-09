@@ -9,7 +9,7 @@ export class TableCrypter implements ICrypter {
     private decrypted: Buffer;
     private encrypted: Buffer;
 
-    constructor(version: number) {
+    public constructor(version: number) {
         this.decrypted = Buffer.alloc(TableCrypter.TABLE_SIZE);
         this.encrypted = Buffer.alloc(TableCrypter.TABLE_SIZE);
 

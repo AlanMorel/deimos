@@ -4,7 +4,7 @@ export class PacketWriter extends Packet {
 
     private static DEFAULT_SIZE: number = 64;
 
-    constructor(size: number = PacketWriter.DEFAULT_SIZE) {
+    public constructor(size: number = PacketWriter.DEFAULT_SIZE) {
         super(Buffer.alloc(size));
         this.length = 0;
     }
