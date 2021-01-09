@@ -1,4 +1,5 @@
 import { Socket } from 'net';
+import { RecvOp } from '../constants/RecvOp';
 import { BitConverter } from "../crypto/BitConverter";
 import { BufferStream } from "../crypto/BufferStream";
 import { Cipher } from "../crypto/Cipher";
@@ -61,9 +62,11 @@ export class Session {
             const reader = new PacketReader(packet.buffer);
 
             console.log("[RECV]: " + packet.toString());
-
-            const opcode = reader.readShort();
             // TODO: handle incoming packet
+
+            const opcode = RecvOp[reader.readShort()];
+
+            console.log(opcode);
 
             buffer = this.bufferStream.read();
         }
