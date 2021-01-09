@@ -1,5 +1,5 @@
+import { Rand32 } from "../Rand32";
 import { ICrypter } from "./ICrypter";
-import { Rand32 } from "./Rand32";
 
 export class TableCrypter implements ICrypter {
 

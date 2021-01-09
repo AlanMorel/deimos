@@ -1,4 +1,4 @@
-import * as net from "net";
+import { Socket } from 'net';
 import { BitConverter } from "../crypto/BitConverter";
 import { BufferStream } from "../crypto/BufferStream";
 import { Cipher } from "../crypto/Cipher";
@@ -11,14 +11,14 @@ export class Session {
     private static blockIV: number = 12;
 
     public id: number;
-    public socket: net.Socket;
+    public socket: Socket;
 
     private recvCipher: Cipher;
     private sendCipher: Cipher;
 
     private bufferStream: BufferStream;
 
-    public constructor(id: number, socket: net.Socket) {
+    public constructor(id: number, socket: Socket) {
         this.id = id;
         this.socket = socket;
 

@@ -2,11 +2,11 @@ import * as crypto from "crypto";
 import { Packet } from "../tools/Packet";
 import { PacketReader } from "../tools/PacketReader";
 import { PacketWriter } from "../tools/PacketWriter";
-import { ICrypter } from "./ICrypter";
+import { ICrypter } from "./crypters/ICrypter";
+import { RearrangeCrypter } from "./crypters/RearrangeCrypter";
+import { TableCrypter } from "./crypters/TableCrypter";
+import { XORCrypter } from "./crypters/XorCrypter";
 import { Rand32 } from "./Rand32";
-import { RearrangeCrypter } from "./RearrangeCrypter";
-import { TableCrypter } from "./TableCrypter";
-import { XORCrypter } from "./XorCrypter";
 
 export class Cipher {
     private HEADER_SIZE: number = 6;
