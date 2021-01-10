@@ -1,4 +1,4 @@
-export interface ServerIP {
+export interface Endpoint {
     address: string,
     port: number
 }
