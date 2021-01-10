@@ -2,7 +2,7 @@ import * as crypto from "crypto";
 import { Packet } from "../tools/Packet";
 import { PacketReader } from "../tools/PacketReader";
 import { PacketWriter } from "../tools/PacketWriter";
-import { ICrypter } from "./crypters/ICrypter";
+import { Crypter } from "./crypters/Crypter";
 import { RearrangeCrypter } from "./crypters/RearrangeCrypter";
 import { TableCrypter } from "./crypters/TableCrypter";
 import { XORCrypter } from "./crypters/XorCrypter";
@@ -13,8 +13,8 @@ export class Cipher {
     private static readonly HEADER_SIZE: number = 6;
 
     private version: number;
-    private encryptSeq: ICrypter[];
-    private decryptSeq: ICrypter[];
+    private encryptSeq: Crypter[];
+    private decryptSeq: Crypter[];
 
     private iv: number;
 
@@ -48,15 +48,15 @@ export class Cipher {
         return crypto.randomBytes(4);
     }
 
-    private initCryptSeq(version: number, blockIV: number): Array<ICrypter> {
-        const crypt: ICrypter[] = new Array<ICrypter>(4);
+    private initCryptSeq(version: number, blockIV: number): Array<Crypter> {
+        const crypt: Crypter[] = new Array<Crypter>(4);
         crypt[RearrangeCrypter.getIndex(version)] = new RearrangeCrypter();
         crypt[XORCrypter.getIndex(version)] = new XORCrypter(version);
         crypt[TableCrypter.getIndex(version)] = new TableCrypter(version);
 
-        const cryptSeq: ICrypter[] = new Array<ICrypter>();
+        const cryptSeq: Crypter[] = new Array<Crypter>();
         while (blockIV > 0) {
-            const crypter: ICrypter = crypt[blockIV % 10];
+            const crypter: Crypter = crypt[blockIV % 10];
 
             if (crypter != null) {
                 cryptSeq.push(crypter);

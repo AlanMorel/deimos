@@ -5,7 +5,7 @@ import { ServerListPacket } from "../packets/ServerListPacket";
 import { PacketReader } from "../tools/PacketReader";
 import { PacketHandler } from "./PacketHandler";
 
-export interface ServerIp {
+export interface ServerIP {
     address: string,
     port: number
 }
@@ -13,11 +13,11 @@ export interface ServerIp {
 export class ResponseLoginHandler implements PacketHandler {
 
     private serverName: string;
-    private serverIps: ServerIp[];
+    private serverIPs: ServerIP[];
 
     public constructor() {
         this.serverName = "Paperwood";
-        this.serverIps = [
+        this.serverIPs = [
             {
                 address: "127.0.0.1",
                 port: 20001
@@ -31,8 +31,8 @@ export class ResponseLoginHandler implements PacketHandler {
         switch (mode) {
             case 0x1:
                 session.send(NpsInfoPacket.npsInfo());
-                session.send(BannerListPacket.setBanner(0)); // TODO: Load banners
-                session.send(ServerListPacket.setServers(this.serverName, this.serverIps));
+                session.send(BannerListPacket.setBanner(0)); // TODO: load banners
+                session.send(ServerListPacket.setServers(this.serverName, this.serverIPs));
                 break;
         }
     }

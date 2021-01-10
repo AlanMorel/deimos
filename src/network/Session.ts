@@ -66,20 +66,25 @@ export class Session {
 
         while (buffer !== null) {
             const packet = this.recvCipher.transform(buffer);
-            const reader = new PacketReader(packet.buffer);
 
-            const opcode = reader.readShort();
-            const recvOpcode = RecvOp[opcode];
-
-            console.log("[RECV] " + recvOpcode + ": " + packet.toString());
-
-            const packetHandler = this.packetRouter.getHandler(opcode);
-
-            if (packetHandler) {
-                packetHandler.handle(reader, this);
-            }
+            this.handlePacket(packet);
 
             buffer = this.bufferStream.read();
+        }
+    }
+
+    private handlePacket(packet: Packet): void {
+        const reader = new PacketReader(packet.buffer);
+
+        const opcode = reader.readShort();
+        const recvOpcode = RecvOp[opcode];
+
+        console.log("[RECV] " + recvOpcode + ": " + packet.toString());
+
+        const packetHandler = this.packetRouter.getHandler(opcode);
+
+        if (packetHandler) {
+            packetHandler.handle(reader, this);
         }
     }
 }

@@ -1,7 +1,7 @@
 import { Rand32 } from "../Rand32";
-import { ICrypter } from "./ICrypter";
+import { Crypter } from "./Crypter";
 
-export class XORCrypter implements ICrypter {
+export class XORCrypter implements Crypter {
 
     private static readonly INDEX: number = 2;
 

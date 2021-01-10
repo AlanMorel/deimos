@@ -1,6 +1,6 @@
-import { ICrypter } from "./ICrypter";
+import { Crypter } from "./Crypter";
 
-export class RearrangeCrypter implements ICrypter {
+export class RearrangeCrypter implements Crypter {
 
     private static readonly INDEX: number = 1;
 

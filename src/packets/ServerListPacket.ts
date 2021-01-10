@@ -1,11 +1,11 @@
 import { SendOp } from "../constants/SendOp";
-import { ServerIp } from "../handlers/ResponseLoginHandler";
+import { ServerIP } from "../handlers/ResponseLoginHandler";
 import { Packet } from "../tools/Packet";
 import { PacketWriter } from "../tools/PacketWriter";
 
 export class ServerListPacket {
 
-    public static setServers(serverName: string, serverIps: ServerIp[]): Packet {
+    public static setServers(serverName: string, serverIPs: ServerIP[]): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.SERVER_LIST);
@@ -13,8 +13,8 @@ export class ServerListPacket {
         packet.writeInt(0x1);
         packet.writeUnicodeString(serverName);
         packet.writeByte(4); // IPv4?
-        packet.writeUShort(serverIps.length);
-        for (const ip of serverIps) {
+        packet.writeUShort(serverIPs.length);
+        for (const ip of serverIPs) {
             packet.writeUnicodeString(ip.address);
             packet.writeUShort(ip.port);
         }

@@ -1,7 +1,7 @@
 import { Rand32 } from "../Rand32";
-import { ICrypter } from "./ICrypter";
+import { Crypter } from "./Crypter";
 
-export class TableCrypter implements ICrypter {
+export class TableCrypter implements Crypter {
 
     private static readonly INDEX: number = 3;
     private static readonly TABLE_SIZE: number = 1 << 8;
