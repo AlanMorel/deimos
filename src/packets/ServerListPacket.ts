@@ -21,7 +21,7 @@ export class ServerListPacket {
         packet.writeInt(100); // constant?
 
         // Looks like length 9, then 1-9 in scrambled order
-        packet.writeHexString("09 00 01 00 04 00 07 00 02 00 05 00 08 00 03 00 06 00 09 00");
+        packet.writeBytes(0x09, 0x0, 0x1, 0x0, 0x4, 0x0, 0x7, 0x0, 0x2, 0x0, 0x5, 0x0, 0x8, 0x0, 0x3, 0x0, 0x6, 0x0, 0x9, 0x0);
 
         return packet;
     }

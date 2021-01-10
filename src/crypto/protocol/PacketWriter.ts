@@ -44,6 +44,10 @@ export class PacketWriter extends Packet {
         }
     }
 
+    public writeBytes(...bytes: number[]): void {
+        this.write(Buffer.from(bytes));
+    }
+
     public writeString(buffer: Buffer): void {
         for (const short of new Int16Array(buffer)) {
             this.writeShort(short);
