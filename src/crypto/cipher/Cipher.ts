@@ -20,14 +20,11 @@ export abstract class Cipher {
     }
 
     private initCryptSeq(blockIV: number): Array<Crypter> {
-        const crypt: Crypter[] = new Array<Crypter>(4);
-        crypt[RearrangeCrypter.getIndex(this.version)] = new RearrangeCrypter();
-        crypt[XORCrypter.getIndex(this.version)] = new XORCrypter(this.version);
-        crypt[TableCrypter.getIndex(this.version)] = new TableCrypter(this.version);
+        const crypts = this.getCrypts();
+        const cryptSeq: Crypter[] = Array<Crypter>();
 
-        const cryptSeq: Crypter[] = new Array<Crypter>();
         while (blockIV > 0) {
-            const crypter: Crypter = crypt[blockIV % 10];
+            const crypter: Crypter = crypts[blockIV % 10];
 
             if (crypter != null) {
                 cryptSeq.push(crypter);
@@ -35,7 +32,16 @@ export abstract class Cipher {
 
             blockIV = Math.floor(blockIV / 10);
         }
+
         return cryptSeq;
+    }
+
+    private getCrypts(): Crypter[] {
+        const crypts: Crypter[] = Array<Crypter>(4);
+        crypts[Crypter.getIndex(this.version, RearrangeCrypter.INDEX)] = new RearrangeCrypter();
+        crypts[Crypter.getIndex(this.version, XORCrypter.INDEX)] = new XORCrypter(this.version);
+        crypts[Crypter.getIndex(this.version, TableCrypter.INDEX)] = new TableCrypter(this.version);
+        return crypts;
     }
 
     public advanceIV(): void {

@@ -1,13 +1,15 @@
 import { Rand32 } from "../Rand32";
 import { Crypter } from "./Crypter";
 
-export class XORCrypter implements Crypter {
+export class XORCrypter extends Crypter {
 
-    private static readonly INDEX: number = 2;
+    public static readonly INDEX: number = 2;
 
     private table: Buffer;
 
     public constructor(version: number) {
+        super();
+
         this.table = Buffer.alloc(2);
 
         const rand1: Rand32 = new Rand32(version);
@@ -15,10 +17,6 @@ export class XORCrypter implements Crypter {
 
         this.table[0] = rand1.randomFloat() * 255;
         this.table[1] = rand2.randomFloat() * 255;
-    }
-
-    public static getIndex(version: number): number {
-        return (version + this.INDEX) % 3 + 1;
     }
 
     public encrypt(src: Buffer): void {
