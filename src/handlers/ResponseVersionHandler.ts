@@ -1,6 +1,6 @@
+import { PacketReader } from "../crypto/protocol/PacketReader";
 import { Session } from "../network/Session";
 import { RequestLoginPacket } from "../packets/RequestLoginPacket";
-import { PacketReader } from "../tools/PacketReader";
 import { PacketHandler } from "./PacketHandler";
 
 export class ResponseVersionHandler implements PacketHandler {

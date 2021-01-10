@@ -1,5 +1,5 @@
+import { PacketReader } from "../crypto/protocol/PacketReader";
 import { Session } from "../network/Session";
-import { PacketReader } from "../tools/PacketReader";
 
 export interface PacketHandler {
 

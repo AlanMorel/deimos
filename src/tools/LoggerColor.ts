@@ -1,5 +1,5 @@
 export enum LoggerColor {
     RED = 31,
     GREEN = 32,
-    ORANGE = 33
+    YELLOW = 33
 }

@@ -1,7 +1,7 @@
 import { SendOp } from "../constants/SendOp";
+import { Packet } from "../crypto/protocol/Packet";
+import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { ServerIP } from "../interfaces/ServerIP";
-import { Packet } from "../tools/Packet";
-import { PacketWriter } from "../tools/PacketWriter";
 
 export class ServerListPacket {
 

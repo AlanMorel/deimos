@@ -1,5 +1,5 @@
-import { Packet } from "../../tools/Packet";
-import { PacketReader } from "../../tools/PacketReader";
+import { Packet } from "../protocol/Packet";
+import { PacketReader } from "../protocol/PacketReader";
 import { Cipher } from "./Cipher";
 
 export class RecvCipher extends Cipher {

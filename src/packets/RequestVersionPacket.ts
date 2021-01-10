@@ -1,5 +1,5 @@
-import { Packet } from "../tools/Packet";
-import { PacketWriter } from "../tools/PacketWriter";
+import { Packet } from "../crypto/protocol/Packet";
+import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 export class RequestVersionPacket {
 

@@ -1,9 +1,9 @@
+import { PacketReader } from "../crypto/protocol/PacketReader";
 import { ServerIP } from "../interfaces/ServerIP";
 import { Session } from "../network/Session";
 import { BannerListPacket } from "../packets/BannerListPacket";
 import { NpsInfoPacket } from "../packets/NpsInfoPacket";
 import { ServerListPacket } from "../packets/ServerListPacket";
-import { PacketReader } from "../tools/PacketReader";
 import { PacketHandler } from "./PacketHandler";
 
 export class ResponseLoginHandler implements PacketHandler {

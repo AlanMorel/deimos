@@ -1,5 +1,5 @@
-import { Packet } from "../../tools/Packet";
-import { PacketWriter } from "../../tools/PacketWriter";
+import { Packet } from "../protocol/Packet";
+import { PacketWriter } from "../protocol/PacketWriter";
 import { Cipher } from "./Cipher";
 
 export class SendCipher extends Cipher {

@@ -6,9 +6,9 @@ import { BufferStream } from "../crypto/BufferStream";
 import { Cipher } from "../crypto/cipher/Cipher";
 import { RecvCipher } from "../crypto/cipher/RecvCipher";
 import { SendCipher } from "../crypto/cipher/SendCipher";
+import { Packet } from "../crypto/protocol/Packet";
+import { PacketReader } from "../crypto/protocol/PacketReader";
 import { RequestVersionPacket } from "../packets/RequestVersionPacket";
-import { Packet } from "../tools/Packet";
-import { PacketReader } from "../tools/PacketReader";
 import { Logger } from "../tools/Logger";
 import { LoggerColor } from "../tools/LoggerColor";
 import { PacketRouter } from "./PacketRouter";
@@ -57,7 +57,7 @@ export class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.log("[HANDSHAKE]: " + packet.toString(), LoggerColor.ORANGE);
+        Logger.log("[HANDSHAKE]: " + packet.toString(), LoggerColor.YELLOW);
 
         this.socket.write(packet.buffer);
     }
