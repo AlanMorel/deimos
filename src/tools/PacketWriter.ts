@@ -44,56 +44,62 @@ export class PacketWriter extends Packet {
         }
     }
 
+    public writeString(buffer: Buffer): void {
+        for (const short of new Int16Array(buffer)) {
+            this.writeShort(short);
+        }
+    }
+
     public writeBoolean(bool: boolean): void {
         this.writeByte(bool ? 1 : 0);
     }
 
-    public writeByte(byte: number): void {
+    public writeByte(byte: number = 0): void {
         this.ensureCapacity(1);
         this.buffer.writeIntLE(byte, this.length, 1);
         this.length += 1;
     }
 
-    public writeShort(short: number): void {
+    public writeShort(short: number = 0): void {
         this.ensureCapacity(2);
         this.buffer.writeInt16LE(short, this.length);
         this.length += 2;
     }
 
-    public writeUShort(uShort: number): void {
+    public writeUShort(uShort: number = 0): void {
         this.ensureCapacity(2);
         this.buffer.writeUInt16LE(uShort, this.length);
         this.length += 2;
     }
 
-    public writeInt(int: number): void {
+    public writeInt(int: number = 0): void {
         this.ensureCapacity(4);
         this.buffer.writeInt32LE(int, this.length);
         this.length += 4;
     }
 
-    public writeUInt(uInt: number): void {
+    public writeUInt(uInt: number = 0): void {
         this.ensureCapacity(4);
         this.buffer.writeUInt32LE(uInt, this.length);
         this.length += 4;
     }
 
-    public writeLong(long: bigint): void {
+    public writeLong(long: bigint = BigInt(0)): void {
         this.ensureCapacity(8);
         this.buffer.writeBigInt64LE(long, this.length);
         this.length += 8;
     }
 
-    public writeAsciiString(str: string): void {
+    public writeUnicodeString(str: string = ""): void {
+        this.writeShort(str.length);
+        this.writeString(Buffer.from(str, "utf-8"));
+    }
+
+    public writeMapleString(str: string = ""): void {
         this.write(Buffer.from(str, "utf-8"));
     }
 
-    public writeMapleAsciiString(str: string): void {
-        this.writeShort(str.length);
-        this.writeAsciiString(str);
-    }
-
-    public writeHexString(value: string): void {
+    public writeHexString(value: string = ""): void {
         value = value.replace(/\s/g, "");
         this.write(Buffer.from(value, "hex"));
     }
