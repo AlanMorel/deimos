@@ -40,13 +40,12 @@ export class Session {
     }
 
     public send(packet: Packet): void {
-        packet = this.sendCipher.transform(packet.buffer);
-
         const opcode = BitConverter.toInt16(packet.buffer, 0);
         const sendOpcode = SendOp[opcode];
 
-        console.log("SEND (" + sendOpcode + "): " + packet.toString());
+        console.log("[SEND] " + sendOpcode + ": " + packet.toString());
 
+        packet = this.sendCipher.transform(packet.buffer);
         this.socket.write(packet.toArray());
     }
 
@@ -54,7 +53,7 @@ export class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        console.log("HANDSHAKE: " + packet.toString());
+        console.log("[HANDSHAKE]: " + packet.toString());
 
         this.socket.write(packet.buffer);
     }
@@ -72,7 +71,7 @@ export class Session {
             const opcode = reader.readShort();
             const recvOpcode = RecvOp[opcode];
 
-            console.log("RECV (" + recvOpcode + "): " + packet.toString());
+            console.log("[RECV] " + recvOpcode + ": " + packet.toString());
 
             const packetHandler = this.packetRouter.getHandler(opcode);
 
