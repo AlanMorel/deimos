@@ -57,7 +57,7 @@ export class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.log("[HANDSHAKE]: " + packet.toString(), LoggerColor.YELLOW);
+        Logger.log("[HANDSHAKE]: " + packet.toString(), LoggerColor.PURPLE);
 
         this.socket.write(packet.buffer);
     }
