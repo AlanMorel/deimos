@@ -1,22 +1,15 @@
 import { Packet } from "../../tools/Packet";
 import { PacketWriter } from "../../tools/PacketWriter";
-import { Crypter } from "../crypters/Crypter";
 import { Cipher } from "./Cipher";
 
 export class SendCipher extends Cipher {
 
-    private encryptSeq: Crypter[];
-
     public constructor(version: number, iv: number, blockIV: number) {
-        super(version, iv);
-
-        const cryptSeq = this.initCryptSeq(version, blockIV);
-
-        this.encryptSeq = cryptSeq;
+        super(version, iv, blockIV);
     }
 
     public encrypt(packet: Buffer): Packet {
-        for (const crypter of this.encryptSeq) {
+        for (const crypter of this.cryptSeq) {
             crypter.encrypt(packet);
         }
         return this.writeHeader(packet);

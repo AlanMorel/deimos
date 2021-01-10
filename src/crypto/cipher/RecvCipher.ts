@@ -1,19 +1,12 @@
 import { Packet } from "../../tools/Packet";
 import { PacketReader } from "../../tools/PacketReader";
-import { Crypter } from "../crypters/Crypter";
 import { Cipher } from "./Cipher";
 
 export class RecvCipher extends Cipher {
 
-    private decryptSeq: Crypter[];
-
     public constructor(version: number, iv: number, blockIV: number) {
-        super(version, iv);
-
-        const cryptSeq = this.initCryptSeq(version, blockIV);
-        cryptSeq.reverse();
-
-        this.decryptSeq = cryptSeq;
+        super(version, iv, blockIV);
+        this.cryptSeq.reverse();
     }
 
     public decrypt(packet: Buffer): Packet {
@@ -21,7 +14,7 @@ export class RecvCipher extends Cipher {
         const packetSize = this.readHeader(reader);
 
         packet = reader.read(packetSize);
-        for (const crypter of this.decryptSeq) {
+        for (const crypter of this.cryptSeq) {
             crypter.decrypt(packet);
         }
 

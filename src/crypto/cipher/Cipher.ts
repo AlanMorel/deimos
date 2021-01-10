@@ -11,17 +11,19 @@ export abstract class Cipher {
 
     protected version: number;
     protected iv: number;
+    protected cryptSeq: Crypter[];
 
-    protected constructor(version: number, iv: number) {
+    protected constructor(version: number, iv: number, blockIV: number) {
         this.version = version;
         this.iv = iv;
+        this.cryptSeq = this.initCryptSeq(blockIV);
     }
 
-    protected initCryptSeq(version: number, blockIV: number): Array<Crypter> {
+    private initCryptSeq(blockIV: number): Array<Crypter> {
         const crypt: Crypter[] = new Array<Crypter>(4);
-        crypt[RearrangeCrypter.getIndex(version)] = new RearrangeCrypter();
-        crypt[XORCrypter.getIndex(version)] = new XORCrypter(version);
-        crypt[TableCrypter.getIndex(version)] = new TableCrypter(version);
+        crypt[RearrangeCrypter.getIndex(this.version)] = new RearrangeCrypter();
+        crypt[XORCrypter.getIndex(this.version)] = new XORCrypter(this.version);
+        crypt[TableCrypter.getIndex(this.version)] = new TableCrypter(this.version);
 
         const cryptSeq: Crypter[] = new Array<Crypter>();
         while (blockIV > 0) {
