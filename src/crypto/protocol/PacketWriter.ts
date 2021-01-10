@@ -88,9 +88,9 @@ export class PacketWriter extends Packet {
         this.length += 4;
     }
 
-    public writeLong(long: bigint = BigInt(0)): void {
+    public writeLong(long: number = 0): void {
         this.ensureCapacity(8);
-        this.buffer.writeBigInt64LE(long, this.length);
+        this.buffer.writeBigInt64LE(BigInt(long), this.length);
         this.length += 8;
     }
 

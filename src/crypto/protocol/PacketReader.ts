@@ -68,12 +68,12 @@ export class PacketReader extends Packet {
     public readAsciiString(length: number): string {
         const stringBuffer = Buffer.alloc(length);
         for (let i = 0; i < length; i++) {
-            stringBuffer[i] = this.readByte();
+            stringBuffer[i] = this.readShort();
         }
         return stringBuffer.toString("ascii");
     }
 
-    public readMapleAsciiString(): string {
+    public readUnicodeString(): string {
         const length = this.readShort();
         return this.readAsciiString(length);
     }
