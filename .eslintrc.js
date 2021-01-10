@@ -15,7 +15,9 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": ["error"],
         "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/explicit-member-accessibility": ["error"],
-        indent: 2,
+        "indent": ["error", 4, {
+            SwitchCase: 1
+        }],
         semi: 2,
         quotes: 2,
         "no-trailing-spaces": "error"
