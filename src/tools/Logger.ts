@@ -4,7 +4,7 @@ interface Color {
     r: number,
     b: number,
     g: number
-};
+}
 
 export class Logger {
 

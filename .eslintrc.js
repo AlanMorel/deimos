@@ -20,7 +20,8 @@ module.exports = {
         }],
         semi: 2,
         quotes: 2,
-        "no-trailing-spaces": "error"
+        "no-trailing-spaces": "error",
+        "no-case-declarations": "off"
     },
     plugins: ["@typescript-eslint"]
 };

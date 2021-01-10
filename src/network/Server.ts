@@ -29,7 +29,7 @@ export class Server {
         return true;
     }
 
-    private onConnection(socket: net.Socket) {
+    private onConnection(socket: net.Socket): void {
         const session = new Session(0, socket, this.packetRouter);
 
         console.log(`Server received a client connection: session ${session.id} @ ${session.socket.remoteAddress}`);
@@ -40,8 +40,8 @@ export class Server {
     private setupSocketEvents(session: Session): void {
         session.socket.setNoDelay(true);
         session.socket.on("data", data => this.onData(session, data));
-        session.socket.on('close', hadError => this.onClose(session, hadError));
-        session.socket.on('error', error => this.onError(session, error));
+        session.socket.on("close", hadError => this.onClose(session, hadError));
+        session.socket.on("error", error => this.onError(session, error));
     }
 
     public onData(session: Session, data: Buffer): void {
