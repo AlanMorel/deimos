@@ -3,7 +3,9 @@ import { RecvOp } from "../constants/RecvOp";
 import { SendOp } from "../constants/SendOp";
 import { BitConverter } from "../crypto/BitConverter";
 import { BufferStream } from "../crypto/BufferStream";
-import { Cipher } from "../crypto/Cipher";
+import { Cipher } from "../crypto/cipher/Cipher";
+import { RecvCipher } from "../crypto/cipher/RecvCipher";
+import { SendCipher } from "../crypto/cipher/SendCipher";
 import { RequestVersionPacket } from "../packets/RequestVersionPacket";
 import { Packet } from "../tools/Packet";
 import { PacketReader } from "../tools/PacketReader";
@@ -17,8 +19,8 @@ export class Session {
     public id: number;
     public socket: Socket;
 
-    private recvCipher: Cipher;
-    private sendCipher: Cipher;
+    private recvCipher: RecvCipher;
+    private sendCipher: SendCipher;
 
     private bufferStream: BufferStream;
     private packetRouter: PacketRouter;
@@ -31,8 +33,8 @@ export class Session {
         const ivRecv = BitConverter.toInt(Cipher.generateIv());
         const ivSend = BitConverter.toInt(Cipher.generateIv());
 
-        this.recvCipher = Cipher.decryptor(Session.version, ivRecv, Session.blockIV);
-        this.sendCipher = Cipher.encryptor(Session.version, ivSend, Session.blockIV);
+        this.recvCipher = new RecvCipher(Session.version, ivRecv, Session.blockIV);
+        this.sendCipher = new SendCipher(Session.version, ivSend, Session.blockIV);
 
         this.bufferStream = new BufferStream();
 
@@ -45,7 +47,7 @@ export class Session {
 
         console.log("[SEND] " + sendOpcode + ": " + packet.toString());
 
-        packet = this.sendCipher.transform(packet.buffer);
+        packet = this.sendCipher.encrypt(packet.buffer);
         this.socket.write(packet.toArray());
     }
 
@@ -65,7 +67,7 @@ export class Session {
         let buffer = this.bufferStream.read();
 
         while (buffer !== null) {
-            const packet = this.recvCipher.transform(buffer);
+            const packet = this.recvCipher.decrypt(buffer);
 
             this.handlePacket(packet);
 
