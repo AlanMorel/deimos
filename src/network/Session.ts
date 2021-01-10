@@ -9,8 +9,8 @@ import { SendCipher } from "../crypto/cipher/SendCipher";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketReader } from "../crypto/protocol/PacketReader";
 import { RequestVersionPacket } from "../packets/RequestVersionPacket";
+import { HexColor } from "../tools/HexColor";
 import { Logger } from "../tools/Logger";
-import { LoggerColor } from "../tools/LoggerColor";
 import { PacketRouter } from "./PacketRouter";
 
 export class Session {
@@ -47,7 +47,7 @@ export class Session {
         const opcode = BitConverter.toInt16(packet.buffer, 0);
         const sendOpcode = SendOp[opcode];
 
-        Logger.log("[SEND] " + sendOpcode + ": " + packet.toString(), LoggerColor.RED);
+        Logger.log("[SEND] " + sendOpcode + ": " + packet.toString(), HexColor.RED);
 
         packet = this.sendCipher.encrypt(packet.buffer);
         this.socket.write(packet.toArray());
@@ -57,7 +57,7 @@ export class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.log("[HANDSHAKE]: " + packet.toString(), LoggerColor.PURPLE);
+        Logger.log("[HANDSHAKE]: " + packet.toString(), HexColor.PURPLE);
 
         this.socket.write(packet.buffer);
     }
@@ -83,7 +83,7 @@ export class Session {
         const opcode = reader.readShort();
         const recvOpcode = RecvOp[opcode];
 
-        Logger.log("[RECV] " + recvOpcode + ": " + packet.toString(), LoggerColor.GREEN);
+        Logger.log("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
 
         const packetHandler = this.packetRouter.getHandler(opcode);
 
