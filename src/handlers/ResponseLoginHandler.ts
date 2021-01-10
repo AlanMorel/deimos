@@ -1,14 +1,10 @@
+import { ServerIP } from "../interfaces/ServerIP";
 import { Session } from "../network/Session";
 import { BannerListPacket } from "../packets/BannerListPacket";
 import { NpsInfoPacket } from "../packets/NpsInfoPacket";
 import { ServerListPacket } from "../packets/ServerListPacket";
 import { PacketReader } from "../tools/PacketReader";
 import { PacketHandler } from "./PacketHandler";
-
-export interface ServerIP {
-    address: string,
-    port: number
-}
 
 export class ResponseLoginHandler implements PacketHandler {
 

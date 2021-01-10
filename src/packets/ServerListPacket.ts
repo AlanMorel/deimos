@@ -1,5 +1,5 @@
 import { SendOp } from "../constants/SendOp";
-import { ServerIP } from "../handlers/ResponseLoginHandler";
+import { ServerIP } from "../interfaces/ServerIP";
 import { Packet } from "../tools/Packet";
 import { PacketWriter } from "../tools/PacketWriter";
 
