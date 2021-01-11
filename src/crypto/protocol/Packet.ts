@@ -9,7 +9,7 @@ export class Packet {
     }
 
     public toString(): string {
-        return this.buffer.toString("hex").substring(4).toUpperCase().replace(/(.)(.)/g, "$1$2 ");
+        return this.toArray().toString("hex").substring(4).toUpperCase().replace(/(.)(.)/g, "$1$2 ");
     }
 
     public toArray(): Buffer {
