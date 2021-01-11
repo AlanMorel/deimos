@@ -9,19 +9,25 @@ import { ItemSlot } from "../types/ItemSlot";
 import { SkinColor } from "../types/SkinColor";
 import { PacketHandler } from "./PacketHandler";
 
+enum Mode {
+    LOGIN = 0x0,
+    CREATE = 0x1,
+    DELETE = 0x2
+}
+
 export class CharacterManagementHandler implements PacketHandler {
 
     public handle(session: Session, packet: PacketReader): void {
         const mode = packet.readByte();
 
         switch (mode) {
-            case 0x0: // login
+            case Mode.LOGIN:
                 this.handleLogin(session, packet);
                 break;
-            case 0x1: // create
+            case Mode.CREATE:
                 this.handleCreate(session, packet);
                 break;
-            case 0x2: // delete
+            case Mode.DELETE:
                 break;
         }
     }
@@ -80,7 +86,6 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.SH]: // shoes
                 case ItemSlot[ItemSlot.ER]: // ear
                     break;
-
             }
         }
     }

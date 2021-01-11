@@ -13,17 +13,12 @@ import { Logger } from "../tools/Logger";
 import { Player } from "../types/Player";
 import { PacketHandler } from "./PacketHandler";
 
+enum Mode {
+    LOGIN_1 = 0x1,
+    LOGIN_2 = 0x2
+}
+
 export class ResponseLoginHandler implements PacketHandler {
-
-    private serverName: string;
-    private endpoints: Endpoint[];
-
-    public constructor() {
-        this.serverName = "Paperwood";
-        this.endpoints = [
-            new Endpoint("127.0.0.1", 20001)
-        ];
-    }
 
     public handle(session: Session, packet: PacketReader): void {
         const mode = packet.readByte();
@@ -33,12 +28,17 @@ export class ResponseLoginHandler implements PacketHandler {
         Logger.log(`Logging in with username: '${username}' pass: '${password}'`, HexColor.PURPLE);
 
         switch (mode) {
-            case 0x1:
+            case Mode.LOGIN_1:
+                const serverName = "Paperwood";
+                const endpoints = [
+                    new Endpoint("127.0.0.1", 20001)
+                ];
+
                 session.send(NpsInfoPacket.npsInfo());
                 session.send(BannerListPacket.setBanner(0)); // TODO: load banners
-                session.send(ServerListPacket.setServers(this.serverName, this.endpoints));
+                session.send(ServerListPacket.setServers(serverName, endpoints));
                 break;
-            case 0x2:
+            case Mode.LOGIN_2:
                 const accountId = 0;
                 const players = new Array<Player>();
 

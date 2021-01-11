@@ -4,13 +4,17 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { AuthData } from "../interfaces/AuthData";
 import { Endpoint } from "../interfaces/Endpoint";
 
+enum Mode {
+    SUCCESS = 0x0
+}
+
 export class LoginToGamePacket {
 
     public static loginToGame(endpoint: Endpoint, authData: AuthData): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.LOGIN_TO_GAME);
-        packet.writeByte(); // 0 = success
+        packet.writeByte(Mode.SUCCESS);
         packet.write(endpoint.getBytes());
         packet.writeUShort(endpoint.getPort());
         packet.writeInt(authData.tokenA);

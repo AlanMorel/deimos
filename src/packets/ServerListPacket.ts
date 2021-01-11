@@ -3,13 +3,17 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Endpoint } from "../interfaces/Endpoint";
 
+enum Mode {
+    SET = 0x1
+}
+
 export class ServerListPacket {
 
     public static setServers(serverName: string, endpoints: Endpoint[]): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.SERVER_LIST);
-        packet.writeByte(0x1);
+        packet.writeByte(Mode.SET);
         packet.writeInt(0x1);
         packet.writeUnicodeString(serverName);
         packet.writeByte(4); // IPv4?

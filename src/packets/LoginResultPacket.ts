@@ -3,13 +3,17 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Time } from "../tools/Time";
 
+enum Mode {
+    SUCCESS = 0x0
+}
+
 export class LoginResultPacket {
 
     public static login(accountId: number): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.LOGIN_RESULT);
-        packet.writeByte(); // login State
+        packet.writeByte(Mode.SUCCESS);
         packet.writeInt(); // constant
         packet.writeUnicodeString(""); // ban reason
         packet.writeLong(accountId);
