@@ -15,8 +15,8 @@ export class ServerListPacket {
         packet.writeByte(4); // IPv4?
         packet.writeUShort(endpoints.length);
         for (const endpoint of endpoints) {
-            packet.writeUnicodeString(endpoint.address);
-            packet.writeUShort(endpoint.port);
+            packet.writeUnicodeString(endpoint.getAddress());
+            packet.writeUShort(endpoint.getPort());
         }
         packet.writeInt(100); // constant?
 

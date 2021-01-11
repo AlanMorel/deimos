@@ -21,10 +21,7 @@ export class ResponseLoginHandler implements PacketHandler {
     public constructor() {
         this.serverName = "Paperwood";
         this.endpoints = [
-            {
-                address: "127.0.0.1",
-                port: 20001
-            }
+            new Endpoint("127.0.0.1", 20001)
         ];
     }
 
