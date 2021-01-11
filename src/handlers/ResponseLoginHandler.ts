@@ -25,7 +25,7 @@ export class ResponseLoginHandler implements PacketHandler {
         ];
     }
 
-    public handle(packet: PacketReader, session: Session): void {
+    public handle(session: Session, packet: PacketReader): void {
         const mode = packet.readByte();
         const username = packet.readUnicodeString();
         const password = packet.readUnicodeString();

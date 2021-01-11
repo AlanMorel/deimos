@@ -5,7 +5,7 @@ import { PacketHandler } from "./PacketHandler";
 
 export class ResponseVersionHandler implements PacketHandler {
 
-    public handle(packet: PacketReader, session: Session): void {
+    public handle(session: Session, packet: PacketReader): void {
         session.send(RequestLoginPacket.login());
     }
 }

@@ -8,7 +8,7 @@ import { PacketHandler } from "./PacketHandler";
 
 export class CharacterManagementHandler implements PacketHandler {
 
-    public handle(packet: PacketReader, session: Session): void {
+    public handle(session: Session, packet: PacketReader): void {
         const mode = packet.readByte();
 
         switch (mode) {

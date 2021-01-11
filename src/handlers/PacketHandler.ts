@@ -3,6 +3,6 @@ import { Session } from "../network/Session";
 
 export interface PacketHandler {
 
-    handle(packet: PacketReader, session: Session): void;
+    handle(session: Session, packet: PacketReader): void;
 
 }

@@ -88,7 +88,7 @@ export class Session {
         const packetHandler = this.packetRouter.getHandler(opcode);
 
         if (packetHandler) {
-            packetHandler.handle(reader, this);
+            packetHandler.handle(this, reader);
         }
     }
 }
