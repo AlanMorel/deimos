@@ -24,7 +24,7 @@ export class Session {
     private recvCipher: RecvCipher;
     private sendCipher: SendCipher;
 
-    private bufferStream: BufferStream;
+    private stream: BufferStream;
     private packetRouter: PacketRouter;
 
     public constructor(id: number, socket: Socket, packetRouter: PacketRouter) {
@@ -38,7 +38,7 @@ export class Session {
         this.recvCipher = new RecvCipher(Session.version, ivRecv, Session.blockIV);
         this.sendCipher = new SendCipher(Session.version, ivSend, Session.blockIV);
 
-        this.bufferStream = new BufferStream();
+        this.stream = new BufferStream();
 
         this.sendHandshake(0, ivRecv, ivSend);
     }
@@ -64,16 +64,16 @@ export class Session {
 
     public onData(data: Buffer): void {
 
-        this.bufferStream.write(data);
+        this.stream.write(data);
 
-        let buffer = this.bufferStream.read();
+        let buffer = this.stream.read();
 
         while (buffer !== null) {
             const packet = this.recvCipher.decrypt(buffer);
 
             this.handlePacket(packet);
 
-            buffer = this.bufferStream.read();
+            buffer = this.stream.read();
         }
     }
 
@@ -83,7 +83,11 @@ export class Session {
         const opcode = reader.readShort();
         const recvOpcode = RecvOp[opcode];
 
-        Logger.log("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
+        if (recvOpcode) {
+            Logger.log("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
+        } else {
+            Logger.log("[RECV] 0x" + opcode.toString(16).toUpperCase() + ": " + packet.toString(), HexColor.GREEN);
+        }
 
         const packetHandler = this.packetRouter.getHandler(opcode);
 
