@@ -1,12 +1,19 @@
 import { PacketReader } from "../crypto/protocol/PacketReader";
 import { Endpoint } from "../interfaces/Endpoint";
 import { Session } from "../network/Session";
+import { CharacterCreatePacket } from "../packets/CharacterCreatePacket";
+import { CharacterListPacket } from "../packets/CharacterListPacket";
+import { CharacterMaxCountPacket } from "../packets/CharacterMaxCountPacket";
 import { LoginToGamePacket } from "../packets/LoginToGamePacket";
 import { HexColor } from "../tools/HexColor";
 import { Logger } from "../tools/Logger";
-import { EquipColor } from "../types/EquipColor";
-import { ItemSlot } from "../types/ItemSlot";
-import { SkinColor } from "../types/SkinColor";
+import { EquipColor } from "../types/color/EquipColor";
+import { SkinColor } from "../types/color/SkinColor";
+import { HairData } from "../types/HairData";
+import { Item } from "../types/item/Item";
+import { ItemSlot } from "../types/item/ItemSlot";
+import { ItemStats } from "../types/item/ItemStats";
+import { Player } from "../types/Player";
 import { PacketHandler } from "./PacketHandler";
 
 enum Mode {
@@ -57,6 +64,8 @@ export class CharacterManagementHandler implements PacketHandler {
 
         packet.readShort(); // const?
 
+        const equips = new Map<ItemSlot, Item>();
+
         Logger.log(`Creating character: ${name}, gender: ${gender}, skinColor: ${skinColor}, job: ${jobCode}`, HexColor.PURPLE);
 
         const equipCount = packet.readByte();
@@ -69,24 +78,87 @@ export class CharacterManagementHandler implements PacketHandler {
             Logger.log(`${type} - id: ${id}, color: ${equipColor}, colorIndex: ${colorIndex}`, HexColor.PURPLE);
 
             switch (type) {
-                case ItemSlot[ItemSlot.HR]: // hair
+                case ItemSlot[ItemSlot.HR]: { // hair
                     const backLength = packet.readInt();
-                    const backPositiionArray = packet.read(24);
+                    const backPositionArray = packet.read(24);
                     const frontLength = packet.readInt();
-                    const frontPositiionArray = packet.read(24);
+                    const frontPositionArray = packet.read(24);
 
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.hairData = new HairData(backLength, frontLength, backPositionArray, frontPositionArray);
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.HR, item);
                     break;
-                case ItemSlot[ItemSlot.FA]: // face
+                }
+                case ItemSlot[ItemSlot.FA]: { // face
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.FA, item);
                     break;
-                case ItemSlot[ItemSlot.FD]: // face decoration
+                }
+                case ItemSlot[ItemSlot.FD]: { // face decoration
                     const faceDecoration = packet.read(16);
+
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.faceDecorationData = faceDecoration;
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.FD, item);
                     break;
-                case ItemSlot[ItemSlot.CL]: // clothes
-                case ItemSlot[ItemSlot.PA]: // pants
-                case ItemSlot[ItemSlot.SH]: // shoes
-                case ItemSlot[ItemSlot.ER]: // ear
+                }
+                case ItemSlot[ItemSlot.CL]: { // clothes
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.CL, item);
                     break;
+                }
+                case ItemSlot[ItemSlot.PA]: { // pants
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.PA, item);
+                    break;
+                }
+                case ItemSlot[ItemSlot.SH]: { // shoes
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.SH, item);
+                    break;
+                }
+                case ItemSlot[ItemSlot.ER]: { // ear
+                    const item = new Item(id);
+                    item.color = equipColor;
+                    item.stats = new ItemStats();
+
+                    equips.set(ItemSlot.ER, item);
+                    break;
+                }
             }
+
+            packet.readInt(); // constant 4?
+
+            const taken = false; // TODO: validate name is available
+
+            if (taken) {
+                session.send(CharacterCreatePacket.nameTaken());
+                return;
+            }
+
+            const newCharacter = new Player();
+
+            session.send(CharacterMaxCountPacket.setMax(4, 6));
+
+            session.send(CharacterListPacket.append(newCharacter));
         }
     }
 }

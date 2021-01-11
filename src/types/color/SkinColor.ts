@@ -1,4 +1,4 @@
-import { PacketReader } from "../crypto/protocol/PacketReader";
+import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Color } from "./Color";
 
 export class SkinColor {

@@ -5,6 +5,7 @@ import { Player } from "../types/Player";
 
 enum Mode {
     ADD = 0x0,
+    APPEND = 0x1,
     START_LIST = 0x3,
     END_LIST = 0x4
 }
@@ -21,6 +22,17 @@ export class CharacterListPacket {
         for (const character of characters) {
             // write characters
         }
+
+        return packet;
+    }
+
+    public static append(character: Player): Packet {
+        const packet = new PacketWriter();
+
+        packet.writeShort(SendOp.CHARACTER_LIST);
+        packet.writeByte(Mode.APPEND);
+
+        // TODO: write player data here
 
         return packet;
     }
