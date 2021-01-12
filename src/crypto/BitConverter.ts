@@ -20,4 +20,8 @@ export class BitConverter {
     public static toInt16(buffer: Buffer, startIndex: number): number {
         return buffer.readInt16LE(startIndex);
     }
+
+    public static toUInt64(buffer: Buffer, startIndex: number): bigint {
+        return buffer.readBigUInt64LE(startIndex);
+    }
 }

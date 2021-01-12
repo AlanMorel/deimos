@@ -94,6 +94,12 @@ export class PacketWriter extends Packet {
         this.length += 8;
     }
 
+    public writeBigInt(long: BigInt = BigInt(0)): void {
+        this.ensureCapacity(8);
+        this.buffer.writeBigInt64LE(BigInt(long), this.length);
+        this.length += 8;
+    }
+
     public writeUnicodeString(str: string = ""): void {
         this.writeShort(str.length);
         this.writeString(Buffer.from(str, "utf-8"));
