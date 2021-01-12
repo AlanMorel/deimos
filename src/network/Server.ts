@@ -11,12 +11,14 @@ export class Server {
     protected host: string;
     protected port: number;
     protected packetRouter: PacketRouter;
+    protected sessionCounter: number;
 
     public constructor(host: string, port: number) {
         this.server = net.createServer();
         this.host = host;
         this.port = port;
         this.packetRouter = new LoginPacketRouter();
+        this.sessionCounter = 0;
 
         Logger.log(`Server started at ${host}:${port}`);
 
@@ -32,9 +34,9 @@ export class Server {
     }
 
     private onConnection(socket: net.Socket): void {
-        const session = new Session(0, socket, this.packetRouter);
+        const session = new Session(this.sessionCounter++, socket, this.packetRouter);
 
-        Logger.log(`Server received a client connection: session ${session.id} @ ${session.socket.remoteAddress}`);
+        Logger.log(`Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 
         this.setupSocketEvents(session);
     }
@@ -51,7 +53,7 @@ export class Server {
     }
 
     public onClose(session: Session, hadError: boolean): void {
-        Logger.log(`Session ${session.id} @ ${session.socket.remoteAddress} closed`, HexColor.RED);
+        Logger.log(`Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 
     public onError(session: Session, error: Error): void {
