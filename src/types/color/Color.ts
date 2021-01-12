@@ -25,9 +25,9 @@ export class Color {
     }
 
     public static write(packet: PacketWriter, color: Color): void {
-        packet.writeByte(color.alpha);
-        packet.writeByte(color.red);
-        packet.writeByte(color.green);
         packet.writeByte(color.blue);
+        packet.writeByte(color.green);
+        packet.writeByte(color.red);
+        packet.writeByte(color.alpha);
     }
 }
