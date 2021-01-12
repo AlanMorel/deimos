@@ -33,10 +33,11 @@ export class ResponseLoginHandler implements PacketHandler {
                 const endpoints = [
                     new Endpoint("127.0.0.1", 20001)
                 ];
+                const unknownData = Buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]); // TODO: scramble
 
                 session.send(NpsInfoPacket.npsInfo());
                 session.send(BannerListPacket.setBanner(0)); // TODO: load banners
-                session.send(ServerListPacket.setServers(serverName, endpoints));
+                session.send(ServerListPacket.setServers(serverName, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
                 const accountId = 0;

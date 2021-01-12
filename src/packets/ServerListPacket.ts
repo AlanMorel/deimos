@@ -9,7 +9,7 @@ enum Mode {
 
 export class ServerListPacket {
 
-    public static setServers(serverName: string, endpoints: Endpoint[]): Packet {
+    public static setServers(serverName: string, endpoints: Endpoint[], unknownData: Buffer): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.SERVER_LIST);
@@ -23,9 +23,10 @@ export class ServerListPacket {
             packet.writeUShort(endpoint.getPort());
         }
         packet.writeInt(100); // constant?
-
-        // Looks like length 9, then 1-9 in scrambled order
-        packet.writeBytes(0x09, 0x0, 0x1, 0x0, 0x4, 0x0, 0x7, 0x0, 0x2, 0x0, 0x5, 0x0, 0x8, 0x0, 0x3, 0x0, 0x6, 0x0, 0x9, 0x0);
+        packet.writeShort(unknownData.length);
+        for (const byte of unknownData) {
+            packet.writeShort(byte);
+        }
 
         return packet;
     }
