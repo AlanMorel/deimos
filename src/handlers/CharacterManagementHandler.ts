@@ -1,5 +1,5 @@
 import { PacketReader } from "../crypto/protocol/PacketReader";
-import { Endpoint } from "../interfaces/Endpoint";
+import { Endpoint } from "../network/Endpoint";
 import { Session } from "../network/Session";
 import { CharacterCreatePacket } from "../packets/CharacterCreatePacket";
 import { CharacterListPacket } from "../packets/CharacterListPacket";

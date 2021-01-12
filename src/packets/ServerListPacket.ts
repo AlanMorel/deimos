@@ -1,7 +1,7 @@
 import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Endpoint } from "../interfaces/Endpoint";
+import { Endpoint } from "../network/Endpoint";
 
 enum Mode {
     SET = 0x1
