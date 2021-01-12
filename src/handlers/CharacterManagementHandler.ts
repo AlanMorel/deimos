@@ -7,7 +7,7 @@ import { CharacterMaxCountPacket } from "../packets/CharacterMaxCountPacket";
 import { LoginToGamePacket } from "../packets/LoginToGamePacket";
 import { HexColor } from "../tools/HexColor";
 import { Logger } from "../tools/Logger";
-import { EquipColor } from "../types/color/EquipColor";
+import { ItemColor } from "../types/color/ItemColor";
 import { SkinColor } from "../types/color/SkinColor";
 import { HairData } from "../types/HairData";
 import { Item } from "../types/item/Item";
@@ -70,7 +70,7 @@ export class CharacterManagementHandler implements PacketHandler {
         for (let i = 0; i < equipCount; i++) {
             const id = packet.readUInt();
             const type = packet.readUnicodeString();
-            const equipColor = EquipColor.read(packet);
+            const equipColor = ItemColor.read(packet);
             const colorIndex = packet.readInt();
 
             switch (type) {

@@ -1,5 +1,5 @@
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { EquipColor } from "../../types/color/EquipColor";
+import { ItemColor } from "../../types/color/ItemColor";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { ItemStat } from "../../types/item/ItemStat";
@@ -130,7 +130,7 @@ export class ItemPacketHelper {
     }
 
     public static writeAppearance(packet: PacketWriter, item: Item): void {
-        EquipColor.write(packet, item.color);
+        ItemColor.write(packet, item.color);
         packet.writeInt(item.appearanceFlag);
         // Positioning Data
         switch (item.itemSlot) {

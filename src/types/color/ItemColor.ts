@@ -2,7 +2,7 @@ import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Color } from "./Color";
 
-export class EquipColor {
+export class ItemColor {
 
     private primary: Color;
     private secondary: Color;
@@ -16,16 +16,16 @@ export class EquipColor {
         this.index = index;
     }
 
-    public static read(packet: PacketReader): EquipColor {
+    public static read(packet: PacketReader): ItemColor {
         const primary = Color.read(packet);
         const secondary = Color.read(packet);
         const tertiary = Color.read(packet);
         const index = packet.readInt();
 
-        return new EquipColor(primary, secondary, tertiary, index);
+        return new ItemColor(primary, secondary, tertiary, index);
     }
 
-    public static write(packet: PacketWriter, equipColor: EquipColor): void {
+    public static write(packet: PacketWriter, equipColor: ItemColor): void {
         Color.write(packet, equipColor.primary);
         Color.write(packet, equipColor.secondary);
         Color.write(packet, equipColor.tertiary);
