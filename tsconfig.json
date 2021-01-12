@@ -4,7 +4,9 @@
         "module": "commonjs",
         "rootDir": "./src",
         "outDir": "./dist",
+        "moduleResolution": "node",
         "esModuleInterop": true,
+        "resolveJsonModule": true,
         "strict": true
     }
 }

@@ -1,3 +1,4 @@
+import Configs from "../configs.json";
 import { PacketReader } from "../crypto/protocol/PacketReader";
 import { Endpoint } from "../network/Endpoint";
 import { Session } from "../network/Session";
@@ -45,7 +46,7 @@ export class CharacterManagementHandler implements PacketHandler {
 
         Logger.log(`Logging in to game with char id: ${charId}`, HexColor.PURPLE);
 
-        const endpoint = new Endpoint("127.0.0.1", 20001);
+        const endpoint = new Endpoint(Configs.loginServer.host, Configs.loginServer.port);
 
         const authData = {
             tokenA: Math.random(),

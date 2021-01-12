@@ -18,6 +18,8 @@ export class Server {
         this.port = port;
         this.packetRouter = new LoginPacketRouter();
 
+        Logger.log(`Server started at ${host}:${port}`);
+
         this.start();
     }
 
