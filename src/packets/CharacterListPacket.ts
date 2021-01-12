@@ -2,6 +2,7 @@ import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Player } from "../types/Player";
+import { CharacterListPacketHelper } from "./helpers/CharacterListPacketHelper";
 
 enum Mode {
     ADD = 0x0,
@@ -20,7 +21,7 @@ export class CharacterListPacket {
         packet.writeByte(characters.length);
 
         for (const character of characters) {
-            // write characters
+            CharacterListPacketHelper.writeCharacterEntry(packet, character);
         }
 
         return packet;
@@ -31,8 +32,7 @@ export class CharacterListPacket {
 
         packet.writeShort(SendOp.CHARACTER_LIST);
         packet.writeByte(Mode.APPEND);
-
-        // TODO: write player data here
+        CharacterListPacketHelper.writeCharacterEntry(packet, character);
 
         return packet;
     }

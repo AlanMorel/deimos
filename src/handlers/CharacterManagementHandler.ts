@@ -58,15 +58,13 @@ export class CharacterManagementHandler implements PacketHandler {
 
     private handleCreate(session: Session, packet: PacketReader): void {
         const gender = packet.readByte();
-        const jobCode = packet.readShort();
+        const jobGroupId = packet.readShort();
         const name = packet.readUnicodeString();
         const skinColor = SkinColor.read(packet);
 
         packet.readShort(); // const?
 
         const equips = new Map<ItemSlot, Item>();
-
-        Logger.log(`Creating character: ${name}, gender: ${gender}, skinColor: ${skinColor}, job: ${jobCode}`, HexColor.PURPLE);
 
         const equipCount = packet.readByte();
         for (let i = 0; i < equipCount; i++) {
@@ -75,16 +73,15 @@ export class CharacterManagementHandler implements PacketHandler {
             const equipColor = EquipColor.read(packet);
             const colorIndex = packet.readInt();
 
-            Logger.log(`${type} - id: ${id}, color: ${equipColor}, colorIndex: ${colorIndex}`, HexColor.PURPLE);
-
             switch (type) {
                 case ItemSlot[ItemSlot.HR]: { // hair
+
                     const backLength = packet.readInt();
                     const backPositionArray = packet.read(24);
                     const frontLength = packet.readInt();
                     const frontPositionArray = packet.read(24);
 
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.HR);
                     item.color = equipColor;
                     item.hairData = new HairData(backLength, frontLength, backPositionArray, frontPositionArray);
                     item.stats = new ItemStats();
@@ -93,7 +90,7 @@ export class CharacterManagementHandler implements PacketHandler {
                     break;
                 }
                 case ItemSlot[ItemSlot.FA]: { // face
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.FA);
                     item.color = equipColor;
                     item.stats = new ItemStats();
 
@@ -103,7 +100,7 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.FD]: { // face decoration
                     const faceDecoration = packet.read(16);
 
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.FD);
                     item.color = equipColor;
                     item.faceDecorationData = faceDecoration;
                     item.stats = new ItemStats();
@@ -112,7 +109,7 @@ export class CharacterManagementHandler implements PacketHandler {
                     break;
                 }
                 case ItemSlot[ItemSlot.CL]: { // clothes
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.CL);
                     item.color = equipColor;
                     item.stats = new ItemStats();
 
@@ -120,7 +117,7 @@ export class CharacterManagementHandler implements PacketHandler {
                     break;
                 }
                 case ItemSlot[ItemSlot.PA]: { // pants
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.PA);
                     item.color = equipColor;
                     item.stats = new ItemStats();
 
@@ -128,7 +125,7 @@ export class CharacterManagementHandler implements PacketHandler {
                     break;
                 }
                 case ItemSlot[ItemSlot.SH]: { // shoes
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.SH);
                     item.color = equipColor;
                     item.stats = new ItemStats();
 
@@ -136,7 +133,7 @@ export class CharacterManagementHandler implements PacketHandler {
                     break;
                 }
                 case ItemSlot[ItemSlot.ER]: { // ear
-                    const item = new Item(id);
+                    const item = new Item(id, ItemSlot.ER);
                     item.color = equipColor;
                     item.stats = new ItemStats();
 
@@ -144,21 +141,21 @@ export class CharacterManagementHandler implements PacketHandler {
                     break;
                 }
             }
-
-            packet.readInt(); // constant 4?
-
-            const taken = false; // TODO: validate name is available
-
-            if (taken) {
-                session.send(CharacterCreatePacket.nameTaken());
-                return;
-            }
-
-            const newCharacter = new Player();
-
-            session.send(CharacterMaxCountPacket.setMax(4, 6));
-
-            session.send(CharacterListPacket.append(newCharacter));
         }
+
+        packet.readInt(); // constant 4?
+
+        const taken = false; // TODO: validate name is available
+
+        if (taken) {
+            session.send(CharacterCreatePacket.nameTaken());
+            return;
+        }
+
+        const newCharacter = new Player(gender, jobGroupId, name, skinColor, equips);
+
+        session.send(CharacterMaxCountPacket.setMax(4, 6));
+
+        session.send(CharacterListPacket.append(newCharacter));
     }
 }

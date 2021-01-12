@@ -51,11 +51,11 @@ export class Item {
 
     public stats: ItemStats;
 
-    public constructor(id: number) {
+    public constructor(id: number, itemSlot: ItemSlot) {
         this.id = id;
         this.uid = GuidGenerator.generateLong();
         this.inventoryTab = InventoryTab.Outfit; // TODO: read from metadata
-        this.itemSlot = ItemSlot.CL; // TODO: read from metadata
+        this.itemSlot = itemSlot; // TODO: read from metadata
         this.slotMax = 100; // TODO: read from metadata
         this.isTemplate = false; // TODO: read from metadata
         this.slot = -1;
