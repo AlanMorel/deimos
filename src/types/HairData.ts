@@ -1,10 +1,10 @@
 export class HairData {
 
-    private backLength: number;
-    private frontLength: number;
+    public backLength: number;
+    public frontLength: number;
 
-    private backPositionArray: Buffer;
-    private frontPositionArray: Buffer;
+    public backPositionArray: Buffer;
+    public frontPositionArray: Buffer;
 
     public constructor(backLength: number, frontLength: number, backPositionArray: Buffer, frontPositionArray: Buffer) {
         this.backLength = backLength;

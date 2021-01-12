@@ -1,4 +1,5 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Color } from "./Color";
 
 export class SkinColor {
@@ -6,7 +7,7 @@ export class SkinColor {
     private primary: Color;
     private secondary: Color;
 
-    private constructor(primary: Color, secondary: Color) {
+    public constructor(primary: Color, secondary: Color) {
         this.primary = primary;
         this.secondary = secondary;
     }
@@ -16,5 +17,10 @@ export class SkinColor {
         const secondary = Color.read(packet);
 
         return new SkinColor(primary, secondary);
+    }
+
+    public static write(packet: PacketWriter, skinColor: SkinColor): void {
+        Color.write(packet, skinColor.primary);
+        Color.write(packet, skinColor.secondary);
     }
 }

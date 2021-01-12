@@ -1,4 +1,5 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Color } from "./Color";
 
 export class EquipColor {
@@ -8,7 +9,7 @@ export class EquipColor {
     private tertiary: Color;
     private index: number;
 
-    private constructor(primary: Color, secondary: Color, tertiary: Color, index: number) {
+    public constructor(primary: Color, secondary: Color, tertiary: Color, index: number) {
         this.primary = primary;
         this.secondary = secondary;
         this.tertiary = tertiary;
@@ -22,5 +23,12 @@ export class EquipColor {
         const index = packet.readInt();
 
         return new EquipColor(primary, secondary, tertiary, index);
+    }
+
+    public static write(packet: PacketWriter, equipColor: EquipColor): void {
+        Color.write(packet, equipColor.primary);
+        Color.write(packet, equipColor.secondary);
+        Color.write(packet, equipColor.tertiary);
+        packet.writeInt(equipColor.index);
     }
 }
