@@ -8,7 +8,7 @@ interface Color {
 
 export class Logger {
 
-    public static log(message: string, hex: HexColor): void {
+    public static log(message: string, hex: HexColor = HexColor.BLUE): void {
         const color = this.hexToColor(hex);
         console.log("\u001b[38;2;" + color.r + ";" + color.g + ";" + color.b + "m" + message + "\u001b[0m");
     }

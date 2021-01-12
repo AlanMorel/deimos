@@ -1,3 +1,4 @@
+import { Logger } from "../../tools/Logger";
 import { Packet } from "../protocol/Packet";
 import { PacketReader } from "../protocol/PacketReader";
 import { Cipher } from "./Cipher";
@@ -26,12 +27,12 @@ export class RecvCipher extends Cipher {
         const decSeq: number = this.decodeSeqBase(encSeq);
 
         if (decSeq != this.version) {
-            console.log("Packet has invalid sequence header: " + decSeq);
+            Logger.log("Packet has invalid sequence header: " + decSeq);
         }
 
         const packetSize = packet.readInt();
         if (packet.length < packetSize + Cipher.HEADER_SIZE) {
-            console.log("Packet has invalid length: " + packet.length);
+            Logger.log("Packet has invalid length: " + packet.length);
         }
 
         return packetSize;

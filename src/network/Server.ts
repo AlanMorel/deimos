@@ -32,7 +32,7 @@ export class Server {
     private onConnection(socket: net.Socket): void {
         const session = new Session(0, socket, this.packetRouter);
 
-        console.log(`Server received a client connection: session ${session.id} @ ${session.socket.remoteAddress}`);
+        Logger.log(`Server received a client connection: session ${session.id} @ ${session.socket.remoteAddress}`);
 
         this.setupSocketEvents(session);
     }

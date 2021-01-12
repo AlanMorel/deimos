@@ -1,4 +1,5 @@
 export enum HexColor {
+    BLUE = 0x75BEFF,
     RED = 0xE05561,
     GREEN = 0x8CC265,
     YELLOW = 0xFFD400,
