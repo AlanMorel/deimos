@@ -1,4 +1,5 @@
 import { GuidGenerator } from "../../tools/GuidGenerator";
+import { Color } from "../color/Color";
 import { EquipColor } from "../color/EquipColor";
 import { HairData } from "../HairData";
 import { InventoryTab } from "../InvetoryTab";
@@ -41,7 +42,7 @@ export class Item {
 
     public owner?: Player;
 
-    public color?: EquipColor;
+    public color: EquipColor;
 
     public hairData?: HairData;
 
@@ -61,5 +62,6 @@ export class Item {
         this.amount = 1;
         this.stats = new ItemStats();
         this.canRepackage = true; // if false, item becomes untradable
+        this.color = new EquipColor(new Color(-1, 0, 0, 0), new Color(-1, 0, 0, 0), new Color(-1, 0, 0, 0), 0);
     }
 }
