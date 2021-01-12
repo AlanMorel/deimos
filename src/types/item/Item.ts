@@ -9,6 +9,7 @@ import { ItemSlot } from "./ItemSlot";
 import { ItemStats } from "./ItemStats";
 
 export class Item {
+
     public inventoryTab: InventoryTab;
     public itemSlot: ItemSlot;
     public slotMax: number;

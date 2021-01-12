@@ -2,6 +2,7 @@ import { Gemstone } from "./Gemstone";
 import { ItemStat } from "./ItemStat";
 
 export class ItemStats {
+
     public basicAttributes: Array<ItemStat>;
     public bonusAttributes: Array<ItemStat>;
 

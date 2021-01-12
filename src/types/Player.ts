@@ -79,14 +79,22 @@ export class Player {
     }
 
     public isBeauty(): boolean {
+        const slots = [
+            ItemSlot.HR,
+            ItemSlot.FA,
+            ItemSlot.FD,
+            ItemSlot.CL,
+            ItemSlot.PA,
+            ItemSlot.SH,
+            ItemSlot.ER
+        ];
         const defaultEquipSlot = this.getDefaultEquipSlot();
-        return defaultEquipSlot == ItemSlot.HR
-            || defaultEquipSlot == ItemSlot.FA
-            || defaultEquipSlot == ItemSlot.FD
-            || defaultEquipSlot == ItemSlot.CL
-            || defaultEquipSlot == ItemSlot.PA
-            || defaultEquipSlot == ItemSlot.SH
-            || defaultEquipSlot == ItemSlot.ER;
+        for (const slot of slots) {
+            if (defaultEquipSlot == slot) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public getJobCode(): JobCode {
