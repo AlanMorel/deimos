@@ -63,6 +63,6 @@ export class Item {
         this.amount = 1;
         this.stats = new ItemStats();
         this.canRepackage = true; // if false, item becomes untradable
-        this.color = new ItemColor(new Color(-1, 0, 0, 0), new Color(-1, 0, 0, 0), new Color(-1, 0, 0, 0), 0);
+        this.color = new ItemColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), 0);
     }
 }

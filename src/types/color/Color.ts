@@ -3,16 +3,16 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 
 export class Color {
 
-    private alpha: number;
-    private red: number;
-    private green: number;
     private blue: number;
+    private green: number;
+    private red: number;
+    private alpha: number;
 
-    public constructor(alpha: number, red: number, green: number, blue: number) {
-        this.alpha = alpha;
-        this.red = red;
-        this.green = green;
+    public constructor(blue: number, green: number, red: number, alpha: number) {
         this.blue = blue;
+        this.green = green;
+        this.red = red;
+        this.alpha = alpha;
     }
 
     public static read(packet: PacketReader): Color {
@@ -21,7 +21,7 @@ export class Color {
         const red = packet.readByte();
         const alpha = packet.readByte();
 
-        return new Color(alpha, red, green, blue);
+        return new Color(blue, green, red, alpha);
     }
 
     public static write(packet: PacketWriter, color: Color): void {
