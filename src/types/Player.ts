@@ -13,7 +13,7 @@ export class Player {
 
     // constants
     public accountId: BigInt = BigInt(1);
-    public characterId: BigInt = BigInt(1);
+    public characterId: BigInt;
     public creationTime: BigInt = BigInt(0);
     public name: string;
     public gender: Gender;
@@ -63,7 +63,8 @@ export class Player {
 
     public jobType: Job = Job.None;
 
-    public constructor(gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
+    public constructor(characterId: BigInt, gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
+        this.characterId = characterId;
         this.gender = gender;
         this.jobGroupId = jobGroupId;
         this.name = name;

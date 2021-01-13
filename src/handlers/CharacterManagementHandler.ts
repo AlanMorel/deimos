@@ -1,5 +1,7 @@
 import Configs from "../configs.json";
 import { PacketReader } from "../crypto/protocol/PacketReader";
+import { AccountStorage } from "../data/storage/AccountStorage";
+import { CharacterStorage } from "../data/storage/CharacterStorage";
 import { Endpoint } from "../network/Endpoint";
 import { Session } from "../network/Session";
 import { CharacterCreatePacket } from "../packets/CharacterCreatePacket";
@@ -153,10 +155,12 @@ export class CharacterManagementHandler implements PacketHandler {
             return;
         }
 
-        const newCharacter = new Player(gender, jobGroupId, name, skinColor, equips);
+        const newCharacter = new Player(BigInt(2), gender, jobGroupId, name, skinColor, equips);
+
+        CharacterStorage.storage.addCharacter(newCharacter);
+        AccountStorage.storage.addCharacterID(newCharacter.accountId, newCharacter.characterId);
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));
-
         session.send(CharacterListPacket.append(newCharacter));
     }
 }

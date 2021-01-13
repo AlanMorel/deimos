@@ -28,11 +28,13 @@ export class CharacterStorage {
     }
 
     private static getTestPlayer(): Player {
+        const characterId = BigInt(1);
         const gender = Gender.Male;
         const jobGroupId = 100;
         const name = "Alan";
         const skinColor = new SkinColor(new Color(-1, -22, -65, -82), new Color(-1, -22, -65, -82));
         const equips = new Map<ItemSlot, Item>();
-        return new Player(gender, jobGroupId, name, skinColor, equips);
+
+        return new Player(characterId, gender, jobGroupId, name, skinColor, equips);
     }
 }
