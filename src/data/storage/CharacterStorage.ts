@@ -32,7 +32,7 @@ export class CharacterStorage {
     private static getTestPlayer(): Player {
         const characterId = BigInt(1);
         const gender = Gender.Male;
-        const jobGroupId = 100;
+        const jobGroupId = 30;
         const name = "Alan";
         const skinColor = new SkinColor(new Color(-82, -65, -22, -1), new Color(-82, -65, -22, -1));
         const equips = new Map<ItemSlot, Item>();

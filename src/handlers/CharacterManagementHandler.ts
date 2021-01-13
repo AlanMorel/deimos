@@ -78,14 +78,9 @@ export class CharacterManagementHandler implements PacketHandler {
             switch (type) {
                 case ItemSlot[ItemSlot.HR]: { // hair
 
-                    const backLength = packet.readInt();
-                    const backPositionArray = packet.read(24);
-                    const frontLength = packet.readInt();
-                    const frontPositionArray = packet.read(24);
-
                     const item = new Item(id, ItemSlot.HR);
                     item.color = equipColor;
-                    item.hairData = new HairData(backLength, frontLength, backPositionArray, frontPositionArray);
+                    item.hairData = HairData.read(packet);
 
                     equips.set(ItemSlot.HR, item);
                     break;

@@ -1,5 +1,6 @@
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { ItemColor } from "../../types/color/ItemColor";
+import { HairData } from "../../types/HairData";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { ItemStat } from "../../types/item/ItemStat";
@@ -143,10 +144,7 @@ export class ItemPacketHelper {
                 if (!item.hairData) {
                     break;
                 }
-                packet.writeInt(item.hairData.backLength);
-                packet.write(item.hairData.backPositionArray);
-                packet.writeInt(item.hairData.frontLength);
-                packet.write(item.hairData.frontPositionArray);
+                HairData.write(packet, item.hairData);
                 break;
             case ItemSlot.FD:
                 if (!item.faceDecorationData) {
