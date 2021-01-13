@@ -1,5 +1,6 @@
 import { Color } from "../../types/color/Color";
 import { SkinColor } from "../../types/color/SkinColor";
+import { Gender } from "../../types/Gender";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { Player } from "../../types/Player";
@@ -27,7 +28,7 @@ export class CharacterStorage {
     }
 
     private static getTestPlayer(): Player {
-        const gender = 0;
+        const gender = Gender.Male;
         const jobGroupId = 100;
         const name = "Alan";
         const skinColor = new SkinColor(new Color(-1, -22, -65, -82), new Color(-1, -22, -65, -82));

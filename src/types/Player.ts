@@ -1,5 +1,6 @@
 import { SkinColor } from "./color/SkinColor";
 import { CoordF } from "./coords/CoordF";
+import { Gender } from "./Gender";
 import { Item } from "./item/Item";
 import { ItemSlot } from "./item/ItemSlot";
 import { Job } from "./jobs/Job";
@@ -15,7 +16,7 @@ export class Player {
     public characterId: BigInt = BigInt(1);
     public creationTime: BigInt = BigInt(0);
     public name: string;
-    public gender: number; // 0 = male, 1 = female
+    public gender: Gender;
 
     public jobGroupId: number; // according to jobgroupname.xml
     public awakened: boolean = false;
@@ -62,7 +63,7 @@ export class Player {
 
     public jobType: Job = Job.None;
 
-    public constructor(gender: number, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
+    public constructor(gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
         this.gender = gender;
         this.jobGroupId = jobGroupId;
         this.name = name;
