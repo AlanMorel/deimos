@@ -1,22 +1,22 @@
-import Configs from "../configs.json";
-import { PacketReader } from "../crypto/protocol/PacketReader";
-import { AccountStorage } from "../data/storage/AccountStorage";
-import { CharacterStorage } from "../data/storage/CharacterStorage";
-import { Endpoint } from "../network/Endpoint";
-import { Session } from "../network/Session";
-import { CharacterCreatePacket } from "../packets/CharacterCreatePacket";
-import { CharacterListPacket } from "../packets/CharacterListPacket";
-import { CharacterMaxCountPacket } from "../packets/CharacterMaxCountPacket";
-import { LoginToGamePacket } from "../packets/LoginToGamePacket";
-import { HexColor } from "../tools/HexColor";
-import { Logger } from "../tools/Logger";
-import { ItemColor } from "../types/color/ItemColor";
-import { SkinColor } from "../types/color/SkinColor";
-import { HairData } from "../types/HairData";
-import { Item } from "../types/item/Item";
-import { ItemSlot } from "../types/item/ItemSlot";
-import { Player } from "../types/Player";
-import { PacketHandler } from "./PacketHandler";
+import Configs from "../../configs.json";
+import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { AccountStorage } from "../../data/storage/AccountStorage";
+import { CharacterStorage } from "../../data/storage/CharacterStorage";
+import { Endpoint } from "../../network/Endpoint";
+import { Session } from "../../network/Session";
+import { CharacterCreatePacket } from "../../packets/CharacterCreatePacket";
+import { CharacterListPacket } from "../../packets/CharacterListPacket";
+import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
+import { LoginToGamePacket } from "../../packets/LoginToGamePacket";
+import { HexColor } from "../../tools/HexColor";
+import { Logger } from "../../tools/Logger";
+import { ItemColor } from "../../types/color/ItemColor";
+import { SkinColor } from "../../types/color/SkinColor";
+import { HairData } from "../../types/HairData";
+import { Item } from "../../types/item/Item";
+import { ItemSlot } from "../../types/item/ItemSlot";
+import { Player } from "../../types/Player";
+import { PacketHandler } from "../PacketHandler";
 
 enum Mode {
     LOGIN = 0x0,
@@ -47,7 +47,7 @@ export class CharacterManagementHandler implements PacketHandler {
 
         Logger.log(`Logging in to game with char id: ${charId}`, HexColor.PURPLE);
 
-        const endpoint = new Endpoint(Configs.loginServer.host, Configs.loginServer.port);
+        const endpoint = new Endpoint(Configs.channel.host, Configs.channel.port);
 
         const authData = {
             tokenA: Math.random(),

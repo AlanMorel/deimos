@@ -1,20 +1,23 @@
 import * as net from "net";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
-import { LoginPacketRouter } from "../routers/LoginPacketRouter";
+import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
 import { Session } from "../Session";
 import { Server } from "./Server";
 
-export class LoginServer extends Server {
+export class ChannelServer extends Server {
 
-    public constructor(host: string, port: number) {
-        super("Login", host, port, new LoginPacketRouter());
+    private id: number;
+
+    public constructor(id: number, host: string, port: number) {
+        super("Channel", host, port, new ChannelPacketRouter());
+        this.id = id;
     }
 
     protected onConnection(socket: net.Socket): void {
         const session = new Session(this.sessionCounter++, socket, this.packetRouter);
 
-        Logger.log(`LoginServer: Session ${session.id} @ ${session.socket.remoteAddress} opened`);
+        Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 
         this.setupSocketEvents(session);
     }
@@ -31,7 +34,7 @@ export class LoginServer extends Server {
     }
 
     protected onClose(session: Session, hadError: boolean): void {
-        Logger.log(`LoginServer: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
+        Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 
     protected onError(session: Session, error: Error): void {

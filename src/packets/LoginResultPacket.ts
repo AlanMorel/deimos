@@ -18,7 +18,7 @@ export class LoginResultPacket {
         packet.writeUnicodeString(""); // ban reason
         packet.writeBigInt(accountId);
         packet.writeLong(Time.getUnixTimeSeconds()); // SyncTime
-        packet.writeInt(Time.getTicks()); // SyncTicks
+        packet.writeInt(Time.getTickCount()); // SyncTicks
         packet.writeByte(); // TimeZone
         packet.writeByte(); // BlockType
         packet.writeInt(); // constant

@@ -1,20 +1,20 @@
-import Configs from "../configs.json";
-import { PacketReader } from "../crypto/protocol/PacketReader";
-import { AccountStorage } from "../data/storage/AccountStorage";
-import { CharacterStorage } from "../data/storage/CharacterStorage";
-import { Endpoint } from "../network/Endpoint";
-import { Session } from "../network/Session";
-import { BannerListPacket } from "../packets/BannerListPacket";
-import { CharacterListPacket } from "../packets/CharacterListPacket";
-import { CharacterMaxCountPacket } from "../packets/CharacterMaxCountPacket";
-import { LoginResultPacket } from "../packets/LoginResultPacket";
-import { NpsInfoPacket } from "../packets/NpsInfoPacket";
-import { ServerListPacket } from "../packets/ServerListPacket";
-import { UgcPacket } from "../packets/UgcPacket";
-import { HexColor } from "../tools/HexColor";
-import { Logger } from "../tools/Logger";
-import { Player } from "../types/Player";
-import { PacketHandler } from "./PacketHandler";
+import Configs from "../../configs.json";
+import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { AccountStorage } from "../../data/storage/AccountStorage";
+import { CharacterStorage } from "../../data/storage/CharacterStorage";
+import { Endpoint } from "../../network/Endpoint";
+import { Session } from "../../network/Session";
+import { BannerListPacket } from "../../packets/BannerListPacket";
+import { CharacterListPacket } from "../../packets/CharacterListPacket";
+import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
+import { LoginResultPacket } from "../../packets/LoginResultPacket";
+import { NpsInfoPacket } from "../../packets/NpsInfoPacket";
+import { ServerListPacket } from "../../packets/ServerListPacket";
+import { UgcPacket } from "../../packets/UgcPacket";
+import { HexColor } from "../../tools/HexColor";
+import { Logger } from "../../tools/Logger";
+import { Player } from "../../types/Player";
+import { PacketHandler } from "../PacketHandler";
 
 enum Mode {
     LOGIN_1 = 0x1,
@@ -33,7 +33,7 @@ export class ResponseLoginHandler implements PacketHandler {
         switch (mode) {
             case Mode.LOGIN_1:
                 const endpoints = [
-                    new Endpoint(Configs.loginServer.host, Configs.loginServer.port)
+                    new Endpoint(Configs.login.host, Configs.login.port)
                 ];
                 const unknownData = Buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]); // TODO: scramble
 
