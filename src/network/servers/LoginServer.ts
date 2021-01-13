@@ -1,13 +1,14 @@
 import * as net from "net";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
+import { LoginPacketRouter } from "../LoginPacketRouter";
 import { Session } from "../Session";
 import { Server } from "./Server";
 
 export class LoginServer extends Server {
 
     public constructor(host: string, port: number) {
-        super("Login", host, port);
+        super("Login", host, port, new LoginPacketRouter());
     }
 
     protected onConnection(socket: net.Socket): void {

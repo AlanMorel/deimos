@@ -1,6 +1,5 @@
 import * as net from "net";
 import { Logger } from "../../tools/Logger";
-import { LoginPacketRouter } from "../LoginPacketRouter";
 import { PacketRouter } from "../PacketRouter";
 import { Session } from "../Session";
 
@@ -12,11 +11,11 @@ export abstract class Server {
     protected packetRouter: PacketRouter;
     protected sessionCounter: number;
 
-    public constructor(name: string, host: string, port: number) {
+    public constructor(name: string, host: string, port: number, packetRouter: PacketRouter) {
         this.server = net.createServer();
         this.host = host;
         this.port = port;
-        this.packetRouter = new LoginPacketRouter();
+        this.packetRouter = packetRouter;
         this.sessionCounter = 0;
 
         Logger.log(`${name}Server started at ${host}:${port}`);
