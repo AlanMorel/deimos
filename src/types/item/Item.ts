@@ -16,7 +16,7 @@ export class Item {
     public isTemplate: boolean = false;
 
     public readonly id: number;
-    public uid: bigint;
+    public readonly uid: bigint;
     public slot: number;
     public amount: number;
     public rarity: number = 0;
@@ -46,8 +46,8 @@ export class Item {
     public color: ItemColor;
 
     public hairData?: HairData;
-
     public faceDecorationData?: Buffer;
+
     public appearanceFlag?: number;
 
     public stats: ItemStats;

@@ -71,66 +71,27 @@ export class CharacterManagementHandler implements PacketHandler {
         const equipCount = packet.readByte();
         for (let i = 0; i < equipCount; i++) {
             const id = packet.readUInt();
-            const type = packet.readUnicodeString();
-            const equipColor = ItemColor.read(packet);
+            const itemSlotName = packet.readUnicodeString();
+            const itemColor = ItemColor.read(packet);
             const colorIndex = packet.readInt();
 
-            switch (type) {
-                case ItemSlot[ItemSlot.HR]: { // hair
+            const itemSlot = ItemSlot[itemSlotName as keyof typeof ItemSlot];
 
-                    const item = new Item(id, ItemSlot.HR);
-                    item.color = equipColor;
+            const item = new Item(id, itemSlot);
+            item.color = itemColor;
+
+            switch (itemSlot) {
+                case ItemSlot.HR: {
                     item.hairData = HairData.read(packet);
-
-                    equips.set(ItemSlot.HR, item);
                     break;
                 }
-                case ItemSlot[ItemSlot.FA]: { // face
-                    const item = new Item(id, ItemSlot.FA);
-                    item.color = equipColor;
-
-                    equips.set(ItemSlot.FA, item);
-                    break;
-                }
-                case ItemSlot[ItemSlot.FD]: { // face decoration
-                    const faceDecoration = packet.read(16);
-
-                    const item = new Item(id, ItemSlot.FD);
-                    item.color = equipColor;
-                    item.faceDecorationData = faceDecoration;
-
-                    equips.set(ItemSlot.FD, item);
-                    break;
-                }
-                case ItemSlot[ItemSlot.CL]: { // clothes
-                    const item = new Item(id, ItemSlot.CL);
-                    item.color = equipColor;
-
-                    equips.set(ItemSlot.CL, item);
-                    break;
-                }
-                case ItemSlot[ItemSlot.PA]: { // pants
-                    const item = new Item(id, ItemSlot.PA);
-                    item.color = equipColor;
-
-                    equips.set(ItemSlot.PA, item);
-                    break;
-                }
-                case ItemSlot[ItemSlot.SH]: { // shoes
-                    const item = new Item(id, ItemSlot.SH);
-                    item.color = equipColor;
-
-                    equips.set(ItemSlot.SH, item);
-                    break;
-                }
-                case ItemSlot[ItemSlot.ER]: { // ear
-                    const item = new Item(id, ItemSlot.ER);
-                    item.color = equipColor;
-
-                    equips.set(ItemSlot.ER, item);
+                case ItemSlot.FD: {
+                    item.faceDecorationData = packet.read(16);
                     break;
                 }
             }
+
+            equips.set(itemSlot, item);
         }
 
         packet.readInt(); // constant 4?
