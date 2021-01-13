@@ -11,7 +11,7 @@ import { PacketReader } from "../crypto/protocol/PacketReader";
 import { RequestVersionPacket } from "../packets/RequestVersionPacket";
 import { HexColor } from "../tools/HexColor";
 import { Logger } from "../tools/Logger";
-import { PacketRouter } from "./PacketRouter";
+import { PacketRouter } from "./routers/PacketRouter";
 
 export class Session {
 

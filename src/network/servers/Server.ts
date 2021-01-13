@@ -1,6 +1,6 @@
 import * as net from "net";
 import { Logger } from "../../tools/Logger";
-import { PacketRouter } from "../PacketRouter";
+import { PacketRouter } from "../routers/PacketRouter";
 import { Session } from "../Session";
 
 export abstract class Server {

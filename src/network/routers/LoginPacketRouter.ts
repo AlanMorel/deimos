@@ -1,7 +1,7 @@
-import { RecvOp } from "../constants/RecvOp";
-import { CharacterManagementHandler } from "../handlers/CharacterManagementHandler";
-import { ResponseLoginHandler } from "../handlers/ResponseLoginHandler";
-import { ResponseVersionHandler } from "../handlers/ResponseVersionHandler";
+import { RecvOp } from "../../constants/RecvOp";
+import { CharacterManagementHandler } from "../../handlers/CharacterManagementHandler";
+import { ResponseLoginHandler } from "../../handlers/ResponseLoginHandler";
+import { ResponseVersionHandler } from "../../handlers/ResponseVersionHandler";
 import { PacketRouter } from "./PacketRouter";
 
 export class LoginPacketRouter extends PacketRouter {

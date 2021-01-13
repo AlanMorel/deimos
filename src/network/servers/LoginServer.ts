@@ -1,7 +1,7 @@
 import * as net from "net";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
-import { LoginPacketRouter } from "../LoginPacketRouter";
+import { LoginPacketRouter } from "../routers/LoginPacketRouter";
 import { Session } from "../Session";
 import { Server } from "./Server";
 

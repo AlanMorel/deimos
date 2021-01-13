@@ -1,4 +1,4 @@
-import { PacketHandler } from "../handlers/PacketHandler";
+import { PacketHandler } from "../../handlers/PacketHandler";
 
 export abstract class PacketRouter {
 
