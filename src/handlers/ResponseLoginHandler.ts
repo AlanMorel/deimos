@@ -1,5 +1,7 @@
 import Configs from "../configs.json";
 import { PacketReader } from "../crypto/protocol/PacketReader";
+import { AccountStorage } from "../data/storage/AccountStorage";
+import { CharacterStorage } from "../data/storage/CharacterStorage";
 import { Endpoint } from "../network/Endpoint";
 import { Session } from "../network/Session";
 import { BannerListPacket } from "../packets/BannerListPacket";
@@ -40,8 +42,17 @@ export class ResponseLoginHandler implements PacketHandler {
                 session.send(ServerListPacket.setServers(Configs.serverName, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
-                const accountId = 0;
+                const accountId = BigInt(1);
+                const characterIds = AccountStorage.storage.getCharacterIDs(accountId);
                 const players = new Array<Player>();
+
+                characterIds.forEach(id => {
+                    const player = CharacterStorage.storage.getCharacter(id);
+
+                    if (player) {
+                        players.push(player);
+                    }
+                });
 
                 Logger.log("Initializing login with account id: " + accountId, HexColor.PURPLE);
 

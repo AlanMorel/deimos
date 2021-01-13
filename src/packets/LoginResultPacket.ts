@@ -9,14 +9,14 @@ enum Mode {
 
 export class LoginResultPacket {
 
-    public static login(accountId: number): Packet {
+    public static login(accountId: BigInt): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.LOGIN_RESULT);
         packet.writeByte(Mode.SUCCESS);
         packet.writeInt(); // constant
         packet.writeUnicodeString(""); // ban reason
-        packet.writeLong(accountId);
+        packet.writeBigInt(accountId);
         packet.writeLong(Time.getUnixTimeSeconds()); // SyncTime
         packet.writeInt(Time.getTicks()); // SyncTicks
         packet.writeByte(); // TimeZone
