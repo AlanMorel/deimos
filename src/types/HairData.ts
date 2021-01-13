@@ -22,7 +22,7 @@ export class HairData {
         const frontLength = packet.readInt();
         const frontPositionArray = packet.read(24);
 
-        return new HairData(backLength, frontLength, backPositionArray, frontPositionArray)
+        return new HairData(backLength, frontLength, backPositionArray, frontPositionArray);
     }
 
     public static write(packet: PacketWriter, hairData: HairData): void {
