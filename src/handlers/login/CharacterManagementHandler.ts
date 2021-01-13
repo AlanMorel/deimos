@@ -16,7 +16,7 @@ import { HairData } from "../../types/HairData";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { Player } from "../../types/Player";
-import { PacketHandler } from "../PacketHandler";
+import { LoginPacketHandler } from "../LoginPacketHandler";
 
 enum Mode {
     LOGIN = 0x0,
@@ -24,7 +24,7 @@ enum Mode {
     DELETE = 0x2
 }
 
-export class CharacterManagementHandler implements PacketHandler {
+export class CharacterManagementHandler implements LoginPacketHandler {
 
     public handle(session: Session, packet: PacketReader): void {
         const mode = packet.readByte();

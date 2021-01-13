@@ -4,7 +4,7 @@ import { PacketRouter } from "./PacketRouter";
 
 export class ChannelPacketRouter extends PacketRouter {
 
-    public init(): void {
+    public registerHandlers(): void {
         this.handlers.set(RecvOp.RESPONSE_VERSION, new ResponseVersionHandler());
     }
 }

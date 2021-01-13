@@ -14,14 +14,14 @@ import { UgcPacket } from "../../packets/UgcPacket";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { Player } from "../../types/Player";
-import { PacketHandler } from "../PacketHandler";
+import { LoginPacketHandler } from "../LoginPacketHandler";
 
 enum Mode {
     LOGIN_1 = 0x1,
     LOGIN_2 = 0x2
 }
 
-export class ResponseLoginHandler implements PacketHandler {
+export class ResponseLoginHandler implements LoginPacketHandler {
 
     public handle(session: Session, packet: PacketReader): void {
         const mode = packet.readByte();
