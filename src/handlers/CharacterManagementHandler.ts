@@ -15,7 +15,6 @@ import { SkinColor } from "../types/color/SkinColor";
 import { HairData } from "../types/HairData";
 import { Item } from "../types/item/Item";
 import { ItemSlot } from "../types/item/ItemSlot";
-import { ItemStats } from "../types/item/ItemStats";
 import { Player } from "../types/Player";
 import { PacketHandler } from "./PacketHandler";
 
@@ -87,7 +86,6 @@ export class CharacterManagementHandler implements PacketHandler {
                     const item = new Item(id, ItemSlot.HR);
                     item.color = equipColor;
                     item.hairData = new HairData(backLength, frontLength, backPositionArray, frontPositionArray);
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.HR, item);
                     break;
@@ -95,7 +93,6 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.FA]: { // face
                     const item = new Item(id, ItemSlot.FA);
                     item.color = equipColor;
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.FA, item);
                     break;
@@ -106,7 +103,6 @@ export class CharacterManagementHandler implements PacketHandler {
                     const item = new Item(id, ItemSlot.FD);
                     item.color = equipColor;
                     item.faceDecorationData = faceDecoration;
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.FD, item);
                     break;
@@ -114,7 +110,6 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.CL]: { // clothes
                     const item = new Item(id, ItemSlot.CL);
                     item.color = equipColor;
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.CL, item);
                     break;
@@ -122,7 +117,6 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.PA]: { // pants
                     const item = new Item(id, ItemSlot.PA);
                     item.color = equipColor;
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.PA, item);
                     break;
@@ -130,7 +124,6 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.SH]: { // shoes
                     const item = new Item(id, ItemSlot.SH);
                     item.color = equipColor;
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.SH, item);
                     break;
@@ -138,7 +131,6 @@ export class CharacterManagementHandler implements PacketHandler {
                 case ItemSlot[ItemSlot.ER]: { // ear
                     const item = new Item(id, ItemSlot.ER);
                     item.color = equipColor;
-                    item.stats = new ItemStats();
 
                     equips.set(ItemSlot.ER, item);
                     break;
