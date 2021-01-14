@@ -2,7 +2,8 @@ import * as net from "net";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
-import { Session } from "../Session";
+import { ChannelSession } from "../sessions/ChannelSession";
+import { Session } from "../sessions/Session";
 import { Server } from "./Server";
 
 export class ChannelServer extends Server {
@@ -15,7 +16,7 @@ export class ChannelServer extends Server {
     }
 
     protected onConnection(socket: net.Socket): void {
-        const session = new Session(this.sessionCounter++, socket, this.packetRouter);
+        const session = new ChannelSession(this.sessionCounter++, socket, this.packetRouter);
 
         Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 

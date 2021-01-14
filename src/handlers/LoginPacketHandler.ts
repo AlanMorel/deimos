@@ -1,9 +1,9 @@
 import { PacketReader } from "../crypto/protocol/PacketReader";
-import { Session } from "../network/Session";
+import { LoginSession } from "../network/sessions/LoginSession";
 import { PacketHandler } from "./PacketHandler";
 
 export abstract class LoginPacketHandler implements PacketHandler {
 
-    public abstract handle(session: Session, packet: PacketReader): void;
+    public abstract handle(session: LoginSession, packet: PacketReader): void;
 
 }

@@ -3,7 +3,7 @@ import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Endpoint } from "../../network/Endpoint";
-import { Session } from "../../network/Session";
+import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
 import { CharacterListPacket } from "../../packets/CharacterListPacket";
 import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
@@ -23,7 +23,7 @@ enum Mode {
 
 export class ResponseLoginHandler implements LoginPacketHandler {
 
-    public handle(session: Session, packet: PacketReader): void {
+    public handle(session: LoginSession, packet: PacketReader): void {
         const mode = packet.readByte();
         const username = packet.readUnicodeString();
         const password = packet.readUnicodeString();
