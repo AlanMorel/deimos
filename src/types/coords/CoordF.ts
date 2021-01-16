@@ -13,8 +13,8 @@ export class CoordF {
     }
 
     public static write(packet: PacketWriter, coords: CoordF): void {
-        packet.writeInt(coords.X);
-        packet.writeInt(coords.Y);
-        packet.writeInt(coords.Z);
+        packet.writeFloat(coords.X);
+        packet.writeFloat(coords.Y);
+        packet.writeFloat(coords.Z);
     }
 }
