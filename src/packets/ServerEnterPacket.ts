@@ -9,7 +9,7 @@ export class ServerEnterPacket {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.SERVER_ENTER);
-        packet.writeInt(100000); // TODO: replace with player.objectId
+        packet.writeInt(player.objectId);
         packet.writeBigInt(player.characterId);
         packet.writeShort(1); // player.channel
         packet.writeBigInt(player.experience);

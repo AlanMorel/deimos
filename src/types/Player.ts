@@ -21,9 +21,10 @@ export class Player {
     public jobGroupId: number; // according to jobgroupname.xml
     public awakened: boolean = false;
 
-    // Mutable Values
-    public mapId: number = 0;
+    // mutable Values
+    public mapId: number = 2000062;
     public level: number = 1;
+    public objectId: number = 100000;
     public experience: BigInt = BigInt(0);
     public restExperience: BigInt = BigInt(0);
     public prestigeLevel: number = 100;
@@ -32,13 +33,13 @@ export class Player {
     public insigniaId: number = 0;
     public animation: number = 0;
 
-    // Combat, Adventure, Lifestyle
+    // combat, adventure, lifestyle
     public trophy: number[] = new Array(3);
 
-    public coord: CoordF = new CoordF(0, 0, 0);
+    public coord: CoordF = new CoordF(2850, 2550, 1800);
     public rotation: CoordF = new CoordF(0, 0, 0);
 
-    // Appearance
+    // appearance
     public skinColor: SkinColor;
 
     public guildName = "";
