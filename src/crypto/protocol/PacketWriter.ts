@@ -128,67 +128,52 @@ export class PacketWriter extends Packet {
         this.writeByte(int & 0xFF);
     }
 
-    public writeDeflated(data: Buffer, offset: number, length: number): Promise<void> {
+    public writeDeflated(data: Buffer, length: number): Promise<void> {
         const INT_SIZE = 4;
 
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
 
             if (length <= 4) {
                 this.writeInt(length);
                 this.write(data);
+                resolve();
                 return;
             }
-
-            const startIndex = this.length;
-
-            this.writeInt();
-            this.writeIntBigEndian(length);
 
             const deflater = zlib.createDeflate({
                 level: 1
             });
 
-            const buffers: any = [];
-            let nread = 0;
+            const chunks: Buffer[] = [];
+            let chunkLengthTotal = 0;
 
             deflater.on("data", (chunk: Buffer) => {
-                buffers.push(chunk);
-                nread += chunk.length;
+                chunks.push(chunk);
+                chunkLengthTotal += chunk.length;
             });
 
             deflater.on("end", () => {
-                let buffer: Buffer;
-                switch (buffers.length) {
-                    case 0:
-                        buffer = Buffer.alloc(0);
-                        break;
-                    case 1:
-                        buffer = Buffer.alloc(buffers[0]);
-                        break;
-                    default:
-                        buffer = Buffer.alloc(nread);
-                        let n = 0;
-                        buffers.forEach((b: any) => {
-                            const length = b.length;
-                            b.copy(buffer, n, 0, length);
-                            n += length;
+                const buffer = Buffer.alloc(chunkLengthTotal);
+                let offset = 0;
+                chunks.forEach((chunk: Buffer) => {
+                    const length = chunk.length;
+                    chunk.copy(buffer, offset, 0, length);
+                    offset += length;
+                });
 
-                        });
-                        break;
-                }
+                const startIndex = this.length;
 
+                this.writeInt();
+                this.writeIntBigEndian(length);
                 this.write(buffer);
-
-                deflater.removeAllListeners();
 
                 const endIndex = this.length;
 
                 this.seek(startIndex);
-
                 this.writeInt(endIndex - startIndex - INT_SIZE);
-
                 this.seek(endIndex);
 
+                deflater.removeAllListeners();
                 resolve();
             });
 

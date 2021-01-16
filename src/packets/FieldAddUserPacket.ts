@@ -97,17 +97,17 @@ export class FieldAddUserPacket {
             appearanceBuffer.writeLong();
             appearanceBuffer.writeByte();
 
-            await packet.writeDeflated(appearanceBuffer.buffer, 0, appearanceBuffer.length);
+            await packet.writeDeflated(appearanceBuffer.buffer, appearanceBuffer.length);
 
             packet.writeByte(); // Separator?
 
-            packet.writeInt(1); // TODO: packet.writeDeflated([1], 0, 1); // Unknown
+            packet.writeInt(1); // TODO: packet.writeDeflated([1], 1); // Unknown
             packet.writeByte(1);
 
             packet.writeByte(); // Separator?
 
             packet.writeInt(1);
-            packet.writeByte(1); // TODO: packet.writeDeflated([1], 0, 1); // Badge appearances
+            packet.writeByte(1); // TODO: packet.writeDeflated([1], 1); // Badge appearances
 
             FieldPacket.writePassiveSkills(packet);
 
