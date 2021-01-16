@@ -41,7 +41,7 @@ export class BufferStream {
         this.buffer.copy(packet, 0, 0, bufferSize);
 
         this.cursor -= bufferSize;
-        this.buffer.copy(this.buffer, 0, bufferSize, this.cursor);
+        this.buffer.copy(this.buffer, 0, bufferSize, this.cursor + bufferSize);
 
         return packet;
     }
