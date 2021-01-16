@@ -41,41 +41,47 @@ export class PlayerStats {
     public unknown35: PlayerStat = new PlayerStat(100, 0, 100);
 
     public static write(packet: PacketWriter, stats: PlayerStats): void {
-        PlayerStat.write(packet, stats.str);
-        PlayerStat.write(packet, stats.dex);
-        PlayerStat.write(packet, stats.int);
-        PlayerStat.write(packet, stats.luk);
-        PlayerStat.write(packet, stats.hp);
-        PlayerStat.write(packet, stats.currentHp);
-        PlayerStat.write(packet, stats.hpRegen);
-        PlayerStat.write(packet, stats.unknown7);     // (3000, 3000, 3000)
-        PlayerStat.write(packet, stats.spirit);
-        PlayerStat.write(packet, stats.unknown9);     // (10, 10, 10)
-        PlayerStat.write(packet, stats.unknown10);    // (500, 500, 500)
-        PlayerStat.write(packet, stats.stamina);      // (10, 10, 10)
-        PlayerStat.write(packet, stats.unknown12);    // (500, 500, 500)
-        PlayerStat.write(packet, stats.unknown13);
-        PlayerStat.write(packet, stats.atkSpd);
-        PlayerStat.write(packet, stats.moveSpd);
-        PlayerStat.write(packet, stats.acc);
-        PlayerStat.write(packet, stats.eva);
-        PlayerStat.write(packet, stats.critRate);
-        PlayerStat.write(packet, stats.critDmg);
-        PlayerStat.write(packet, stats.critEva);
-        PlayerStat.write(packet, stats.def);
-        PlayerStat.write(packet, stats.guard);
-        PlayerStat.write(packet, stats.jumpHeight);
-        PlayerStat.write(packet, stats.physAtk);
-        PlayerStat.write(packet, stats.magAtk);
-        PlayerStat.write(packet, stats.physRes);
-        PlayerStat.write(packet, stats.magRes);
-        PlayerStat.write(packet, stats.minAtk);
-        PlayerStat.write(packet, stats.maxAtk);
-        PlayerStat.write(packet, stats.unknown30);
-        PlayerStat.write(packet, stats.unknown31);
-        PlayerStat.write(packet, stats.pierce);
-        PlayerStat.write(packet, stats.mountSpeed);
-        PlayerStat.write(packet, stats.bonusAtk);
-        PlayerStat.write(packet, stats.unknown35);
+        const playerStats = [
+            stats.str,
+            stats.dex,
+            stats.int,
+            stats.luk,
+            stats.hp,
+            stats.currentHp,
+            stats.hpRegen,
+            stats.unknown7,
+            stats.spirit,
+            stats.unknown9,
+            stats.unknown10,
+            stats.stamina,
+            stats.unknown12,
+            stats.unknown13,
+            stats.atkSpd,
+            stats.moveSpd,
+            stats.acc,
+            stats.eva,
+            stats.critRate,
+            stats.critDmg,
+            stats.critEva,
+            stats.def,
+            stats.guard,
+            stats.jumpHeight,
+            stats.physAtk,
+            stats.magAtk,
+            stats.physRes,
+            stats.magRes,
+            stats.minAtk,
+            stats.maxAtk,
+            stats.unknown30,
+            stats.unknown31,
+            stats.pierce,
+            stats.mountSpeed,
+            stats.bonusAtk,
+            stats.unknown35,
+        ];
+
+        for (const stat of playerStats) {
+            PlayerStat.write(packet, stat);
+        }
     }
 }

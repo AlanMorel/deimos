@@ -7,7 +7,6 @@ export class FieldPacket {
 
         packet.writeByte(0x23);
 
-        //for (let i = 0; i < 3; i++) {
         packet.writeLong(stats.hp.total);
         packet.writeInt(stats.atkSpd.total);
         packet.writeInt(stats.moveSpd.total);
@@ -25,8 +24,6 @@ export class FieldPacket {
         packet.writeInt(stats.moveSpd.max);
         packet.writeInt(stats.mountSpeed.max);
         packet.writeInt(stats.jumpHeight.max);
-
-        //}
 
         /* Alternative Stat Struct
         packet.WriteByte(); // Count
