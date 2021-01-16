@@ -23,6 +23,7 @@ export class BuddyListPacket {
 
         packet.writeShort(SendOp.BUDDY);
         packet.writeByte(Mode.END_LIST);
+        packet.writeInt(0);
 
         return packet;
     }

@@ -55,7 +55,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         session.send(PrestigePacket.prestige(player));
 
         for (const tab of Object.values(InventoryTab)) {
-            if (typeof tab === 'string') {
+            if (typeof tab === "string") {
                 continue;
             }
             session.send(ItemInventoryPacket.resetTab(tab));
