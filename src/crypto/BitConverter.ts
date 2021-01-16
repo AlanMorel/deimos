@@ -1,5 +1,13 @@
 export class BitConverter {
 
+    private static readonly FLOAT_VIEW = new Float32Array(1)
+    private static readonly INT_VIEW = new Int32Array(BitConverter.FLOAT_VIEW.buffer);
+
+    public static floatToInt(x: number) {
+        BitConverter.FLOAT_VIEW[0] = x
+        return BitConverter.INT_VIEW[0]
+    }
+
     public static getBytes(int: number): Buffer {
         const buffer = Buffer.alloc(8);
         buffer[0] = int;
@@ -11,6 +19,10 @@ export class BitConverter {
 
     public static toInt(buffer: Buffer): number {
         return (buffer[0] | buffer[1] << 8 | buffer[2] << 16 | buffer[3] << 24) >>> 0;
+    }
+
+    public static toUInt32(buffer: Buffer): number {
+        return buffer.readUInt32LE();
     }
 
     public static toInt32(buffer: Buffer, startIndex: number): number {

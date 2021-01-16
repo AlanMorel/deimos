@@ -1,3 +1,4 @@
+import { BitConverter } from "../BitConverter";
 import { Packet } from "./Packet";
 
 export class PacketWriter extends Packet {
@@ -98,6 +99,11 @@ export class PacketWriter extends Packet {
         this.ensureCapacity(8);
         this.buffer.writeBigInt64LE(BigInt(long), this.length);
         this.length += 8;
+    }
+
+    public writeFloat(float: number = 0): void {
+        const int = BitConverter.floatToInt(float);
+        this.writeInt(int);
     }
 
     public writeUnicodeString(str: string = ""): void {
