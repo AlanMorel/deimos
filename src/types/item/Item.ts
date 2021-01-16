@@ -2,7 +2,7 @@ import { GuidGenerator } from "../../tools/GuidGenerator";
 import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
 import { HairData } from "../HairData";
-import { InventoryTab } from "../InvetoryTab";
+import { InventoryTab } from "../InventoryTab";
 import { Player } from "../Player";
 import { TransferFlag } from "../TransferFlag";
 import { ItemSlot } from "./ItemSlot";
