@@ -11,7 +11,7 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
 
-    public handle(session: ChannelSession, packet: PacketReader): void {
+    public async handle(session: ChannelSession, packet: PacketReader): Promise<void> {
         packet.readInt();
 
         const characterId = BigInt(1);
@@ -21,7 +21,7 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
             return;
         }
 
-        session.send(FieldAddUserPacket.addPlayer(player));
+        session.send(await FieldAddUserPacket.addPlayer(player));
         session.send(ProxyGameObjectPacket.loadPlayer(player));
 
         session.send(StatPacket.setStats(player));

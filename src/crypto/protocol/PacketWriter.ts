@@ -1,3 +1,4 @@
+import * as zlib from "zlib";
 import { BitConverter } from "../BitConverter";
 import { Packet } from "./Packet";
 
@@ -32,7 +33,7 @@ export class PacketWriter extends Packet {
     }
 
     public seek(position: number): void {
-        if (position < 0 || position > this.length) {
+        if (position < 0 || position > this.buffer.length) {
             return;
         }
 
@@ -118,5 +119,82 @@ export class PacketWriter extends Packet {
     public writeHexString(value: string = ""): void {
         value = value.replace(/\s/g, "");
         this.write(Buffer.from(value, "hex"));
+    }
+
+    public writeIntBigEndian(int: number): void {
+        this.writeByte(int >> 24);
+        this.writeByte(int >> 16);
+        this.writeByte(int >> 8);
+        this.writeByte(int & 0xFF);
+    }
+
+    public writeDeflated(data: Buffer, offset: number, length: number): Promise<void> {
+        const INT_SIZE = 4;
+
+        return new Promise((resolve, reject) => {
+
+            if (length <= 4) {
+                this.writeInt(length);
+                this.write(data);
+                return;
+            }
+
+            const startIndex = this.length;
+
+            this.writeInt();
+            this.writeIntBigEndian(length);
+
+            const deflater = zlib.createDeflate({
+                level: 1
+            });
+
+            const buffers: any = [];
+            let nread = 0;
+
+            deflater.on("data", (chunk: Buffer) => {
+                buffers.push(chunk);
+                nread += chunk.length;
+            });
+
+            deflater.on("end", () => {
+                let buffer: Buffer;
+                switch (buffers.length) {
+                    case 0:
+                        buffer = Buffer.alloc(0);
+                        break;
+                    case 1:
+                        buffer = Buffer.alloc(buffers[0]);
+                        break;
+                    default:
+                        buffer = Buffer.alloc(nread);
+                        let n = 0;
+                        buffers.forEach((b: any) => {
+                            const length = b.length;
+                            b.copy(buffer, n, 0, length);
+                            n += length;
+
+                        });
+                        break;
+                }
+
+                this.write(buffer);
+
+                deflater.removeAllListeners();
+
+                const endIndex = this.length;
+
+                this.seek(startIndex);
+
+                this.writeInt(endIndex - startIndex - INT_SIZE);
+
+                this.seek(endIndex);
+
+                resolve();
+            });
+
+            deflater.write(data, "hex");
+
+            deflater.end();
+        });
     }
 }

@@ -13,7 +13,7 @@ import { JobPacket } from "./JobPacket";
 
 export class FieldAddUserPacket {
 
-    public static addPlayer(player: Player): Packet {
+    public static async addPlayer(player: Player): Promise<Packet> {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.FIELD_ADD_USER);
@@ -97,8 +97,7 @@ export class FieldAddUserPacket {
             appearanceBuffer.writeLong();
             appearanceBuffer.writeByte();
 
-            packet.writeInt(1); // TODO: packet.writeDeflated(appearanceBuffer.buffer, 0, appearanceBuffer.length);
-            packet.writeByte(1);
+            await packet.writeDeflated(appearanceBuffer.buffer, 0, appearanceBuffer.length);
 
             packet.writeByte(); // Separator?
 
