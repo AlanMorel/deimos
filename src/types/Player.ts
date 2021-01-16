@@ -5,6 +5,8 @@ import { Item } from "./item/Item";
 import { ItemSlot } from "./item/ItemSlot";
 import { Job } from "./jobs/Job";
 import { JobCode } from "./jobs/JobCode";
+import { Mount } from "./Mount";
+import { PlayerStats } from "./PlayerStats";
 
 export class Player {
 
@@ -32,6 +34,8 @@ export class Player {
     public titleId: number = 0;
     public insigniaId: number = 0;
     public animation: number = 0;
+    public stats: PlayerStats = new PlayerStats();
+    public mount?: Mount;
 
     // combat, adventure, lifestyle
     public trophy: number[] = new Array(3);
