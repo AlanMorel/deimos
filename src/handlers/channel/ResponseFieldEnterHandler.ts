@@ -27,6 +27,11 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
         session.send(StatPacket.setStats(player));
         session.send(StatPointPacket.writeTotalStatPoints(player));
         session.send(EmotionPacket.loadEmotions());
-        session.send(KeyTablePacket.sendHotbars());
+
+        const hotbar = player.gameOptions.getHotbarById(0);
+
+        if (hotbar) {
+            session.send(KeyTablePacket.sendHotbars(player.gameOptions));
+        }
     }
 }

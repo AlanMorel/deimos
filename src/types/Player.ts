@@ -1,5 +1,6 @@
 import { SkinColor } from "./color/SkinColor";
 import { CoordF } from "./coords/CoordF";
+import { GameOptions } from "./GameOptions";
 import { Gender } from "./Gender";
 import { Item } from "./item/Item";
 import { ItemSlot } from "./item/ItemSlot";
@@ -71,6 +72,7 @@ export class Player {
     public equipSlots: ItemSlot[] = new Array<ItemSlot>();
 
     public jobType: Job = Job.None;
+    public gameOptions: GameOptions = new GameOptions();
 
     public constructor(characterId: BigInt, gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
         this.characterId = characterId;
