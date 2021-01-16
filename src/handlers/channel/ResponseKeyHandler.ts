@@ -6,6 +6,7 @@ import { DynamicChannelPacket } from "../../packets/DynamicChannelPacket";
 import { FieldEntrancePacket } from "../../packets/FieldEntrancePacket";
 import { FishingPacket } from "../../packets/FishingPacket";
 import { FurnishingInventoryPacket } from "../../packets/FurnishingInventoryPacket";
+import { ItemInventoryPacket } from "../../packets/ItemInventoryPacket";
 import { KeyTablePacket } from "../../packets/KeyTablePacket";
 import { LoginRequiredPacket } from "../../packets/LoginRequiredPacket";
 import { MarketInventoryPacket } from "../../packets/MarketInventoryPacket";
@@ -16,6 +17,7 @@ import { RequestFieldEnterPacket } from "../../packets/RequestFieldEnterPacket";
 import { ServerEnterPacket } from "../../packets/ServerEnterPacket";
 import { SyncNumberPacket } from "../../packets/SyncNumberPacket";
 import { UserEnvPacket } from "../../packets/UserEnvPacket";
+import { InventoryTab } from "../../types/InventoryTab";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ResponseKeyHandler implements ChannelPacketHandler {
@@ -52,7 +54,13 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
 
         session.send(PrestigePacket.prestige(player));
 
-        // TODO: load inventory tabs
+        for (const tab of Object.values(InventoryTab)) {
+            if (typeof tab === 'string') {
+                continue;
+            }
+            session.send(ItemInventoryPacket.resetTab(tab));
+            session.send(ItemInventoryPacket.loadTab(tab));
+        }
 
         session.send(MarketInventoryPacket.count(0));
         session.send(MarketInventoryPacket.startList());

@@ -3,9 +3,9 @@ export class BitConverter {
     private static readonly FLOAT_VIEW = new Float32Array(1)
     private static readonly INT_VIEW = new Int32Array(BitConverter.FLOAT_VIEW.buffer);
 
-    public static floatToInt(x: number) {
-        BitConverter.FLOAT_VIEW[0] = x
-        return BitConverter.INT_VIEW[0]
+    public static floatToInt(float: number): number {
+        BitConverter.FLOAT_VIEW[0] = float;
+        return BitConverter.INT_VIEW[0];
     }
 
     public static getBytes(int: number): Buffer {
