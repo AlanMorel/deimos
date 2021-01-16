@@ -7,6 +7,8 @@ import { Job } from "./jobs/Job";
 import { JobCode } from "./jobs/JobCode";
 import { Mount } from "./Mount";
 import { PlayerStats } from "./PlayerStats";
+import { SkillTab } from "./SkillTab";
+import { StatDistribution } from "./StatDistribution";
 
 export class Player {
 
@@ -62,6 +64,8 @@ export class Player {
 
     public maxSkillTabs: number = 0;
     public activeSkillTabId: BigInt = BigInt(0);
+    public skillTabs = new Array<SkillTab>();
+    public statPointDistribution: StatDistribution = new StatDistribution();
 
     public equips = new Map<ItemSlot, Item>();
     public equipSlots: ItemSlot[] = new Array<ItemSlot>();
