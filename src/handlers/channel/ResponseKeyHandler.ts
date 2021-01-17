@@ -32,9 +32,8 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         const authData = AuthStorage.getData(accountId);
 
         if (!authData) {
-            Logger.log("Attempted connection to game with unauthorized account.");
+            Logger.log("Attempted connection to channel server with unauthorized auth data.");
             return;
-
         }
 
         if (tokenA != authData.tokenA || tokenB != authData.tokenB) {

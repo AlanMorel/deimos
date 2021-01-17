@@ -1,6 +1,7 @@
 import { RecvOp } from "../../constants/RecvOp";
 import { FileHashHandler } from "../../handlers/channel/FileHashHandler";
 import { ResponseLoadUgcMapHandler } from "../../handlers/channel/RequestLoadUgcMapHandler";
+import { RequestQuitHandler } from "../../handlers/channel/RequestQuitHandler";
 import { ResponseFieldEnterHandler } from "../../handlers/channel/ResponseFieldEnterHandler";
 import { ResponseKeyHandler } from "../../handlers/channel/ResponseKeyHandler";
 import { ResponseVersionHandler } from "../../handlers/channel/ResponseVersionHandler";
@@ -18,5 +19,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.USER_CHAT, new UserChatHandler());
         this.handlers.set(RecvOp.FILE_HASH, new FileHashHandler());
         this.handlers.set(RecvOp.LOG_SEND, new LogSendHandler());
+        this.handlers.set(RecvOp.REQUEST_QUIT, new RequestQuitHandler());
     }
 }
