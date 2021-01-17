@@ -91,13 +91,11 @@ export class FieldAddUserPacket {
 
             packet.writeByte(); // Separator?
 
-            packet.writeInt(1); // TODO: packet.writeDeflated([1], 1); // Unknown
-            packet.writeByte(1);
+            await packet.writeDeflated(Buffer.from([1]), 1); // Unknown
 
             packet.writeByte(); // Separator?
 
-            packet.writeInt(1);
-            packet.writeByte(1); // TODO: packet.writeDeflated([1], 1); // Badge appearances
+            await packet.writeDeflated(Buffer.from([1]), 1); // Badge appearances
 
             FieldPacket.writePassiveSkills(packet);
 

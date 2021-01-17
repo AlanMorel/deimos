@@ -6,6 +6,7 @@ import { Hotbar } from "../types/HotBar";
 
 enum Mode {
     REQUEST = 0x0,
+    SEND_HOTBARS = 0x7
 }
 
 export class KeyTablePacket {
@@ -23,7 +24,8 @@ export class KeyTablePacket {
     public static sendHotbars(options: GameOptions): Packet {
         const packet = new PacketWriter();
 
-        packet.writeShort(SendOp.KEY_TABLE); // TODO
+        packet.writeShort(SendOp.KEY_TABLE);
+        packet.writeByte(Mode.SEND_HOTBARS)
         Hotbar.write(packet, options);
 
         return packet;
