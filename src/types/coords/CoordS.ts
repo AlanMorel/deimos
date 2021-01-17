@@ -13,6 +13,10 @@ export class CoordS {
         this.Z = z;
     }
 
+    public toString(): string {
+        return "{x: " + this.X + ", y: " + this.Y + ", z: " + this.Z + "}";
+    }
+
     public static read(packet: PacketReader): CoordS {
         const x = packet.readShort();
         const y = packet.readShort();

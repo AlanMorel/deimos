@@ -2,6 +2,7 @@ import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { ChatPacket } from "../../packets/ChatPacket";
 import { ChatType } from "../../types/ChatType";
+import { Commands } from "../../types/Commands";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class UserChatHandler implements ChannelPacketHandler {
@@ -12,7 +13,7 @@ export class UserChatHandler implements ChannelPacketHandler {
         const recipient = packet.readUnicodeString();
         packet.readLong();
 
-        // TODO: process commands
+        Commands.process(session, message);
 
         switch (type) {
             case ChatType.Channel:

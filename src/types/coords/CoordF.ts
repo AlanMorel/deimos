@@ -13,6 +13,10 @@ export class CoordF {
         this.Z = z;
     }
 
+    public toString(): string {
+        return "{x: " + this.X + ", y: " + this.Y + ", z: " + this.Z + "}";
+    }
+
     public static write(packet: PacketWriter, coords: CoordF): void {
         packet.writeFloat(coords.X);
         packet.writeFloat(coords.Y);
