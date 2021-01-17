@@ -28,8 +28,6 @@ export class UserSyncHandler implements ChannelPacketHandler {
         // not sure if this needs to be synced here
         session.player.animation = syncStates[0].animation1;
 
-        if (session.field) {
-            session.field.broadcast(UserSyncPacket.syncUser(session.player, syncStates), session);
-        }
+        session.field?.broadcast(UserSyncPacket.syncUser(session.player, syncStates), session);
     }
 }

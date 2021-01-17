@@ -11,9 +11,7 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
     public async handle(session: ChannelSession, packet: PacketReader): Promise<void> {
         packet.readInt();
 
-        if (session.field) {
-            await session.field.addPlayer(session);
-        }
+        await session.field?.addPlayer(session);
 
         session.send(StatPacket.setStats(session.player));
         session.send(StatPointPacket.writeTotalStatPoints(session.player));

@@ -42,13 +42,9 @@ export class Field {
     }
 
     public broadcast(packet: Packet, sender: ChannelSession | null = null) {
-        // TODO: improve this
-        this.sessions.forEach(session => {
-            if (sender && sender.id === session.id) {
-                return;
-            }
+        this.sessions.filter(session => !sender || sender.id !== session.id).forEach(session => {
             session.send(packet);
-        });
+        })
     }
 
     public async addPlayer(session: ChannelSession): Promise<void> {

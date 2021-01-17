@@ -34,7 +34,7 @@ export class UserChatHandler implements ChannelPacketHandler {
                 // TODO: Send to recipient
                 break;
             default:
-                session.send(ChatPacket.send(session, message, type)); // TODO: broadcast to entire map
+                session.field?.broadcast(ChatPacket.send(session, message, type));
                 break;
         }
     }
