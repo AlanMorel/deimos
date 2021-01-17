@@ -2,11 +2,9 @@ export class AccountStorage {
 
     public static storage: AccountStorage = new AccountStorage();
 
-    public accounts: Map<BigInt, Array<BigInt>>;
+    public accounts: Map<BigInt, Array<BigInt>> = new Map<BigInt, Array<BigInt>>();
 
     public constructor() {
-        this.accounts = new Map<BigInt, Array<BigInt>>();
-
         this.accounts.set(BigInt(1), [
             BigInt(1)
         ]);

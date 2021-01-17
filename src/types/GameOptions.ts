@@ -3,16 +3,14 @@ import { KeyBind } from "./KeyBind";
 
 export class GameOptions {
 
-    public keyBinds: Map<number, KeyBind>;
-    public hotbars: Array<Hotbar>;
+    private static HOTBARS_AVAILABLE = 3;
+
+    public keyBinds: Map<number, KeyBind> = new Map<number, KeyBind>();
+    public hotbars: Array<Hotbar> = new Array<Hotbar>();
     public activeHotbarId: number = 0;
 
     public constructor() {
-        this.keyBinds = new Map<number, KeyBind>();
-        this.hotbars = new Array<Hotbar>();
-
-        // Have 3 hotbars available
-        for (let hotbar = 0; hotbar < 3; hotbar++) {
+        for (let hotbar = 0; hotbar < GameOptions.HOTBARS_AVAILABLE; hotbar++) {
             this.hotbars.push(new Hotbar());
         }
     }

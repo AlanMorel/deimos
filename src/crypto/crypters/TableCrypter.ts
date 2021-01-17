@@ -6,14 +6,11 @@ export class TableCrypter extends Crypter {
     public static readonly INDEX: number = 3;
     private static readonly TABLE_SIZE: number = 1 << 8;
 
-    private decrypted: Buffer;
-    private encrypted: Buffer;
+    private decrypted: Buffer = Buffer.alloc(TableCrypter.TABLE_SIZE);
+    private encrypted: Buffer = Buffer.alloc(TableCrypter.TABLE_SIZE);
 
     public constructor(version: number) {
         super();
-
-        this.decrypted = Buffer.alloc(TableCrypter.TABLE_SIZE);
-        this.encrypted = Buffer.alloc(TableCrypter.TABLE_SIZE);
 
         for (let i = 0; i < TableCrypter.TABLE_SIZE; i++) {
             this.encrypted[i] = i;

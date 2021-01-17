@@ -11,11 +11,9 @@ export class CharacterStorage {
 
     public static storage: CharacterStorage = new CharacterStorage();
 
-    public characters: Map<BigInt, Player>;
+    public characters: Map<BigInt, Player> = new Map<BigInt, Player>();
 
     public constructor() {
-        this.characters = new Map<BigInt, Player>();
-
         const player = CharacterStorage.getTestPlayer();
         this.characters.set(BigInt(1), player);
     }

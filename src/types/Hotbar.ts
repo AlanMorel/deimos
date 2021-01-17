@@ -6,11 +6,10 @@ import { QuickSlot } from "./QuickSlot";
 export class Hotbar {
 
     public static readonly MAX_SLOTS = 25;
-    public slots: Array<QuickSlot>;
+
+    public slots: Array<QuickSlot> = new Array<QuickSlot>(Hotbar.MAX_SLOTS);
 
     public constructor() {
-        this.slots = new Array<QuickSlot>(Hotbar.MAX_SLOTS);
-
         for (let i = 0; i < Hotbar.MAX_SLOTS; i++) {
             this.slots[i] = new QuickSlot();
         }

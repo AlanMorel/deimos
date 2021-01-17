@@ -5,18 +5,16 @@ import { Session } from "../sessions/Session";
 
 export abstract class Server {
 
-    protected server: net.Server;
+    protected server: net.Server = net.createServer();
     protected host: string;
     protected port: number;
     protected packetRouter: PacketRouter;
-    protected sessionCounter: number;
+    protected sessionCounter: number = 0;
 
     public constructor(name: string, host: string, port: number, packetRouter: PacketRouter) {
-        this.server = net.createServer();
         this.host = host;
         this.port = port;
         this.packetRouter = packetRouter;
-        this.sessionCounter = 0;
 
         Logger.log(`${name}Server started at ${host}:${port}`);
 

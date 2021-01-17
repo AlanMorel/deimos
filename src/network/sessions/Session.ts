@@ -24,7 +24,7 @@ export abstract class Session {
     private recvCipher: RecvCipher;
     private sendCipher: SendCipher;
 
-    private stream: BufferStream;
+    private stream: BufferStream = new BufferStream();
     private packetRouter: PacketRouter;
 
     public constructor(id: number, socket: Socket, packetRouter: PacketRouter) {
@@ -37,8 +37,6 @@ export abstract class Session {
 
         this.recvCipher = new RecvCipher(Session.version, ivRecv, Session.blockIV);
         this.sendCipher = new SendCipher(Session.version, ivSend, Session.blockIV);
-
-        this.stream = new BufferStream();
 
         this.sendHandshake(0, ivRecv, ivSend);
     }

@@ -16,9 +16,9 @@ export class Item {
     public isTemplate: boolean = false;
 
     public readonly id: number;
-    public readonly uid: bigint;
-    public slot: number;
-    public amount: number;
+    public readonly uid: bigint = GuidGenerator.generateLong();
+    public slot: number = -1;
+    public amount: number = 1;
     public rarity: number = 0;
 
     public creationTime: bigint = BigInt(0);
@@ -32,7 +32,7 @@ export class Item {
 
     // EnchantExp (10000 = 100%) for Peachy
     public enchantExp: number = 0;
-    public canRepackage: boolean = false;
+    public canRepackage: boolean = true; // if false, item becomes untradable
     public charges: number = 0;
     public transferFlag: TransferFlag = TransferFlag.None;
     public remainingTrades: number = 0;
@@ -43,26 +43,20 @@ export class Item {
 
     public owner?: Player;
 
-    public color: ItemColor;
+    public color: ItemColor = new ItemColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), 0);
 
     public hairData?: HairData;
     public faceDecorationData?: Buffer;
 
     public appearanceFlag?: number;
 
-    public stats: ItemStats;
+    public stats: ItemStats = new ItemStats();
 
     public constructor(id: number, itemSlot: ItemSlot) {
         this.id = id;
-        this.uid = GuidGenerator.generateLong();
         this.inventoryTab = InventoryTab.Outfit; // TODO: read from metadata
         this.itemSlot = itemSlot; // TODO: read from metadata
         this.slotMax = 100; // TODO: read from metadata
         this.isTemplate = false; // TODO: read from metadata
-        this.slot = -1;
-        this.amount = 1;
-        this.stats = new ItemStats();
-        this.canRepackage = true; // if false, item becomes untradable
-        this.color = new ItemColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), 0);
     }
 }

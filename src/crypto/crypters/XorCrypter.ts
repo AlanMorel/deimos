@@ -5,12 +5,10 @@ export class XORCrypter extends Crypter {
 
     public static readonly INDEX: number = 2;
 
-    private table: Buffer;
+    private table: Buffer = Buffer.alloc(2);
 
     public constructor(version: number) {
         super();
-
-        this.table = Buffer.alloc(2);
 
         const rand1: Rand32 = new Rand32(version);
         const rand2: Rand32 = new Rand32(2 * version);

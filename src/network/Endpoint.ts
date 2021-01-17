@@ -1,4 +1,5 @@
 export class Endpoint {
+
     private address: string;
     private port: number;
 
