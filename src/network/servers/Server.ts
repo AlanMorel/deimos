@@ -10,12 +10,10 @@ export abstract class Server {
     protected packetRouter: PacketRouter;
     protected sessionCounter: number = 0;
 
-    public constructor(name: string, host: string, port: number, packetRouter: PacketRouter) {
+    public constructor(host: string, port: number, packetRouter: PacketRouter) {
         this.host = host;
         this.port = port;
         this.packetRouter = packetRouter;
-
-        this.start();
     }
 
     public async start(): Promise<void> {

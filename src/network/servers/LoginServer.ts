@@ -9,7 +9,8 @@ import { Server } from "./Server";
 export class LoginServer extends Server {
 
     public constructor(host: string, port: number) {
-        super("Login", host, port, new LoginPacketRouter());
+        super(host, port, new LoginPacketRouter());
+        super.start();
     }
 
     protected onConnection(socket: net.Socket): void {

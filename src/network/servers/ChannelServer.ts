@@ -11,8 +11,9 @@ export class ChannelServer extends Server {
     private id: number;
 
     public constructor(id: number, host: string, port: number) {
-        super("Channel", host, port, new ChannelPacketRouter());
+        super(host, port, new ChannelPacketRouter());
         this.id = id;
+        super.start();
     }
 
     protected onConnection(socket: net.Socket): void {
