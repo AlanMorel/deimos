@@ -44,7 +44,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 session.send(ServerListPacket.setServers(Configs.serverName, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
-                const accountId = BigInt(1);
+                const accountId = BigInt(1); // TODO: temp
                 const characterIds = AccountStorage.storage.getCharacterIDs(accountId);
                 const players = new Array<Player>();
 

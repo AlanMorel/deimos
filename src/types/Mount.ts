@@ -26,7 +26,7 @@ export class Mount {
                 UgcPacketHelper.writeUgc(packet); // for template mounts
                 break;
             case RideType.AdditionalEffect:
-                packet.writeInt();
+                packet.writeInt()
                 packet.writeShort();
                 break;
         }
