@@ -27,9 +27,10 @@ export class UserChatHandler implements ChannelPacketHandler {
                 // TODO: Send to all in guild
                 break;
             case ChatType.Party:
-                // TODO: Send to all in part
+                // TODO: Send to all in party
                 break;
             case ChatType.WhisperTo:
+                // TODO: Send to recipient
                 break;
             default:
                 session.send(ChatPacket.send(session, message, type)); // TODO: broadcast to entire map

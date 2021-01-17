@@ -4,10 +4,10 @@ import { RideType } from "./RideType";
 export class Mount {
 
     public type: RideType;
-    public id: BigInt;
+    public id: number;
     public uid: BigInt;
 
-    public constructor(type: RideType, id: BigInt, uid: BigInt) {
+    public constructor(type: RideType, id: number, uid: BigInt) {
         this.type = type;
         this.id = id;
         this.uid = uid;
@@ -15,7 +15,7 @@ export class Mount {
 
     public static write(packet: PacketWriter, mount: Mount): void {
         packet.writeByte(mount.type);
-        packet.writeInt(0); // TODO: mount id
+        packet.writeInt(mount.id);
         packet.writeInt(0); // TODO: mount ObjectId
 
         switch (mount.type) {

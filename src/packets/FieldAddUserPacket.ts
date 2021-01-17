@@ -83,8 +83,9 @@ export class FieldAddUserPacket {
         packet.writeInt();
 
         // This seems to be character appearance encoded as a blob
-        packet.writeBoolean(true);
-        if (true) {
+        const encodeAppearance = true;
+        packet.writeBoolean(encodeAppearance);
+        if (encodeAppearance) {
 
             const appearanceBuffer = FieldAddUserPacket.getAppearanceBuffer(packet, player);
             await packet.writeDeflated(appearanceBuffer.buffer, appearanceBuffer.length);
