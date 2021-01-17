@@ -6,7 +6,8 @@ export class AccountStorage {
 
     public constructor() {
         this.accounts.set(BigInt(1), [
-            BigInt(1)
+            BigInt(1),
+            BigInt(2)
         ]);
     }
 

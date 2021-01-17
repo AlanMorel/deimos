@@ -17,7 +17,7 @@ export class ChatPacket {
         packet.writeUnicodeString(message);
         packet.writeInt(type);
         packet.writeByte();
-        packet.writeInt(session.channelId);
+        packet.writeInt(session.channel.id);
 
         switch (type) {
             case ChatType.WhisperFrom:

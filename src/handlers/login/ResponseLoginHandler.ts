@@ -30,7 +30,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         Logger.log(`Logging in with username: '${username}' pass: '${password}'`, HexColor.PURPLE);
 
-        session.accountId = BigInt(1); // TODO: temporary
+        session.accountId = BigInt(1); // TODO: temp
 
         switch (mode) {
             case Mode.LOGIN_1:

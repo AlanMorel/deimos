@@ -30,7 +30,7 @@ export class Player {
     // mutable Values
     public mapId: number = 2000023;
     public level: number = 1;
-    public objectId: number = 100000;
+    public objectId: number = Math.floor(Math.random() * 100000); // TODO: temp
     public experience: BigInt = BigInt(0);
     public restExperience: BigInt = BigInt(0);
     public prestigeLevel: number = 100;

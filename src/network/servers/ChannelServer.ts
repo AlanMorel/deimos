@@ -1,4 +1,5 @@
 import * as net from "net";
+import { FieldFactory } from "../../server/fields/FIeldFactory";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
@@ -8,7 +9,8 @@ import { Server } from "./Server";
 
 export class ChannelServer extends Server {
 
-    private id: number;
+    public id: number;
+    public fieldFactory: FieldFactory = new FieldFactory();
 
     public constructor(id: number, host: string, port: number) {
         super(host, port, new ChannelPacketRouter());
@@ -17,7 +19,7 @@ export class ChannelServer extends Server {
     }
 
     protected onConnection(socket: net.Socket): void {
-        const session = new ChannelSession(this.sessionCounter++, socket, this.packetRouter, this.id);
+        const session = new ChannelSession(this, this.sessionCounter++, this.packetRouter, socket);
 
         Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 

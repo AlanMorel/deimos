@@ -44,7 +44,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
             return;
         }
 
-        session.player = player;
+        session.initialize(player);
 
         session.send(LoginRequiredPacket.loginRequired(accountId));
 

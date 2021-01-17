@@ -46,20 +46,21 @@ export abstract class Session {
         const sendOpcode = SendOp[opcode];
 
         switch (opcode) {
-            case SendOp.USER_SYNC:
+            // case SendOp.USER_SYNC:
             case SendOp.USER_CHAT:
             case SendOp.NPC_CONTROL:
             case SendOp.CHARACTER_LIST:
             case SendOp.KEY_TABLE:
-            case SendOp.PROXY_GAME_OBJ:
+            // case SendOp.PROXY_GAME_OBJ:
             case SendOp.STAT:
             case SendOp.EMOTION:
             case SendOp.ITEM_INVENTORY:
             case SendOp.FIELD_PORTAL:
             case SendOp.FIELD_ADD_USER:
+            case SendOp.SERVER_ENTER:
+            case SendOp.USER_ENV:
                 /*
                 case SendOp.FIELD_ENTRANCE:
-                case SendOp.SERVER_ENTER:
                 */
                 break;
             default:
@@ -67,7 +68,8 @@ export abstract class Session {
                 break;
         }
 
-        packet = this.sendCipher.encrypt(packet.buffer);
+        const buffer = Buffer.alloc(packet.buffer.length, packet.buffer);
+        packet = this.sendCipher.encrypt(buffer);
         this.socket.write(packet.toArray());
     }
 

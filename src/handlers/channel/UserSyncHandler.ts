@@ -1,5 +1,6 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
+import { UserSyncPacket } from "../../packets/UserSyncPacket";
 import { SyncState } from "../../types/SyncState";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
@@ -23,11 +24,12 @@ export class UserSyncHandler implements ChannelPacketHandler {
             packet.readInt(); // ServerTicks
         }
 
-        // session.send(UserSyncPacket.syncUser(session.player, syncStates)); // TODO: broadcast to map
-
         session.player.coord = syncStates[0].coord;
-
         // not sure if this needs to be synced here
         session.player.animation = syncStates[0].animation1;
+
+        if (session.field) {
+            session.field.broadcast(UserSyncPacket.syncUser(session.player, syncStates), session);
+        }
     }
 }

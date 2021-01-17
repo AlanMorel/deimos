@@ -9,7 +9,7 @@ export class SkillTab {
     public skills: Map<number, Skill>;
 
     public constructor(name: string, order: Array<number> = [], split: number = 8, skills: Map<number, Skill> = new Map<number, Skill>()) {
-        this.id = BigInt(0x000032DF995949B9); // temporary hard coded id
+        this.id = BigInt(0x000032DF995949B9); // TODO: temporary hard coded id
         this.name = name;
         this.order = order;
         this.split = split;

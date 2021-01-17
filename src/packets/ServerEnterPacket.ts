@@ -11,7 +11,7 @@ export class ServerEnterPacket {
         packet.writeShort(SendOp.SERVER_ENTER);
         packet.writeInt(player.objectId);
         packet.writeBigInt(player.characterId);
-        packet.writeShort(1); // player.channel
+        packet.writeShort(1); // TODO: player.channel
         packet.writeBigInt(player.experience);
         packet.writeBigInt(player.restExperience);
         packet.writeBigInt(player.mesos);
@@ -34,7 +34,7 @@ export class ServerEnterPacket {
         packet.writeLong();
         packet.writeLong();
         packet.writeBigInt(player.mesoToken);
-        packet.writeUnicodeString(""); // player.profileUrl
+        packet.writeUnicodeString(player.profileUrl);
         packet.writeByte();
         packet.writeByte();
 
