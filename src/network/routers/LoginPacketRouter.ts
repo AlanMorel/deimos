@@ -1,5 +1,5 @@
 import { RecvOp } from "../../constants/RecvOp";
-import { LogSendHandler } from "../../handlers/common/LogSendHandler";
+import { LogSendHandler } from "../../handlers/channel/LogSendHandler";
 import { CharacterManagementHandler } from "../../handlers/login/CharacterManagementHandler";
 import { ResponseKeyHandler } from "../../handlers/login/ResponseKeyHandler";
 import { ResponseLoginHandler } from "../../handlers/login/ResponseLoginHandler";

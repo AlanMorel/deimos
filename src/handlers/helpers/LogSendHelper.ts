@@ -1,11 +1,10 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Session } from "../../network/sessions/Session";
 import { Logger } from "../../tools/Logger";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
-export class LogSendHandler implements ChannelPacketHandler {
+export class LogSendHelper {
 
-    public handle(session: Session, packet: PacketReader): void {
+    public static handle(session: Session, packet: PacketReader): void {
         packet.readByte();
         const mode = packet.readByte();
         if (mode == 1) {

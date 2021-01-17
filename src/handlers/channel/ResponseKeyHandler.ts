@@ -11,7 +11,6 @@ import { ItemInventoryPacket } from "../../packets/ItemInventoryPacket";
 import { KeyTablePacket } from "../../packets/KeyTablePacket";
 import { LoginRequiredPacket } from "../../packets/LoginRequiredPacket";
 import { MarketInventoryPacket } from "../../packets/MarketInventoryPacket";
-import { MoveResultPacket } from "../../packets/MoveResultPacket";
 import { PrestigePacket } from "../../packets/PrestigePacket";
 import { RequestClientTickSyncPacket } from "../../packets/RequestClientTickSyncPacket";
 import { RequestFieldEnterPacket } from "../../packets/RequestFieldEnterPacket";
@@ -21,14 +20,12 @@ import { UserEnvPacket } from "../../packets/UserEnvPacket";
 import { Logger } from "../../tools/Logger";
 import { InventoryTab } from "../../types/InventoryTab";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
+import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
 
 export class ResponseKeyHandler implements ChannelPacketHandler {
 
     public handle(session: ChannelSession, packet: PacketReader): void {
         const accountId = packet.readLong();
-        const tokenA = packet.readInt();
-        const tokenB = packet.readInt();
-
         const authData = AuthStorage.getData(accountId);
 
         if (!authData) {
@@ -36,10 +33,10 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
             return;
         }
 
-        if (tokenA != authData.tokenA || tokenB != authData.tokenB) {
-            Logger.log("Attempted login with invalid tokens.");
-            return;
-        }
+        // backwards seeking because we read accountId here
+        packet.skip(-8);
+
+        ResponseKeyHelper.handle(session, packet);
 
         const player = CharacterStorage.storage.getCharacter(authData.characterId);
 
@@ -48,8 +45,6 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         }
 
         session.player = player;
-
-        session.send(MoveResultPacket.moveResult());
 
         session.send(LoginRequiredPacket.loginRequired(accountId));
 
