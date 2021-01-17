@@ -1,4 +1,5 @@
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
+import { UgcPacketHelper } from "../packets/helpers/UgcPacketHelper";
 import { RideType } from "./RideType";
 
 export class Mount {
@@ -20,10 +21,13 @@ export class Mount {
 
         switch (mount.type) {
             case RideType.UseItem:
-                // TODO handle
+                packet.writeInt(mount.id);
+                packet.writeBigInt(mount.uid);
+                UgcPacketHelper.writeUgc(packet); // for template mounts
                 break;
             case RideType.AdditionalEffect:
-                // TODO handle
+                packet.writeInt()
+                packet.writeShort();
                 break;
         }
     }
