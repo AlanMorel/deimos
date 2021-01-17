@@ -54,6 +54,8 @@ export class Field {
             session.send(ProxyGameObjectPacket.loadPlayer(existingPlayer));
         }
 
+        session.player.objectId = this.counter++;
+
         this.state.addPlayer(session.player);
         this.sessions.push(session);
 
