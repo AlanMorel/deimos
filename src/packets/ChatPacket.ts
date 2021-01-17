@@ -10,13 +10,13 @@ export class ChatPacket {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.USER_CHAT);
-        packet.writeBigInt(session.player.accountId)
-        packet.writeBigInt(session.player.characterId)
-        packet.writeUnicodeString(session.player.name)
-        packet.writeByte()
-        packet.writeUnicodeString(message)
-        packet.writeInt(type)
-        packet.writeByte()
+        packet.writeBigInt(session.player.accountId);
+        packet.writeBigInt(session.player.characterId);
+        packet.writeUnicodeString(session.player.name);
+        packet.writeByte();
+        packet.writeUnicodeString(message);
+        packet.writeInt(type);
+        packet.writeByte();
         packet.writeInt(session.channelId);
 
         switch (type) {

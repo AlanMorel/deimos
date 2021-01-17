@@ -5,6 +5,7 @@ import { ResponseFieldEnterHandler } from "../../handlers/channel/ResponseFieldE
 import { ResponseKeyHandler } from "../../handlers/channel/ResponseKeyHandler";
 import { ResponseVersionHandler } from "../../handlers/channel/ResponseVersionHandler";
 import { UserChatHandler } from "../../handlers/channel/UserChatHandler";
+import { LogSendHandler } from "../../handlers/common/LogSendHandler";
 import { PacketRouter } from "./PacketRouter";
 
 export class ChannelPacketRouter extends PacketRouter {
@@ -16,5 +17,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.REQUEST_LOAD_UGC_MAP, new ResponseLoadUgcMapHandler());
         this.handlers.set(RecvOp.USER_CHAT, new UserChatHandler());
         this.handlers.set(RecvOp.FILE_HASH, new FileHashHandler());
+        this.handlers.set(RecvOp.LOG_SEND, new LogSendHandler());
     }
 }

@@ -94,4 +94,8 @@ export class PacketReader extends Packet {
     public skip(length: number): void {
         this.position += length;
     }
+
+    public available(): number {
+        return this.buffer.length - this.position;
+    }
 }

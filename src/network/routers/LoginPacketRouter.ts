@@ -1,4 +1,5 @@
 import { RecvOp } from "../../constants/RecvOp";
+import { LogSendHandler } from "../../handlers/common/LogSendHandler";
 import { CharacterManagementHandler } from "../../handlers/login/CharacterManagementHandler";
 import { ResponseKeyHandler } from "../../handlers/login/ResponseKeyHandler";
 import { ResponseLoginHandler } from "../../handlers/login/ResponseLoginHandler";
@@ -12,5 +13,6 @@ export class LoginPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.RESPONSE_KEY, new ResponseKeyHandler());
         this.handlers.set(RecvOp.RESPONSE_LOGIN, new ResponseLoginHandler());
         this.handlers.set(RecvOp.CHARACTER_MANAGEMENT, new CharacterManagementHandler());
+        this.handlers.set(RecvOp.LOG_SEND, new LogSendHandler());
     }
 }
