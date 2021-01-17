@@ -29,9 +29,13 @@ $ npm run start
 
 #### Commands
 
-`npm run start` : Start the server
+`npm run start` : Compile and run the server
 
 `npm run lint` : Run the linter
+
+`npm run watch` : Run the compiler in watch mode
+
+`npm run server` : Run the server
 
 ### Community
 

@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "start": "tsc --project ./ && node dist/index.js",
-        "lint": "eslint ./src --ext .ts"
+        "lint": "eslint ./src --ext .ts",
+        "watch": "tsc --project ./ --watch",
+        "server": "node dist/index.js"
     },
     "repository": {
         "type": "git",
