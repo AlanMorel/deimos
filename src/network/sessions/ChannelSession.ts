@@ -5,7 +5,7 @@ import { Session } from "./Session";
 
 export class ChannelSession extends Session {
 
-    public player?: Player;
+    public player: Player = Player.getInitialPlayer();
     public channelId: number;
 
     public constructor(id: number, socket: Socket, packetRouter: PacketRouter, channelId: number) {

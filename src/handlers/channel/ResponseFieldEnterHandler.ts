@@ -11,11 +11,6 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
 
     public async handle(session: ChannelSession, packet: PacketReader): Promise<void> {
-
-        if (!session.player) {
-            return;
-        }
-
         packet.readInt();
 
         session.send(await FieldAddUserPacket.addPlayer(session.player));

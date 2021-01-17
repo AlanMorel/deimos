@@ -1,3 +1,4 @@
+import { Color } from "../color/Color";
 import { SkinColor } from "../color/SkinColor";
 import { CoordF } from "../coords/CoordF";
 import { Item } from "../item/Item";
@@ -81,6 +82,10 @@ export class Player {
         this.name = name;
         this.skinColor = skinColor;
         this.equips = equips;
+    }
+
+    public static getInitialPlayer(): Player {
+        return new Player(BigInt(-1), Gender.Male, -1, "", new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)), new Map<ItemSlot, Item>());
     }
 
     public getJobId(): number {
