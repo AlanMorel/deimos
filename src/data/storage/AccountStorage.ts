@@ -20,6 +20,10 @@ export class AccountStorage {
         return results;
     }
 
+    public getNextCharacterID(accountId: BigInt): BigInt {
+        return BigInt(this.getCharacterIDs(accountId).length + 1);
+    }
+
     public addCharacterID(accountId: BigInt, characterId: BigInt): void {
         const characterIDs = this.getCharacterIDs(accountId);
         characterIDs.push(characterId);

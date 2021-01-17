@@ -25,7 +25,7 @@ export class KeyTablePacket {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.KEY_TABLE);
-        packet.writeByte(Mode.SEND_HOTBARS)
+        packet.writeByte(Mode.SEND_HOTBARS);
         Hotbar.write(packet, options);
 
         return packet;

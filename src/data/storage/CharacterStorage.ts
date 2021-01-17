@@ -14,8 +14,9 @@ export class CharacterStorage {
     public characters: Map<BigInt, Player> = new Map<BigInt, Player>();
 
     public constructor() {
-        const player = CharacterStorage.getTestPlayer();
-        this.characters.set(BigInt(1), player);
+        const testCharacterId = BigInt(1);
+        const testCharacter = CharacterStorage.getTestCharacter(testCharacterId);
+        this.characters.set(testCharacterId, testCharacter);
     }
 
     public getCharacter(characterId: BigInt): Player | undefined {
@@ -27,8 +28,7 @@ export class CharacterStorage {
         this.characters.set(character.characterId, character);
     }
 
-    private static getTestPlayer(): Player {
-        const characterId = BigInt(1);
+    private static getTestCharacter(characterId: BigInt): Player {
         const gender = Gender.Male;
         const jobGroupId = 30;
         const name = "Alan";

@@ -1,10 +1,10 @@
 import Configs from "../../configs.json";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
+import { AuthStorage } from "../../data/storage/AuthStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
-import { Session } from "../../network/sessions/Session";
 import { CharacterCreatePacket } from "../../packets/CharacterCreatePacket";
 import { CharacterListPacket } from "../../packets/CharacterListPacket";
 import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
@@ -42,24 +42,26 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         }
     }
 
-    private handleLogin(session: Session, packet: PacketReader): void {
-        const charId = packet.readLong();
+    private handleLogin(session: LoginSession, packet: PacketReader): void {
+        const characterId = packet.readLong();
         packet.readShort(); // 01 00
 
-        Logger.log(`Logging in to game with char id: ${charId}`, HexColor.PURPLE);
+        Logger.log(`Logging in to game with char id: ${characterId}`, HexColor.PURPLE);
 
         const endpoint = new Endpoint(Configs.channel.host, Configs.channel.port);
 
         const authData = {
-            tokenA: Math.random(),
-            tokenB: Math.random(),
-            characterId: charId,
+            tokenA: AuthStorage.generateToken(),
+            tokenB: AuthStorage.generateToken(),
+            characterId: characterId,
         };
+
+        AuthStorage.setData(session.accountId, authData);
 
         session.send(LoginToGamePacket.loginToGame(endpoint, authData));
     }
 
-    private handleCreate(session: Session, packet: PacketReader): void {
+    private handleCreate(session: LoginSession, packet: PacketReader): void {
         const gender = packet.readByte();
         const jobGroupId = packet.readShort();
         const name = packet.readUnicodeString();
@@ -104,7 +106,8 @@ export class CharacterManagementHandler implements LoginPacketHandler {
             return;
         }
 
-        const newCharacter = new Player(BigInt(2), gender, jobGroupId, name, skinColor, equips);
+        const newCharacterId = AccountStorage.storage.getNextCharacterID(session.accountId);
+        const newCharacter = new Player(newCharacterId, gender, jobGroupId, name, skinColor, equips);
 
         CharacterStorage.storage.addCharacter(newCharacter);
         AccountStorage.storage.addCharacterID(newCharacter.accountId, newCharacter.characterId);

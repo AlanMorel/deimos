@@ -1,4 +1,5 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { AuthStorage } from "../../data/storage/AuthStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { BuddyListPacket } from "../../packets/BuddyListPacket";
@@ -17,6 +18,7 @@ import { RequestFieldEnterPacket } from "../../packets/RequestFieldEnterPacket";
 import { ServerEnterPacket } from "../../packets/ServerEnterPacket";
 import { SyncNumberPacket } from "../../packets/SyncNumberPacket";
 import { UserEnvPacket } from "../../packets/UserEnvPacket";
+import { Logger } from "../../tools/Logger";
 import { InventoryTab } from "../../types/InventoryTab";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
@@ -27,14 +29,26 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         const tokenA = packet.readInt();
         const tokenB = packet.readInt();
 
-        const characterId = BigInt(1);
-        const player = CharacterStorage.storage.getCharacter(characterId);
+        const authData = AuthStorage.getData(accountId);
+
+        if (!authData) {
+            Logger.log("Attempted connection to game with unauthorized account.");
+            return;
+
+        }
+
+        if (tokenA != authData.tokenA || tokenB != authData.tokenB) {
+            Logger.log("Attempted login with invalid tokens.");
+            return;
+        }
+
+        const player = CharacterStorage.storage.getCharacter(authData.characterId);
 
         if (!player) {
             return;
         }
 
-        // TODO: set player session
+        session.player = player;
         // TODO: set channel id
 
         session.send(MoveResultPacket.moveResult());

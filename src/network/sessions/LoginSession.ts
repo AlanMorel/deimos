@@ -4,6 +4,8 @@ import { Session } from "./Session";
 
 export class LoginSession extends Session {
 
+    public accountId: BigInt = BigInt(0);
+
     public constructor(id: number, socket: Socket, packetRouter: PacketRouter) {
         super(id, socket, packetRouter);
     }
