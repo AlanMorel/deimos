@@ -103,6 +103,11 @@ export abstract class Session {
         const opcode = reader.readShort();
         const recvOpcode = RecvOp[opcode];
 
+        if (recvOpcode === undefined) {
+            Logger.log("[RECV] 0x" + opcode.toString(16).toUpperCase() + ": " + packet.toString(), HexColor.GREEN);
+            return;
+        }
+
         switch (opcode) {
             case RecvOp.USER_SYNC:
             case RecvOp.USER_CHAT:
@@ -114,9 +119,6 @@ export abstract class Session {
                 Logger.log("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
                 break;
         }
-
-        // TODO: log unknowns
-        // Logger.log("[RECV] 0x" + opcode.toString(16).toUpperCase() + ": " + packet.toString(), HexColor.GREEN);
 
         const packetHandler = this.packetRouter.getHandler(opcode);
 
