@@ -32,7 +32,7 @@ export class UserChatHandler implements ChannelPacketHandler {
             case ChatType.WhisperTo:
                 break;
             default:
-                session.send(ChatPacket.send(session, message, type));
+                session.send(ChatPacket.send(session, message, type)); // TODO: broadcast to entire map
                 break;
         }
     }

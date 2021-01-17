@@ -8,6 +8,10 @@ export class BitConverter {
         return BitConverter.INT_VIEW[0];
     }
 
+    public static intToFloat(int: number): number {
+        return parseFloat(int + "");
+    }
+
     public static getBytes(int: number): Buffer {
         const buffer = Buffer.alloc(8);
         buffer[0] = int;

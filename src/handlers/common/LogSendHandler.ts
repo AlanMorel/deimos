@@ -26,7 +26,7 @@ export class LogSendHandler implements ChannelPacketHandler {
 
                 builder += message;
             }
-            Logger.log(`Client Log: {builder}`);
+            Logger.log(`Client Log: ${builder}`);
         } catch (error) {
             Logger.log(`Error parsing DEBUG_MSG packet:${packet} mode(${mode})`);
         }

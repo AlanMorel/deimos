@@ -1,3 +1,4 @@
+import { BitConverter } from "../BitConverter";
 import { Packet } from "./Packet";
 
 export class PacketReader extends Packet {
@@ -63,6 +64,11 @@ export class PacketReader extends Packet {
         const uLong = this.buffer.readBigUInt64LE(this.position);
         this.position += 8;
         return uLong;
+    }
+
+    public readFloat(): number {
+        const int = this.readInt();
+        return BitConverter.intToFloat(int);
     }
 
     public readAsciiString(length: number): string {

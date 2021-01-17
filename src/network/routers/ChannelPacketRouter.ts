@@ -6,6 +6,7 @@ import { ResponseFieldEnterHandler } from "../../handlers/channel/ResponseFieldE
 import { ResponseKeyHandler } from "../../handlers/channel/ResponseKeyHandler";
 import { ResponseVersionHandler } from "../../handlers/channel/ResponseVersionHandler";
 import { UserChatHandler } from "../../handlers/channel/UserChatHandler";
+import { UserSyncHandler } from "../../handlers/channel/UserSyncHandler";
 import { LogSendHandler } from "../../handlers/common/LogSendHandler";
 import { PacketRouter } from "./PacketRouter";
 
@@ -20,5 +21,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.FILE_HASH, new FileHashHandler());
         this.handlers.set(RecvOp.LOG_SEND, new LogSendHandler());
         this.handlers.set(RecvOp.REQUEST_QUIT, new RequestQuitHandler());
+        this.handlers.set(RecvOp.USER_SYNC, new UserSyncHandler());
     }
 }
