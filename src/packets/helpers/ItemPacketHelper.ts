@@ -1,6 +1,6 @@
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { ItemColor } from "../../types/color/ItemColor";
-import { HairData } from "../../types/HairData";
+import { HairData } from "../../types/item/HairData";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { ItemStat } from "../../types/item/ItemStat";

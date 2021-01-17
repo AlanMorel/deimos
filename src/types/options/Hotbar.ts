@@ -1,5 +1,5 @@
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Logger } from "../tools/Logger";
+import { PacketWriter } from "../../crypto/protocol/PacketWriter";
+import { Logger } from "../../tools/Logger";
 import { GameOptions } from "./GameOptions";
 import { QuickSlot } from "./QuickSlot";
 

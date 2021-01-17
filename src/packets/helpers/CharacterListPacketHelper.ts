@@ -3,7 +3,7 @@ import { SkinColor } from "../../types/color/SkinColor";
 import { CoordF } from "../../types/coords/CoordF";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
-import { Player } from "../../types/Player";
+import { Player } from "../../types/player/Player";
 import { ItemPacketHelper } from "./ItemPacketHelper";
 
 export class CharacterListPacketHelper {

@@ -13,7 +13,7 @@ import { ServerListPacket } from "../../packets/ServerListPacket";
 import { UgcPacket } from "../../packets/UgcPacket";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
-import { Player } from "../../types/Player";
+import { Player } from "../../types/player/Player";
 import { LoginPacketHandler } from "../LoginPacketHandler";
 
 enum Mode {

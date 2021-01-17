@@ -1,12 +1,12 @@
 import { GuidGenerator } from "../../tools/GuidGenerator";
 import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
-import { HairData } from "../HairData";
 import { InventoryTab } from "../InventoryTab";
-import { Player } from "../Player";
-import { TransferFlag } from "../TransferFlag";
+import { Player } from "../player/Player";
+import { HairData } from "./HairData";
 import { ItemSlot } from "./ItemSlot";
 import { ItemStats } from "./ItemStats";
+import { TransferFlag } from "./TransferFlag";
 
 export class Item {
 

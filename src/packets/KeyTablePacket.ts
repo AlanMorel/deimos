@@ -1,8 +1,8 @@
 import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { GameOptions } from "../types/GameOptions";
-import { Hotbar } from "../types/HotBar";
+import { GameOptions } from "../types/options/GameOptions";
+import { Hotbar } from "../types/options/Hotbar";
 
 enum Mode {
     REQUEST = 0x0,

@@ -1,5 +1,5 @@
-import { PacketReader } from "../crypto/protocol/PacketReader";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
+import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 
 export class HairData {
 

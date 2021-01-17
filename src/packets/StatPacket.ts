@@ -1,8 +1,8 @@
 import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Player } from "../types/Player";
-import { PlayerStats } from "../types/PlayerStats";
+import { Player } from "../types/player/Player";
+import { PlayerStats } from "../types/player/PlayerStats";
 
 export class StatPacket {
 

@@ -1,15 +1,15 @@
-import { SkinColor } from "./color/SkinColor";
-import { CoordF } from "./coords/CoordF";
-import { GameOptions } from "./GameOptions";
+import { SkinColor } from "../color/SkinColor";
+import { CoordF } from "../coords/CoordF";
+import { Item } from "../item/Item";
+import { ItemSlot } from "../item/ItemSlot";
+import { Job } from "../jobs/Job";
+import { JobCode } from "../jobs/JobCode";
+import { Mount } from "../Mount";
+import { GameOptions } from "../options/GameOptions";
+import { SkillTab } from "../SkillTab";
+import { StatDistribution } from "../StatDistribution";
 import { Gender } from "./Gender";
-import { Item } from "./item/Item";
-import { ItemSlot } from "./item/ItemSlot";
-import { Job } from "./jobs/Job";
-import { JobCode } from "./jobs/JobCode";
-import { Mount } from "./Mount";
 import { PlayerStats } from "./PlayerStats";
-import { SkillTab } from "./SkillTab";
-import { StatDistribution } from "./StatDistribution";
 
 export class Player {
 
@@ -27,7 +27,7 @@ export class Player {
     public awakened: boolean = false;
 
     // mutable Values
-    public mapId: number = 2000062;
+    public mapId: number = 2000023;
     public level: number = 1;
     public objectId: number = 100000;
     public experience: BigInt = BigInt(0);
@@ -43,7 +43,7 @@ export class Player {
     // combat, adventure, lifestyle
     public trophy: number[] = new Array(3);
 
-    public coord: CoordF = new CoordF(2850, 2550, 1800);
+    public coord: CoordF = new CoordF(-2700, -7500, 1800);
     public rotation: CoordF = new CoordF(0, 0, 0);
 
     // appearance

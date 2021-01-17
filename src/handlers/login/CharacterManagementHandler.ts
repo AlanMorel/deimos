@@ -13,10 +13,10 @@ import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ItemColor } from "../../types/color/ItemColor";
 import { SkinColor } from "../../types/color/SkinColor";
-import { HairData } from "../../types/HairData";
+import { HairData } from "../../types/item/HairData";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
-import { Player } from "../../types/Player";
+import { Player } from "../../types/player/Player";
 import { LoginPacketHandler } from "../LoginPacketHandler";
 
 enum Mode {

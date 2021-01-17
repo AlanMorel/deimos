@@ -1,5 +1,5 @@
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Player } from "../types/Player";
+import { Player } from "../types/player/Player";
 
 export class JobPacket {
 

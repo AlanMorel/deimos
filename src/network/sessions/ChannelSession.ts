@@ -1,5 +1,5 @@
 import { Socket } from "net";
-import { Player } from "../../types/Player";
+import { Player } from "../../types/player/Player";
 import { PacketRouter } from "../routers/PacketRouter";
 import { Session } from "./Session";
 

@@ -2,7 +2,7 @@ import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { CoordF } from "../types/coords/CoordF";
-import { Player } from "../types/Player";
+import { Player } from "../types/player/Player";
 
 enum Mode {
     LOAD_PLAYER = 0x3

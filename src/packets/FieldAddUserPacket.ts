@@ -5,7 +5,7 @@ import { Time } from "../tools/Time";
 import { SkinColor } from "../types/color/SkinColor";
 import { CoordF } from "../types/coords/CoordF";
 import { Mount } from "../types/Mount";
-import { Player } from "../types/Player";
+import { Player } from "../types/player/Player";
 import { FieldPacket } from "./FieldPacket";
 import { CharacterListPacketHelper } from "./helpers/CharacterListPacketHelper";
 import { ItemPacketHelper } from "./helpers/ItemPacketHelper";

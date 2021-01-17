@@ -1,5 +1,5 @@
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { PlayerStats } from "../types/PlayerStats";
+import { PlayerStats } from "../types/player/PlayerStats";
 
 export class FieldPacket {
 
