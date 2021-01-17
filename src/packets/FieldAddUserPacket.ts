@@ -85,18 +85,8 @@ export class FieldAddUserPacket {
         // This seems to be character appearance encoded as a blob
         packet.writeBoolean(true);
         if (true) {
-            const appearanceBuffer = new PacketWriter();
 
-            appearanceBuffer.writeByte(player.equips.size);
-            for (const [slot, equip] of player.equips.entries()) {
-                ItemPacketHelper.writeEquip(appearanceBuffer, slot, equip);
-            }
-
-            appearanceBuffer.writeByte(1);
-            appearanceBuffer.writeLong();
-            appearanceBuffer.writeLong();
-            appearanceBuffer.writeByte();
-
+            const appearanceBuffer = FieldAddUserPacket.getAppearanceBuffer(packet, player);
             await packet.writeDeflated(appearanceBuffer.buffer, appearanceBuffer.length);
 
             packet.writeByte(); // Separator?
@@ -133,5 +123,21 @@ export class FieldAddUserPacket {
         }
 
         return packet;
+    }
+
+    private static getAppearanceBuffer(packet: PacketWriter, player: Player): PacketWriter {
+        const appearanceBuffer = new PacketWriter();
+
+        appearanceBuffer.writeByte(player.equips.size);
+        for (const [slot, equip] of player.equips.entries()) {
+            ItemPacketHelper.writeEquip(appearanceBuffer, slot, equip);
+        }
+
+        appearanceBuffer.writeByte(1);
+        appearanceBuffer.writeLong();
+        appearanceBuffer.writeLong();
+        appearanceBuffer.writeByte();
+
+        return appearanceBuffer;
     }
 }
