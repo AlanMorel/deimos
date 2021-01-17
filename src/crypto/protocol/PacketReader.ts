@@ -78,6 +78,11 @@ export class PacketReader extends Packet {
         return this.readAsciiString(length);
     }
 
+    public readMapleString(): string {
+        const length = this.readShort();
+        return this.read(length).toString("ascii");
+    }
+
     public read(length: number): Buffer {
         const ret = Buffer.alloc(length);
         for (let i = 0; i < length; i++) {
