@@ -40,10 +40,10 @@ export class LoginServer extends Server {
     }
 
     protected onStart(): void {
-        // TODO: implement
+        Logger.log(`LoginServer started at ${this.host}:${this.port}`);
     }
 
     protected onShutdown(): void {
-        // TODO: implement
+        Logger.log(`LoginServer at ${this.host}:${this.port} shutdown`);
     }
 }

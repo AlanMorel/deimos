@@ -13,7 +13,7 @@ export class GameToLoginPacket {
     public static gameToLogin(endpoint: Endpoint, authData: AuthData): Packet {
         const packet = new PacketWriter();
 
-        packet.writeShort(SendOp.LOGIN_TO_GAME);
+        packet.writeShort(SendOp.GAME_TO_LOGIN);
         packet.writeByte(Mode.SUCCESS);
         packet.write(endpoint.getBytes());
         packet.writeUShort(endpoint.getPort());

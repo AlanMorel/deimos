@@ -43,10 +43,10 @@ export class ChannelServer extends Server {
     }
 
     protected onStart(): void {
-        // TODO: implement
+        Logger.log(`ChannelServer ${this.id} started at ${this.host}:${this.port}`);
     }
 
     protected onShutdown(): void {
-        // TODO: implement
+        Logger.log(`ChannelServer ${this.id} at ${this.host}:${this.port} shutdown`);
     }
 }

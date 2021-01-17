@@ -36,21 +36,19 @@ export class FieldPacket {
     }
 
     public static writePassiveSkills(packet: PacketWriter): void {
-        // TODO
-        packet.writeHexString("01 00 3E FF 5A 00 A4 63 12 02 3E FF 5A 00 D0 71 85 28 D0 71 85 28 0F 38 A0 00 01 00 01 00 00 00 01 00 00 00 00 00 00 00 00");
-        /*short count = 0;
-        packet.WriteShort(count);
-        for (int i = 0; i < count; i++) {
-            packet.WriteInt();
-            packet.WriteInt();
-            packet.WriteInt();
-            packet.WriteInt();
-            packet.WriteInt();
-            packet.WriteInt();
-            packet.WriteShort();
-            packet.WriteInt();
-            packet.WriteByte();
-            packet.WriteLong();
-        }*/
+        const count = 0;
+        packet.writeShort(count);
+        for (let i = 0; i < count; i++) {
+            packet.writeInt(5963582);
+            packet.writeInt(34759588);
+            packet.writeInt(5963582);
+            packet.writeInt(679834064);
+            packet.writeInt(679834064);
+            packet.writeInt(10500111);
+            packet.writeShort(1);
+            packet.writeInt(1);
+            packet.writeByte(1);
+            packet.writeLong();
+        }
     }
 }

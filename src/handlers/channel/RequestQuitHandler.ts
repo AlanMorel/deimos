@@ -20,7 +20,7 @@ export class RequestQuitHandler implements ChannelPacketHandler {
                 return;
             }
 
-            const endpoint = new Endpoint(Configs.channel.host, Configs.channel.port);
+            const endpoint = new Endpoint(Configs.login.host, Configs.login.port);
 
             session.send(GameToLoginPacket.gameToLogin(endpoint, authData));
         }

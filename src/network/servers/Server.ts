@@ -1,5 +1,4 @@
 import * as net from "net";
-import { Logger } from "../../tools/Logger";
 import { PacketRouter } from "../routers/PacketRouter";
 import { Session } from "../sessions/Session";
 
@@ -15,8 +14,6 @@ export abstract class Server {
         this.host = host;
         this.port = port;
         this.packetRouter = packetRouter;
-
-        Logger.log(`${name}Server started at ${host}:${port}`);
 
         this.start();
     }
