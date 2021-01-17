@@ -44,7 +44,7 @@ export class Player {
     // combat, adventure, lifestyle
     public trophy: number[] = new Array(3);
 
-    public coord: CoordF = new CoordF(-2700, -7500, 1800);
+    public coord: CoordF = new CoordF(-39, -4347, 9001);
     public rotation: CoordF = new CoordF(0, 0, 0);
 
     // appearance

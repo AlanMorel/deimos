@@ -1,4 +1,4 @@
-import Configs from "../../configs.json";
+import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Session } from "../../network/sessions/Session";
 import { Logger } from "../../tools/Logger";

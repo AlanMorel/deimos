@@ -1,4 +1,4 @@
-import Configs from "../../configs.json";
+import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AuthStorage } from "../../data/storage/AuthStorage";
 import { Endpoint } from "../../network/Endpoint";

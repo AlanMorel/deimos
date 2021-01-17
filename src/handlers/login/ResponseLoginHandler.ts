@@ -1,4 +1,4 @@
-import Configs from "../../configs.json";
+import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";

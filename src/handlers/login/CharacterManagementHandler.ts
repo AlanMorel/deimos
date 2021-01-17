@@ -1,4 +1,4 @@
-import Configs from "../../configs.json";
+import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { AuthStorage } from "../../data/storage/AuthStorage";
@@ -48,7 +48,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         Logger.log(`Logging in to game with char id: ${characterId}`, HexColor.PURPLE);
 
-        const endpoint = new Endpoint(Configs.channel.host, Configs.channel.port);
+        const endpoint = new Endpoint(Configs.channel[0].host, Configs.channel[0].port);
 
         const authData = {
             tokenA: AuthStorage.generateToken(),
