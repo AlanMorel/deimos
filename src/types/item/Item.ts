@@ -48,11 +48,11 @@ export class Item {
     public hairData?: HairData;
     public faceDecorationData?: Buffer;
 
-    public appearanceFlag?: number;
+    public appearanceFlag: number = 0;
 
     public stats: ItemStats = new ItemStats();
 
-    public constructor(id: number, itemSlot: ItemSlot) {
+    public constructor(id: number, itemSlot: ItemSlot) { // TODO: remove item slot from constructor once loaded from metadata
         this.id = id;
         this.inventoryTab = InventoryTab.Outfit; // TODO: read from metadata
         this.itemSlot = itemSlot; // TODO: read from metadata

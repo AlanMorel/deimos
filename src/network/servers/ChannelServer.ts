@@ -16,7 +16,7 @@ export class ChannelServer extends Server {
     }
 
     protected onConnection(socket: net.Socket): void {
-        const session = new ChannelSession(this.sessionCounter++, socket, this.packetRouter);
+        const session = new ChannelSession(this.sessionCounter++, socket, this.packetRouter, this.id);
 
         Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 

@@ -49,7 +49,6 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         }
 
         session.player = player;
-        // TODO: set channel id
 
         session.send(MoveResultPacket.moveResult());
 

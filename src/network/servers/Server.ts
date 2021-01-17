@@ -21,13 +21,12 @@ export abstract class Server {
         this.start();
     }
 
-    public async start(): Promise<boolean> {
+    public async start(): Promise<void> {
         this.server.on("connection", socket => {
             this.onConnection(socket);
         });
         this.server.listen(this.port, this.host);
         this.onStart();
-        return true;
     }
 
     protected abstract onConnection(socket: net.Socket): void;
