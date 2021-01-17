@@ -83,7 +83,7 @@ export class SyncState {
         }
 
         if ((state.flag & SyncStateFlag.Flag4) != 0) {
-            state.flag4Unknown = packet.readUnicodeString(); // Animation string?
+            state.flag4Unknown = packet.readUnicodeString(); // animation string?
         }
 
         if ((state.flag & SyncStateFlag.Flag5) != 0) {

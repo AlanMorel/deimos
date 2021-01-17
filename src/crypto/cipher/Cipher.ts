@@ -21,7 +21,7 @@ export abstract class Cipher {
 
     private initCryptSeq(blockIV: number): Array<Crypter> {
         const crypts = this.getCrypts();
-        const cryptSeq: Crypter[] = Array<Crypter>();
+        const cryptSeq = Array<Crypter>();
 
         while (blockIV > 0) {
             const crypter: Crypter = crypts[blockIV % 10];
@@ -37,7 +37,7 @@ export abstract class Cipher {
     }
 
     private getCrypts(): Crypter[] {
-        const crypts: Crypter[] = Array<Crypter>(4);
+        const crypts = Array<Crypter>(4);
         crypts[Crypter.getIndex(this.version, RearrangeCrypter.INDEX)] = new RearrangeCrypter();
         crypts[Crypter.getIndex(this.version, XORCrypter.INDEX)] = new XORCrypter(this.version);
         crypts[Crypter.getIndex(this.version, TableCrypter.INDEX)] = new TableCrypter(this.version);

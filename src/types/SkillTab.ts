@@ -15,15 +15,15 @@ export class SkillTab {
         this.split = split;
         this.skills = skills != null ? skills : new Map<number, Skill>();
 
-        // Add default skills
-        this.addOrUpdate(new Skill(20000001, 1, 1)); // Swift Swimming
-        this.addOrUpdate(new Skill(20000011, 1, 1)); // Wall Climbing
+        // add default skills
+        this.addOrUpdate(new Skill(20000001, 1, 1)); // swift Swimming
+        this.addOrUpdate(new Skill(20000011, 1, 1)); // wall Climbing
     }
 
     public addOrUpdate(skill: Skill): void {
         this.skills.set(skill.id, skill);
 
-        // Recursive add or update for sub skills
+        // recursive add or update for sub skills
         if (skill.sub != null) {
             for (const sub of skill.sub) {
                 this.addOrUpdate(new Skill(sub, skill.level, skill.learned, skill.feature));

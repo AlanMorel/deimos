@@ -11,6 +11,7 @@ import { LoginResultPacket } from "../../packets/LoginResultPacket";
 import { NpsInfoPacket } from "../../packets/NpsInfoPacket";
 import { ServerListPacket } from "../../packets/ServerListPacket";
 import { UgcPacket } from "../../packets/UgcPacket";
+import { ArrayManipulator } from "../../tools/ArrayManipulator";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { Player } from "../../types/player/Player";
@@ -37,15 +38,14 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 const endpoints = [
                     new Endpoint(Configs.login.host, Configs.login.port)
                 ];
-                const unknownData = Buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]); // TODO: scramble
+                const unknownData = Buffer.from(ArrayManipulator.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
                 session.send(NpsInfoPacket.npsInfo());
                 session.send(BannerListPacket.setBanner(0)); // TODO: load banners
                 session.send(ServerListPacket.setServers(Configs.serverName, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
-                const accountId = BigInt(1); // TODO: temp
-                const characterIds = AccountStorage.storage.getCharacterIDs(accountId);
+                const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);
                 const players = new Array<Player>();
 
                 characterIds.forEach(id => {
@@ -56,9 +56,9 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                     }
                 });
 
-                Logger.log("Initializing login with account id: " + accountId, HexColor.PURPLE);
+                Logger.log("Initializing login with account id: " + session.accountId, HexColor.PURPLE);
 
-                session.send(LoginResultPacket.login(accountId));
+                session.send(LoginResultPacket.login(session.accountId));
                 session.send(UgcPacket.setEndpoint("http://127.0.0.1/ws.asmx?wsdl", "http://127.0.0.1"));
                 session.send(CharacterMaxCountPacket.setMax(4, 6));
                 session.send(CharacterListPacket.startList());

@@ -23,8 +23,8 @@ export class RecvCipher extends Cipher {
     }
 
     public readHeader(packet: PacketReader): number {
-        const encSeq: number = packet.readUShort();
-        const decSeq: number = this.decodeSeqBase(encSeq);
+        const encSeq = packet.readUShort();
+        const decSeq = this.decodeSeqBase(encSeq);
 
         if (decSeq != this.version) {
             Logger.log("Packet has invalid sequence header: " + decSeq);
@@ -39,7 +39,7 @@ export class RecvCipher extends Cipher {
     }
 
     private decodeSeqBase(encSeq: number): number {
-        const decSeq: number = (this.iv >>> 16) ^ encSeq;
+        const decSeq = (this.iv >>> 16) ^ encSeq;
 
         this.advanceIV();
 

@@ -2,12 +2,12 @@ import { Socket } from "net";
 import { RecvOp } from "../../constants/RecvOp";
 import { SendOp } from "../../constants/SendOp";
 import { BitConverter } from "../../crypto/BitConverter";
-import { BufferStream } from "../../crypto/BufferStream";
 import { Cipher } from "../../crypto/cipher/Cipher";
 import { RecvCipher } from "../../crypto/cipher/RecvCipher";
 import { SendCipher } from "../../crypto/cipher/SendCipher";
 import { Packet } from "../../crypto/protocol/Packet";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
+import { Stream } from "../../crypto/Stream";
 import { RequestVersionPacket } from "../../packets/RequestVersionPacket";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
@@ -24,7 +24,7 @@ export abstract class Session {
     private recvCipher: RecvCipher;
     private sendCipher: SendCipher;
 
-    private stream: BufferStream = new BufferStream();
+    private stream: Stream = new Stream();
     private packetRouter: PacketRouter;
 
     public constructor(id: number, socket: Socket, packetRouter: PacketRouter) {
@@ -68,8 +68,7 @@ export abstract class Session {
                 break;
         }
 
-        const buffer = Buffer.alloc(packet.buffer.length, packet.buffer);
-        packet = this.sendCipher.encrypt(buffer);
+        packet = this.sendCipher.encrypt(packet.toArray());
         this.socket.write(packet.toArray());
     }
 

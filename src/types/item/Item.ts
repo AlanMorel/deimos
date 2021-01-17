@@ -16,29 +16,29 @@ export class Item {
     public isTemplate: boolean = false;
 
     public readonly id: number;
-    public readonly uid: bigint = GuidGenerator.generateLong();
+    public readonly uid: BigInt = GuidGenerator.generateLong();
     public slot: number = -1;
     public amount: number = 1;
     public rarity: number = 0;
 
-    public creationTime: bigint = BigInt(0);
-    public expiryTime: bigint = BigInt(0);
+    public creationTime: BigInt = BigInt(0);
+    public expiryTime: BigInt = BigInt(0);
 
     public timesAttributesChanged: number = 0;
     public isLocked: boolean = false;
-    public unlockTime: bigint = BigInt(0);
+    public unlockTime: BigInt = BigInt(0);
     public remainingGlamorForges: number = 0;
     public enchants: number = 0;
 
-    // EnchantExp (10000 = 100%) for Peachy
+    // enchantExp (10000 = 100%) for Peachy
     public enchantExp: number = 0;
     public canRepackage: boolean = true; // if false, item becomes untradable
     public charges: number = 0;
     public transferFlag: TransferFlag = TransferFlag.None;
     public remainingTrades: number = 0;
 
-    // For friendship badges
-    public pairedCharacterId: bigint = BigInt(0);
+    // for friendship badges
+    public pairedCharacterId: BigInt = BigInt(0);
     public pairedCharacterName: string = "";
 
     public owner?: Player;
@@ -54,9 +54,10 @@ export class Item {
 
     public constructor(id: number, itemSlot: ItemSlot) { // TODO: remove item slot from constructor once loaded from metadata
         this.id = id;
-        this.inventoryTab = InventoryTab.Outfit; // TODO: read from metadata
-        this.itemSlot = itemSlot; // TODO: read from metadata
-        this.slotMax = 100; // TODO: read from metadata
-        this.isTemplate = false; // TODO: read from metadata
+        // TODO: below read from metadata
+        this.inventoryTab = InventoryTab.Outfit;
+        this.itemSlot = itemSlot;
+        this.slotMax = 100;
+        this.isTemplate = false;
     }
 }

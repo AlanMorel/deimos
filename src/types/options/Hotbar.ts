@@ -17,14 +17,13 @@ export class Hotbar {
 
     public moveQuickSlot(targetSlotIndex: number, quickSlot: QuickSlot): void {
         if (targetSlotIndex < 0 || targetSlotIndex >= Hotbar.MAX_SLOTS) {
-            // This should never occur
-            Logger.log(`Invalid target slot ${targetSlotIndex}`);
+            Logger.log(`Invalid target slot ${targetSlotIndex}.`);
             return;
         }
 
         const sourceSlotIndex = this.findQuickSlotIndex(quickSlot.skillId, quickSlot.itemUid);
         if (sourceSlotIndex != -1) {
-            // Swapping with an existing slot on the hotbar
+            // swapping with an existing slot on the hotbar
             const sourceQuickSlot = this.slots[targetSlotIndex];
             this.slots[sourceSlotIndex] = new QuickSlot(
                 sourceQuickSlot.skillId,
@@ -54,7 +53,7 @@ export class Hotbar {
             return false;
         }
 
-        this.slots[targetSlotIndex] = new QuickSlot(); // Clear
+        this.slots[targetSlotIndex] = new QuickSlot();
         return true;
     }
 

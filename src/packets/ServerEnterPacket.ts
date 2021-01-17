@@ -1,22 +1,22 @@
 import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Player } from "../types/player/Player";
+import { ChannelSession } from "../network/sessions/ChannelSession";
 
 export class ServerEnterPacket {
 
-    public static enter(player: Player): Packet {
+    public static enter(session: ChannelSession): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.SERVER_ENTER);
-        packet.writeInt(player.objectId);
-        packet.writeBigInt(player.characterId);
-        packet.writeShort(1); // TODO: player.channel
-        packet.writeBigInt(player.experience);
-        packet.writeBigInt(player.restExperience);
-        packet.writeBigInt(player.mesos);
+        packet.writeInt(session.player.objectId);
+        packet.writeBigInt(session.player.characterId);
+        packet.writeShort(session.channel.id);
+        packet.writeBigInt(session.player.experience);
+        packet.writeBigInt(session.player.restExperience);
+        packet.writeBigInt(session.player.mesos);
 
-        packet.writeBigInt(player.merets); // Merets
+        packet.writeBigInt(session.player.merets); // Merets
         packet.writeLong(); // Merets
         // These Merets are added up. If set, previous are ignored.
 
@@ -25,16 +25,16 @@ export class ServerEnterPacket {
 
         packet.writeLong();
 
-        packet.writeBigInt(player.valorToken);
-        packet.writeBigInt(player.treva);
-        packet.writeBigInt(player.rue);
-        packet.writeBigInt(player.haviFruit);
+        packet.writeBigInt(session.player.valorToken);
+        packet.writeBigInt(session.player.treva);
+        packet.writeBigInt(session.player.rue);
+        packet.writeBigInt(session.player.haviFruit);
         packet.writeLong();
         packet.writeLong();
         packet.writeLong();
         packet.writeLong();
-        packet.writeBigInt(player.mesoToken);
-        packet.writeUnicodeString(player.profileUrl);
+        packet.writeBigInt(session.player.mesoToken);
+        packet.writeUnicodeString(session.player.profileUrl);
         packet.writeByte();
         packet.writeByte();
 

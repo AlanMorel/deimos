@@ -17,7 +17,7 @@ export class Endpoint {
     }
 
     public getBytes(): Buffer {
-        const split: string[] = this.address.split(".");
+        const split = this.address.split(".");
         const bytes = split.map((byte: string) => parseInt(byte));
         return Buffer.from(bytes);
     }

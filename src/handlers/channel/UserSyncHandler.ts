@@ -24,8 +24,8 @@ export class UserSyncHandler implements ChannelPacketHandler {
             packet.readInt(); // ServerTicks
         }
 
-        session.player.coord = syncStates[0].coord;
         // not sure if this needs to be synced here
+        session.player.coord = syncStates[0].coord;
         session.player.animation = syncStates[0].animation1;
 
         session.field?.broadcast(UserSyncPacket.syncUser(session.player, syncStates), session);

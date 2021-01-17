@@ -16,7 +16,7 @@ export class SendCipher extends Cipher {
     }
 
     public writeHeader(packet: Buffer): Packet {
-        const encSeq: number = this.encodeSeqBase();
+        const encSeq = this.encodeSeqBase();
 
         const writer = new PacketWriter(packet.length + Cipher.HEADER_SIZE);
         writer.writeUShort(encSeq);
@@ -27,7 +27,7 @@ export class SendCipher extends Cipher {
     }
 
     private encodeSeqBase(): number {
-        const encSeq: number = this.version ^ (this.iv >>> 16);
+        const encSeq = this.version ^ (this.iv >>> 16);
 
         this.advanceIV();
 

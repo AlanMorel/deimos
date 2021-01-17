@@ -15,6 +15,6 @@ export enum ChatType {
     Super = 16,
     NoticeAlert3 = 17,
     GuildNotice = 18,
-    Unknown = 19, // Guild chat color without [Guild] prefix
+    Unknown = 19, // guild chat color without [Guild] prefix
     UnknownPurple = 20,
 }

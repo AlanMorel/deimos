@@ -53,7 +53,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
 
         session.send(RequestClientTickSyncPacket.tickSync());
         session.send(DynamicChannelPacket.dynamicChannel());
-        session.send(ServerEnterPacket.enter(player));
+        session.send(ServerEnterPacket.enter(session));
         session.send(SyncNumberPacket.sync());
 
         session.send(PrestigePacket.prestige(player));
