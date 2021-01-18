@@ -137,9 +137,7 @@ export class PacketWriter extends Packet {
             return;
         }
 
-        const deflatedData = deflateSync(data, {
-            level: 1
-        });
+        const deflatedData = deflateSync(data);
 
         this.writeInt(deflatedData.length + INT_SIZE);
         this.writeIntBigEndian(length);

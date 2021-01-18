@@ -2,7 +2,6 @@ import { Packet } from "../../crypto/protocol/Packet";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { FieldAddUserPacket } from "../../packets/FieldAddUserPacket";
 import { ProxyGameObjectPacket } from "../../packets/ProxyGameObjectPacket";
-import { Logger } from "../../tools/Logger";
 import { FieldState } from "./FieldState";
 
 export class Field {
@@ -34,7 +33,7 @@ export class Field {
 
     private sendUpdates(): void {
         const packets = this.getUpdates();
-        Logger.log("Map " + this.id + " sending " + packets.length + " packets to " + this.state.getPlayers().length + " players.");
+        // Logger.log("Map " + this.id + " sending " + packets.length + " packets to " + this.state.getPlayers().length + " players.");
 
         packets.forEach(packet => {
             this.sessions.forEach(session => {

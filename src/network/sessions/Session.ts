@@ -46,8 +46,8 @@ export abstract class Session {
         const sendOpcode = SendOp[opcode];
 
         switch (opcode) {
-            // case SendOp.USER_SYNC:
-            // case SendOp.PROXY_GAME_OBJ:
+            case SendOp.USER_SYNC:
+            case SendOp.PROXY_GAME_OBJ:
             case SendOp.USER_CHAT:
             case SendOp.NPC_CONTROL:
             case SendOp.CHARACTER_LIST:

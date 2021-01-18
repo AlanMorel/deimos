@@ -1,5 +1,6 @@
 import { Socket } from "net";
 import { Field } from "../../server/fields/Field";
+import { World } from "../../server/World";
 import { Player } from "../../types/player/Player";
 import { PacketRouter } from "../routers/PacketRouter";
 import { ChannelServer } from "../servers/ChannelServer";
@@ -18,6 +19,8 @@ export class ChannelSession extends Session {
 
     public initialize(player: Player): void {
         this.player = player;
+        this.player.session = this;
         this.field = this.channel.fieldFactory.getField(player.mapId);
+        World.getInstance().addPlayer(player);
     }
 }

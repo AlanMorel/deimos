@@ -1,3 +1,4 @@
+import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { Color } from "../color/Color";
 import { SkinColor } from "../color/SkinColor";
 import { CoordF } from "../coords/CoordF";
@@ -74,6 +75,8 @@ export class Player {
 
     public jobType: Job = Job.None;
     public gameOptions: GameOptions = new GameOptions();
+
+    public session?: ChannelSession;
 
     public constructor(characterId: BigInt, gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
         this.characterId = characterId;

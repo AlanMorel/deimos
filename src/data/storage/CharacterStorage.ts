@@ -22,8 +22,7 @@ export class CharacterStorage {
     }
 
     public getCharacter(characterId: BigInt): Player | undefined {
-        const results = this.characters.get(characterId);
-        return results;
+        return this.characters.get(characterId);
     }
 
     public addCharacter(character: Player): void {
