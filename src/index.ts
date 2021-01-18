@@ -11,4 +11,7 @@ if (Configs.debug) {
 }
 
 new LoginServer(Configs.login.host, Configs.login.port);
-new ChannelServer(1, Configs.channel[0].host, Configs.channel[0].port);
+
+for (const [id, channel] of Configs.channels.entries()) {
+    new ChannelServer(id + 1, channel.host, channel.port);
+}

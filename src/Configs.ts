@@ -5,10 +5,10 @@ export default {
         host: "127.0.0.1",
         port: 20001
     },
-    channel: [
+    channels: [
         {
-            "host": "127.0.0.1",
-            "port": 21001
+            host: "127.0.0.1",
+            port: 21001
         }
     ],
     debug: true

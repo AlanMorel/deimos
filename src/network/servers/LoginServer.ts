@@ -15,7 +15,7 @@ export class LoginServer extends Server {
     protected onConnection(socket: Socket): void {
         const session = new LoginSession(this.sessionCounter++, socket, this.packetRouter);
 
-        Logger.log(`LoginServer: Session ${session.id} @ ${session.socket.remoteAddress} opened`);
+        Logger.log(`Login Server: Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 
         this.setupSocketEvents(session);
     }
@@ -32,7 +32,7 @@ export class LoginServer extends Server {
     }
 
     protected onClose(session: LoginSession, hadError: boolean): void {
-        Logger.log(`LoginServer: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
+        Logger.log(`Login Server: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 
     protected onError(session: LoginSession, error: Error): void {
@@ -40,10 +40,10 @@ export class LoginServer extends Server {
     }
 
     protected onStart(): void {
-        Logger.log(`LoginServer started at ${this.host}:${this.port}`);
+        Logger.log(`Login Server at ${this.host}:${this.port} is online`, HexColor.GREEN);
     }
 
     protected onShutdown(): void {
-        Logger.log(`LoginServer at ${this.host}:${this.port} shutdown`);
+        Logger.log(`Login Server at ${this.host}:${this.port} shutdown`);
     }
 }

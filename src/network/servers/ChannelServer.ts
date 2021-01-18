@@ -1,5 +1,6 @@
 import { Socket } from "net";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
+import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
 import { ChannelSession } from "../sessions/ChannelSession";
@@ -19,7 +20,7 @@ export class ChannelServer extends Server {
     protected onConnection(socket: Socket): void {
         const session = new ChannelSession(this, this.sessionCounter++, this.packetRouter, socket);
 
-        Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} opened`);
+        Logger.log(`Channel ${this.id}: Session ${session.id} @ ${session.socket.remoteAddress} opened`);
 
         this.setupSocketEvents(session);
     }
@@ -37,7 +38,7 @@ export class ChannelServer extends Server {
 
     protected onClose(session: ChannelSession, hadError: boolean): void {
         session.field?.removePlayer(session);
-        Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} closed`);
+        Logger.log(`Channel ${this.id}: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 
     protected onError(session: ChannelSession, error: Error): void {
@@ -45,10 +46,10 @@ export class ChannelServer extends Server {
     }
 
     protected onStart(): void {
-        Logger.log(`ChannelServer ${this.id} started at ${this.host}:${this.port}`);
+        Logger.log(`Channel ${this.id} at ${this.host}:${this.port} is online`, HexColor.GREEN);
     }
 
     protected onShutdown(): void {
-        Logger.log(`ChannelServer ${this.id} at ${this.host}:${this.port} shutdown`);
+        Logger.log(`Channel ${this.id} at ${this.host}:${this.port} shutdown`);
     }
 }
