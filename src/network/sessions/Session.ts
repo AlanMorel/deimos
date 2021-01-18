@@ -47,11 +47,11 @@ export abstract class Session {
 
         switch (opcode) {
             // case SendOp.USER_SYNC:
+            // case SendOp.PROXY_GAME_OBJ:
             case SendOp.USER_CHAT:
             case SendOp.NPC_CONTROL:
             case SendOp.CHARACTER_LIST:
             case SendOp.KEY_TABLE:
-            // case SendOp.PROXY_GAME_OBJ:
             case SendOp.STAT:
             case SendOp.EMOTION:
             case SendOp.ITEM_INVENTORY:

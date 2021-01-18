@@ -4,7 +4,7 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 export class UserEnvPacket {
 
-    public static setTitles(titles: Array<number>): Packet {
+    public static setTitles(titles: number[]): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.USER_ENV);

@@ -13,7 +13,7 @@ enum Mode {
 
 export class CharacterListPacket {
 
-    public static addEntries(characters: Array<Player>): Packet {
+    public static addEntries(characters: Player[]): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.CHARACTER_LIST);

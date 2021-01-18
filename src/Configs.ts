@@ -12,4 +12,4 @@ export default {
                 "port": 21001
             }
         ]
-}
+};

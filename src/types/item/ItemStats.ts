@@ -3,9 +3,9 @@ import { ItemStat } from "./ItemStat";
 
 export class ItemStats {
 
-    public basicAttributes: Array<ItemStat> = new Array<ItemStat>();
-    public bonusAttributes: Array<ItemStat> = new Array<ItemStat>();
+    public basicAttributes: ItemStat[] = new Array<ItemStat>();
+    public bonusAttributes: ItemStat[] = new Array<ItemStat>();
 
     public totalSockets: number = 0;
-    public gemstones: Array<Gemstone> = new Array<Gemstone>();
+    public gemstones: Gemstone[] = new Array<Gemstone>();
 }

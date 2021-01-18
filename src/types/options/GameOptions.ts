@@ -6,7 +6,7 @@ export class GameOptions {
     private static HOTBARS_AVAILABLE = 3;
 
     public keyBinds: Map<number, KeyBind> = new Map<number, KeyBind>();
-    public hotbars: Array<Hotbar> = new Array<Hotbar>();
+    public hotbars: Hotbar[] = new Array<Hotbar>();
     public activeHotbarId: number = 0;
 
     public constructor() {

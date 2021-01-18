@@ -2,7 +2,7 @@ export class AccountStorage {
 
     public static storage: AccountStorage = new AccountStorage();
 
-    public accounts: Map<BigInt, Array<BigInt>> = new Map<BigInt, Array<BigInt>>();
+    public accounts: Map<BigInt, BigInt[]> = new Map<BigInt, BigInt[]>();
 
     public constructor() {
         this.accounts.set(BigInt(1), [
@@ -11,7 +11,7 @@ export class AccountStorage {
         ]);
     }
 
-    public getCharacterIDs(accountId: BigInt): Array<BigInt> {
+    public getCharacterIDs(accountId: BigInt): BigInt[] {
         const results = this.accounts.get(accountId);
 
         if (!results) {

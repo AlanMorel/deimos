@@ -8,7 +8,7 @@ export class FieldState {
         this.players = new Map<number, Player>();
     }
 
-    public getPlayers(): Array<Player> {
+    public getPlayers(): Player[] {
         return Array.from(this.players.values());
     }
 

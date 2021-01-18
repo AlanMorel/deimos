@@ -7,6 +7,8 @@ import { FieldState } from "./FieldState";
 
 export class Field {
 
+    private static UPDATE_INTERVAL = 1000;
+
     public id: number;
     public state: FieldState = new FieldState();
 
@@ -17,10 +19,10 @@ export class Field {
         this.id = id;
         setInterval(() => {
             this.sendUpdates();
-        }, 1000)
+        }, Field.UPDATE_INTERVAL);
     }
 
-    private getUpdates(): Array<Packet> {
+    private getUpdates(): Packet[] {
         const updates = new Array<Packet>();
 
         for (const player of this.state.getPlayers()) {
@@ -37,14 +39,14 @@ export class Field {
         packets.forEach(packet => {
             this.sessions.forEach(session => {
                 session.send(packet);
-            })
+            });
         });
     }
 
-    public broadcast(packet: Packet, sender: ChannelSession | null = null) {
+    public broadcast(packet: Packet, sender: ChannelSession | null = null): void {
         this.sessions.filter(session => !sender || sender.id !== session.id).forEach(session => {
             session.send(packet);
-        })
+        });
     }
 
     public async addPlayer(session: ChannelSession): Promise<void> {
@@ -59,7 +61,7 @@ export class Field {
         this.state.addPlayer(session.player);
         this.sessions.push(session);
 
-        this.broadcast(await FieldAddUserPacket.addPlayer(session.player))
-        this.broadcast(ProxyGameObjectPacket.loadPlayer(session.player))
+        this.broadcast(await FieldAddUserPacket.addPlayer(session.player));
+        this.broadcast(ProxyGameObjectPacket.loadPlayer(session.player));
     }
 }

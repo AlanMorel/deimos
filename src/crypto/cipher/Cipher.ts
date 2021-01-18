@@ -19,7 +19,7 @@ export abstract class Cipher {
         this.cryptSeq = this.initCryptSeq(blockIV);
     }
 
-    private initCryptSeq(blockIV: number): Array<Crypter> {
+    private initCryptSeq(blockIV: number): Crypter[] {
         const crypts = this.getCrypts();
         const cryptSeq = Array<Crypter>();
 

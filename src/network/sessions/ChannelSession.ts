@@ -16,7 +16,7 @@ export class ChannelSession extends Session {
         this.channel = channel;
     }
 
-    public initialize(player: Player) {
+    public initialize(player: Player): void {
         this.player = player;
         this.field = this.channel.fieldFactory.getField(player.mapId);
     }
