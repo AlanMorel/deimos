@@ -1,4 +1,4 @@
-import * as zlib from "zlib";
+import { deflateSync } from "zlib";
 import { BitConverter } from "../BitConverter";
 import { Packet } from "./Packet";
 
@@ -128,58 +128,21 @@ export class PacketWriter extends Packet {
         this.writeByte(int & 0xFF);
     }
 
-    public writeDeflated(data: Buffer, length: number): Promise<void> {
+    public writeDeflated(data: Buffer, length: number): void {
         const INT_SIZE = 4;
 
-        return new Promise(resolve => {
+        if (length <= INT_SIZE) {
+            this.writeInt(length);
+            this.write(data);
+            return;
+        }
 
-            if (length <= 4) {
-                this.writeInt(length);
-                this.write(data);
-                resolve();
-                return;
-            }
-
-            const deflater = zlib.createDeflate({
-                level: 1
-            });
-
-            const chunks: Buffer[] = [];
-            let chunkLengthTotal = 0;
-
-            deflater.on("data", (chunk: Buffer) => {
-                chunks.push(chunk);
-                chunkLengthTotal += chunk.length;
-            });
-
-            deflater.on("end", () => {
-                const buffer = Buffer.alloc(chunkLengthTotal);
-                let offset = 0;
-                chunks.forEach((chunk: Buffer) => {
-                    const length = chunk.length;
-                    chunk.copy(buffer, offset, 0, length);
-                    offset += length;
-                });
-
-                const startIndex = this.length;
-
-                this.writeInt();
-                this.writeIntBigEndian(length);
-                this.write(buffer);
-
-                const endIndex = this.length;
-
-                this.seek(startIndex);
-                this.writeInt(endIndex - startIndex - INT_SIZE);
-                this.seek(endIndex);
-
-                deflater.removeAllListeners();
-                resolve();
-            });
-
-            deflater.write(data, "hex");
-
-            deflater.end();
+        const deflatedData = deflateSync(data, {
+            level: 1
         });
+
+        this.writeInt(deflatedData.length + INT_SIZE);
+        this.writeIntBigEndian(length);
+        this.write(deflatedData);
     }
 }

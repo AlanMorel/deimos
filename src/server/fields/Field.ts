@@ -49,10 +49,10 @@ export class Field {
         });
     }
 
-    public async addPlayer(session: ChannelSession): Promise<void> {
+    public addPlayer(session: ChannelSession): void {
 
         for (const existingPlayer of this.state.getPlayers()) {
-            session.send(await FieldAddUserPacket.addPlayer(existingPlayer));
+            session.send(FieldAddUserPacket.addPlayer(existingPlayer));
             session.send(ProxyGameObjectPacket.loadPlayer(existingPlayer));
         }
 
@@ -61,7 +61,7 @@ export class Field {
         this.state.addPlayer(session.player);
         this.sessions.push(session);
 
-        this.broadcast(await FieldAddUserPacket.addPlayer(session.player));
+        this.broadcast(FieldAddUserPacket.addPlayer(session.player));
         this.broadcast(ProxyGameObjectPacket.loadPlayer(session.player));
     }
 }

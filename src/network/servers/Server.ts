@@ -16,7 +16,7 @@ export abstract class Server {
         this.packetRouter = packetRouter;
     }
 
-    public async start(): Promise<void> {
+    public start(): void {
         this.server.on("connection", socket => {
             this.onConnection(socket);
         });

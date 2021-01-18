@@ -13,7 +13,7 @@ import { JobPacket } from "./JobPacket";
 
 export class FieldAddUserPacket {
 
-    public static async addPlayer(player: Player): Promise<Packet> {
+    public static addPlayer(player: Player): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.FIELD_ADD_USER);
@@ -88,15 +88,15 @@ export class FieldAddUserPacket {
         if (encodeAppearance) {
 
             const appearanceBuffer = FieldAddUserPacket.getAppearanceBuffer(packet, player);
-            await packet.writeDeflated(appearanceBuffer.buffer, appearanceBuffer.length);
+            packet.writeDeflated(appearanceBuffer.buffer, appearanceBuffer.length);
 
             packet.writeByte(); // Separator?
 
-            await packet.writeDeflated(Buffer.from([1]), 1); // Unknown
+            packet.writeDeflated(Buffer.from([1]), 1); // Unknown
 
             packet.writeByte(); // Separator?
 
-            await packet.writeDeflated(Buffer.from([1]), 1); // Badge appearances
+            packet.writeDeflated(Buffer.from([1]), 1); // Badge appearances
 
             FieldPacket.writePassiveSkills(packet);
 

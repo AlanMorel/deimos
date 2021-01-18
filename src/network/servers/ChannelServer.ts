@@ -1,4 +1,4 @@
-import * as net from "net";
+import { Socket } from "net";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
@@ -18,7 +18,7 @@ export class ChannelServer extends Server {
         super.start();
     }
 
-    protected onConnection(socket: net.Socket): void {
+    protected onConnection(socket: Socket): void {
         const session = new ChannelSession(this, this.sessionCounter++, this.packetRouter, socket);
 
         Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} opened`);

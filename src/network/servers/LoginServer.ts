@@ -1,4 +1,4 @@
-import * as net from "net";
+import { Socket } from "net";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { LoginPacketRouter } from "../routers/LoginPacketRouter";
@@ -13,7 +13,7 @@ export class LoginServer extends Server {
         super.start();
     }
 
-    protected onConnection(socket: net.Socket): void {
+    protected onConnection(socket: Socket): void {
         const session = new LoginSession(this.sessionCounter++, socket, this.packetRouter);
 
         Logger.log(`LoginServer: Session ${session.id} @ ${session.socket.remoteAddress} opened`);

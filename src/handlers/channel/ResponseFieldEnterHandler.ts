@@ -8,10 +8,10 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
 
-    public async handle(session: ChannelSession, packet: PacketReader): Promise<void> {
+    public handle(session: ChannelSession, packet: PacketReader): void {
         packet.readInt();
 
-        await session.field?.addPlayer(session);
+        session.field?.addPlayer(session);
 
         session.send(StatPacket.setStats(session.player));
         session.send(StatPointPacket.writeTotalStatPoints(session.player));
