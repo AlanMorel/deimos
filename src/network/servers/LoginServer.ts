@@ -3,7 +3,6 @@ import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { LoginPacketRouter } from "../routers/LoginPacketRouter";
 import { LoginSession } from "../sessions/LoginSession";
-import { Session } from "../sessions/Session";
 import { Server } from "./Server";
 
 export class LoginServer extends Server {
@@ -21,22 +20,22 @@ export class LoginServer extends Server {
         this.setupSocketEvents(session);
     }
 
-    private setupSocketEvents(session: Session): void {
+    private setupSocketEvents(session: LoginSession): void {
         session.socket.setNoDelay(true);
         session.socket.on("data", data => this.onData(session, data));
         session.socket.on("close", hadError => this.onClose(session, hadError));
         session.socket.on("error", error => this.onError(session, error));
     }
 
-    protected onData(session: Session, data: Buffer): void {
+    protected onData(session: LoginSession, data: Buffer): void {
         session.onData(data);
     }
 
-    protected onClose(session: Session, hadError: boolean): void {
+    protected onClose(session: LoginSession, hadError: boolean): void {
         Logger.log(`LoginServer: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 
-    protected onError(session: Session, error: Error): void {
+    protected onError(session: LoginSession, error: Error): void {
         Logger.log(error.message, HexColor.RED);
     }
 

@@ -3,7 +3,6 @@ import { FieldFactory } from "../../server/fields/FIeldFactory";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
 import { ChannelSession } from "../sessions/ChannelSession";
-import { Session } from "../sessions/Session";
 import { Server } from "./Server";
 
 export class ChannelServer extends Server {
@@ -25,22 +24,23 @@ export class ChannelServer extends Server {
         this.setupSocketEvents(session);
     }
 
-    private setupSocketEvents(session: Session): void {
+    private setupSocketEvents(session: ChannelSession): void {
         session.socket.setNoDelay(true);
         session.socket.on("data", data => this.onData(session, data));
         session.socket.on("close", hadError => this.onClose(session, hadError));
         session.socket.on("error", error => this.onError(session, error));
     }
 
-    protected onData(session: Session, data: Buffer): void {
+    protected onData(session: ChannelSession, data: Buffer): void {
         session.onData(data);
     }
 
-    protected onClose(session: Session, hadError: boolean): void {
+    protected onClose(session: ChannelSession, hadError: boolean): void {
+        session.field?.removePlayer(session);
         Logger.log(`ChannelServer (${this.id}): Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 
-    protected onError(session: Session, error: Error): void {
+    protected onError(session: ChannelSession, error: Error): void {
         Logger.error(error.message);
     }
 
