@@ -56,7 +56,7 @@ export abstract class Session {
             case SendOp.EMOTION:
             case SendOp.ITEM_INVENTORY:
             case SendOp.FIELD_PORTAL:
-            case SendOp.FIELD_ADD_USER:
+            // case SendOp.FIELD_ADD_USER:
             case SendOp.SERVER_ENTER:
             case SendOp.USER_ENV:
                 /*
@@ -64,7 +64,7 @@ export abstract class Session {
                 */
                 break;
             default:
-                Logger.log("[SEND] " + sendOpcode + ": " + packet.toString(), HexColor.RED);
+                Logger.debug("[SEND] " + sendOpcode + ": " + packet.toString(), HexColor.RED);
                 break;
         }
 
@@ -76,7 +76,7 @@ export abstract class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.log("[HANDSHAKE]: " + packet.toString(), HexColor.PURPLE);
+        Logger.debug("[HANDSHAKE]: " + packet.toString());
 
         this.socket.write(packet.buffer);
     }
@@ -103,7 +103,7 @@ export abstract class Session {
         const recvOpcode = RecvOp[opcode];
 
         if (recvOpcode === undefined) {
-            Logger.log("[RECV] 0x" + opcode.toString(16).toUpperCase() + ": " + packet.toString(), HexColor.GREEN);
+            Logger.debug("[RECV] 0x" + opcode.toString(16).toUpperCase() + ": " + packet.toString(), HexColor.GREEN);
             return;
         }
 
@@ -115,7 +115,7 @@ export abstract class Session {
             case RecvOp.NAMETAG_SYMBOL:
                 break;
             default:
-                Logger.log("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
+                Logger.debug("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
                 break;
         }
 

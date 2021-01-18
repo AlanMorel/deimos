@@ -35,7 +35,7 @@ export class Field {
 
     private sendUpdates(): void {
         const packets = this.getUpdates();
-        Logger.log("Map " + this.id + " sending " + packets.length + " packets to " + this.state.getPlayers().length + " players.");
+        Logger.debug("Field " + this.id + " sending " + packets.length + " packets to " + this.state.getPlayers().length + " players.");
 
         packets.forEach(packet => {
             this.sessions.forEach(session => {

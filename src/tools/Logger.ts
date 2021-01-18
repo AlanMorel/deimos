@@ -1,3 +1,4 @@
+import Configs from "../Configs";
 import { HexColor } from "./HexColor";
 
 interface Color {
@@ -15,6 +16,12 @@ export class Logger {
 
     public static error(error: string): void {
         this.log(error, HexColor.ORANGE);
+    }
+
+    public static debug(message: string, hex: HexColor = HexColor.PURPLE): void {
+        if (Configs.debug) {
+            this.log(message, hex);
+        }
     }
 
     private static hexToColor(color: number): Color {
