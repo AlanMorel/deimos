@@ -15,14 +15,14 @@ export class Wallet {
     public mesoToken: Currency;
 
     public constructor(player: Player) {
-        this.meso = new Currency(player, CurrencyType.Meso, BigInt(2000));
-        this.meret = new Currency(player, CurrencyType.Meret, BigInt(2000));
-        this.gameMeret = new Currency(player, CurrencyType.GameMeret, BigInt(2000));
-        this.eventMeret = new Currency(player, CurrencyType.EventMeret, BigInt(2000));
-        this.valorToken = new Currency(player, CurrencyType.ValorToken, BigInt(2000));
-        this.treva = new Currency(player, CurrencyType.Treva, BigInt(2000));
-        this.rue = new Currency(player, CurrencyType.Rue, BigInt(2000));
-        this.haviFruit = new Currency(player, CurrencyType.HaviFruit, BigInt(2000));
-        this.mesoToken = new Currency(player, CurrencyType.MesoToken, BigInt(2000));
+        this.meso = new Currency(player, CurrencyType.Meso, 2000n);
+        this.meret = new Currency(player, CurrencyType.Meret, 2000n);
+        this.gameMeret = new Currency(player, CurrencyType.GameMeret, 2000n);
+        this.eventMeret = new Currency(player, CurrencyType.EventMeret, 2000n);
+        this.valorToken = new Currency(player, CurrencyType.ValorToken, 2000n);
+        this.treva = new Currency(player, CurrencyType.Treva, 2000n);
+        this.rue = new Currency(player, CurrencyType.Rue, 2000n);
+        this.haviFruit = new Currency(player, CurrencyType.HaviFruit, 2000n);
+        this.mesoToken = new Currency(player, CurrencyType.MesoToken, 2000n);
     }
 }

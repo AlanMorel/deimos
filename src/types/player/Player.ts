@@ -21,9 +21,9 @@ export class Player {
     public readonly unknownId: BigInt = BigInt(0x01EF80C2); // 0x01CC3721;
 
     // constants
-    public accountId: BigInt = BigInt(1);
+    public accountId: BigInt = 1n;
     public characterId: BigInt;
-    public creationTime: BigInt = BigInt(0);
+    public creationTime: BigInt = 0n;
     public name: string;
     public gender: Gender;
 
@@ -34,10 +34,10 @@ export class Player {
     public mapId: number = 2000023;
     public level: number = 1;
     public objectId: number = 0;
-    public experience: BigInt = BigInt(0);
-    public restExperience: BigInt = BigInt(0);
+    public experience: BigInt = 0n;
+    public restExperience: BigInt = 0n;
     public prestigeLevel: number = 100;
-    public prestigeExperience: BigInt = BigInt(0);
+    public prestigeExperience: BigInt = 0n;
     public titleId: number = 0;
     public insigniaId: number = 0;
     public animation: number = 0;
@@ -61,7 +61,7 @@ export class Player {
     public wallet: Wallet;
 
     public maxSkillTabs: number = 0;
-    public activeSkillTabId: BigInt = BigInt(0);
+    public activeSkillTabId: BigInt = 0n;
     public skillTabs = new Array<SkillTab>();
     public statPointDistribution: StatDistribution = new StatDistribution();
 
@@ -87,7 +87,7 @@ export class Player {
     }
 
     public static getInitialPlayer(): Player {
-        return new Player(BigInt(-1), Gender.Male, -1, "", new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)), new Map<ItemSlot, Item>());
+        return new Player(-1n, Gender.Male, -1, "", new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)), new Map<ItemSlot, Item>());
     }
 
     public getJobId(): number {

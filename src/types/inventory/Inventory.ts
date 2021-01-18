@@ -138,7 +138,7 @@ export class Inventory {
         this.addItemToMaps(srcItem);
 
         const tuple: ItemTuple = {
-            item1: dstItem?.uid ?? BigInt(0),
+            item1: dstItem?.uid ?? 0n,
             item2: srcSlot
         };
 

@@ -1,9 +1,9 @@
 export class Gemstone {
 
     public id: number;
-    public ownerId: BigInt = BigInt(0); // Used if bound
+    public ownerId: BigInt = 0n; // Used if bound
     public ownerName = "";
-    public unknown: BigInt = BigInt(0);
+    public unknown: BigInt = 0n;
 
     public constructor(id: number) {
         this.id = id;

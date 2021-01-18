@@ -21,12 +21,12 @@ export class Item {
     public amount: number = 1;
     public rarity: number = 0;
 
-    public creationTime: BigInt = BigInt(0);
-    public expiryTime: BigInt = BigInt(0);
+    public creationTime: BigInt = 0n;
+    public expiryTime: BigInt = 0n;
 
     public timesAttributesChanged: number = 0;
     public isLocked: boolean = false;
-    public unlockTime: BigInt = BigInt(0);
+    public unlockTime: BigInt = 0n;
     public remainingGlamorForges: number = 0;
     public enchants: number = 0;
 
@@ -38,7 +38,7 @@ export class Item {
     public remainingTrades: number = 0;
 
     // for friendship badges
-    public pairedCharacterId: BigInt = BigInt(0);
+    public pairedCharacterId: BigInt = 0n;
     public pairedCharacterName: string = "";
 
     public owner?: Player;

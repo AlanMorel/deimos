@@ -35,7 +35,7 @@ export class Hotbar {
         this.slots[targetSlotIndex] = quickSlot;
     }
 
-    private findQuickSlotIndex(skillId: number, itemUid: BigInt = BigInt(0)): number {
+    private findQuickSlotIndex(skillId: number, itemUid: BigInt = 0n): number {
         for (let i = 0; i < Hotbar.MAX_SLOTS; i++) {
             const currentSlot = this.slots[i];
             if (currentSlot.skillId == skillId && currentSlot.itemUid == itemUid) {

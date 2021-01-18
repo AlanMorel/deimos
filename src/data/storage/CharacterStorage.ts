@@ -30,7 +30,7 @@ export class CharacterStorage {
     }
 
     private static getTestCharacter1(): Player {
-        const characterId = BigInt(1);
+        const characterId = 1n;
         const gender = Gender.Male;
         const jobGroupId = 30;
         const name = "Alan";
@@ -70,7 +70,7 @@ export class CharacterStorage {
     }
 
     private static getTestCharacter2(): Player {
-        const characterId = BigInt(2);
+        const characterId = 2n;
         const gender = Gender.Male;
         const jobGroupId = 30;
         const name = "Thunderbro";

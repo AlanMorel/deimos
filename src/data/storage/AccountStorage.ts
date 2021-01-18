@@ -5,9 +5,9 @@ export class AccountStorage {
     public accounts: Map<BigInt, BigInt[]> = new Map<BigInt, BigInt[]>();
 
     public constructor() {
-        this.accounts.set(BigInt(1), [
-            BigInt(1),
-            BigInt(2)
+        this.accounts.set(1n, [
+            1n,
+            2n
         ]);
     }
 
