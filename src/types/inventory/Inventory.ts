@@ -47,7 +47,7 @@ export class Inventory {
     public add(item: Item): boolean {
         // Item has a slot set, to: try use that slot
         if (item.slot >= 0) {
-            if (!this.slotTake(item, item.slot)) {
+            if (!this.slotTaken(item, item.slot)) {
                 this.addInternal(item);
                 return true;
             }
@@ -56,7 +56,7 @@ export class Inventory {
         }
 
         for (let i = 0; i < this.size; i++) {
-            if (this.slotTake(item, i)) {
+            if (this.slotTaken(item, i)) {
                 continue;
             }
             item.slot = i;
@@ -160,13 +160,13 @@ export class Inventory {
 
     // This REQUIRES item.slot to be set appropriately
     private addInternal(item: Item): void {
-        if (!this.items.has(item.uid)) {
+        if (this.items.has(item.uid)) {
             Logger.log("Error adding an item that already exists");
         }
 
         this.items.set(item.uid, item);
 
-        if (!this.getSlots(item.inventoryTab).has(item.slot)) {
+        if (this.getSlots(item.inventoryTab).has(item.slot)) {
             Logger.log("Error adding item to slot that is already taken.");
         }
 
@@ -174,7 +174,6 @@ export class Inventory {
     }
 
     private removeInternalByUID(uid: BigInt): Item | undefined {
-        // return item
         const item = this.items.get(uid);
 
         if (!item) {
@@ -198,8 +197,7 @@ export class Inventory {
         return this.removeInternalByUID(uid);
     }
 
-    private slotTake(item: Item, slot: number = -1): boolean {
-        console.log(item.inventoryTab);
+    private slotTaken(item: Item, slot: number = -1): boolean {
         return this.getSlots(item.inventoryTab).has(slot < 0 ? item.slot : slot);
     }
 

@@ -52,10 +52,10 @@ export class Item {
 
     public stats: ItemStats = new ItemStats();
 
-    public constructor(id: number, itemSlot: ItemSlot) { // TODO: remove item slot from constructor once loaded from metadata
+    public constructor(id: number, itemSlot: ItemSlot, inventoryTab: InventoryTab = InventoryTab.Outfit) { // TODO: remove item slot from constructor once loaded from metadata
         this.id = id;
         // TODO: below read from metadata
-        this.inventoryTab = InventoryTab.Outfit;
+        this.inventoryTab = inventoryTab;
         this.itemSlot = itemSlot;
         this.slotMax = 100;
         this.isTemplate = false;

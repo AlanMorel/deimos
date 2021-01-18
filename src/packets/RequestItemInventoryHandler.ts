@@ -13,7 +13,6 @@ export class RequestItemInventoryhandler implements ChannelPacketHandler {
 
     public handle(session: ChannelSession, packet: PacketReader): void {
         const mode = packet.readByte();
-
         switch (mode) {
             case Mode.Move:
                 this.handleMove(session, packet);

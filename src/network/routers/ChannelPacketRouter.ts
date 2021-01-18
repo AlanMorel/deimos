@@ -8,6 +8,7 @@ import { ResponseKeyHandler } from "../../handlers/channel/ResponseKeyHandler";
 import { ResponseVersionHandler } from "../../handlers/channel/ResponseVersionHandler";
 import { UserChatHandler } from "../../handlers/channel/UserChatHandler";
 import { UserSyncHandler } from "../../handlers/channel/UserSyncHandler";
+import { RequestItemInventoryhandler } from "../../packets/RequestItemInventoryHandler";
 import { PacketRouter } from "./PacketRouter";
 
 export class ChannelPacketRouter extends PacketRouter {
@@ -22,5 +23,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.LOG_SEND, new LogSendHandler());
         this.handlers.set(RecvOp.REQUEST_QUIT, new RequestQuitHandler());
         this.handlers.set(RecvOp.USER_SYNC, new UserSyncHandler());
+        this.handlers.set(RecvOp.REQUEST_ITEM_INVENTORY, new RequestItemInventoryhandler());
     }
 }
