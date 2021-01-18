@@ -17,7 +17,7 @@ export class Hotbar {
 
     public moveQuickSlot(targetSlotIndex: number, quickSlot: QuickSlot): void {
         if (targetSlotIndex < 0 || targetSlotIndex >= Hotbar.MAX_SLOTS) {
-            Logger.log(`Invalid target slot ${targetSlotIndex}.`);
+            Logger.error(`Invalid target slot ${targetSlotIndex}.`);
             return;
         }
 
@@ -49,7 +49,7 @@ export class Hotbar {
     public removeQuickSlot(skillId: number, itemUid: BigInt): boolean {
         const targetSlotIndex = this.findQuickSlotIndex(skillId, itemUid);
         if (targetSlotIndex < 0 || targetSlotIndex >= Hotbar.MAX_SLOTS) {
-            Logger.log("Failed to remove quick slot. TargetSlotIndex: " + targetSlotIndex);
+            Logger.error("Failed to remove quick slot. TargetSlotIndex: " + targetSlotIndex);
             return false;
         }
 

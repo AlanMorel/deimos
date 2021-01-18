@@ -26,7 +26,7 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
         const item2 = new Item(40100001, ItemSlot.NONE, InventoryTab.Catalyst);
         item2.amount = 1;
 
-        const item3 = new Item(20302228, ItemSlot.NONE, InventoryTab.Misc)
+        const item3 = new Item(20302228, ItemSlot.NONE, InventoryTab.Misc);
         item3.amount = 1;
 
         session.player.inventory.add2(session, item, true);

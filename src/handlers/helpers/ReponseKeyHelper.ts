@@ -14,12 +14,12 @@ export class ResponseKeyHelper {
         const authData = AuthStorage.getData(accountId);
 
         if (!authData) {
-            Logger.log("Attempted connection to channel server with unauthorized auth data.");
+            Logger.error("Attempted connection to channel server with unauthorized auth data.");
             return;
         }
 
         if (tokenA != authData.tokenA || tokenB != authData.tokenB) {
-            Logger.log("Attempted login with invalid tokens.");
+            Logger.error("Attempted login with invalid tokens.");
             return;
         }
 

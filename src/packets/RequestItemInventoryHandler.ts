@@ -7,7 +7,7 @@ enum Mode {
     Drop = 0x4,
     DropBound = 0x5,
     Sort = 0xA
-};
+}
 
 export class RequestItemInventoryhandler implements ChannelPacketHandler {
 

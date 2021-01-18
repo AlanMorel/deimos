@@ -13,6 +13,10 @@ export class Logger {
         console.log("\u001b[38;2;" + color.r + ";" + color.g + ";" + color.b + "m" + message + "\u001b[0m");
     }
 
+    public static error(error: string): void {
+        this.log(error, HexColor.ORANGE);
+    }
+
     private static hexToColor(color: number): Color {
         const r = color >> 16;
         const g = color >> 8 & 0xFF;

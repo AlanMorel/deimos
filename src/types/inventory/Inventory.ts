@@ -16,7 +16,7 @@ export class Inventory {
     private player: Player; // TODO remove after clean up
 
     private items: Map<BigInt, Item> = new Map<BigInt, Item>(); // all inventory items regardless of tab
-    private slotMaps: Map<number, BigInt>[]; // slot to Uid for each tab 
+    private slotMaps: Map<number, BigInt>[]; // slot to Uid for each tab
 
     public constructor(player: Player, size: number) {
         this.player = player;
@@ -139,7 +139,7 @@ export class Inventory {
         const tuple: ItemTuple = {
             item1: dstItem?.uid ?? BigInt(0),
             item2: srcSlot
-        }
+        };
 
         return tuple;
     }
@@ -161,13 +161,13 @@ export class Inventory {
     // This REQUIRES item.slot to be set appropriately
     private addInternal(item: Item): void {
         if (this.items.has(item.uid)) {
-            Logger.log("Error adding an item that already exists");
+            Logger.error("Error adding an item that already exists");
         }
 
         this.items.set(item.uid, item);
 
         if (this.getSlots(item.inventoryTab).has(item.slot)) {
-            Logger.log("Error adding item to slot that is already taken.");
+            Logger.error("Error adding item to slot that is already taken.");
         }
 
         this.getSlots(item.inventoryTab).set(item.slot, item.uid);
@@ -307,9 +307,8 @@ export class Inventory {
         session.send(ItemInventoryPacket.move(srcSlot.item1, srcSlot.item2, uid, dstSlot));
     }
 
-    // Todo: implement when storage and trade is implemented
     public split(session: ChannelSession, item: Item): void {
-
+        // Todo: implement when storage and trade is implemented
     }
 
     // Updates item information
@@ -317,7 +316,7 @@ export class Inventory {
         const item = session.player.inventory.items.get(uid);
 
         if (!item) {
-            Logger.log("Item was null inside update");
+            Logger.error("Item was null inside update");
             return;
         }
 

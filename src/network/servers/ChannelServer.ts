@@ -1,6 +1,5 @@
 import { Socket } from "net";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
-import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
 import { ChannelSession } from "../sessions/ChannelSession";
@@ -42,7 +41,7 @@ export class ChannelServer extends Server {
     }
 
     protected onError(session: Session, error: Error): void {
-        Logger.log(error.message, HexColor.RED);
+        Logger.error(error.message);
     }
 
     protected onStart(): void {

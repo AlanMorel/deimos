@@ -29,7 +29,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         const authData = AuthStorage.getData(accountId);
 
         if (!authData) {
-            Logger.log("Attempted connection to channel server with unauthorized auth data.");
+            Logger.error("Attempted connection to channel server with unauthorized auth data.");
             return;
         }
 

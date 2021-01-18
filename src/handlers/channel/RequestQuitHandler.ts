@@ -16,7 +16,7 @@ export class RequestQuitHandler implements ChannelPacketHandler {
             const authData = AuthStorage.getData(session.player.accountId);
 
             if (!authData) {
-                Logger.log("Attempted connection to login server with unauthorized auth data.");
+                Logger.error("Attempted connection to login server with unauthorized auth data.");
                 return;
             }
 
