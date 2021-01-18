@@ -5,7 +5,7 @@ import { InventoryTab } from "../InventoryTab";
 import { Item } from "../item/Item";
 import { Player } from "../player/Player";
 
-interface ItemTuple {
+interface ItemTuple { // TODO: remove/improve
     item1: BigInt;
     item2: number;
 }
@@ -44,11 +44,11 @@ export class Inventory {
     // TODO: precompute next free slot to avoid iteration on Add
     // TODO: Stack this.items when they are the same
     // Returns false if inventory is full
-    public add(item: Item): boolean {
-        // Item has a slot set, to: try use that slot
+    private addInternal(item: Item): boolean {
+        // item has a slot set, to: try use that slot
         if (item.slot >= 0) {
             if (!this.slotTaken(item, item.slot)) {
-                this.addInternal(item);
+                this.addItemToMaps(item);
                 return true;
             }
 
@@ -61,15 +61,16 @@ export class Inventory {
             }
             item.slot = i;
 
-            this.addInternal(item);
+            this.addItemToMaps(item);
             return true;
         }
+
         return false;
     }
 
     // Returns false if item doesn't exist or removing more than available
     // TODO: fix return value here
-    public remove(uid: BigInt, amount: number = -1): number {
+    private remove(uid: BigInt, amount: number = -1): number {
 
         // Removing more than available
         const item = this.items.get(uid);
@@ -111,14 +112,14 @@ export class Inventory {
         }
 
         item.slot = replacedItem.slot;
-        this.addInternal(item);
+        this.addItemToMaps(item);
 
         return true;
     }
 
     // Returns null if item doesn't exist
     // Returns the uid and slot of destItem (uid is 0 if empty)
-    public move(uid: BigInt, dstSlot: number): ItemTuple | undefined {
+    private move(uid: BigInt, dstSlot: number): ItemTuple | undefined {
         const srcItem = this.removeInternalByUID(uid);
         if (!srcItem) {
             return;
@@ -129,12 +130,12 @@ export class Inventory {
         const dstItem = this.removeInternalByTab(srcItem.inventoryTab, dstSlot);
         if (dstItem) {
             dstItem.slot = srcSlot;
-            this.addInternal(dstItem);
+            this.addItemToMaps(dstItem);
         }
 
         // Move srcItem to dstSlot
         srcItem.slot = dstSlot;
-        this.addInternal(srcItem);
+        this.addItemToMaps(srcItem);
 
         const tuple: ItemTuple = {
             item1: dstItem?.uid ?? BigInt(0),
@@ -144,7 +145,7 @@ export class Inventory {
         return tuple;
     }
 
-    public sort(tab: InventoryTab): void {
+    private sort(tab: InventoryTab): void {
         // Get all this.items in tab and sort by Id
         const slots = this.getSlots(tab);
         const tabItems = this.getItems(tab);
@@ -159,7 +160,7 @@ export class Inventory {
     }
 
     // This REQUIRES item.slot to be set appropriately
-    private addInternal(item: Item): void {
+    private addItemToMaps(item: Item): void {
         if (this.items.has(item.uid)) {
             Logger.error("Error adding an item that already exists");
         }
@@ -187,7 +188,6 @@ export class Inventory {
     }
 
     private removeInternalByTab(tab: InventoryTab, slot: number): Item | undefined {
-
         const uid = this.getSlots(tab).get(slot);
 
         if (!uid) {
@@ -205,26 +205,22 @@ export class Inventory {
         return this.slotMaps[tab];
     }
 
-    // Adds item
-    // TODO: consolidate methods and rename
-    public add2(session: ChannelSession, item: Item, isNew: boolean): void {
-        // Checks if item is stackable or not
+    public addItem(session: ChannelSession, item: Item, isNew: boolean): void {
+        // check if item is stackable or not
         if (item.slotMax > 1) {
-            for (const i of session.player.inventory.items.values()) {
-                // Checks to see if item exists in database (dictionary)
+            for (const i of this.items.values()) {
+                // checks to see if item exists in database (dictionary)
                 if (i.id != item.id || i.amount >= i.slotMax) {
                     continue;
                 }
-                // Updates inventory for item amount overflow
-                if ((i.amount + item.amount) > i.slotMax) {
+
+                if ((i.amount + item.amount) > i.slotMax) { // update inventory for item amount overflow
                     const added = i.slotMax - i.amount;
                     item.amount -= added;
                     i.amount = i.slotMax;
                     session.send(ItemInventoryPacket.update(i.uid, i.amount));
                     session.send(ItemInventoryPacket.markItemNew(i, added));
-                }
-                // Updates item amount
-                else {
+                } else { // update item amount
                     i.amount += item.amount;
                     session.send(ItemInventoryPacket.update(i.uid, i.amount));
                     session.send(ItemInventoryPacket.markItemNew(i, item.amount));
@@ -232,53 +228,53 @@ export class Inventory {
                 }
             }
         }
-        session.player.inventory.add(item); // Adds item numbero numberernal database
-        session.send(ItemInventoryPacket.add(item)); // Sends packet to add item clientside
+
+        this.addInternal(item); // add item to database
+        session.send(ItemInventoryPacket.add(item)); // send packet to add item clientside
+
         if (isNew) {
-            session.send(ItemInventoryPacket.markItemNew(item, item.amount)); // Marks Item as New
+            session.send(ItemInventoryPacket.markItemNew(item, item.amount)); // marks item as New
         }
     }
 
-    // Removes Item from inventory by reference
+    // removes item from inventory by reference
     // TODO: consolidate methods and rename
     public remove2(session: ChannelSession, uid: BigInt): void {
-        session.player.inventory.remove(uid);
+        this.remove(uid);
         session.send(ItemInventoryPacket.remove(uid));
     }
 
-    // Picks up item
+    // picks up item
     public pickUp(session: ChannelSession, item: Item): void {
-        session.player.inventory.add(item); // Adds item numbero numberernal database
-        session.send(ItemInventoryPacket.add(item)); // Sends packet to add item clientside
+        this.addInternal(item); // add item to database
+        session.send(ItemInventoryPacket.add(item)); // sends packet to add item clientside
     }
 
-    // Drops item with option to drop bound items
+    // drop item with option to drop bound items
     public dropItem(session: ChannelSession, uid: BigInt, amount: number, isbound: boolean): void {
-        if (!isbound) // Drops Item
-        {
-            const remaining = session.player.inventory.remove(uid, amount); // Returns remaining amount of item
+
+        if (!isbound) { // drop item
+            const remaining = this.remove(uid, amount); // returns remaining amount of item
+
             if (remaining < 0) {
-                return; // Removal failed
-            }
-            else if (remaining > 0) // Updates item
-            {
+                return; // removal failed
+            } else if (remaining > 0) { // update item
                 session.send(ItemInventoryPacket.update(uid, remaining));
-            }
-            else // Removes item
-            {
+            } else { // remove item
                 session.send(ItemInventoryPacket.remove(uid));
             }
 
             // TODO: Drops item onto floor
             // session.field.addItem(session, droppedItem);
-        }
-        else // Drops bound item.
-        {
+
+        } else { // drop bound item.
+
             // TODO: fix return value here
-            const droppedItem = session.player.inventory.remove(uid);
+            const droppedItem = this.remove(uid);
             if (droppedItem != 0) {
                 return; // Removal from inventory failed
             }
+
             session.send(ItemInventoryPacket.remove(uid));
 
             // TODO: Allow dropping bound items for now
@@ -298,7 +294,7 @@ export class Inventory {
     }
 
     public moveItem(session: ChannelSession, uid: BigInt, dstSlot: number): void {
-        const srcSlot = session.player.inventory.move(uid, dstSlot);
+        const srcSlot = this.move(uid, dstSlot);
 
         if (srcSlot == null) {
             return;
@@ -308,19 +304,19 @@ export class Inventory {
     }
 
     public split(session: ChannelSession, item: Item): void {
-        // Todo: implement when storage and trade is implemented
+        // TODO: implement when storage and trade is implemented
     }
 
-    // Updates item information
+    // update item information
     public update(session: ChannelSession, uid: BigInt, amount: number): void {
-        const item = session.player.inventory.items.get(uid);
+        const item = this.items.get(uid);
 
         if (!item) {
             Logger.error("Item was null inside update");
             return;
         }
 
-        if ((this.getItemAmount(session, uid) + amount) >= this.getItemMax(session, uid)) {
+        if ((this.getItemAmount(uid) + amount) >= this.getItemMax(uid)) {
             item.amount = item.slotMax;
             session.send(ItemInventoryPacket.update(uid, item.slotMax));
         }
@@ -329,13 +325,13 @@ export class Inventory {
         session.send(ItemInventoryPacket.update(uid, amount));
     }
 
-    private getItemAmount(session: ChannelSession, uid: BigInt): number {
-        const item = session.player.inventory.items.get(uid);
+    private getItemAmount(uid: BigInt): number {
+        const item = this.items.get(uid);
         return item ? item.amount : -1;
     }
 
-    private getItemMax(session: ChannelSession, uid: BigInt): number {
-        const item = session.player.inventory.items.get(uid);
+    private getItemMax(uid: BigInt): number {
+        const item = this.items.get(uid);
         return item ? item.slotMax : -1;
     }
 }

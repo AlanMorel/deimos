@@ -29,9 +29,9 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
         const item3 = new Item(20302228, ItemSlot.NONE, InventoryTab.Misc);
         item3.amount = 1;
 
-        session.player.inventory.add2(session, item, true);
-        session.player.inventory.add2(session, item2, true);
-        session.player.inventory.add2(session, item3, true);
+        session.player.inventory.addItem(session, item, true);
+        session.player.inventory.addItem(session, item2, true);
+        session.player.inventory.addItem(session, item3, true);
 
         const hotbar = session.player.gameOptions.getHotbarById(0);
 
