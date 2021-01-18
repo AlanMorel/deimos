@@ -16,7 +16,7 @@ export class Item {
     public isTemplate: boolean = false;
 
     public readonly id: number;
-    public readonly uid: BigInt = GuidGenerator.generateLong();
+    public uid: BigInt = GuidGenerator.generateLong();
     public slot: number = -1;
     public amount: number = 1;
     public rarity: number = 0;
@@ -59,5 +59,29 @@ export class Item {
         this.itemSlot = itemSlot;
         this.slotMax = 100;
         this.isTemplate = false;
+    }
+
+    private static copy(item: Item): Item {
+        const copy = new Item(item.id, item.itemSlot);
+
+        // TODO: copy item stats
+
+        return copy;
+    }
+
+    public trySplit(amount: number): Item | undefined {
+
+        if (this.amount <= amount) {
+            return;
+        }
+
+        const splitItem = Item.copy(this);
+
+        this.amount -= amount;
+        splitItem.amount = amount;
+        splitItem.slot = -1;
+        splitItem.uid = BigInt(process.uptime());
+
+        return splitItem;
     }
 }

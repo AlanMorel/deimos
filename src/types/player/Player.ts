@@ -2,6 +2,7 @@ import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { Color } from "../color/Color";
 import { SkinColor } from "../color/SkinColor";
 import { CoordF } from "../coords/CoordF";
+import { Inventory } from "../inventory/Inventory";
 import { Item } from "../item/Item";
 import { ItemSlot } from "../item/ItemSlot";
 import { Job } from "../jobs/Job";
@@ -76,6 +77,8 @@ export class Player {
     public jobType: Job = Job.None;
     public gameOptions: GameOptions = new GameOptions();
 
+    public inventory: Inventory;
+
     public session?: ChannelSession;
 
     public constructor(characterId: BigInt, gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
@@ -85,6 +88,7 @@ export class Player {
         this.name = name;
         this.skinColor = skinColor;
         this.equips = equips;
+        this.inventory = new Inventory(this, 48);
     }
 
     public static getInitialPlayer(): Player {

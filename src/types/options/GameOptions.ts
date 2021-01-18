@@ -24,10 +24,9 @@ export class GameOptions {
         this.activeHotbarId = hotbarId;
     }
 
-    public getHotbarById(hotbarId: number): Hotbar | null {
+    public getHotbarById(hotbarId: number): Hotbar | undefined {
         if (hotbarId < this.hotbars.length) {
             return this.hotbars[hotbarId];
         }
-        return null;
     }
 }

@@ -4,6 +4,8 @@ import { EmotionPacket } from "../../packets/EmotionPacket";
 import { KeyTablePacket } from "../../packets/KeyTablePacket";
 import { StatPacket } from "../../packets/StatPacket";
 import { StatPointPacket } from "../../packets/StatPointPacket";
+import { Item } from "../../types/item/Item";
+import { ItemSlot } from "../../types/item/ItemSlot";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
@@ -16,6 +18,19 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
         session.send(StatPacket.setStats(session.player));
         session.send(StatPointPacket.writeTotalStatPoints(session.player));
         session.send(EmotionPacket.loadEmotions());
+
+        const item = new Item(40100001, ItemSlot.NONE);
+        item.amount = 1;
+
+        const item2 = new Item(40100001, ItemSlot.NONE);
+        item2.amount = 1;
+
+        const item3 = new Item(20302228, ItemSlot.NONE)
+        item3.amount = 1;
+
+        session.player.inventory.add2(session, item, true);
+        session.player.inventory.add2(session, item2, true);
+        session.player.inventory.add2(session, item3, true);
 
         const hotbar = session.player.gameOptions.getHotbarById(0);
 

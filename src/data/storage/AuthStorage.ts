@@ -6,14 +6,8 @@ export class AuthStorage {
 
     private static readonly authStorage = new Map<BigInt, AuthData>();
 
-    public static getData(accountId: BigInt): AuthData | null {
-        const results = this.authStorage.get(accountId);
-
-        if (!results) {
-            return null;
-        }
-
-        return results;
+    public static getData(accountId: BigInt): AuthData | undefined {
+        return this.authStorage.get(accountId);
     }
 
     public static setData(accountId: BigInt, data: AuthData): void {
