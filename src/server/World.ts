@@ -17,7 +17,6 @@ export class World {
     }
 
     public addPlayer(player: Player): void {
-        console.log("ADDING: " + player.name);
         this.idStorage.set(player.characterId, player);
         this.nameStorage.set(player.name.toLowerCase(), player);
     }

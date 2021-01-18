@@ -39,4 +39,4 @@ $ npm run start
 
 ### Community
 
-Join the [community discord](https://discord.gg/eVGMGydwgm) if you are interested in contributing to this project or would like assistance getting set up.
+Join the [community discord](https://discord.gg/mABkFFhBuU) if you are interested in contributing to this project or would like assistance getting set up.

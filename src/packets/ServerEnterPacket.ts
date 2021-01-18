@@ -55,9 +55,9 @@ export class ServerEnterPacket {
 
         packet.writeLong();
         packet.writeUnicodeString("");
-        packet.writeUnicodeString("http://nxcache.nexon.net/maplestory2/maplenews/index.html");
         packet.writeUnicodeString("");
-        packet.writeUnicodeString("^https?://test-nxcache.nexon.net ^https?://nxcache.nexon.net");
+        packet.writeUnicodeString("");
+        packet.writeUnicodeString("");
         packet.writeUnicodeString("");
 
         return packet;
