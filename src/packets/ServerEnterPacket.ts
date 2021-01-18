@@ -14,9 +14,9 @@ export class ServerEnterPacket {
         packet.writeShort(session.channel.id);
         packet.writeBigInt(session.player.experience);
         packet.writeBigInt(session.player.restExperience);
-        packet.writeBigInt(session.player.mesos);
+        packet.writeBigInt(session.player.wallet.meso.amount);
 
-        packet.writeBigInt(session.player.merets); // Merets
+        packet.writeBigInt(session.player.wallet.meret.amount);
         packet.writeLong(); // Merets
         // These Merets are added up. If set, previous are ignored.
 
@@ -25,15 +25,15 @@ export class ServerEnterPacket {
 
         packet.writeLong();
 
-        packet.writeBigInt(session.player.valorToken);
-        packet.writeBigInt(session.player.treva);
-        packet.writeBigInt(session.player.rue);
-        packet.writeBigInt(session.player.haviFruit);
+        packet.writeBigInt(session.player.wallet.valorToken.amount);
+        packet.writeBigInt(session.player.wallet.treva.amount);
+        packet.writeBigInt(session.player.wallet.rue.amount);
+        packet.writeBigInt(session.player.wallet.haviFruit.amount);
         packet.writeLong();
         packet.writeLong();
         packet.writeLong();
         packet.writeLong();
-        packet.writeBigInt(session.player.mesoToken);
+        packet.writeBigInt(session.player.wallet.mesoToken.amount);
         packet.writeUnicodeString(session.player.profileUrl);
         packet.writeByte();
         packet.writeByte();

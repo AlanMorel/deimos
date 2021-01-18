@@ -13,6 +13,7 @@ import { SkillTab } from "../SkillTab";
 import { StatDistribution } from "../StatDistribution";
 import { Gender } from "./Gender";
 import { PlayerStats } from "./PlayerStats";
+import { Wallet } from "./Wallet";
 
 export class Player {
 
@@ -57,14 +58,7 @@ export class Player {
     public motto = "Motto";
     public homeName = "";
 
-    // currency
-    public mesos: BigInt = BigInt(0);
-    public merets: BigInt = BigInt(0);
-    public valorToken: BigInt = BigInt(0);
-    public treva: BigInt = BigInt(0);
-    public rue: BigInt = BigInt(0);
-    public haviFruit: BigInt = BigInt(0);
-    public mesoToken: BigInt = BigInt(0);
+    public wallet: Wallet;
 
     public maxSkillTabs: number = 0;
     public activeSkillTabId: BigInt = BigInt(0);
@@ -89,6 +83,7 @@ export class Player {
         this.skinColor = skinColor;
         this.equips = equips;
         this.inventory = new Inventory(this, 48);
+        this.wallet = new Wallet(this);
     }
 
     public static getInitialPlayer(): Player {
