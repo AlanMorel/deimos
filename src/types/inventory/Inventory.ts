@@ -1,9 +1,9 @@
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { ItemInventoryPacket } from "../../packets/ItemInventoryPacket";
 import { Logger } from "../../tools/Logger";
-import { InventoryTab } from "../InventoryTab";
 import { Item } from "../item/Item";
 import { Player } from "../player/Player";
+import { InventoryTab } from "./InventoryTab";
 
 interface ItemTuple { // TODO: remove/improve
     item1: BigInt;

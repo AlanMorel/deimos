@@ -18,7 +18,7 @@ import { ServerEnterPacket } from "../../packets/ServerEnterPacket";
 import { SyncNumberPacket } from "../../packets/SyncNumberPacket";
 import { UserEnvPacket } from "../../packets/UserEnvPacket";
 import { Logger } from "../../tools/Logger";
-import { InventoryTab } from "../../types/InventoryTab";
+import { InventoryTab } from "../../types/inventory/InventoryTab";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
 

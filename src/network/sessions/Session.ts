@@ -1,7 +1,6 @@
 import { Socket } from "net";
 import { RecvOp } from "../../constants/RecvOp";
 import { SendOp } from "../../constants/SendOp";
-import { BitConverter } from "../../crypto/BitConverter";
 import { Cipher } from "../../crypto/cipher/Cipher";
 import { RecvCipher } from "../../crypto/cipher/RecvCipher";
 import { SendCipher } from "../../crypto/cipher/SendCipher";
@@ -9,6 +8,7 @@ import { Packet } from "../../crypto/protocol/Packet";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Stream } from "../../crypto/Stream";
 import { RequestVersionPacket } from "../../packets/RequestVersionPacket";
+import { BitConverter } from "../../tools/BitConverter";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { PacketRouter } from "../routers/PacketRouter";

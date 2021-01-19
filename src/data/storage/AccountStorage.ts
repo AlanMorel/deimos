@@ -5,20 +5,11 @@ export class AccountStorage {
     public accounts: Map<BigInt, BigInt[]> = new Map<BigInt, BigInt[]>();
 
     public constructor() {
-        this.accounts.set(1n, [
-            1n,
-            2n
-        ]);
+        this.accounts.set(1n, [1n, 2n]);
     }
 
     public getCharacterIDs(accountId: BigInt): BigInt[] {
-        const results = this.accounts.get(accountId);
-
-        if (!results) {
-            return new Array<BigInt>();
-        }
-
-        return results;
+        return this.accounts.get(accountId) || new Array<BigInt>();
     }
 
     public getNextCharacterID(accountId: BigInt): BigInt {

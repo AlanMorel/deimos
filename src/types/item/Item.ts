@@ -1,7 +1,7 @@
 import { GuidGenerator } from "../../tools/GuidGenerator";
 import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
-import { InventoryTab } from "../InventoryTab";
+import { InventoryTab } from "../inventory/InventoryTab";
 import { Player } from "../player/Player";
 import { HairData } from "./HairData";
 import { ItemSlot } from "./ItemSlot";

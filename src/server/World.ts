@@ -4,13 +4,8 @@ export class World {
 
     private static instance: World = new World();
 
-    private idStorage: Map<BigInt, Player>;
-    private nameStorage: Map<string, Player>;
-
-    private constructor() {
-        this.idStorage = new Map<BigInt, Player>();
-        this.nameStorage = new Map<string, Player>();
-    }
+    private idStorage: Map<BigInt, Player> = new Map<BigInt, Player>();
+    private nameStorage: Map<string, Player> = new Map<string, Player>();
 
     public static getInstance(): World {
         return World.instance;

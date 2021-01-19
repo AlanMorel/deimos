@@ -4,7 +4,7 @@ import { EmotionPacket } from "../../packets/EmotionPacket";
 import { KeyTablePacket } from "../../packets/KeyTablePacket";
 import { StatPacket } from "../../packets/StatPacket";
 import { StatPointPacket } from "../../packets/StatPointPacket";
-import { InventoryTab } from "../../types/InventoryTab";
+import { InventoryTab } from "../../types/inventory/InventoryTab";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";

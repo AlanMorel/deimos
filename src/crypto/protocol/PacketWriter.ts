@@ -1,5 +1,5 @@
 import { deflateSync } from "zlib";
-import { BitConverter } from "../BitConverter";
+import { BitConverter } from "../../tools/BitConverter";
 import { Packet } from "./Packet";
 
 export class PacketWriter extends Packet {

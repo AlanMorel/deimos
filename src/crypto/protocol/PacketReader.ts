@@ -1,4 +1,4 @@
-import { BitConverter } from "../BitConverter";
+import { BitConverter } from "../../tools/BitConverter";
 import { Packet } from "./Packet";
 
 export class PacketReader extends Packet {

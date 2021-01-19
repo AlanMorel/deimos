@@ -1,4 +1,4 @@
-import { BitConverter } from "./BitConverter";
+import { BitConverter } from "../tools/BitConverter";
 
 export class Stream {
 

@@ -1,5 +1,5 @@
 # Deimos
-**Deimos** is an open-source MapleStory 2 emulator written in TypeScript and Node.
+**Deimos** is a MapleStory 2 emulator written in TypeScript and Node.
 
 #### Requirements
 - [npm](https://www.npmjs.com/) - node package manager
@@ -21,7 +21,7 @@ $ cd deimos
 $ npm install
 ```
 
-3) Edit `src/config.js` to your liking, then start the server.
+3) Edit `src/Configs.ts` to your liking, then compile and run the server.
 
 ```sh
 $ npm run start

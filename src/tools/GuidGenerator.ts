@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { BitConverter } from "../crypto/BitConverter";
+import { BitConverter } from "./BitConverter";
 
 export class GuidGenerator {
 
