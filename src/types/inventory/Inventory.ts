@@ -1,5 +1,6 @@
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { ItemInventoryPacket } from "../../packets/ItemInventoryPacket";
+import { Enum } from "../../tools/Enum";
 import { Logger } from "../../tools/Logger";
 import { Item } from "../item/Item";
 import { Player } from "../player/Player";
@@ -22,7 +23,7 @@ export class Inventory {
         this.player = player;
         this.size = size;
 
-        const maxTabs = Object.values(InventoryTab).length / 2;
+        const maxTabs = Enum.getLength(InventoryTab);
         this.slotMaps = new Array<Map<number, BigInt>>(maxTabs + 1);
         for (let i = 0; i <= maxTabs; i++) {
             this.slotMaps[i] = new Map<number, BigInt>();
