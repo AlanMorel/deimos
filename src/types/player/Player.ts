@@ -6,7 +6,6 @@ import { Inventory } from "../inventory/Inventory";
 import { Item } from "../item/Item";
 import { ItemSlot } from "../item/ItemSlot";
 import { Job } from "../jobs/Job";
-import { JobCode } from "../jobs/JobCode";
 import { Mount } from "../Mount";
 import { GameOptions } from "../options/GameOptions";
 import { SkillTab } from "../SkillTab";
@@ -26,9 +25,6 @@ export class Player {
     public creationTime: BigInt = 0n;
     public name: string;
     public gender: Gender;
-
-    public jobGroupId: number; // according to jobgroupname.xml
-    public awakened: boolean = false;
 
     // mutable Values
     public mapId: number = 2000023;
@@ -68,14 +64,16 @@ export class Player {
     public equips = new Map<ItemSlot, Item>();
     public equipSlots: ItemSlot[] = new Array<ItemSlot>();
 
-    public jobType: Job = Job.None;
+    public jobGroupId: Job; // jobgroupname.xml
+    public awakened: boolean = false;
+
     public gameOptions: GameOptions = new GameOptions();
 
     public inventory: Inventory;
 
     public session?: ChannelSession;
 
-    public constructor(characterId: BigInt, gender: Gender, jobGroupId: number, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
+    public constructor(characterId: BigInt, gender: Gender, jobGroupId: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
         this.characterId = characterId;
         this.gender = gender;
         this.jobGroupId = jobGroupId;
@@ -91,7 +89,7 @@ export class Player {
     }
 
     public getJobId(): number {
-        return this.jobGroupId * 10 + (this.awakened ? 1 : 0);
+        return this.jobGroupId + (this.awakened ? 1 : 0);
     }
 
     private getDefaultEquipSlot(): ItemSlot {
@@ -115,9 +113,5 @@ export class Player {
             }
         }
         return false;
-    }
-
-    public getJobCode(): JobCode {
-        return this.jobType != Job.GameMaster ? (this.jobType / 10) : JobCode.GameMaster;
     }
 }

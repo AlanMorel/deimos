@@ -4,6 +4,7 @@ import { SkinColor } from "../../types/color/SkinColor";
 import { HairData } from "../../types/item/HairData";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
+import { Job } from "../../types/jobs/Job";
 import { Gender } from "../../types/player/Gender";
 import { Player } from "../../types/player/Player";
 
@@ -32,7 +33,7 @@ export class CharacterStorage {
     private static getTestCharacter1(): Player {
         const characterId = 1n;
         const gender = Gender.Male;
-        const jobGroupId = 30;
+        const jobGroupId = Job.Wizard;
         const name = "Alan";
         const skinColor = new SkinColor(new Color(-82, -65, -22, -1), new Color(-82, -65, -22, -1));
         const equips = new Map<ItemSlot, Item>();
@@ -72,7 +73,7 @@ export class CharacterStorage {
     private static getTestCharacter2(): Player {
         const characterId = 2n;
         const gender = Gender.Male;
-        const jobGroupId = 30;
+        const jobGroupId = Job.Thief;
         const name = "Thunderbro";
         const skinColor = new SkinColor(new Color(-82, -65, -22, -1), new Color(-82, -65, -22, -1));
         const equips = new Map<ItemSlot, Item>();

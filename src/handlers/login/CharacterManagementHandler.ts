@@ -64,7 +64,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
     private handleCreate(session: LoginSession, packet: PacketReader): void {
         const gender = packet.readByte();
-        const jobGroupId = packet.readShort();
+        const jobGroupId = packet.readShort() * 10;
         const name = packet.readUnicodeString();
         const skinColor = SkinColor.read(packet);
 
