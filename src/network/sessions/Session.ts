@@ -56,9 +56,12 @@ export abstract class Session {
             case SendOp.EMOTION:
             case SendOp.ITEM_INVENTORY:
             case SendOp.FIELD_PORTAL:
-            // case SendOp.FIELD_ADD_USER:
             case SendOp.SERVER_ENTER:
             case SendOp.USER_ENV:
+            case SendOp.FIELD_ADD_USER:
+            case SendOp.MARKET_INVENTORY:
+            case SendOp.FURNISHING_INVENTORY:
+            case SendOp.BUDDY:
                 /*
                 case SendOp.FIELD_ENTRANCE:
                 */

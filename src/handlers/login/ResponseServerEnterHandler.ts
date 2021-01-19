@@ -23,7 +23,7 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
         const unknownData = Buffer.from(ArrayManipulator.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners
-        session.send(ServerListPacket.setServers(Configs.serverName, endpoints, unknownData));
+        session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
 
         const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);
         const players = new Array<Player>();

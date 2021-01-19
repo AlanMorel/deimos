@@ -42,7 +42,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
                 session.send(NpsInfoPacket.npsInfo());
                 session.send(BannerListPacket.setBanner(0)); // TODO: load banners
-                session.send(ServerListPacket.setServers(Configs.serverName, endpoints, unknownData));
+                session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
                 const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);

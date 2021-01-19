@@ -48,7 +48,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         Logger.log(`Logging in to game with char id: ${characterId}`, HexColor.PURPLE);
 
-        const endpoint = new Endpoint(Configs.channels[0].host, Configs.channels[0].port);
+        const endpoint = new Endpoint(Configs.worlds[0].channels[0].host, Configs.worlds[0].channels[0].port);
 
         const authData = {
             tokenA: AuthStorage.generateToken(),
