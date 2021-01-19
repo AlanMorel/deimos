@@ -59,7 +59,7 @@ export class CharacterListPacketHelper {
         packet.writeInt();
         packet.writeShort(player.level);
         packet.writeShort();
-        packet.writeInt(player.jobGroupId);
+        packet.writeInt(player.jobGroupId / 10);
         packet.writeInt(player.getJobId());
         packet.writeInt(); // CurHp?
         packet.writeInt(); // MaxHp?

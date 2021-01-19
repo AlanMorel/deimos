@@ -26,7 +26,7 @@ export class ProxyGameObjectPacket {
         packet.writeByte();
         CoordF.write(packet, player.coord);
         packet.writeShort(player.level);
-        packet.writeShort(player.jobGroupId);
+        packet.writeShort(player.jobGroupId / 10);
         packet.writeInt(player.getJobId());
         packet.writeInt();
         packet.writeInt();

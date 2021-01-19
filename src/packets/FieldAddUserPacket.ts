@@ -24,7 +24,7 @@ export class FieldAddUserPacket {
         // Skills
         packet.writeInt(player.getJobId());
         packet.writeByte(1);
-        packet.writeInt(player.jobGroupId);
+        packet.writeInt(player.jobGroupId / 10);
         JobPacket.writeSkills(packet, player);
 
         // Coords
