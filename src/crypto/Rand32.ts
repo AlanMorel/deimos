@@ -1,4 +1,3 @@
-import { BitConverter } from "../tools/BitConverter";
 
 export class Rand32 {
 
@@ -31,7 +30,7 @@ export class Rand32 {
     public randomFloat(): number {
         const bits = (this.random() & 0x007FFFFF) | 0x3F800000;
 
-        return BitConverter.toInt(BitConverter.getBytes(bits)) - 1;
+        return (bits >>> 0) - 1;
     }
 }
 

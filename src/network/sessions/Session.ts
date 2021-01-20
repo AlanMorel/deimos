@@ -42,7 +42,7 @@ export abstract class Session {
     }
 
     public send(packet: Packet): void {
-        const opcode = BitConverter.toInt16(packet.buffer, 0);
+        const opcode = BitConverter.toInt16(packet.buffer);
         const sendOpcode = SendOp[opcode];
 
         switch (opcode) {
