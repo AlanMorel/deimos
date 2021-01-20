@@ -1,4 +1,3 @@
-
 export class Rand32 {
 
     private s1: number;

@@ -36,7 +36,7 @@ export class LoginServer extends Server {
     }
 
     protected onError(session: LoginSession, error: Error): void {
-        Logger.log(error.message, HexColor.RED);
+        Logger.error(error.message);
     }
 
     protected onStart(): void {

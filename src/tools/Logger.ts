@@ -1,4 +1,5 @@
 import Configs from "../Configs";
+import { Packet } from "../crypto/protocol/Packet";
 import { HexColor } from "./HexColor";
 
 interface Color {
@@ -22,6 +23,18 @@ export class Logger {
         if (Configs.debug) {
             this.log(message, hex);
         }
+    }
+
+    public static send(opcode: string, packet: Packet): void {
+        this.packet("SEND", opcode, packet, HexColor.RED);
+    }
+
+    public static recv(opcode: string, packet: Packet): void {
+        this.packet("RECV", opcode, packet, HexColor.GREEN);
+    }
+
+    public static packet(prefix: string, opcode: string, packet: Packet, color: HexColor): void {
+        this.log("[" + prefix + "] " + opcode + ": " + packet.toString(), color);
     }
 
     private static hexToColor(color: number): Color {

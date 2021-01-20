@@ -9,7 +9,6 @@ import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Stream } from "../../crypto/Stream";
 import { RequestVersionPacket } from "../../packets/RequestVersionPacket";
 import { BitConverter } from "../../tools/BitConverter";
-import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { PacketRouter } from "../routers/PacketRouter";
 
@@ -67,7 +66,7 @@ export abstract class Session {
                 */
                 break;
             default:
-                Logger.debug("[SEND] " + sendOpcode + ": " + packet.toString(), HexColor.RED);
+                Logger.send(sendOpcode, packet);
                 break;
         }
 
@@ -106,7 +105,7 @@ export abstract class Session {
         const recvOpcode = RecvOp[opcode];
 
         if (recvOpcode === undefined) {
-            Logger.debug("[RECV] 0x" + opcode.toString(16).toUpperCase() + ": " + packet.toString(), HexColor.GREEN);
+            Logger.recv("0x" + opcode.toString(16).toUpperCase(), packet);
             return;
         }
 
@@ -118,7 +117,7 @@ export abstract class Session {
             case RecvOp.NAMETAG_SYMBOL:
                 break;
             default:
-                Logger.debug("[RECV] " + recvOpcode + ": " + packet.toString(), HexColor.GREEN);
+                Logger.recv(recvOpcode, packet);
                 break;
         }
 
