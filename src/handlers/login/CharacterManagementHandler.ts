@@ -13,6 +13,7 @@ import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ItemColor } from "../../types/color/ItemColor";
 import { SkinColor } from "../../types/color/SkinColor";
+import { CoordF } from "../../types/coords/CoordF";
 import { HairData } from "../../types/item/HairData";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
@@ -109,6 +110,9 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         const newCharacterId = AccountStorage.storage.getNextCharacterID(session.accountId);
         const newCharacter = new Player(newCharacterId, gender, jobGroupId, name, skinColor, equips);
+
+        newCharacter.mapId = 52000065;
+        newCharacter.coord = new CoordF(-800, 600, 500);
 
         CharacterStorage.storage.addCharacter(newCharacter);
         AccountStorage.storage.addCharacterID(newCharacter.accountId, newCharacter.characterId);
