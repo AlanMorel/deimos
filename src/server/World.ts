@@ -1,3 +1,4 @@
+import { Packet } from "../crypto/protocol/Packet";
 import { Player } from "../types/player/Player";
 
 export class World {
@@ -19,6 +20,12 @@ export class World {
     public removePlayer(player: Player): void {
         this.idStorage.delete(player.characterId);
         this.nameStorage.delete(player.name.toLowerCase());
+    }
+
+    public broadcast(packet: Packet): void {
+        this.getPlayers().forEach(player => {
+            player.session?.send(packet);
+        });
     }
 
     public getPlayers(): Player[] {

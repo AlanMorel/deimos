@@ -1,5 +1,6 @@
 import Configs from "../Configs";
 import { Packet } from "../crypto/protocol/Packet";
+import { PacketHandler } from "../handlers/PacketHandler";
 import { HexColor } from "./HexColor";
 
 interface Color {
@@ -37,8 +38,8 @@ export class Logger {
         this.log("[" + prefix + "] " + opcode + ": " + packet.toString(), color);
     }
 
-    public static unknownMode(classInstance: Object, mode: number) {
-        this.error("Unknown mode 0x" + mode.toString(16).toUpperCase() + " in " + classInstance.constructor.name);
+    public static unknownMode(handler: PacketHandler, mode: number): void {
+        this.error("Unknown mode 0x" + mode.toString(16).toUpperCase() + " in " + handler.constructor.name);
     }
 
     private static hexToColor(color: number): Color {

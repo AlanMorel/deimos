@@ -12,7 +12,7 @@ export class Commands {
 
         switch (args[0]) {
             case "coord":
-                this.handleCoordCommand(session, args);
+                this.handleCoordCommand(session);
                 return true;
             case "teleport":
                 this.handleTeleportCommand(session, args);
@@ -22,7 +22,7 @@ export class Commands {
         return false;
     }
 
-    private static handleCoordCommand(session: ChannelSession, args: string[]): void {
+    private static handleCoordCommand(session: ChannelSession): void {
         const message = session.player.coord.toString();
         session.send(ChatPacket.send(session, message, ChatType.All));
     }

@@ -7,7 +7,7 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 export class UserSyncHandler implements ChannelPacketHandler {
 
     public handle(session: ChannelSession, packet: PacketReader): void {
-        const mode = packet.readByte(); // unknown what this is for
+        packet.readByte(); // unknown mode
         packet.readInt(); // TODO:  ClientTicks
         packet.readInt(); // TODO: ServerTicks
 

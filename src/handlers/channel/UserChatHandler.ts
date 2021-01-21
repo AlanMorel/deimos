@@ -22,7 +22,7 @@ export class UserChatHandler implements ChannelPacketHandler {
                 break;
             case ChatType.Super:
             case ChatType.World:
-                // TODO: Send to all players online
+                World.getInstance().broadcast(ChatPacket.send(session, message, type));
                 break;
             case ChatType.GuildNotice:
             case ChatType.Guild:

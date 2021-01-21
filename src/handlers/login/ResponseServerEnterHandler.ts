@@ -15,7 +15,7 @@ import { LoginPacketHandler } from "../LoginPacketHandler";
 export class ResponseServerEnterHandler implements LoginPacketHandler {
 
     public handle(session: LoginSession, packet: PacketReader): void {
-        const mode = packet.readInt(); // always 2?
+        packet.readInt(); // mode: always 2?
 
         const endpoints = [
             new Endpoint(Configs.login.host, Configs.login.port)
