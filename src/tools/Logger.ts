@@ -37,6 +37,10 @@ export class Logger {
         this.log("[" + prefix + "] " + opcode + ": " + packet.toString(), color);
     }
 
+    public static unknownMode(classInstance: Object, mode: number) {
+        this.error("Unknown mode 0x" + mode.toString(16).toUpperCase() + " in " + classInstance.constructor.name);
+    }
+
     private static hexToColor(color: number): Color {
         const r = color >> 16;
         const g = color >> 8 & 0xFF;

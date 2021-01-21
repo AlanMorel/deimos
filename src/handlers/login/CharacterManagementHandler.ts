@@ -40,6 +40,9 @@ export class CharacterManagementHandler implements LoginPacketHandler {
                 break;
             case Mode.DELETE:
                 break;
+            default:
+                Logger.unknownMode(this, mode);
+                break;
         }
     }
 

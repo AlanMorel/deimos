@@ -124,7 +124,7 @@ export class FieldAddUserPacket {
         return packet;
     }
 
-    private static getAppearanceBuffer(packet: PacketWriter, player: Player): PacketWriter {
+    private static getAppearanceBuffer(packet: PacketWriter, player: Player): Packet {
         const appearanceBuffer = new PacketWriter();
 
         appearanceBuffer.writeByte(player.equips.size);
@@ -132,7 +132,7 @@ export class FieldAddUserPacket {
             ItemPacketHelper.writeEquip(appearanceBuffer, slot, equip);
         }
 
-        appearanceBuffer.writeByte(1);
+        appearanceBuffer.writeByte(0x1);
         appearanceBuffer.writeLong();
         appearanceBuffer.writeLong();
         appearanceBuffer.writeByte();

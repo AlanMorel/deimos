@@ -16,13 +16,16 @@ export class ServerListPacket {
         packet.writeByte(Mode.SET);
         packet.writeInt(0x1);
         packet.writeUnicodeString(serverName);
-        packet.writeByte(4); // IPv4?
+        packet.writeByte(0x4); // IPv4?
+
         packet.writeUShort(endpoints.length);
         for (const endpoint of endpoints) {
             packet.writeUnicodeString(endpoint.getAddress());
             packet.writeUShort(endpoint.getPort());
         }
+
         packet.writeInt(100); // constant?
+
         packet.writeShort(unknownData.length);
         for (const byte of unknownData) {
             packet.writeShort(byte);

@@ -1,3 +1,4 @@
+import { Packet } from "../crypto/protocol/Packet";
 import { PacketReader } from "../crypto/protocol/PacketReader";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { CoordF } from "./coords/CoordF";
@@ -104,7 +105,7 @@ export class SyncState {
         return state;
     }
 
-    public static write(packet: PacketWriter, entry: SyncState): PacketWriter {
+    public static write(packet: PacketWriter, entry: SyncState): Packet {
         packet.writeByte(entry.animation1);
         packet.writeByte(entry.animation2);
         packet.writeByte(entry.flag);

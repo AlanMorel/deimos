@@ -1,3 +1,4 @@
+import { Packet } from "../../crypto/protocol/Packet";
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { ItemColor } from "../../types/color/ItemColor";
 import { HairData } from "../../types/item/HairData";
@@ -10,7 +11,7 @@ import { UgcPacketHelper } from "./UgcPacketHelper";
 
 export class ItemPacketHelper {
 
-    public static writeItem(packet: PacketWriter, item: Item): PacketWriter {
+    public static writeItem(packet: PacketWriter, item: Item): Packet {
         packet.writeInt(item.amount);
         packet.writeInt();
         packet.writeInt(-1);
@@ -158,7 +159,7 @@ export class ItemPacketHelper {
         return;
     }
 
-    private static writeSockets(packet: PacketWriter, stats: ItemStats): PacketWriter {
+    private static writeSockets(packet: PacketWriter, stats: ItemStats): Packet {
         packet.writeByte(stats.totalSockets);
         for (let i = 0; i < stats.totalSockets; i++) {
 
@@ -188,7 +189,7 @@ export class ItemPacketHelper {
         return packet;
     }
 
-    private static writeStatDiff(packet: PacketWriter, oldStats: ItemStats, newStats: ItemStats): PacketWriter {
+    private static writeStatDiff(packet: PacketWriter, oldStats: ItemStats, newStats: ItemStats): Packet {
 
         // TODO: Find stat diffs
         const generalStatDiff = new Array<ItemStat>();

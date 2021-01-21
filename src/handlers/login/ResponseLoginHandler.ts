@@ -65,6 +65,9 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 session.send(CharacterListPacket.addEntries(players));
                 session.send(CharacterListPacket.endList());
                 break;
+            default:
+                Logger.unknownMode(this, mode);
+                break;
         }
     }
 }

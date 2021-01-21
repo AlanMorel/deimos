@@ -1,6 +1,7 @@
 import { PacketReader } from "../crypto/protocol/PacketReader";
 import { ChannelPacketHandler } from "../handlers/ChannelPacketHandler";
 import { ChannelSession } from "../network/sessions/ChannelSession";
+import { Logger } from "../tools/Logger";
 
 enum Mode {
     Move = 0x3,
@@ -13,6 +14,7 @@ export class RequestItemInventoryhandler implements ChannelPacketHandler {
 
     public handle(session: ChannelSession, packet: PacketReader): void {
         const mode = packet.readByte();
+
         switch (mode) {
             case Mode.Move:
                 this.handleMove(session, packet);
@@ -27,7 +29,7 @@ export class RequestItemInventoryhandler implements ChannelPacketHandler {
                 this.handleSort(session, packet);
                 break;
             default:
-                // TODO: log unknown mode
+                Logger.unknownMode(this, mode);
                 break;
         }
     }
