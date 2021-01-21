@@ -21,6 +21,10 @@ export class World {
         this.nameStorage.delete(player.name.toLowerCase());
     }
 
+    public getPlayers(): Player[] {
+        return Array.from(this.idStorage.values());
+    }
+
     public getPlayerByName(name: string): Player | undefined {
         return this.nameStorage.get(name.toLowerCase());
     }

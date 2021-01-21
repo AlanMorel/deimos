@@ -18,7 +18,7 @@ export class UserChatHandler implements ChannelPacketHandler {
 
         switch (type) {
             case ChatType.Channel:
-                // TODO: Send to all players on current channel
+                session.channel.broadcast(ChatPacket.send(session, message, ChatType.Channel));
                 break;
             case ChatType.Super:
             case ChatType.World:

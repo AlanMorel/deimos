@@ -1,5 +1,7 @@
 import { Socket } from "net";
+import { Packet } from "../../crypto/protocol/Packet";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
+import { World } from "../../server/World";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
@@ -32,6 +34,20 @@ export class ChannelServer extends Server {
         session.socket.on("data", data => this.onData(session, data));
         session.socket.on("close", hadError => this.onClose(session, hadError));
         session.socket.on("error", error => this.onError(session, error));
+    }
+
+    public broadcast(packet: Packet): void {
+        World.getInstance().getPlayers().filter(player => {
+            if (!player.session) {
+                return false;
+            }
+            if (player.session.channel.id != this.id) {
+                return false;
+            }
+            return true;
+        }).forEach(player => {
+            player.session?.send(packet);
+        });
     }
 
     protected onData(session: ChannelSession, data: Buffer): void {
