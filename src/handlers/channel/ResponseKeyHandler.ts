@@ -14,10 +14,12 @@ import { MarketInventoryPacket } from "../../packets/MarketInventoryPacket";
 import { PrestigePacket } from "../../packets/PrestigePacket";
 import { RequestClientTickSyncPacket } from "../../packets/RequestClientTickSyncPacket";
 import { RequestFieldEnterPacket } from "../../packets/RequestFieldEnterPacket";
+import { ResponseTimeSyncPacket } from "../../packets/ResponseTimeSyncPacket";
 import { ServerEnterPacket } from "../../packets/ServerEnterPacket";
 import { SyncNumberPacket } from "../../packets/SyncNumberPacket";
 import { UserEnvPacket } from "../../packets/UserEnvPacket";
 import { Logger } from "../../tools/Logger";
+import { Time } from "../../tools/Time";
 import { InventoryTab } from "../../types/inventory/InventoryTab";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
@@ -50,6 +52,12 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
 
         session.send(BuddyListPacket.startList());
         session.send(BuddyListPacket.endList());
+
+        session.send(ResponseTimeSyncPacket.setInitial1());
+        session.send(ResponseTimeSyncPacket.setInitial2());
+        session.send(ResponseTimeSyncPacket.request());
+
+        session.serverTick = Time.getTickCount();
 
         session.send(RequestClientTickSyncPacket.tickSync());
         session.send(DynamicChannelPacket.dynamicChannel());

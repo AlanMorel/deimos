@@ -8,8 +8,8 @@ export class UserSyncHandler implements ChannelPacketHandler {
 
     public handle(session: ChannelSession, packet: PacketReader): void {
         packet.readByte(); // unknown mode
-        packet.readInt(); // TODO:  ClientTicks
-        packet.readInt(); // TODO: ServerTicks
+        session.clientTick = packet.readInt();
+        session.serverTick = packet.readInt();
 
         const segments = packet.readByte();
         if (segments < 1) {

@@ -11,6 +11,8 @@ export class ChannelSession extends Session {
     public player: Player = Player.getInitialPlayer();
     public channel: ChannelServer;
     public field?: Field;
+    public serverTick = 0;
+    public clientTick = 0;
 
     public constructor(channel: ChannelServer, id: number, router: PacketRouter, socket: Socket) {
         super(id, socket, router);
