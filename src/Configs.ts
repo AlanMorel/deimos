@@ -15,5 +15,6 @@ export default {
             ]
         }
     ],
+    hash: "ce6ca622429e68b37650d519b326e293",
     debug: true
 };
