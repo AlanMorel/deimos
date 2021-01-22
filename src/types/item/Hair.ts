@@ -1,7 +1,9 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
+import { Item } from "./Item";
+import { ItemSlot } from "./ItemSlot";
 
-export class HairData {
+export class Hair extends Item {
 
     public backLength: number;
     public frontLength: number;
@@ -9,26 +11,28 @@ export class HairData {
     public backPositionArray: Buffer;
     public frontPositionArray: Buffer;
 
-    public constructor(backLength: number, frontLength: number, backPositionArray: Buffer, frontPositionArray: Buffer) {
+    public constructor(id: number, backLength: number, frontLength: number, backPositionArray: Buffer, frontPositionArray: Buffer) {
+        super(id, ItemSlot.HR);
+
         this.backLength = backLength;
         this.frontLength = frontLength;
         this.backPositionArray = backPositionArray;
         this.frontPositionArray = frontPositionArray;
     }
 
-    public static read(packet: PacketReader): HairData {
+    public static read(packet: PacketReader, id: number): Hair {
         const backLength = packet.readInt();
         const backPositionArray = packet.read(24);
         const frontLength = packet.readInt();
         const frontPositionArray = packet.read(24);
 
-        return new HairData(backLength, frontLength, backPositionArray, frontPositionArray);
+        return new Hair(id, backLength, frontLength, backPositionArray, frontPositionArray);
     }
 
-    public static write(packet: PacketWriter, hairData: HairData): void {
-        packet.writeInt(hairData.backLength);
-        packet.write(hairData.backPositionArray);
-        packet.writeInt(hairData.frontLength);
-        packet.write(hairData.frontPositionArray);
+    public static write(packet: PacketWriter, hair: Hair): void {
+        packet.writeInt(hair.backLength);
+        packet.write(hair.backPositionArray);
+        packet.writeInt(hair.frontLength);
+        packet.write(hair.frontPositionArray);
     }
 }

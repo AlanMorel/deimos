@@ -1,7 +1,8 @@
 import { Packet } from "../../crypto/protocol/Packet";
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { ItemColor } from "../../types/color/ItemColor";
-import { HairData } from "../../types/item/HairData";
+import { FaceDecoration } from "../../types/item/FaceDecoration";
+import { Hair } from "../../types/item/Hair";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { ItemStat } from "../../types/item/ItemStat";
@@ -142,16 +143,12 @@ export class ItemPacketHelper {
                 }
                 break;
             case ItemSlot.HR:
-                if (!item.hairData) {
-                    break;
-                }
-                HairData.write(packet, item.hairData);
+                const hair = item as Hair;
+                Hair.write(packet, hair);
                 break;
             case ItemSlot.FD:
-                if (!item.faceDecorationData) {
-                    break;
-                }
-                packet.write(item.faceDecorationData);
+                const faceDecoration = item as FaceDecoration;
+                packet.write(faceDecoration.data);
                 break;
         }
 

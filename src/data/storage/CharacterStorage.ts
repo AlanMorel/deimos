@@ -1,7 +1,8 @@
 import { Color } from "../../types/color/Color";
 import { ItemColor } from "../../types/color/ItemColor";
 import { SkinColor } from "../../types/color/SkinColor";
-import { HairData } from "../../types/item/HairData";
+import { FaceDecoration } from "../../types/item/FaceDecoration";
+import { Hair } from "../../types/item/Hair";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { Job } from "../../types/jobs/Job";
@@ -40,15 +41,13 @@ export class CharacterStorage {
 
         const ears = new Item(10500001, ItemSlot.ER);
 
-        const hair = new Item(10200001, ItemSlot.HR);
-        hair.hairData = new HairData(1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
+        const hair = new Hair(10200001, 1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
         hair.color = new ItemColor(new Color(47, 47, -86, -1), new Color(-37, -123, 76, -1), new Color(19, 19, 96, -1), 0);
 
         const face = new Item(10300014, ItemSlot.FA);
         face.color = new ItemColor(new Color(41, 36, -75, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
 
-        const faceDecoration = new Item(10400002, ItemSlot.FD);
-        faceDecoration.faceDecorationData = Buffer.alloc(16);
+        const faceDecoration = new FaceDecoration(10400002, Buffer.alloc(16));
 
         const top = new Item(11400631, ItemSlot.CL);
         top.color = new ItemColor(new Color(41, 36, -75, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
@@ -80,15 +79,13 @@ export class CharacterStorage {
 
         const ears = new Item(10500001, ItemSlot.ER);
 
-        const hair = new Item(10200001, ItemSlot.HR);
-        hair.hairData = new HairData(1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
+        const hair = new Hair(10200001, 1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
         hair.color = new ItemColor(new Color(88, -67, -12, -1), new Color(-37, -123, 76, -1), new Color(19, 19, 96, -1), 0);
 
         const face = new Item(10300014, ItemSlot.FA);
         face.color = new ItemColor(new Color(88, -67, -12, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
 
-        const faceDecoration = new Item(10400002, ItemSlot.FD);
-        faceDecoration.faceDecorationData = Buffer.alloc(16);
+        const faceDecoration = new FaceDecoration(10400002, Buffer.alloc(16));
 
         const top = new Item(11400631, ItemSlot.CL);
         top.color = new ItemColor(new Color(88, -67, -12, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);

@@ -3,7 +3,6 @@ import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
 import { InventoryTab } from "../inventory/InventoryTab";
 import { Player } from "../player/Player";
-import { HairData } from "./HairData";
 import { ItemSlot } from "./ItemSlot";
 import { ItemStats } from "./ItemStats";
 import { TransferFlag } from "./TransferFlag";
@@ -44,9 +43,6 @@ export class Item {
     public owner?: Player;
 
     public color: ItemColor = new ItemColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), 0);
-
-    public hairData?: HairData;
-    public faceDecorationData?: Buffer;
 
     public appearanceFlag: number = 0;
 

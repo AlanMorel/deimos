@@ -14,7 +14,8 @@ import { Logger } from "../../tools/Logger";
 import { ItemColor } from "../../types/color/ItemColor";
 import { SkinColor } from "../../types/color/SkinColor";
 import { CoordF } from "../../types/coords/CoordF";
-import { HairData } from "../../types/item/HairData";
+import { FaceDecoration } from "../../types/item/FaceDecoration";
+import { Hair } from "../../types/item/Hair";
 import { Item } from "../../types/item/Item";
 import { ItemSlot } from "../../types/item/ItemSlot";
 import { Player } from "../../types/player/Player";
@@ -85,21 +86,27 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
             const itemSlot = ItemSlot[itemSlotName as keyof typeof ItemSlot];
 
-            const item = new Item(id, itemSlot);
-            item.color = itemColor;
-
             switch (itemSlot) {
                 case ItemSlot.HR: {
-                    item.hairData = HairData.read(packet);
+                    const hair = Hair.read(packet, id);
+                    hair.color = itemColor;
+                    equips.set(itemSlot, hair);
                     break;
                 }
                 case ItemSlot.FD: {
-                    item.faceDecorationData = packet.read(16);
+                    const data = packet.read(16);
+                    const faceDecoration = new FaceDecoration(id, data);
+                    faceDecoration.color = itemColor;
+                    equips.set(itemSlot, faceDecoration);
                     break;
+                }
+                default: {
+                    const item = new Item(id, itemSlot);
+                    item.color = itemColor;
+                    equips.set(itemSlot, item);
                 }
             }
 
-            equips.set(itemSlot, item);
         }
 
         packet.readInt(); // constant 4?
