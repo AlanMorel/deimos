@@ -1,4 +1,3 @@
-import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Color } from "../../types/color/Color";
 import { SkinColor } from "../../types/color/SkinColor";
 import { Gender } from "../../types/player/Gender";
@@ -15,15 +14,14 @@ export class CharacterConverter {
         const gender = character.gender ? Gender.Female : Gender.Male;
 
         const player = new Player(id, gender, character.job, character.name, skinColor);
-        player.equips = CharacterStorage.getTestEquips();
+        player.equips = Player.getTestEquips();
 
         return player;
     }
 
-    public static toDatabsae(player: Player): Character {
+    public static toDatabase(player: Player): Character {
 
         const character: Character = {
-            id: player.characterId.toString(),
             accountId: player.accountId.toString(),
             name: player.name,
             gender: player.gender === 1,

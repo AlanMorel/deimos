@@ -1,7 +1,5 @@
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AccountStorage } from "../../data/storage/AccountStorage";
-import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Accounts } from "../../database/controllers/Accounts";
 import { Characters } from "../../database/controllers/Characters";
 import { CharacterConverter } from "../../database/converters/CharacterConverter";
@@ -56,24 +54,16 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
-                const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);
                 const players = new Array<Player>();
 
-                const loading = characterIds.map(async id => {
+                const databaseCharacters = await Characters.getByAccountId(session.accountId);
 
-                    const databasePlayer = await Characters.getByCharactertId(id);
-
-                    if (!databasePlayer) {
-                        return;
-                    }
-
-                    const player = CharacterConverter.fromDatabase(databasePlayer);
-                    player.equips = CharacterStorage.getTestEquips();
+                databaseCharacters.forEach(databaseCharacter => {
+                    const player = CharacterConverter.fromDatabase(databaseCharacter);
+                    player.equips = Player.getTestEquips();
 
                     players.push(player);
                 });
-
-                await Promise.all(loading);
 
                 Logger.log("Initializing login with account id: " + session.accountId, HexColor.PURPLE);
 

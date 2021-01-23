@@ -1,7 +1,7 @@
 import { EntitySchema } from "typeorm";
 
 export interface Character {
-    id: string;
+    id?: string;
     accountId: string,
     name: string;
     gender: boolean;

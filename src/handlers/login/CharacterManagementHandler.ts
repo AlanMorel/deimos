@@ -1,6 +1,5 @@
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AccountStorage } from "../../data/storage/AccountStorage";
 import { AuthStorage } from "../../data/storage/AuthStorage";
 import { Characters } from "../../database/controllers/Characters";
 import { CharacterConverter } from "../../database/converters/CharacterConverter";
@@ -117,16 +116,13 @@ export class CharacterManagementHandler implements LoginPacketHandler {
             return;
         }
 
-        const newCharacterId = AccountStorage.storage.getNextCharacterID(session.accountId);
-        const newCharacter = new Player(newCharacterId, gender, jobGroupId, name, skinColor, equips);
+        const newCharacter = new Player(BigInt(-1), gender, jobGroupId, name, skinColor, equips);
 
         newCharacter.mapId = 52000065;
         newCharacter.coord = new CoordF(-800, 600, 500);
 
-        const databaseCharacter = CharacterConverter.toDatabsae(newCharacter);
+        const databaseCharacter = CharacterConverter.toDatabase(newCharacter);
         Characters.insert(databaseCharacter);
-
-        AccountStorage.storage.addCharacterID(newCharacter.accountId, newCharacter.characterId);
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));
         session.send(CharacterListPacket.append(newCharacter));

@@ -1,7 +1,5 @@
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AccountStorage } from "../../data/storage/AccountStorage";
-import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Characters } from "../../database/controllers/Characters";
 import { CharacterConverter } from "../../database/converters/CharacterConverter";
 import { Endpoint } from "../../network/Endpoint";
@@ -16,7 +14,7 @@ import { LoginPacketHandler } from "../LoginPacketHandler";
 
 export class ResponseServerEnterHandler implements LoginPacketHandler {
 
-    public handle(session: LoginSession, packet: PacketReader): void {
+    public async handle(session: LoginSession, packet: PacketReader): Promise<void> {
         packet.readInt(); // mode: always 2?
 
         const endpoints = [
@@ -27,18 +25,13 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners
         session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
 
-        const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);
         const players = new Array<Player>();
 
-        characterIds.forEach(async id => {
-            const databasePlayer = await Characters.getByCharactertId(id);
+        const databaseCharacters = await Characters.getByAccountId(session.accountId);
 
-            if (!databasePlayer) {
-                return;
-            }
-
-            const player = CharacterConverter.fromDatabase(databasePlayer);
-            player.equips = CharacterStorage.getTestEquips();
+        databaseCharacters.forEach(databaseCharacter => {
+            const player = CharacterConverter.fromDatabase(databaseCharacter);
+            player.equips = Player.getTestEquips();
 
             players.push(player);
         });

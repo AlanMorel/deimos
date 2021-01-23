@@ -1,6 +1,5 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AuthStorage } from "../../data/storage/AuthStorage";
-import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Characters } from "../../database/controllers/Characters";
 import { CharacterConverter } from "../../database/converters/CharacterConverter";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
@@ -23,6 +22,7 @@ import { UserEnvPacket } from "../../packets/UserEnvPacket";
 import { Logger } from "../../tools/Logger";
 import { Time } from "../../tools/Time";
 import { InventoryTab } from "../../types/inventory/InventoryTab";
+import { Player } from "../../types/player/Player";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
 
@@ -48,7 +48,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
         }
 
         const player = CharacterConverter.fromDatabase(databasePlayer);
-        player.equips = CharacterStorage.getTestEquips();
+        player.equips = Player.getTestEquips();
 
         session.initialize(player);
 
