@@ -21,7 +21,7 @@ export class Logger {
     }
 
     public static debug(message: string, hex: HexColor = HexColor.PURPLE): void {
-        if (Configs.debug) {
+        if (Configs.settings.logDebugs) {
             this.log(message, hex);
         }
     }
@@ -35,7 +35,9 @@ export class Logger {
     }
 
     public static packet(prefix: string, opcode: string, packet: Packet, color: HexColor): void {
-        this.log("[" + prefix + "] " + opcode + ": " + packet.toString(), color);
+        if (Configs.settings.logPackets) {
+            this.log("[" + prefix + "] " + opcode + ": " + packet.toString(), color);
+        }
     }
 
     public static unknownMode(handler: PacketHandler, mode: number): void {
