@@ -1,4 +1,5 @@
 import Configs from "./Configs";
+import { Database } from "./database/Database";
 import { ChannelServer } from "./network/servers/ChannelServer";
 import { LoginServer } from "./network/servers/LoginServer";
 import { HexColor } from "./tools/HexColor";
@@ -6,6 +7,9 @@ import { Logger } from "./tools/Logger";
 
 Logger.log("Deimos has started", HexColor.YELLOW);
 
+Database.connect().then(async () => {
+    Logger.log("Database connection successful", HexColor.PURPLE);
+});
 
 new LoginServer(Configs.login.host, Configs.login.port);
 

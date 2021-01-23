@@ -19,5 +19,13 @@ export default {
     settings: {
         logDebugs: true,
         logPackets: true,
+        logQueries: false
+    },
+    database: {
+        host: "localhost",
+        port: 3306,
+        username: "root",
+        password: "",
+        schema: "deimos",
     }
 };

@@ -2,6 +2,7 @@ import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
+import { Accounts } from "../../database/controllers/Accounts";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
@@ -24,14 +25,22 @@ enum Mode {
 
 export class ResponseLoginHandler implements LoginPacketHandler {
 
-    public handle(session: LoginSession, packet: PacketReader): void {
+    public async handle(session: LoginSession, packet: PacketReader): Promise<void> {
         const mode = packet.readByte();
         const username = packet.readUnicodeString();
         const password = packet.readUnicodeString();
 
         Logger.log(`Logging in with username: '${username}' pass: '${password}'`, HexColor.PURPLE);
 
-        session.accountId = 1n; // TODO: temp
+        const account = await Accounts.getByCredentials(username, password);
+
+        if (account) {
+            Logger.log("Account found.", HexColor.GREEN);
+            session.accountId = BigInt(account.id);
+        } else {
+            Logger.log("Account not found.", HexColor.RED);
+            session.accountId = 1n;
+        }
 
         switch (mode) {
             case Mode.LOGIN_1:
