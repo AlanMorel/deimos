@@ -1,7 +1,6 @@
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Characters } from "../../database/controllers/Characters";
-import { CharacterConverter } from "../../database/converters/CharacterConverter";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
@@ -25,15 +24,10 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners
         session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
 
-        const players = new Array<Player>();
+        const players = await Characters.getByAccountId(session.accountId);
 
-        const databaseCharacters = await Characters.getByAccountId(session.accountId);
-
-        databaseCharacters.forEach(databaseCharacter => {
-            const player = CharacterConverter.fromDatabase(databaseCharacter);
+        players.forEach(player => {
             player.equips = Player.getTestEquips();
-
-            players.push(player);
         });
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));

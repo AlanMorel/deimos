@@ -18,7 +18,6 @@ export default {
             ]
         }
     ],
-    hash: "ce6ca622429e68b37650d519b326e293",
     database: {
         host: "localhost",
         port: 3306,
@@ -31,6 +30,7 @@ export default {
         logPackets: true,
         logQueries: false,
     },
+    hash: "ce6ca622429e68b37650d519b326e293",
     block: {
         recv: [
             RecvOp.USER_SYNC,
