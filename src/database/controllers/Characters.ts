@@ -22,4 +22,9 @@ export class Characters {
         });
         return character;
     }
+
+    public static async insert(character: Character): Promise<void> {
+        const repository = getRepository<Character>(CharacterEntity);
+        repository.save(character);
+    }
 }

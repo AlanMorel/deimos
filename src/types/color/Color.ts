@@ -1,5 +1,6 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
+import { BitConverter } from "../../tools/BitConverter";
 
 export class Color {
 
@@ -29,5 +30,21 @@ export class Color {
         packet.writeByte(color.green);
         packet.writeByte(color.red);
         packet.writeByte(color.alpha);
+    }
+
+    public static toValue(color: Color): number {
+        const buffer = Buffer.from([color.blue, color.green, color.red, color.alpha]);
+        return BitConverter.toInt32(buffer);
+    }
+
+    public static fromValue(value: number): Color {
+        const colors = BitConverter.intToBytes(value);
+
+        const blue = colors.readInt8(0);
+        const green = colors.readInt8(1);
+        const red = colors.readInt8(2);
+        const alpha = colors.readInt8(3);
+
+        return new Color(blue, green, red, alpha);
     }
 }

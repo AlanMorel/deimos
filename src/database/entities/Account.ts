@@ -1,7 +1,7 @@
 import { EntitySchema } from "typeorm";
 
 export interface Account {
-    id: number;
+    id: string;
     username: string;
     password: string;
 }

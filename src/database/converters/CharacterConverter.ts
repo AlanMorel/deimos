@@ -1,5 +1,4 @@
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
-import { BitConverter } from "../../tools/BitConverter";
 import { Color } from "../../types/color/Color";
 import { SkinColor } from "../../types/color/SkinColor";
 import { Gender } from "../../types/player/Gender";
@@ -9,15 +8,7 @@ import { Character } from "../entities/Character";
 export class CharacterConverter {
 
     public static fromDatabase(character: Character): Player {
-        const colors = BitConverter.intToBytes(character.skinColor);
-        const colorsBuffer = Buffer.from([colors[0], colors[1], colors[2], colors[3]]);
-
-        const color1 = colorsBuffer.readInt8(0);
-        const color2 = colorsBuffer.readInt8(1);
-        const color3 = colorsBuffer.readInt8(2);
-        const color4 = colorsBuffer.readInt8(3);
-
-        const color = new Color(color1, color2, color3, color4);
+        const color = Color.fromValue(character.skinColor);
         const skinColor = new SkinColor(color, color);
 
         const id = BigInt(character.id);
@@ -27,5 +18,19 @@ export class CharacterConverter {
         player.equips = CharacterStorage.getTestEquips();
 
         return player;
+    }
+
+    public static toDatabsae(player: Player): Character {
+
+        const character: Character = {
+            id: player.characterId.toString(),
+            accountId: player.accountId.toString(),
+            name: player.name,
+            gender: player.gender === 1,
+            job: player.jobGroupId,
+            skinColor: Color.toValue(player.skinColor.primary)
+        };
+
+        return character;
     }
 }

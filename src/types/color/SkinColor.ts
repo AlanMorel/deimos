@@ -4,8 +4,8 @@ import { Color } from "./Color";
 
 export class SkinColor {
 
-    private primary: Color;
-    private secondary: Color;
+    public primary: Color;
+    public secondary: Color;
 
     public constructor(primary: Color, secondary: Color) {
         this.primary = primary;
