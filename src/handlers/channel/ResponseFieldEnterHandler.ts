@@ -4,9 +4,7 @@ import { EmotionPacket } from "../../packets/EmotionPacket";
 import { KeyTablePacket } from "../../packets/KeyTablePacket";
 import { StatPacket } from "../../packets/StatPacket";
 import { StatPointPacket } from "../../packets/StatPointPacket";
-import { InventoryTab } from "../../types/inventory/InventoryTab";
 import { Item } from "../../types/item/Item";
-import { ItemSlot } from "../../types/item/ItemSlot";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
@@ -20,13 +18,13 @@ export class ResponseFieldEnterHandler implements ChannelPacketHandler {
         session.send(StatPointPacket.writeTotalStatPoints(session.player));
         session.send(EmotionPacket.loadEmotions());
 
-        const item = new Item(40100001, ItemSlot.NONE, InventoryTab.Catalyst);
+        const item = new Item(40100001);
         item.amount = 1;
 
-        const item2 = new Item(40100001, ItemSlot.NONE, InventoryTab.Catalyst);
+        const item2 = new Item(40100001);
         item2.amount = 1;
 
-        const item3 = new Item(20302228, ItemSlot.NONE, InventoryTab.Misc);
+        const item3 = new Item(20302228);
         item3.amount = 1;
 
         session.player.inventory.addItem(session, item, true);

@@ -15,12 +15,12 @@ export class CharacterStorage {
 
     public characters: Map<BigInt, Player> = new Map<BigInt, Player>();
 
-    public constructor() {
+    public static load(): void {
         const testCharacter1 = CharacterStorage.getTestCharacter1();
         const testCharacter2 = CharacterStorage.getTestCharacter2();
 
-        this.addCharacter(testCharacter1);
-        this.addCharacter(testCharacter2);
+        this.storage.addCharacter(testCharacter1);
+        this.storage.addCharacter(testCharacter2);
     }
 
     public getCharacter(characterId: BigInt): Player | undefined {
@@ -39,23 +39,23 @@ export class CharacterStorage {
         const skinColor = new SkinColor(new Color(-82, -65, -22, -1), new Color(-82, -65, -22, -1));
         const equips = new Map<ItemSlot, Item>();
 
-        const ears = new Item(10500001, ItemSlot.ER);
+        const ears = new Item(10500001);
 
         const hair = new Hair(10200001, 1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
         hair.color = new ItemColor(new Color(47, 47, -86, -1), new Color(-37, -123, 76, -1), new Color(19, 19, 96, -1), 0);
 
-        const face = new Item(10300014, ItemSlot.FA);
+        const face = new Item(10300014);
         face.color = new ItemColor(new Color(41, 36, -75, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
 
         const faceDecoration = new FaceDecoration(10400002, Buffer.alloc(16));
 
-        const top = new Item(11400631, ItemSlot.CL);
+        const top = new Item(11400631);
         top.color = new ItemColor(new Color(41, 36, -75, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
 
-        const bottom = new Item(11500538, ItemSlot.PA);
+        const bottom = new Item(11500538);
         bottom.color = new ItemColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), 0);
 
-        const shoes = new Item(11700709, ItemSlot.SH);
+        const shoes = new Item(11700709);
         shoes.color = new ItemColor(new Color(51, 59, 63, -1), new Color(27, 32, 35, -1), new Color(15, 18, 20, -1), 0);
 
         equips.set(ItemSlot.ER, ears);
@@ -77,23 +77,23 @@ export class CharacterStorage {
         const skinColor = new SkinColor(new Color(-82, -65, -22, -1), new Color(-82, -65, -22, -1));
         const equips = new Map<ItemSlot, Item>();
 
-        const ears = new Item(10500001, ItemSlot.ER);
+        const ears = new Item(10500001);
 
         const hair = new Hair(10200001, 1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
         hair.color = new ItemColor(new Color(88, -67, -12, -1), new Color(-37, -123, 76, -1), new Color(19, 19, 96, -1), 0);
 
-        const face = new Item(10300014, ItemSlot.FA);
+        const face = new Item(10300014);
         face.color = new ItemColor(new Color(88, -67, -12, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
 
         const faceDecoration = new FaceDecoration(10400002, Buffer.alloc(16));
 
-        const top = new Item(11400631, ItemSlot.CL);
+        const top = new Item(11400631);
         top.color = new ItemColor(new Color(88, -67, -12, -1), new Color(-29, -29, -9, -1), new Color(2, 7, 20, -1), 0);
 
-        const bottom = new Item(11500538, ItemSlot.PA);
+        const bottom = new Item(11500538);
         bottom.color = new ItemColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), new Color(0, 0, 0, -1), 0);
 
-        const shoes = new Item(11700709, ItemSlot.SH);
+        const shoes = new Item(11700709);
         shoes.color = new ItemColor(new Color(88, -67, -12, -1), new Color(27, 32, 35, -1), new Color(15, 18, 20, -1), 0);
 
         equips.set(ItemSlot.ER, ears);

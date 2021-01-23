@@ -1,3 +1,4 @@
+import { ItemMetadata } from "../../data/metadata/ItemMetadata";
 import { GuidGenerator } from "../../tools/GuidGenerator";
 import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
@@ -48,17 +49,16 @@ export class Item {
 
     public stats: ItemStats = new ItemStats();
 
-    public constructor(id: number, itemSlot: ItemSlot, inventoryTab: InventoryTab = InventoryTab.Outfit) {
+    public constructor(id: number) {
         this.id = id;
-        // TODO: below read from metadata and remove from constructor
-        this.inventoryTab = inventoryTab;
-        this.itemSlot = itemSlot;
-        this.slotMax = 100;
-        this.isTemplate = false;
+        this.inventoryTab = ItemMetadata.getTab(id);
+        this.itemSlot = ItemMetadata.getSlot(id);
+        this.slotMax = ItemMetadata.getSlotMax(id);
+        this.isTemplate = false; // TODO: ItemMetadata.getIsTemplate(id);
     }
 
     private static copy(item: Item): Item {
-        const copy = new Item(item.id, item.itemSlot);
+        const copy = new Item(item.id);
 
         // TODO: copy item stats
 

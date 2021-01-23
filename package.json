@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "mysql": "^2.18.1",
+        "protobufjs": "^6.10.2",
         "typeorm": "^0.2.30",
         "uuid": "^8.3.2"
     }

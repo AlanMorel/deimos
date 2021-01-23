@@ -94,19 +94,17 @@ export class CharacterManagementHandler implements LoginPacketHandler {
                     break;
                 }
                 case ItemSlot.FD: {
-                    const data = packet.read(16);
-                    const faceDecoration = new FaceDecoration(id, data);
+                    const faceDecoration = FaceDecoration.read(packet, id);
                     faceDecoration.color = itemColor;
                     equips.set(itemSlot, faceDecoration);
                     break;
                 }
                 default: {
-                    const item = new Item(id, itemSlot);
+                    const item = new Item(id);
                     item.color = itemColor;
                     equips.set(itemSlot, item);
                 }
             }
-
         }
 
         packet.readInt(); // constant 4?

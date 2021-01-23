@@ -1,7 +1,6 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Item } from "./Item";
-import { ItemSlot } from "./ItemSlot";
 
 export class Hair extends Item {
 
@@ -12,7 +11,7 @@ export class Hair extends Item {
     public frontPositionArray: Buffer;
 
     public constructor(id: number, backLength: number, frontLength: number, backPositionArray: Buffer, frontPositionArray: Buffer) {
-        super(id, ItemSlot.HR);
+        super(id);
 
         this.backLength = backLength;
         this.frontLength = frontLength;
