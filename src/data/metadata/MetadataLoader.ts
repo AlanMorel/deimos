@@ -4,7 +4,7 @@ import { ItemMetadata, ItemMetadataInterface } from "./ItemMetadata";
 
 export class MetadataLoader {
 
-    public static loadMetadata(): void {
+    public static load(): void {
         const items = this.decode<ItemMetadataInterface>("item", "Item");
         ItemMetadata.load(items);
     }
@@ -14,7 +14,6 @@ export class MetadataLoader {
         const buffer = fs.readFileSync(process.cwd() + "/resources/metadata/ms2-" + slug + "-metadata");
 
         const type = root.lookupType("List" + name + "Metadata");
-
         return type.decode(buffer).toJSON().items;
     }
 }

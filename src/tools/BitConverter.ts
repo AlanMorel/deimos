@@ -12,8 +12,8 @@ export class BitConverter {
         return parseFloat(int + "");
     }
 
-    public static getBytes(int: number): Buffer {
-        const buffer = Buffer.alloc(8);
+    public static intToBytes(int: number): Buffer {
+        const buffer = Buffer.alloc(4);
         buffer[0] = int;
         buffer[1] = int >> 8;
         buffer[2] = int >> 16;

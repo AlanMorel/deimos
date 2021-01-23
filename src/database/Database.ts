@@ -1,6 +1,7 @@
 import { Connection, getConnectionManager } from "typeorm";
 import Configs from "../Configs";
 import { AccountEntity } from "./entities/Account";
+import { CharacterEntity } from "./entities/Character";
 
 export class Database {
 
@@ -20,7 +21,8 @@ export class Database {
             logging: Configs.settings.logQueries,
             synchronize: true,
             entities: [
-                AccountEntity
+                AccountEntity,
+                CharacterEntity
             ]
         });
     }

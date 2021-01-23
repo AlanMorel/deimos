@@ -2,6 +2,8 @@ import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
+import { Characters } from "../../database/controllers/Characters";
+import { CharacterConverter } from "../../database/converters/CharacterConverter";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
@@ -28,12 +30,17 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
         const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);
         const players = new Array<Player>();
 
-        characterIds.forEach(id => {
-            const player = CharacterStorage.storage.getCharacter(id);
+        characterIds.forEach(async id => {
+            const databasePlayer = await Characters.getByCharactertId(id);
 
-            if (player) {
-                players.push(player);
+            if (!databasePlayer) {
+                return;
             }
+
+            const player = CharacterConverter.fromDatabase(databasePlayer);
+            player.equips = CharacterStorage.getTestEquips();
+
+            players.push(player);
         });
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));

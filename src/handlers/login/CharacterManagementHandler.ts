@@ -2,7 +2,6 @@ import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { AuthStorage } from "../../data/storage/AuthStorage";
-import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { CharacterCreatePacket } from "../../packets/CharacterCreatePacket";
@@ -122,7 +121,8 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         newCharacter.mapId = 52000065;
         newCharacter.coord = new CoordF(-800, 600, 500);
 
-        CharacterStorage.storage.addCharacter(newCharacter);
+        // TODO: Add new character to DB
+        // CharacterStorage.storage.addCharacter(newCharacter);
         AccountStorage.storage.addCharacterID(newCharacter.accountId, newCharacter.characterId);
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));

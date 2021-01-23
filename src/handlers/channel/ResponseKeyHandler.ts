@@ -1,6 +1,8 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AuthStorage } from "../../data/storage/AuthStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
+import { Characters } from "../../database/controllers/Characters";
+import { CharacterConverter } from "../../database/converters/CharacterConverter";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { BuddyListPacket } from "../../packets/BuddyListPacket";
 import { DynamicChannelPacket } from "../../packets/DynamicChannelPacket";
@@ -26,7 +28,7 @@ import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
 
 export class ResponseKeyHandler implements ChannelPacketHandler {
 
-    public handle(session: ChannelSession, packet: PacketReader): void {
+    public async handle(session: ChannelSession, packet: PacketReader): Promise<void> {
         const accountId = packet.readLong();
         const authData = AuthStorage.getData(accountId);
 
@@ -40,11 +42,13 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
 
         ResponseKeyHelper.handle(session, packet);
 
-        const player = CharacterStorage.storage.getCharacter(authData.characterId);
-
-        if (!player) {
+        const databasePlayer = await Characters.getByCharactertId(authData.characterId);
+        if (!databasePlayer) {
             return;
         }
+
+        const player = CharacterConverter.fromDatabase(databasePlayer);
+        player.equips = CharacterStorage.getTestEquips();
 
         session.initialize(player);
 

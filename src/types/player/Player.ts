@@ -73,7 +73,7 @@ export class Player {
 
     public session?: ChannelSession;
 
-    public constructor(characterId: BigInt, gender: Gender, jobGroupId: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item>) {
+    public constructor(characterId: BigInt, gender: Gender, jobGroupId: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item> = new Map<ItemSlot, Item>()) {
         this.characterId = characterId;
         this.gender = gender;
         this.jobGroupId = jobGroupId;

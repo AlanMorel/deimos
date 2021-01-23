@@ -7,11 +7,11 @@ export interface Account {
 }
 
 export const AccountEntity = new EntitySchema<Account>({
-    name: "Account",
+    name: "Accounts",
     columns: {
         id: {
             primary: true,
-            type: "int",
+            type: "bigint",
             generated: true
         },
         username: {

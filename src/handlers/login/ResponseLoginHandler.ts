@@ -3,6 +3,8 @@ import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AccountStorage } from "../../data/storage/AccountStorage";
 import { CharacterStorage } from "../../data/storage/CharacterStorage";
 import { Accounts } from "../../database/controllers/Accounts";
+import { Characters } from "../../database/controllers/Characters";
+import { CharacterConverter } from "../../database/converters/CharacterConverter";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
@@ -57,13 +59,21 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 const characterIds = AccountStorage.storage.getCharacterIDs(session.accountId);
                 const players = new Array<Player>();
 
-                characterIds.forEach(id => {
-                    const player = CharacterStorage.storage.getCharacter(id);
+                const loading = characterIds.map(async id => {
 
-                    if (player) {
-                        players.push(player);
+                    const databasePlayer = await Characters.getByCharactertId(id);
+
+                    if (!databasePlayer) {
+                        return;
                     }
+
+                    const player = CharacterConverter.fromDatabase(databasePlayer);
+                    player.equips = CharacterStorage.getTestEquips();
+
+                    players.push(player);
                 });
+
+                await Promise.all(loading);
 
                 Logger.log("Initializing login with account id: " + session.accountId, HexColor.PURPLE);
 
