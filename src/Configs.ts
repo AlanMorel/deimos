@@ -1,3 +1,6 @@
+import { RecvOp } from "./constants/RecvOp";
+import { SendOp } from "./constants/SendOp";
+
 export default {
     version: 12,
     login: {
@@ -16,16 +19,43 @@ export default {
         }
     ],
     hash: "ce6ca622429e68b37650d519b326e293",
-    settings: {
-        logDebugs: true,
-        logPackets: true,
-        logQueries: false
-    },
     database: {
         host: "localhost",
         port: 3306,
         username: "root",
         password: "",
         schema: "deimos",
+    },
+    settings: {
+        logDebugs: true,
+        logPackets: true,
+        logQueries: false,
+    },
+    block: {
+        recv: [
+            RecvOp.USER_SYNC,
+            RecvOp.USER_CHAT,
+            RecvOp.KEY_TABLE,
+            RecvOp.LOG_SEND,
+            RecvOp.NAMETAG_SYMBOL
+        ],
+        send: [
+            SendOp.USER_SYNC,
+            SendOp.PROXY_GAME_OBJ,
+            SendOp.USER_CHAT,
+            SendOp.NPC_CONTROL,
+            SendOp.CHARACTER_LIST,
+            SendOp.KEY_TABLE,
+            SendOp.STAT,
+            SendOp.EMOTION,
+            SendOp.ITEM_INVENTORY,
+            SendOp.FIELD_PORTAL,
+            SendOp.SERVER_ENTER,
+            SendOp.USER_ENV,
+            SendOp.FIELD_ADD_USER,
+            SendOp.MARKET_INVENTORY,
+            SendOp.FURNISHING_INVENTORY,
+            SendOp.BUDDY
+        ]
     }
 };

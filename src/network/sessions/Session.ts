@@ -1,4 +1,5 @@
 import { Socket } from "net";
+import Configs from "../../Configs";
 import { RecvOp } from "../../constants/RecvOp";
 import { SendOp } from "../../constants/SendOp";
 import { Cipher } from "../../crypto/cipher/Cipher";
@@ -44,30 +45,8 @@ export abstract class Session {
         const opcode = BitConverter.toInt16(packet.buffer);
         const sendOpcode = SendOp[opcode];
 
-        switch (opcode) {
-            case SendOp.USER_SYNC:
-            case SendOp.PROXY_GAME_OBJ:
-            case SendOp.USER_CHAT:
-            case SendOp.NPC_CONTROL:
-            case SendOp.CHARACTER_LIST:
-            case SendOp.KEY_TABLE:
-            case SendOp.STAT:
-            case SendOp.EMOTION:
-            case SendOp.ITEM_INVENTORY:
-            case SendOp.FIELD_PORTAL:
-            case SendOp.SERVER_ENTER:
-            case SendOp.USER_ENV:
-            case SendOp.FIELD_ADD_USER:
-            case SendOp.MARKET_INVENTORY:
-            case SendOp.FURNISHING_INVENTORY:
-            case SendOp.BUDDY:
-                /*
-                case SendOp.FIELD_ENTRANCE:
-                */
-                break;
-            default:
-                Logger.send(sendOpcode, packet);
-                break;
+        if (!Configs.block.send.includes(opcode)) {
+            Logger.send(sendOpcode, packet);
         }
 
         packet = this.sendCipher.encrypt(packet.toArray());
@@ -109,16 +88,8 @@ export abstract class Session {
             return;
         }
 
-        switch (opcode) {
-            case RecvOp.USER_SYNC:
-            case RecvOp.USER_CHAT:
-            case RecvOp.KEY_TABLE:
-            case RecvOp.LOG_SEND:
-            case RecvOp.NAMETAG_SYMBOL:
-                break;
-            default:
-                Logger.recv(recvOpcode, packet);
-                break;
+        if (!Configs.block.recv.includes(opcode)) {
+            Logger.recv(recvOpcode, packet);
         }
 
         const packetHandler = this.packetRouter.getHandler(opcode);
