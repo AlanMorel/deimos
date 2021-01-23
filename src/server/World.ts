@@ -3,7 +3,7 @@ import { Player } from "../types/player/Player";
 
 export class World {
 
-    private static instance: World = new World();
+    private static readonly instance: World = new World();
 
     private idStorage: Map<BigInt, Player> = new Map<BigInt, Player>();
     private nameStorage: Map<string, Player> = new Map<string, Player>();

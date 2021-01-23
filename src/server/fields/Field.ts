@@ -8,7 +8,7 @@ import { FieldState } from "./FieldState";
 
 export class Field {
 
-    private static UPDATE_INTERVAL = 1000;
+    private static readonly UPDATE_INTERVAL = 1000;
 
     public id: number;
     public state: FieldState = new FieldState();

@@ -11,7 +11,7 @@ import { Player } from "../../types/player/Player";
 
 export class CharacterStorage {
 
-    public static storage: CharacterStorage = new CharacterStorage();
+    public static readonly storage: CharacterStorage = new CharacterStorage();
 
     public characters: Map<BigInt, Player> = new Map<BigInt, Player>();
 

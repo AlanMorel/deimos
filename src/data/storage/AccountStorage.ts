@@ -1,6 +1,6 @@
 export class AccountStorage {
 
-    public static storage: AccountStorage = new AccountStorage();
+    public static readonly storage: AccountStorage = new AccountStorage();
 
     public accounts: Map<BigInt, BigInt[]> = new Map<BigInt, BigInt[]>();
 

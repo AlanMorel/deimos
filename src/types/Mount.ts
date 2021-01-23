@@ -7,6 +7,7 @@ export class Mount {
     public type: RideType;
     public id: number;
     public uid: BigInt;
+    public objectId: number = 0;
 
     public constructor(type: RideType, id: number, uid: BigInt) {
         this.type = type;
@@ -17,7 +18,7 @@ export class Mount {
     public static write(packet: PacketWriter, mount: Mount): void {
         packet.writeByte(mount.type);
         packet.writeInt(mount.id);
-        packet.writeInt(0); // TODO: mount ObjectId
+        packet.writeInt(mount.objectId);
 
         switch (mount.type) {
             case RideType.UseItem:

@@ -4,7 +4,7 @@ import { AccountEntity } from "./entities/Account";
 
 export class Database {
 
-    private static instance = new Database();
+    private static readonly instance = new Database();
 
     private connection: Connection;
 
