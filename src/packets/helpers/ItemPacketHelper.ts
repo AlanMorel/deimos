@@ -50,7 +50,7 @@ export class ItemPacketHelper {
         packet.writeInt();
         packet.writeInt();
         packet.writeByte();
-        packet.writeByte(1);
+        packet.writeByte();
 
         // CharBound means untradable, unsellable, bound to char (ignores TransferFlag)
         const isCharBound = item.owner != null;
@@ -60,13 +60,12 @@ export class ItemPacketHelper {
             packet.writeUnicodeString(item.owner.name);
         }
 
-        packet.writeByte();
-
         ItemPacketHelper.writeSockets(packet, item.stats);
 
         packet.writeBigInt(item.pairedCharacterId);
         if (item.pairedCharacterId != 0n) {
             packet.writeUnicodeString(item.pairedCharacterName);
+            packet.writeBoolean(false);
         }
 
         // Bound to character
@@ -98,7 +97,7 @@ export class ItemPacketHelper {
     }
 
     public static writeStats(packet: PacketWriter, stats: ItemStats): void {
-
+        packet.writeByte();
         const basicAttributes = stats.basicAttributes;
         packet.writeShort(basicAttributes.length);
 
@@ -151,12 +150,11 @@ export class ItemPacketHelper {
                 packet.write(faceDecoration.data);
                 break;
         }
-
-        packet.writeByte();
         return;
     }
 
     private static writeSockets(packet: PacketWriter, stats: ItemStats): Packet {
+        packet.writeByte();
         packet.writeByte(stats.totalSockets);
         for (let i = 0; i < stats.totalSockets; i++) {
 
