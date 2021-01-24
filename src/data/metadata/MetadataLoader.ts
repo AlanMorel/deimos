@@ -1,5 +1,6 @@
 import fs from "fs";
 import protobuf from "protobufjs";
+import { Logger } from "../../tools/Logger";
 import { ItemMetadata, ItemMetadataInterface } from "./ItemMetadata";
 
 export class MetadataLoader {
@@ -7,6 +8,8 @@ export class MetadataLoader {
     public static load(): void {
         const items = this.decode<ItemMetadataInterface>("item", "Item");
         ItemMetadata.load(items);
+
+        Logger.log("Metadata loaded successfully");
     }
 
     private static decode<T>(slug: string, name: string): Array<T> {

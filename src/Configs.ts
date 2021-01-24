@@ -29,6 +29,7 @@ export default {
         logDebugs: true,
         logPackets: true,
         logQueries: false,
+        loadMetadata: true
     },
     hash: "ce6ca622429e68b37650d519b326e293",
     block: {

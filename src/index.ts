@@ -8,7 +8,9 @@ import { Logger } from "./tools/Logger";
 
 Logger.log("Deimos has started", HexColor.YELLOW);
 
-MetadataLoader.load();
+if (Configs.settings.loadMetadata) {
+    MetadataLoader.load();
+}
 
 Database.connect().then(async () => {
     Logger.log("Database connection successful", HexColor.PURPLE);
