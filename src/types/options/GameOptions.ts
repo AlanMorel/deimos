@@ -1,4 +1,4 @@
-import { Hotbar } from "./HotBar";
+import { Hotbar } from "./Hotbar";
 import { KeyBind } from "./KeyBind";
 
 export class GameOptions {
