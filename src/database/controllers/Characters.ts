@@ -5,7 +5,7 @@ import { Player } from "../../types/player/Player";
 import { Character, CharacterEntity } from "../entities/Character";
 import { Controller } from "./Controller";
 
-export class Characters extends Controller<Character> {
+export class Characters extends Controller<Character, Player> {
 
     public constructor() {
         super(CharacterEntity);
@@ -20,7 +20,7 @@ export class Characters extends Controller<Character> {
         return characters.map(character => this.fromDatabase(character));
     }
 
-    public async getByCharactertId(id: BigInt): Promise<Player | undefined> {
+    public async getByCharacterId(id: BigInt): Promise<Player | undefined> {
         const character = await this.repository.findOne({
             where: {
                 id: id.toString()
@@ -37,7 +37,7 @@ export class Characters extends Controller<Character> {
         this.repository.save(character);
     }
 
-    private fromDatabase(character: Character): Player {
+    protected fromDatabase(character: Character): Player {
         const color = Color.fromValue(character.skinColor);
         const skinColor = new SkinColor(color, color);
 
@@ -50,7 +50,7 @@ export class Characters extends Controller<Character> {
         return player;
     }
 
-    private toDatabase(player: Player): Character {
+    protected toDatabase(player: Player): Character {
 
         const character: Character = {
             accountId: player.accountId.toString(),

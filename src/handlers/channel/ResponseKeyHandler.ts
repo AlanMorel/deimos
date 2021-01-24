@@ -41,7 +41,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
 
         ResponseKeyHelper.handle(session, packet);
 
-        const player = await Database.getCharacters().getByCharactertId(authData.characterId);
+        const player = await Database.getCharacters().getByCharacterId(authData.characterId);
         if (!player) {
             return;
         }

@@ -1,7 +1,8 @@
+import { Player } from "../../types/player/Player";
 import { Account, AccountEntity } from "../entities/Account";
 import { Controller } from "./Controller";
 
-export class Accounts extends Controller<Account> {
+export class Accounts extends Controller<Account, Player> {
 
     public constructor() {
         super(AccountEntity);
@@ -15,5 +16,13 @@ export class Accounts extends Controller<Account> {
             }
         });
         return account;
+    }
+
+    protected fromDatabase(from: Account): Player {
+        throw new Error("Method not implemented.");
+    }
+
+    protected toDatabase(to: Player): Account {
+        throw new Error("Method not implemented.");
     }
 }
