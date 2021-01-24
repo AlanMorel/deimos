@@ -1,6 +1,6 @@
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AuthStorage } from "../../data/storage/AuthStorage";
-import { Characters } from "../../database/controllers/Characters";
+import { Database } from "../../database/Database";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { BuddyListPacket } from "../../packets/BuddyListPacket";
 import { DynamicChannelPacket } from "../../packets/DynamicChannelPacket";
@@ -41,7 +41,7 @@ export class ResponseKeyHandler implements ChannelPacketHandler {
 
         ResponseKeyHelper.handle(session, packet);
 
-        const player = await Characters.getByCharactertId(authData.characterId);
+        const player = await Database.getCharacters().getByCharactertId(authData.characterId);
         if (!player) {
             return;
         }

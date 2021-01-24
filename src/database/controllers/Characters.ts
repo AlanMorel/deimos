@@ -1,15 +1,18 @@
-import { getRepository } from "typeorm";
 import { Color } from "../../types/color/Color";
 import { SkinColor } from "../../types/color/SkinColor";
 import { Gender } from "../../types/player/Gender";
 import { Player } from "../../types/player/Player";
 import { Character, CharacterEntity } from "../entities/Character";
+import { Controller } from "./Controller";
 
-export class Characters {
+export class Characters extends Controller<Character> {
 
-    public static async getByAccountId(id: BigInt): Promise<Player[]> {
-        const repository = getRepository<Character>(CharacterEntity);
-        const characters = await repository.find({
+    public constructor() {
+        super(CharacterEntity);
+    }
+
+    public async getByAccountId(id: BigInt): Promise<Player[]> {
+        const characters = await this.repository.find({
             where: {
                 accountId: id.toString()
             }
@@ -17,9 +20,8 @@ export class Characters {
         return characters.map(character => this.fromDatabase(character));
     }
 
-    public static async getByCharactertId(id: BigInt): Promise<Player | undefined> {
-        const repository = getRepository<Character>(CharacterEntity);
-        const character = await repository.findOne({
+    public async getByCharactertId(id: BigInt): Promise<Player | undefined> {
+        const character = await this.repository.findOne({
             where: {
                 id: id.toString()
             }
@@ -30,13 +32,12 @@ export class Characters {
         return this.fromDatabase(character);
     }
 
-    public static async insert(player: Player): Promise<void> {
-        const repository = getRepository<Character>(CharacterEntity);
+    public async insert(player: Player): Promise<void> {
         const character = this.toDatabase(player);
-        repository.save(character);
+        this.repository.save(character);
     }
 
-    private static fromDatabase(character: Character): Player {
+    private fromDatabase(character: Character): Player {
         const color = Color.fromValue(character.skinColor);
         const skinColor = new SkinColor(color, color);
 
@@ -49,7 +50,7 @@ export class Characters {
         return player;
     }
 
-    private static toDatabase(player: Player): Character {
+    private toDatabase(player: Player): Character {
 
         const character: Character = {
             accountId: player.accountId.toString(),

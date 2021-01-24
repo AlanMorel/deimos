@@ -1,11 +1,14 @@
-import { getRepository } from "typeorm";
 import { Account, AccountEntity } from "../entities/Account";
+import { Controller } from "./Controller";
 
-export class Accounts {
+export class Accounts extends Controller<Account> {
 
-    public static async getByCredentials(username: string, password: string): Promise<Account | undefined> {
-        const repository = getRepository<Account>(AccountEntity);
-        const account = repository.findOne({
+    public constructor() {
+        super(AccountEntity);
+    }
+
+    public async getByCredentials(username: string, password: string): Promise<Account | undefined> {
+        const account = this.repository.findOne({
             where: {
                 username: username,
                 password: password

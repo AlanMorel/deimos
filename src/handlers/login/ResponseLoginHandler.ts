@@ -1,7 +1,6 @@
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { Accounts } from "../../database/controllers/Accounts";
-import { Characters } from "../../database/controllers/Characters";
+import { Database } from "../../database/Database";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
@@ -31,7 +30,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         Logger.log(`Logging in with username: '${username}' pass: '${password}'`, HexColor.PURPLE);
 
-        const account = await Accounts.getByCredentials(username, password);
+        const account = await Database.getAccounts().getByCredentials(username, password);
 
         if (account) {
             Logger.log("Account found.", HexColor.GREEN);
@@ -53,7 +52,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
                 break;
             case Mode.LOGIN_2:
-                const players = await Characters.getByAccountId(session.accountId);
+                const players = await Database.getCharacters().getByAccountId(session.accountId);
 
                 players.forEach(player => {
                     player.equips = Player.getTestEquips();

@@ -1,17 +1,26 @@
 import { Connection, getConnectionManager } from "typeorm";
 import Configs from "../Configs";
+import { Accounts } from "./controllers/Accounts";
+import { Characters } from "./controllers/Characters";
 import { AccountEntity } from "./entities/Account";
 import { CharacterEntity } from "./entities/Character";
 
 export class Database {
 
-    private static readonly instance = new Database();
+    private static instance: Database;
 
     private connection: Connection;
 
-    private constructor() {
+    private accounts: Accounts = new Accounts();
+    private characters: Characters = new Characters()
+
+    private constructor(connection: Connection) {
+        this.connection = connection;
+    }
+
+    public static async connect(): Promise<void> {
         const connectionManager = getConnectionManager();
-        this.connection = connectionManager.create({
+        const connection = connectionManager.create({
             type: "mysql",
             host: Configs.database.host,
             port: Configs.database.port,
@@ -25,9 +34,17 @@ export class Database {
                 CharacterEntity
             ]
         });
+
+        await connection.connect();
+
+        this.instance = new Database(connection);
     }
 
-    public static connect(): Promise<Connection> {
-        return this.instance.connection.connect();
+    public static getAccounts(): Accounts {
+        return this.instance.accounts;
+    }
+
+    public static getCharacters(): Characters {
+        return this.instance.characters;
     }
 }

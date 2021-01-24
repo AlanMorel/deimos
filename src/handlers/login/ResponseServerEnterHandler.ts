@@ -1,6 +1,6 @@
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { Characters } from "../../database/controllers/Characters";
+import { Database } from "../../database/Database";
 import { Endpoint } from "../../network/Endpoint";
 import { LoginSession } from "../../network/sessions/LoginSession";
 import { BannerListPacket } from "../../packets/BannerListPacket";
@@ -24,7 +24,7 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners
         session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
 
-        const players = await Characters.getByAccountId(session.accountId);
+        const players = await Database.getCharacters().getByAccountId(session.accountId);
 
         players.forEach(player => {
             player.equips = Player.getTestEquips();
