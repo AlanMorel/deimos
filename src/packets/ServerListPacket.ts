@@ -9,7 +9,7 @@ enum Mode {
 
 export class ServerListPacket {
 
-    public static setServers(serverName: string, endpoints: Endpoint[], unknownData: Buffer): Packet {
+    public static setServers(serverName: string, endpoints: Endpoint[], channels: number): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.SERVER_LIST);
@@ -26,9 +26,9 @@ export class ServerListPacket {
 
         packet.writeInt(100); // constant?
 
-        packet.writeShort(unknownData.length);
-        for (const byte of unknownData) {
-            packet.writeShort(byte);
+        packet.writeShort(channels);
+        for (let i = 0; i < channels; i++) {
+            packet.writeShort(channels);
         }
 
         return packet;

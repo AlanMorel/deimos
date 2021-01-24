@@ -7,7 +7,6 @@ import { BannerListPacket } from "../../packets/BannerListPacket";
 import { CharacterListPacket } from "../../packets/CharacterListPacket";
 import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
 import { ServerListPacket } from "../../packets/ServerListPacket";
-import { ArrayManipulator } from "../../tools/ArrayManipulator";
 import { Player } from "../../types/player/Player";
 import { LoginPacketHandler } from "../LoginPacketHandler";
 
@@ -19,10 +18,10 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
         const endpoints = [
             new Endpoint(Configs.login.host, Configs.login.port)
         ];
-        const unknownData = Buffer.from(ArrayManipulator.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+        const world = Configs.worlds[0];
 
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners
-        session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
+        session.send(ServerListPacket.setServers(world.name, endpoints, world.channels.length));
 
         const players = await Database.getCharacters().getByAccountId(session.accountId);
 

@@ -10,7 +10,6 @@ import { LoginResultPacket } from "../../packets/LoginResultPacket";
 import { NpsInfoPacket } from "../../packets/NpsInfoPacket";
 import { ServerListPacket } from "../../packets/ServerListPacket";
 import { UgcPacket } from "../../packets/UgcPacket";
-import { ArrayManipulator } from "../../tools/ArrayManipulator";
 import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { Player } from "../../types/player/Player";
@@ -45,11 +44,11 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 const endpoints = [
                     new Endpoint(Configs.login.host, Configs.login.port)
                 ];
-                const unknownData = Buffer.from(ArrayManipulator.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+                const world = Configs.worlds[0];
 
                 session.send(NpsInfoPacket.npsInfo());
                 session.send(BannerListPacket.setBanner(0)); // TODO: load banners
-                session.send(ServerListPacket.setServers(Configs.worlds[0].name, endpoints, unknownData));
+                session.send(ServerListPacket.setServers(world.name, endpoints, world.channels.length));
                 break;
             case Mode.LOGIN_2:
                 const players = await Database.getCharacters().getByAccountId(session.accountId);
