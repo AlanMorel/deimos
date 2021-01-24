@@ -14,12 +14,11 @@ export class Field {
 
     private counter: number = 100000;
     private sessions = new Array<ChannelSession>();
+    private updater: NodeJS.Timeout;
 
     public constructor(id: number) {
         this.id = id;
-        setInterval(() => {
-            this.sendUpdates();
-        }, Field.UPDATE_INTERVAL);
+        this.updater = setInterval(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
     }
 
     private getUpdates(): Packet[] {
@@ -42,6 +41,15 @@ export class Field {
         });
     }
 
+    private pauseUpdates(): void {
+        clearInterval(this.updater);
+    }
+
+    private resumeUpdates(): void {
+        clearInterval(this.updater);
+        this.updater = setInterval(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
+    }
+
     public broadcast(packet: Packet, sender: ChannelSession | null = null): void {
         this.sessions.filter(session => !sender || sender.id !== session.id).forEach(session => {
             session.send(packet);
@@ -62,6 +70,10 @@ export class Field {
 
         this.broadcast(FieldAddUserPacket.addPlayer(session.player));
         this.broadcast(ProxyGameObjectPacket.loadPlayer(session.player));
+
+        if (this.sessions.length === 1) {
+            this.resumeUpdates();
+        }
     }
 
     public removePlayer(session: ChannelSession): void {
@@ -72,5 +84,9 @@ export class Field {
         this.sessions.splice(index, 1);
 
         session.player.objectId = 0;
+
+        if (this.sessions.length < 1) {
+            this.pauseUpdates();
+        }
     }
 }
