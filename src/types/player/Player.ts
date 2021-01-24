@@ -67,7 +67,7 @@ export class Player {
     public equips = new Map<ItemSlot, Item>();
     public equipSlots: ItemSlot[] = new Array<ItemSlot>();
 
-    public jobGroupId: Job; // jobgroupname.xml
+    public job: Job; // jobgroupname.xml
     public awakened: boolean = false;
 
     public gameOptions: GameOptions = new GameOptions();
@@ -76,10 +76,10 @@ export class Player {
 
     public session?: ChannelSession;
 
-    public constructor(characterId: BigInt, gender: Gender, jobGroupId: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item> = new Map<ItemSlot, Item>()) {
+    public constructor(characterId: BigInt, gender: Gender, job: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item> = new Map<ItemSlot, Item>()) {
         this.characterId = characterId;
         this.gender = gender;
-        this.jobGroupId = jobGroupId;
+        this.job = job;
         this.name = name;
         this.skinColor = skinColor;
         this.equips = equips;
@@ -92,7 +92,7 @@ export class Player {
     }
 
     public getJobId(): number {
-        return this.jobGroupId + (this.awakened ? 1 : 0);
+        return this.job + (this.awakened ? 1 : 0);
     }
 
     private getDefaultEquipSlot(): ItemSlot {

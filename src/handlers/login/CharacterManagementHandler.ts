@@ -68,7 +68,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
     private handleCreate(session: LoginSession, packet: PacketReader): void {
         const gender = packet.readByte();
-        const jobGroupId = packet.readShort() * 10;
+        const job = packet.readShort() * 10;
         const name = packet.readUnicodeString();
         const skinColor = SkinColor.read(packet);
 
@@ -115,7 +115,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
             return;
         }
 
-        const newCharacter = new Player(BigInt(-1), gender, jobGroupId, name, skinColor, equips);
+        const newCharacter = new Player(BigInt(-1), gender, job, name, skinColor, equips);
 
         newCharacter.mapId = 52000065;
         newCharacter.coord = new CoordF(-800, 600, 500);

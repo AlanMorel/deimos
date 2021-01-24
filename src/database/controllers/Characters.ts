@@ -56,7 +56,7 @@ export class Characters extends Controller<Character, Player> {
             accountId: player.accountId.toString(),
             name: player.name,
             gender: player.gender === 1,
-            job: player.jobGroupId,
+            job: player.job,
             skinColor: Color.toValue(player.skinColor.primary)
         };
 
