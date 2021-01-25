@@ -1,4 +1,4 @@
-import { ItemMetadata } from "../../data/metadata/ItemMetadata";
+import { Metadata } from "../../data/metadata/Metadata";
 import { GuidGenerator } from "../../tools/GuidGenerator";
 import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
@@ -51,9 +51,9 @@ export class Item {
 
     public constructor(id: number) {
         this.id = id;
-        this.inventoryTab = ItemMetadata.getTab(id);
-        this.itemSlot = ItemMetadata.getSlot(id);
-        this.slotMax = ItemMetadata.getSlotMax(id);
+        this.inventoryTab = Metadata.getItems().getTab(id);
+        this.itemSlot = Metadata.getItems().getSlot(id);
+        this.slotMax = Metadata.getItems().getSlotMax(id);
         this.isTemplate = false; // TODO: ItemMetadata.getIsTemplate(id);
     }
 
