@@ -13,8 +13,8 @@ export class CoordB extends Coord {
     }
 
     public static write(packet: PacketWriter, coords: CoordB): void {
-        packet.writeByte(coords.X);
-        packet.writeByte(coords.Y);
-        packet.writeByte(coords.Z);
+        packet.writeByte(coords.x);
+        packet.writeByte(coords.y);
+        packet.writeByte(coords.z);
     }
 }

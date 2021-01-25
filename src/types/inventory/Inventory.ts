@@ -30,7 +30,7 @@ export class Inventory {
         }
     }
 
-    public getItems(tab: InventoryTab): Array<Item> {
+    public getItems(tab: InventoryTab): Item[] {
         const uids = Array.from(this.getSlots(tab).values());
         const items = new Array<Item>();
         for (let i = 0; i < uids.length; i++) {

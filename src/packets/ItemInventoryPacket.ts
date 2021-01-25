@@ -79,7 +79,7 @@ export class ItemInventoryPacket {
         return packet;
     }
 
-    public static loadItemsToTab(tab: InventoryTab, items: Array<Item>): Packet {
+    public static loadItemsToTab(tab: InventoryTab, items: Item[]): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.ITEM_INVENTORY);
