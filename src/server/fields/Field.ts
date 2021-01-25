@@ -10,7 +10,7 @@ export class Field {
     private static readonly UPDATE_INTERVAL = 1000;
 
     public id: number;
-    public state: FieldState = new FieldState();
+    public state: FieldState;
 
     private counter: number = 100000;
     private sessions = new Array<ChannelSession>();
@@ -18,6 +18,7 @@ export class Field {
 
     public constructor(id: number) {
         this.id = id;
+        this.state = new FieldState(this, id);
         this.updater = setInterval(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
     }
 
@@ -50,6 +51,10 @@ export class Field {
         this.updater = setInterval(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
     }
 
+    public getNewObjectId(): number {
+        return this.counter++;
+    }
+
     public broadcast(packet: Packet, sender: ChannelSession | null = null): void {
         this.sessions.filter(session => !sender || sender.id !== session.id).forEach(session => {
             session.send(packet);
@@ -63,7 +68,7 @@ export class Field {
             session.send(ProxyGameObjectPacket.loadPlayer(existingPlayer));
         }
 
-        session.player.objectId = this.counter++;
+        session.player.objectId = this.getNewObjectId();
 
         this.state.addPlayer(session.player);
         this.sessions.push(session);

@@ -2,6 +2,7 @@ import fs from "fs";
 import protobuf from "protobufjs";
 import { Logger } from "../../tools/Logger";
 import { ItemMetadata } from "./items/ItemMetadata";
+import { MapMetadata } from "./maps/MapMetadata";
 import { Metadata } from "./Metadata";
 
 export class MetadataLoader {
@@ -10,6 +11,8 @@ export class MetadataLoader {
         const items = this.decode<ItemMetadata>("item", "Item");
         Metadata.getItems().load(items);
 
+        const maps = this.decode<MapMetadata>("map-entity", "MapEntity");
+        Metadata.getMaps().load(maps);
 
         Logger.log("Metadata loaded successfully");
     }
