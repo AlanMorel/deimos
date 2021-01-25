@@ -1,15 +1,16 @@
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { UgcPacketHelper } from "../packets/helpers/UgcPacketHelper";
+import { FieldObject } from "../server/fields/FieldObject";
 import { RideType } from "./RideType";
 
-export class Mount {
+export class Mount extends FieldObject {
 
     public type: RideType;
     public id: number;
     public uid: BigInt;
-    public objectId: number = 0;
 
     public constructor(type: RideType, id: number, uid: BigInt) {
+        super();
         this.type = type;
         this.id = id;
         this.uid = uid;

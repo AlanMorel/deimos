@@ -1,4 +1,5 @@
 import { ChannelSession } from "../../network/sessions/ChannelSession";
+import { FieldObject } from "../../server/fields/FieldObject";
 import { Color } from "../color/Color";
 import { ItemColor } from "../color/ItemColor";
 import { SkinColor } from "../color/SkinColor";
@@ -17,7 +18,7 @@ import { Gender } from "./Gender";
 import { PlayerStats } from "./PlayerStats";
 import { Wallet } from "./Wallet";
 
-export class Player {
+export class Player extends FieldObject {
 
     // bypass Key is constant PER ACCOUNT, seems like as long as it's valid, it doesn't matter
     public readonly unknownId: BigInt = BigInt(0x01EF80C2); // 0x01CC3721;
@@ -32,7 +33,6 @@ export class Player {
     // mutable Values
     public mapId: number = 2000023;
     public level: number = 1;
-    public objectId: number = 0;
     public experience: BigInt = 0n;
     public restExperience: BigInt = 0n;
     public prestigeLevel: number = 100;
@@ -46,7 +46,6 @@ export class Player {
     // combat, adventure, lifestyle
     public trophy: number[] = new Array(3);
 
-    public coord: CoordF = new CoordF(-39, -4347, 9001);
     public rotation: CoordF = new CoordF(0, 0, 0);
 
     // appearance
@@ -77,6 +76,7 @@ export class Player {
     public session?: ChannelSession;
 
     public constructor(characterId: BigInt, gender: Gender, job: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item> = new Map<ItemSlot, Item>()) {
+        super();
         this.characterId = characterId;
         this.gender = gender;
         this.job = job;
@@ -85,6 +85,7 @@ export class Player {
         this.equips = equips;
         this.inventory = new Inventory(this, 48);
         this.wallet = new Wallet(this);
+        this.coord = new CoordF(-39, -4347, 9001);
     }
 
     public static getInitialPlayer(): Player {
