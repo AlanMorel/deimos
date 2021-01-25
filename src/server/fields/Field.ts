@@ -1,6 +1,7 @@
 import { Packet } from "../../crypto/protocol/Packet";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
 import { FieldAddUserPacket } from "../../packets/FieldAddUserPacket";
+import { FieldPortalPacket } from "../../packets/FieldPortalPacket";
 import { FieldRemoveUserPacket } from "../../packets/FieldRemoveUserPacket";
 import { ProxyGameObjectPacket } from "../../packets/ProxyGameObjectPacket";
 import { FieldState } from "./FieldState";
@@ -66,6 +67,10 @@ export class Field {
         for (const existingPlayer of this.state.getPlayers()) {
             session.send(FieldAddUserPacket.addPlayer(existingPlayer));
             session.send(ProxyGameObjectPacket.loadPlayer(existingPlayer));
+        }
+
+        for (const portal of this.state.getPortals()) {
+            session.send(FieldPortalPacket.addPortal(portal));
         }
 
         session.player.objectId = this.getNewObjectId();
