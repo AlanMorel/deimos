@@ -7,6 +7,10 @@ export interface Character {
     gender: boolean;
     job: number;
     skinColor: number;
+    mapId: number;
+    x: number;
+    y: number;
+    z: number;
 }
 
 export const CharacterEntity = new EntitySchema<Character>({
@@ -30,6 +34,18 @@ export const CharacterEntity = new EntitySchema<Character>({
             type: "int"
         },
         skinColor: {
+            type: "int"
+        },
+        mapId: {
+            type: "int"
+        },
+        x: {
+            type: "int"
+        },
+        y: {
+            type: "int"
+        },
+        z: {
             type: "int"
         }
     }

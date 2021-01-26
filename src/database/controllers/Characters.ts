@@ -1,5 +1,6 @@
 import { Color } from "../../types/color/Color";
 import { SkinColor } from "../../types/color/SkinColor";
+import { CoordF } from "../../types/coords/CoordF";
 import { Gender } from "../../types/player/Gender";
 import { Player } from "../../types/player/Player";
 import { Character, CharacterEntity } from "../entities/Character";
@@ -46,6 +47,8 @@ export class Characters extends Controller<Character, Player> {
 
         const player = new Player(id, gender, character.job, character.name, skinColor);
         player.equips = Player.getTestEquips();
+        player.mapId = character.mapId;
+        player.coord = new CoordF(character.x, character.y, character.z);
 
         return player;
     }
@@ -57,7 +60,11 @@ export class Characters extends Controller<Character, Player> {
             name: player.name,
             gender: player.gender === 1,
             job: player.job,
-            skinColor: Color.toValue(player.skinColor.primary)
+            skinColor: Color.toValue(player.skinColor.primary),
+            mapId: player.mapId,
+            x: player.coord.x,
+            y: player.coord.y,
+            z: player.coord.z
         };
 
         return character;

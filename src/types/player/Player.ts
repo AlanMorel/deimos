@@ -31,7 +31,7 @@ export class Player extends FieldObject {
     public gender: Gender;
 
     // mutable Values
-    public mapId: number = 2000023;
+    public mapId: number = 0;
     public level: number = 1;
     public experience: BigInt = 0n;
     public restExperience: BigInt = 0n;
@@ -85,7 +85,6 @@ export class Player extends FieldObject {
         this.equips = equips;
         this.inventory = new Inventory(this, 48);
         this.wallet = new Wallet(this);
-        this.coord = new CoordF(-39, -4347, 9001);
     }
 
     public static getInitialPlayer(): Player {
