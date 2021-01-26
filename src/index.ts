@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import Configs from "./Configs";
 import { Metadata } from "./data/metadata/Metadata";
 import { Database } from "./database/Database";
@@ -8,12 +9,16 @@ import { Logger } from "./tools/Logger";
 
 Logger.log("Deimos has started", HexColor.YELLOW);
 
+if (dotenv.config().parsed) {
+    Logger.log("Environment variables loaded successfully", HexColor.PURPLE);
+}
+
 if (Configs.settings.loadMetadata) {
     Metadata.load();
 }
 
-Database.connect().then(async () => {
-    Logger.log("Database connection successful", HexColor.PURPLE);
+Database.connect().then(() => {
+    Logger.log("Database connection established successfully", HexColor.PURPLE);
 });
 
 new LoginServer(Configs.login.host, Configs.login.port);

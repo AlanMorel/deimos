@@ -22,11 +22,11 @@ export class Database {
         const connectionManager = getConnectionManager();
         const connection = connectionManager.create({
             type: "mysql",
-            host: Configs.database.host,
-            port: Configs.database.port,
-            username: Configs.database.username,
-            password: Configs.database.password,
-            database: Configs.database.schema,
+            host: process.env.DB_HOST,
+            port: parseInt(process.env.PORT ?? ""),
+            username: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database: process.env.DB_SCHEMA,
             logging: Configs.settings.logQueries,
             synchronize: true,
             entities: [

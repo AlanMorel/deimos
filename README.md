@@ -21,11 +21,17 @@ $ cd deimos
 $ npm install
 ```
 
-3) Edit `src/Configs.ts` to your liking, then compile and run the server.
+3) Rename `.env.example` to `.env` and edit it to your liking.
+
+4) Edit `src/Configs.ts` to your liking, then compile and run the server.
 
 ```sh
 $ npm run start
 ```
+
+#### Development
+
+For the best development experience, run the compiler in watch mode to watch for any changes automatically. Also, make sure to run the linter to ensure your code complies with the code standards of this project.
 
 #### Commands
 
