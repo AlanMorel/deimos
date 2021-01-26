@@ -1,5 +1,5 @@
 import Configs from "./Configs";
-import { MetadataLoader } from "./data/metadata/MetadataLoader";
+import { Metadata } from "./data/metadata/Metadata";
 import { Database } from "./database/Database";
 import { ChannelServer } from "./network/servers/ChannelServer";
 import { LoginServer } from "./network/servers/LoginServer";
@@ -9,7 +9,7 @@ import { Logger } from "./tools/Logger";
 Logger.log("Deimos has started", HexColor.YELLOW);
 
 if (Configs.settings.loadMetadata) {
-    MetadataLoader.load();
+    Metadata.load();
 }
 
 Database.connect().then(async () => {
