@@ -2,6 +2,7 @@ import { RecvOp } from "./constants/RecvOp";
 import { SendOp } from "./constants/SendOp";
 
 export default {
+    name: "Deimos",
     version: 12,
     login: {
         host: "127.0.0.1",
