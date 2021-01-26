@@ -4,6 +4,7 @@ import { FieldAddUserPacket } from "../../packets/FieldAddUserPacket";
 import { FieldPortalPacket } from "../../packets/FieldPortalPacket";
 import { FieldRemoveUserPacket } from "../../packets/FieldRemoveUserPacket";
 import { ProxyGameObjectPacket } from "../../packets/ProxyGameObjectPacket";
+import { Timer } from "../../tools/Timer";
 import { FieldState } from "./FieldState";
 
 export class Field {
@@ -15,12 +16,12 @@ export class Field {
 
     private counter: number = 100000;
     private sessions = new Array<ChannelSession>();
-    private updater: NodeJS.Timeout;
+    private updater: Timer;
 
     public constructor(id: number) {
         this.id = id;
         this.state = new FieldState(this, id);
-        this.updater = setInterval(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
+        this.updater = new Timer(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
     }
 
     private getUpdates(): Packet[] {
@@ -41,15 +42,6 @@ export class Field {
                 session.send(packet);
             });
         });
-    }
-
-    private pauseUpdates(): void {
-        clearInterval(this.updater);
-    }
-
-    private resumeUpdates(): void {
-        clearInterval(this.updater);
-        this.updater = setInterval(() => this.sendUpdates(), Field.UPDATE_INTERVAL);
     }
 
     public getNewObjectId(): number {
@@ -82,7 +74,7 @@ export class Field {
         this.broadcast(ProxyGameObjectPacket.loadPlayer(session.player));
 
         if (this.sessions.length === 1) {
-            this.resumeUpdates();
+            this.updater.start();
         }
     }
 
@@ -96,7 +88,7 @@ export class Field {
         session.player.objectId = 0;
 
         if (this.sessions.length < 1) {
-            this.pauseUpdates();
+            this.updater.stop();
         }
     }
 }
