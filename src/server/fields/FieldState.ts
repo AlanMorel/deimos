@@ -1,5 +1,6 @@
 import { MapPortalFlag } from "../../data/metadata/maps/portals/MapPortalFlag";
 import { Metadata } from "../../data/metadata/Metadata";
+import { Enum } from "../../tools/Enum";
 import { Player } from "../../types/player/Player";
 import { Field } from "./Field";
 import { Portal } from "./Portal";
@@ -18,9 +19,9 @@ export class FieldState {
 
         mapMetadata.portals.forEach(portal => {
             const id = portal.id;
-            const isVisible = (portal.flags & MapPortalFlag.Visible) != 0;
-            const isEnabled = (portal.flags & MapPortalFlag.Enabled) != 0;
-            const isMiniMapVisible = (portal.flags & MapPortalFlag.MinimapVisible) != 0;
+            const isVisible = Enum.hasFlag(portal.flags, MapPortalFlag.Visible);
+            const isEnabled = Enum.hasFlag(portal.flags, MapPortalFlag.Enabled);
+            const isMiniMapVisible = Enum.hasFlag(portal.flags, MapPortalFlag.MinimapVisible);
             const rotation = portal.rotation;
             const targetMapId = portal.target;
 

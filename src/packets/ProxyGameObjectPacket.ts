@@ -2,6 +2,7 @@ import { SendOp } from "../constants/SendOp";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { FieldObjectUpdate } from "../server/fields/FieldObjectUpdate";
+import { Enum } from "../tools/Enum";
 import { CoordF } from "../types/coords/CoordF";
 import { Player } from "../types/player/Player";
 
@@ -51,32 +52,32 @@ export class ProxyGameObjectPacket {
         packet.writeInt(player.objectId);
         packet.writeByte(flag);
 
-        if ((flag & FieldObjectUpdate.Type1) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Type1)) {
             packet.writeByte();
         }
 
-        if ((flag & FieldObjectUpdate.Move) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Move)) {
             CoordF.write(packet, player.coord);
         }
 
-        if ((flag & FieldObjectUpdate.Type3) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Type3)) {
             packet.writeShort();
         }
 
-        if ((flag & FieldObjectUpdate.Type4) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Type4)) {
             packet.writeShort();
             packet.writeInt();
         }
 
-        if ((flag & FieldObjectUpdate.Type5) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Type5)) {
             packet.writeUnicodeString("Unknown");
         }
 
-        if ((flag & FieldObjectUpdate.Type6) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Type6)) {
             packet.writeInt();
         }
 
-        if ((flag & FieldObjectUpdate.Animate) != 0) {
+        if (Enum.hasFlag(flag, FieldObjectUpdate.Animate)) {
             packet.writeShort(player.animation);
         }
 

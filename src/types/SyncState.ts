@@ -1,6 +1,7 @@
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketReader } from "../crypto/protocol/PacketReader";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
+import { Enum } from "../tools/Enum";
 import { CoordF } from "./coords/CoordF";
 import { CoordS } from "./coords/CoordS";
 import { SyncStateFlag } from "./SyncStateFlag";
@@ -54,7 +55,7 @@ export class SyncState {
         state.animation2 = packet.readByte();
 
         state.flag = packet.readByte();
-        if ((state.flag & SyncStateFlag.Flag1) != 0) {
+        if (Enum.hasFlag(state.flag, SyncStateFlag.Flag1)) {
             state.flag1Unknown1 = packet.readInt();
             state.flag1Unknown2 = packet.readShort();
         }
@@ -73,26 +74,26 @@ export class SyncState {
         state.unknown2 = packet.readShort(); // CoordS / 10
         state.unknown3 = packet.readShort(); // CoordS / 1000
 
-        if ((state.flag & SyncStateFlag.Flag2) != 0) {
+        if (Enum.hasFlag(state.flag, SyncStateFlag.Flag2)) {
             state.flag2Unknown1 = CoordF.read(packet);
             state.flag2Unknown2 = packet.readUnicodeString();
         }
 
-        if ((state.flag & SyncStateFlag.Flag3) != 0) {
+        if (Enum.hasFlag(state.flag, SyncStateFlag.Flag3)) {
             state.flag3Unknown1 = packet.readInt();
             state.flag3Unknown2 = packet.readUnicodeString();
         }
 
-        if ((state.flag & SyncStateFlag.Flag4) != 0) {
+        if (Enum.hasFlag(state.flag, SyncStateFlag.Flag4)) {
             state.flag4Unknown = packet.readUnicodeString(); // animation string?
         }
 
-        if ((state.flag & SyncStateFlag.Flag5) != 0) {
+        if (Enum.hasFlag(state.flag, SyncStateFlag.Flag5)) {
             state.flag5Unknown1 = packet.readInt();
             state.flag5Unknown2 = packet.readUnicodeString();
         }
 
-        if ((state.flag & SyncStateFlag.Flag6) != 0) {
+        if (Enum.hasFlag(state.flag, SyncStateFlag.Flag6)) {
             state.flag6Unknown1 = packet.readInt();
             state.flag6Unknown2 = packet.readInt();
             state.flag6Unknown3 = packet.readByte();
@@ -110,7 +111,7 @@ export class SyncState {
         packet.writeByte(entry.animation2);
         packet.writeByte(entry.flag);
 
-        if ((entry.flag & SyncStateFlag.Flag1) != 0) {
+        if (Enum.hasFlag(entry.flag, SyncStateFlag.Flag1)) {
             packet.writeInt(entry.flag1Unknown1);
             packet.writeShort(entry.flag1Unknown2);
         }
@@ -129,26 +130,26 @@ export class SyncState {
         packet.writeShort(entry.unknown2);
         packet.writeShort(entry.unknown3);
 
-        if ((entry.flag & SyncStateFlag.Flag2) != 0) {
+        if (Enum.hasFlag(entry.flag, SyncStateFlag.Flag2)) {
             CoordF.write(packet, entry.flag2Unknown1);
             packet.writeUnicodeString(entry.flag2Unknown2 ?? "");
         }
 
-        if ((entry.flag & SyncStateFlag.Flag3) != 0) {
+        if (Enum.hasFlag(entry.flag, SyncStateFlag.Flag3)) {
             packet.writeInt(entry.flag3Unknown1);
             packet.writeUnicodeString(entry.flag3Unknown2 ?? "");
         }
 
-        if ((entry.flag & SyncStateFlag.Flag4) != 0) {
+        if (Enum.hasFlag(entry.flag, SyncStateFlag.Flag4)) {
             packet.writeUnicodeString(entry.flag4Unknown ?? "");
         }
 
-        if ((entry.flag & SyncStateFlag.Flag5) != 0) {
+        if (Enum.hasFlag(entry.flag, SyncStateFlag.Flag5)) {
             packet.writeInt(entry.flag5Unknown1);
             packet.writeUnicodeString(entry.flag5Unknown2 ?? "");
         }
 
-        if ((entry.flag & SyncStateFlag.Flag6) != 0) {
+        if (Enum.hasFlag(entry.flag, SyncStateFlag.Flag6)) {
             packet.writeInt(entry.flag6Unknown1);
             packet.writeInt(entry.flag6Unknown2);
             packet.writeByte(entry.flag6Unknown3);
