@@ -33,6 +33,15 @@ export class Characters extends Controller<Character, Player> {
         return this.fromDatabase(character);
     }
 
+    public async isNameFree(name: string): Promise<boolean> {
+        const character = await this.repository.findOne({
+            where: {
+                name: name
+            }
+        });
+        return character === undefined;
+    }
+
     public async insert(player: Player): Promise<void> {
         const character = this.toDatabase(player);
         this.repository.save(character);

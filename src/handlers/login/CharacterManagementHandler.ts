@@ -66,7 +66,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         session.send(LoginToGamePacket.loginToGame(endpoint, authData));
     }
 
-    private handleCreate(session: LoginSession, packet: PacketReader): void {
+    private async handleCreate(session: LoginSession, packet: PacketReader): Promise<void> {
         const gender = packet.readByte();
         const job = packet.readShort() * 10;
         const name = packet.readUnicodeString();
@@ -108,9 +108,9 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         packet.readInt(); // constant 4?
 
-        const taken = false; // TODO: validate name is available
+        const isNameFree = await Database.getCharacters().isNameFree(name);
 
-        if (taken) {
+        if (!isNameFree) {
             session.send(CharacterCreatePacket.nameTaken());
             return;
         }
