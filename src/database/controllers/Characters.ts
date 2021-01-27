@@ -3,10 +3,10 @@ import { SkinColor } from "../../types/color/SkinColor";
 import { CoordF } from "../../types/coords/CoordF";
 import { Gender } from "../../types/player/Gender";
 import { Player } from "../../types/player/Player";
-import { Character, CharacterEntity } from "../entities/Character";
+import { CharacterEntity, CharacterRow } from "../entities/Character";
 import { Controller } from "./Controller";
 
-export class Characters extends Controller<Character, Player> {
+export class Characters extends Controller<CharacterRow, Player> {
 
     public constructor() {
         super(CharacterEntity);
@@ -47,7 +47,7 @@ export class Characters extends Controller<Character, Player> {
         this.repository.save(character);
     }
 
-    protected fromDatabase(character: Character): Player {
+    protected fromDatabase(character: CharacterRow): Player {
         const color = Color.fromValue(character.skinColor);
         const skinColor = new SkinColor(color, color);
 
@@ -62,9 +62,9 @@ export class Characters extends Controller<Character, Player> {
         return player;
     }
 
-    protected toDatabase(player: Player): Character {
+    protected toDatabase(player: Player): CharacterRow {
 
-        const character: Character = {
+        const character: CharacterRow = {
             accountId: player.accountId.toString(),
             name: player.name,
             gender: player.gender === 1,

@@ -1,6 +1,6 @@
 import { EntitySchema } from "typeorm";
 
-export interface Character {
+export interface CharacterRow {
     id?: string;
     accountId: string,
     name: string;
@@ -13,7 +13,7 @@ export interface Character {
     z: number;
 }
 
-export const CharacterEntity = new EntitySchema<Character>({
+export const CharacterEntity = new EntitySchema<CharacterRow>({
     name: "Characters",
     columns: {
         id: {
