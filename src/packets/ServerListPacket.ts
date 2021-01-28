@@ -27,8 +27,8 @@ export class ServerListPacket {
         packet.writeInt(100); // constant?
 
         packet.writeShort(channels);
-        for (let i = 0; i < channels; i++) {
-            packet.writeShort(channels);
+        for (let i = 1; i <= channels; i++) {
+            packet.writeShort(i);
         }
 
         return packet;

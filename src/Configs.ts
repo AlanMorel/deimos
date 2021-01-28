@@ -15,6 +15,9 @@ export default {
                 {
                     host: "127.0.0.1",
                     port: 21001
+                }, {
+                    host: "127.0.0.1",
+                    port: 21002
                 }
             ]
         }

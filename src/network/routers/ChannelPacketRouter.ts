@@ -1,4 +1,5 @@
 import { RecvOp } from "../../constants/RecvOp";
+import { ChannelHandler } from "../../handlers/channel/ChannelHandler";
 import { ClientTickSyncHandler } from "../../handlers/channel/ClientTickSyncHandler";
 import { FileHashHandler } from "../../handlers/channel/FileHashHandler";
 import { LogSendHandler } from "../../handlers/channel/LogSendHandler";
@@ -26,5 +27,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.USER_SYNC, new UserSyncHandler());
         this.handlers.set(RecvOp.REQUEST_ITEM_INVENTORY, new RequestItemInventoryhandler());
         this.handlers.set(RecvOp.RESPONSE_CLIENTTICK_SYNC, new ClientTickSyncHandler());
+        this.handlers.set(RecvOp.CHANNEL, new ChannelHandler());
     }
 }
