@@ -39,6 +39,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
                 this.handleCreate(session, packet);
                 break;
             case Mode.DELETE:
+                this.handleDelete(session, packet);
                 break;
             default:
                 Logger.unknownMode(this, mode);
@@ -124,5 +125,21 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));
         session.send(CharacterListPacket.append(newCharacter));
+    }
+
+    private async handleDelete(session: LoginSession, packet: PacketReader): Promise<void> {
+        const characterId = packet.readLong();
+
+        const results = await Database.getCharacters().delete(characterId);
+        const players = await Database.getCharacters().getByAccountId(session.accountId);
+
+        players.forEach(player => {
+            player.equips = Player.getTestEquips();
+        });
+
+        session.send(CharacterMaxCountPacket.setMax(4, 6));
+        session.send(CharacterListPacket.startList());
+        session.send(CharacterListPacket.addEntries(players));
+        session.send(CharacterListPacket.endList());
     }
 }

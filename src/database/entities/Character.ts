@@ -11,6 +11,7 @@ export interface CharacterRow {
     x: number;
     y: number;
     z: number;
+    deleted: boolean;
 }
 
 export const CharacterEntity = new EntitySchema<CharacterRow>({
@@ -47,6 +48,9 @@ export const CharacterEntity = new EntitySchema<CharacterRow>({
         },
         z: {
             type: "int"
+        },
+        deleted: {
+            type: "boolean"
         }
     }
 });

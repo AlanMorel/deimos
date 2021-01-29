@@ -15,7 +15,8 @@ export class Characters extends Controller<CharacterRow, Player> {
     public async getByAccountId(id: BigInt): Promise<Player[]> {
         const characters = await this.repository.find({
             where: {
-                accountId: id.toString()
+                accountId: id.toString(),
+                deleted: false
             }
         });
         return characters.map(character => this.fromDatabase(character));
@@ -24,7 +25,8 @@ export class Characters extends Controller<CharacterRow, Player> {
     public async getByCharacterId(id: BigInt): Promise<Player | undefined> {
         const character = await this.repository.findOne({
             where: {
-                id: id.toString()
+                id: id.toString(),
+                deleted: false
             }
         });
         if (!character) {
@@ -45,6 +47,25 @@ export class Characters extends Controller<CharacterRow, Player> {
     public async insert(player: Player): Promise<void> {
         const character = this.toDatabase(player);
         this.repository.save(character);
+    }
+
+    public async delete(id: BigInt): Promise<boolean> {
+        const character = await this.repository.findOne({
+            where: {
+                id: id.toString(),
+                deleted: false
+            }
+        });
+
+        if (!character) {
+            return false;
+        }
+
+        character.deleted = true;
+
+        this.repository.save(character);
+
+        return true;
     }
 
     protected fromDatabase(character: CharacterRow): Player {
@@ -73,7 +94,8 @@ export class Characters extends Controller<CharacterRow, Player> {
             mapId: player.mapId,
             x: player.coord.x,
             y: player.coord.y,
-            z: player.coord.z
+            z: player.coord.z,
+            deleted: false
         };
 
         return character;
