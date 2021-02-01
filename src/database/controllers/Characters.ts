@@ -49,7 +49,7 @@ export class Characters extends Controller<CharacterRow, Player> {
         this.repository.save(character);
     }
 
-    public async delete(id: BigInt): Promise<boolean> {
+    public async delete(id: BigInt): Promise<void> {
         const character = await this.repository.findOne({
             where: {
                 id: id.toString(),
@@ -58,14 +58,11 @@ export class Characters extends Controller<CharacterRow, Player> {
         });
 
         if (!character) {
-            return false;
+            return;
         }
 
         character.deleted = true;
-
         this.repository.save(character);
-
-        return true;
     }
 
     protected fromDatabase(character: CharacterRow): Player {

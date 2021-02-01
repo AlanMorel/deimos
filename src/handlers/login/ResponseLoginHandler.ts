@@ -32,11 +32,15 @@ export class ResponseLoginHandler implements LoginPacketHandler {
         const account = await Database.getAccounts().getByCredentials(username, password);
 
         if (account) {
-            Logger.log("Account found.", HexColor.GREEN);
+            Logger.log("Account found", HexColor.GREEN);
             session.accountId = BigInt(account.id);
+        } else if (Configs.settings.defaultAccountId > 0n) {
+            Logger.log("Account not found but logging in to default account id " + Configs.settings.defaultAccountId, HexColor.YELLOW);
+            session.accountId = Configs.settings.defaultAccountId;
         } else {
-            Logger.log("Account not found.", HexColor.RED);
-            session.accountId = 1n;
+            Logger.log("Account not found and no default account id found", HexColor.RED);
+            session.send(LoginResultPacket.incorrectID(session.accountId));
+            return;
         }
 
         switch (mode) {
