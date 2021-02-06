@@ -84,19 +84,13 @@ export class FieldAddUserPacket {
 
         // This seems to be character appearance encoded as a blob
         const encodeAppearance = true;
-        packet.writeBoolean(encodeAppearance);
         if (encodeAppearance) {
 
             const appearanceBuffer = FieldAddUserPacket.getAppearanceBuffer(packet, player);
-            packet.writeDeflated(appearanceBuffer.buffer, appearanceBuffer.length);
+            packet.writeDeflated(appearanceBuffer.toArray());
 
-            packet.writeByte(); // Separator?
-
-            packet.writeDeflated(Buffer.from([1]), 1); // Unknown
-
-            packet.writeByte(); // Separator?
-
-            packet.writeDeflated(Buffer.from([1]), 1); // Badge appearances
+            packet.writeDeflated(Buffer.from([0])); // unknown
+            packet.writeDeflated(Buffer.from([0])); // badge appearances
 
             FieldPacket.writePassiveSkills(packet);
 
@@ -112,7 +106,7 @@ export class FieldAddUserPacket {
             packet.writeInt();
             packet.writeByte();
             packet.writeLong(); // another timestamp
-            packet.writeBigInt(BigInt(Number.MAX_SAFE_INTEGER));
+            packet.writeInt(Math.pow(2, 31) - 1);
             packet.writeByte();
             packet.writeInt();
             packet.writeInt();

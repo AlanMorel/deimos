@@ -128,19 +128,20 @@ export class PacketWriter extends Packet {
         this.writeByte(int & 0xFF);
     }
 
-    public writeDeflated(data: Buffer, length: number): void {
+    public writeDeflated(data: Buffer): void {
         const INT_SIZE = 4;
 
-        if (length <= INT_SIZE) {
-            this.writeInt(length);
+        const deflate = data.length > INT_SIZE;
+        this.writeBoolean(deflate);
+
+        if (deflate) {
+            const deflated = deflateSync(data);
+            this.writeInt(deflated.length + INT_SIZE);
+            this.writeIntBigEndian(data.length);
+            this.write(deflated);
+        } else {
+            this.writeInt(data.length);
             this.write(data);
-            return;
         }
-
-        const deflatedData = deflateSync(data);
-
-        this.writeInt(deflatedData.length + INT_SIZE);
-        this.writeIntBigEndian(length);
-        this.write(deflatedData);
     }
 }
