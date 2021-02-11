@@ -1,5 +1,6 @@
 import { Socket } from "net";
 import { Packet } from "../../crypto/protocol/Packet";
+import { Database } from "../../database/Database";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
 import { World } from "../../server/World";
 import { HexColor } from "../../tools/HexColor";
@@ -55,7 +56,11 @@ export class ChannelServer extends Server {
     }
 
     protected onClose(session: ChannelSession, hadError: boolean): void {
-        session.field?.removePlayer(session);
+        if (session.field) {
+            Database.getCharacters().save(session.player);
+            session.field.removePlayer(session);
+            Logger.log(session.player.name + " saved successfully.", HexColor.YELLOW);
+        }
         Logger.log(`${this.world} Channel ${this.id}: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
 

@@ -65,6 +65,21 @@ export class Characters extends Controller<CharacterRow, Player> {
         this.repository.save(character);
     }
 
+    public async save(player: Player): Promise<void> {
+        const character = await this.repository.findOne({
+            where: {
+                id: player.characterId.toString(),
+                deleted: false
+            }
+        });
+        if (!character) {
+            return;
+        }
+        const row = this.toDatabase(player);
+        const newCharacter = Object.assign(character, row);
+        this.repository.save(newCharacter);
+    }
+
     protected fromDatabase(character: CharacterRow): Player {
         const color = Color.fromValue(character.skinColor);
         const skinColor = new SkinColor(color, color);
