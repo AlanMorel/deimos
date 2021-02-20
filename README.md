@@ -12,13 +12,16 @@
 $ git clone https://github.com/AlanMorel/Deimos deimos
 ```
 
-2) Install the node dependencies
+2) Install the node dependencies using yarn
 
 ```sh
 $ cd deimos
 ```
 ```sh
-$ npm install
+$ npm install yarn -g
+```
+```sh
+$ yarn install
 ```
 
 3) Rename `.env.example` to `.env` and edit it to your liking.
@@ -26,7 +29,7 @@ $ npm install
 4) Edit `src/Configs.ts` to your liking, then compile and run the server.
 
 ```sh
-$ npm run start
+$ yarn start
 ```
 
 #### Development
@@ -35,13 +38,13 @@ For the best development experience, run the compiler in watch mode to watch for
 
 #### Commands
 
-`npm run start` : Compile and run the server
+`yarn start` : Compile and run the server
 
-`npm run lint` : Run the linter
+`yarn lint` : Run the linter
 
-`npm run watch` : Run the compiler in watch mode
+`yarn watch` : Run the compiler in watch mode
 
-`npm run server` : Run the server
+`yarn server` : Run the server
 
 ### Community
 
