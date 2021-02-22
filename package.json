@@ -1,7 +1,13 @@
 {
     "name": "deimos",
     "version": "1.0.0",
-    "description": "",
+    "author": "Alan Morel",
+    "license": "ISC",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AlanMorel/deimos.git"
+    },
     "main": "index.js",
     "scripts": {
         "start": "tsc --project ./ && node dist/index.js",
@@ -9,16 +15,6 @@
         "watch": "tsc --project ./ --watch",
         "server": "node dist/index.js"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AlanMorel/deimos.git"
-    },
-    "author": "Alan Morel",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/AlanMorel/deimos/issues"
-    },
-    "homepage": "https://github.com/AlanMorel/deimos#readme",
     "dependencies": {
         "dotenv": "^8.2.0",
         "mysql": "^2.18.1",
