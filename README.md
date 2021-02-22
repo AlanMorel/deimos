@@ -1,32 +1,36 @@
 # Deimos
+
 **Deimos** is a MapleStory 2 emulator written in TypeScript and Node.
 
 #### Requirements
-- [npm](https://www.npmjs.com/) - node package manager
+
+-   [npm](https://www.npmjs.com/) - node package manager
 
 #### Setup
 
-1) To setup **Deimos**, install Node, npm, then clone this repository.
+1. Install node, npm, then clone this repository
 
 ```sh
-$ git clone https://github.com/AlanMorel/Deimos deimos
+$ git clone https://github.com/AlanMorel/deimos deimos
 ```
 
-2) Install the node dependencies using yarn
+2. Install the dependencies
 
 ```sh
 $ cd deimos
 ```
+
 ```sh
 $ npm install yarn -g
 ```
+
 ```sh
 $ yarn install
 ```
 
-3) Rename `.env.example` to `.env` and edit it to your liking.
+3. Rename `.env.example` to `.env` and edit it to your liking.
 
-4) Edit `src/Configs.ts` to your liking, then compile and run the server.
+4. Edit `src/Configs.ts` to your liking, then compile and run the server.
 
 ```sh
 $ yarn start
