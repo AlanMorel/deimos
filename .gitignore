@@ -1,16 +1,15 @@
 .DS_Store
 node_modules
 dist
-resources
 
-# env file
-.env
+# env files
+*.env
 
-# Editor directories and files
-.idea
+# log files
+*.log
+
+# editor directories and files
 .vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# app-specific
+resources
