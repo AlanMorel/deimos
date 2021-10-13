@@ -21,13 +21,13 @@ export class Database {
         const connectionManager = getConnectionManager();
         const connection = connectionManager.create({
             type: "mysql",
-            host: process.env.DB_HOST,
-            port: parseInt(process.env.DB_PORT ?? ""),
-            username: process.env.DB_USER,
-            password: process.env.DB_PASS,
-            database: process.env.DB_SCHEMA,
+            host: process.env.DATABASE_HOST,
+            port: parseInt(process.env.DATABASE_PORT ?? "3306"),
+            username: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+            database: process.env.DATABASE_SCHEMA,
             logging: Configs.settings.logQueries,
-            synchronize: true,
+            synchronize: process.env.NODE_ENV === "development",
             entities: [AccountEntity, CharacterEntity]
         });
 

@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+    deimos:
+        container_name: deimos
+        image: deimos
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: base
+            args:
+                ENV: ${NODE_ENV}
+        restart: always
+        environment:
+            DOCKER: "true"
+            DATABASE_HOST: "mysql"
+        ports:
+            - "20001:20001"
+            - "21001:21001"
+            - "21002:21002"
+        expose:
+            - "20001"
+            - "21001"
+            - "21002"
+        networks:
+            - docker
+
+networks:
+    docker:
+        external: true

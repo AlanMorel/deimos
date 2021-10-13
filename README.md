@@ -25,11 +25,13 @@ yarn install
 Create a `.env` file
 
 ```sh
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASS=
-DB_SCHEMA=deimos
+NODE_ENV=development
+
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+DATABASE_USERNAME=root
+DATABASE_PASSWORD=
+DATABASE_SCHEMA=deimos
 ```
 
 Edit `src/Configs.ts` to your liking, then compile and run the server.
@@ -44,7 +46,9 @@ For the best development experience, run the compiler in watch mode to watch for
 
 ## Commands
 
-`yarn start` : Compile and run the server
+`yarn build` : Compile the server
+
+`yarn start` : Compile and start the server
 
 `yarn lint` : Run the linter
 

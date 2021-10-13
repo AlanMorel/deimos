@@ -10,10 +10,11 @@
     },
     "main": "index.js",
     "scripts": {
-        "start": "tsc --project ./ && node dist/index.js",
+        "build": "tsc --project ./",
         "lint": "eslint ./src --ext .ts --fix",
         "watch": "tsc --project ./ --watch",
-        "server": "node dist/index.js"
+        "server": "node dist/index.js",
+        "start": "yarn build && yarn server"
     },
     "dependencies": {
         "dotenv": "^10.0.0",
