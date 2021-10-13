@@ -7,7 +7,6 @@ import { CharacterEntity, CharacterRow } from "../entities/Character";
 import { Controller } from "./Controller";
 
 export class Characters extends Controller<CharacterRow, Player> {
-
     public constructor() {
         super(CharacterEntity);
     }
@@ -96,8 +95,8 @@ export class Characters extends Controller<CharacterRow, Player> {
     }
 
     protected toDatabase(player: Player): CharacterRow {
-
         const character: CharacterRow = {
+            id: player.characterId.toString(),
             accountId: player.accountId.toString(),
             name: player.name,
             gender: player.gender === 1,

@@ -33,7 +33,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         if (account) {
             Logger.log("Account found", HexColor.GREEN);
-            session.accountId = BigInt(account.id);
+            session.accountId = account.id;
         } else if (Configs.settings.defaultAccountId > 0n) {
             Logger.log("Account not found but logging in to default account id " + Configs.settings.defaultAccountId, HexColor.YELLOW);
             session.accountId = Configs.settings.defaultAccountId;

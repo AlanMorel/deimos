@@ -3,7 +3,6 @@ import { BitConverter } from "../../tools/BitConverter";
 import { Packet } from "./Packet";
 
 export class PacketWriter extends Packet {
-
     private static readonly DEFAULT_SIZE: number = 1 << 6;
 
     public constructor(size: number = PacketWriter.DEFAULT_SIZE) {
@@ -98,7 +97,7 @@ export class PacketWriter extends Packet {
 
     public writeBigInt(long: BigInt = 0n): void {
         this.ensureCapacity(8);
-        this.buffer.writeBigInt64LE(BigInt(long), this.length);
+        this.buffer.writeBigInt64LE(long.valueOf(), this.length);
         this.length += 8;
     }
 
@@ -125,7 +124,7 @@ export class PacketWriter extends Packet {
         this.writeByte(int >> 24);
         this.writeByte(int >> 16);
         this.writeByte(int >> 8);
-        this.writeByte(int & 0xFF);
+        this.writeByte(int & 0xff);
     }
 
     public writeDeflated(data: Buffer): void {

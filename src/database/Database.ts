@@ -6,13 +6,12 @@ import { AccountEntity } from "./entities/Account";
 import { CharacterEntity } from "./entities/Character";
 
 export class Database {
-
     private static instance: Database;
 
     private connection: Connection;
 
     private accounts: Accounts = new Accounts();
-    private characters: Characters = new Characters()
+    private characters: Characters = new Characters();
 
     private constructor(connection: Connection) {
         this.connection = connection;
@@ -23,16 +22,13 @@ export class Database {
         const connection = connectionManager.create({
             type: "mysql",
             host: process.env.DB_HOST,
-            port: parseInt(process.env.PORT ?? ""),
+            port: parseInt(process.env.DB_PORT ?? ""),
             username: process.env.DB_USER,
             password: process.env.DB_PASS,
             database: process.env.DB_SCHEMA,
             logging: Configs.settings.logQueries,
             synchronize: true,
-            entities: [
-                AccountEntity,
-                CharacterEntity
-            ]
+            entities: [AccountEntity, CharacterEntity]
         });
 
         await connection.connect();

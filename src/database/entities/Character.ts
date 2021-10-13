@@ -1,8 +1,8 @@
 import { EntitySchema } from "typeorm";
 
 export interface CharacterRow {
-    id?: string;
-    accountId: string,
+    id: string;
+    accountId: string;
     name: string;
     gender: boolean;
     job: number;
@@ -23,7 +23,7 @@ export const CharacterEntity = new EntitySchema<CharacterRow>({
             generated: true
         },
         accountId: {
-            type: "bigint",
+            type: "bigint"
         },
         name: {
             type: "tinytext"
