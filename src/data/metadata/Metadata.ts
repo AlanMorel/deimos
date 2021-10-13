@@ -6,7 +6,6 @@ import { MapMetadata } from "./maps/MapMetadata";
 import { MapMetadataStorage } from "./maps/MapMetadataStorage";
 
 export class Metadata {
-
     private static items = new ItemMetadataStorage();
     private static maps = new MapMetadataStorage();
 

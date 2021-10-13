@@ -2,7 +2,6 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { ItemAttribute } from "./ItemAttribute";
 
 export class ItemStat {
-
     public type: ItemAttribute;
     public value: number;
     public percent: number;

@@ -6,5 +6,5 @@ export enum FieldObjectUpdate {
     Type4 = 8,
     Type5 = 16,
     Type6 = 32,
-    Animate = 64,
+    Animate = 64
 }

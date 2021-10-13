@@ -11,13 +11,12 @@ enum Mode {
     UPDATE = 0x2,
     MOVE = 0x3,
     MARK_NEW = 0x8,
-    LOAD_TO_TAB = 0xA,
-    RESET = 0xD,
-    LOAD = 0xE
+    LOAD_TO_TAB = 0xa,
+    RESET = 0xd,
+    LOAD = 0xe
 }
 
 export class ItemInventoryPacket {
-
     public static add(item: Item): Packet {
         const packet = new PacketWriter();
 

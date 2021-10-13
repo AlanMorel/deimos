@@ -4,7 +4,6 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Time } from "../tools/Time";
 
 export class UnknownSyncPacket {
-
     public static sync(): Packet {
         const packet = new PacketWriter();
 

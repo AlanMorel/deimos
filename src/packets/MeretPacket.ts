@@ -4,7 +4,6 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Wallet } from "../types/player/Wallet";
 
 export class MeretsPacket {
-
     public static update(wallet: Wallet): Packet {
         const packet = new PacketWriter();
 

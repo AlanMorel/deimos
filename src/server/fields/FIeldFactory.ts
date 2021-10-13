@@ -1,7 +1,6 @@
 import { Field } from "./Field";
 
 export class FieldFactory {
-
     private fields: Map<number, Field> = new Map<number, Field>();
 
     public getField(id: number): Field {

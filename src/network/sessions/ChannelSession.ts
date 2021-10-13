@@ -7,7 +7,6 @@ import { ChannelServer } from "../servers/ChannelServer";
 import { Session } from "./Session";
 
 export class ChannelSession extends Session {
-
     public player: Player = Player.getInitialPlayer();
     public channel: ChannelServer;
     public field?: Field;

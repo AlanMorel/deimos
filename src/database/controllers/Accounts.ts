@@ -3,7 +3,6 @@ import { AccountEntity, AccountRow } from "../entities/Account";
 import { Controller } from "./Controller";
 
 export class Accounts extends Controller<AccountRow, Account> {
-
     public constructor() {
         super(AccountEntity);
     }

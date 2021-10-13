@@ -2,7 +2,6 @@ import { BitConverter } from "../../tools/BitConverter";
 import { Packet } from "./Packet";
 
 export class PacketReader extends Packet {
-
     private position: number;
 
     public constructor(buffer: Buffer, skip: number = 0) {

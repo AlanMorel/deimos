@@ -3,7 +3,6 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { BitConverter } from "../../tools/BitConverter";
 
 export class Color {
-
     private blue: number;
     private green: number;
     private red: number;

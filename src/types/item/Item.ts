@@ -9,7 +9,6 @@ import { ItemStats } from "./ItemStats";
 import { TransferFlag } from "./TransferFlag";
 
 export class Item {
-
     public inventoryTab: InventoryTab;
     public itemSlot: ItemSlot;
     public slotMax: number;
@@ -66,7 +65,6 @@ export class Item {
     }
 
     public trySplit(amount: number): Item | undefined {
-
         if (this.amount <= amount) {
             return;
         }

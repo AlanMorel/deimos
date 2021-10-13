@@ -2,7 +2,6 @@ import { Packet } from "../crypto/protocol/Packet";
 import { Player } from "../types/player/Player";
 
 export class World {
-
     private static readonly instance: World = new World();
 
     private idStorage: Map<BigInt, Player> = new Map<BigInt, Player>();

@@ -6,7 +6,6 @@ import { Field } from "./Field";
 import { Portal } from "./Portal";
 
 export class FieldState {
-
     private players: Map<number, Player> = new Map<number, Player>();
     private portals: Map<number, Portal> = new Map<number, Portal>();
 

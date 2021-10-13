@@ -2,7 +2,6 @@ import { Rand32 } from "../Rand32";
 import { Crypter } from "./Crypter";
 
 export class TableCrypter extends Crypter {
-
     public static readonly INDEX: number = 3;
     private static readonly TABLE_SIZE: number = 1 << 8;
 

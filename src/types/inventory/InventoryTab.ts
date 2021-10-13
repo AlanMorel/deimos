@@ -15,5 +15,5 @@ export enum InventoryTab {
     Badge = 13,
     // 14 Removed
     Lapenshard = 15,
-    Fragment = 16,
+    Fragment = 16
 }

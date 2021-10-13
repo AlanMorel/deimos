@@ -15,7 +15,8 @@ export default {
                 {
                     host: "127.0.0.1",
                     port: 21001
-                }, {
+                },
+                {
                     host: "127.0.0.1",
                     port: 21002
                 }
@@ -31,13 +32,7 @@ export default {
     },
     hash: "ce6ca622429e68b37650d519b326e293",
     block: {
-        recv: [
-            RecvOp.USER_SYNC,
-            RecvOp.USER_CHAT,
-            RecvOp.KEY_TABLE,
-            RecvOp.LOG_SEND,
-            RecvOp.NAMETAG_SYMBOL
-        ],
+        recv: [RecvOp.USER_SYNC, RecvOp.USER_CHAT, RecvOp.KEY_TABLE, RecvOp.LOG_SEND, RecvOp.NAMETAG_SYMBOL],
         send: [
             SendOp.USER_SYNC,
             SendOp.PROXY_GAME_OBJ,

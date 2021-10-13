@@ -1,7 +1,6 @@
 import { BitConverter } from "../tools/BitConverter";
 
 export class Stream {
-
     private static readonly DEFAULT_SIZE: number = 1 << 12;
     private static readonly HEADER_SIZE: number = 6;
 
@@ -9,7 +8,6 @@ export class Stream {
     private cursor: number = 0;
 
     public write(packet: Buffer): void {
-
         if (this.buffer.length - this.cursor < packet.length) {
             let newSize = this.buffer.length * 2;
             while (newSize < this.cursor + packet.length) {

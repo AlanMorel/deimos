@@ -7,7 +7,6 @@ enum Mode {
 }
 
 export class FieldEntrancePacket {
-
     public static enter(): Packet {
         const packet = new PacketWriter();
 

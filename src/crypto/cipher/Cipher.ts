@@ -6,7 +6,6 @@ import { XORCrypter } from "../crypters/XorCrypter";
 import { Rand32 } from "../Rand32";
 
 export abstract class Cipher {
-
     protected static readonly HEADER_SIZE: number = 6;
 
     protected version: number;

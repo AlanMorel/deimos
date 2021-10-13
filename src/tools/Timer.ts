@@ -1,5 +1,4 @@
 export class Timer {
-
     private timeout: number;
     private handler: TimerHandler;
     private interval: number;

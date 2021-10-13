@@ -3,11 +3,10 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 enum Mode {
-    LOAD_LOG = 0x7,
+    LOAD_LOG = 0x7
 }
 
 export class FishingPacket {
-
     public static loadLog(): Packet {
         const packet = new PacketWriter();
 

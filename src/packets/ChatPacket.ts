@@ -5,7 +5,6 @@ import { ChannelSession } from "../network/sessions/ChannelSession";
 import { ChatType } from "../types/ChatType";
 
 export class ChatPacket {
-
     public static send(session: ChannelSession, message: string, type: ChatType): Packet {
         const packet = new PacketWriter();
 

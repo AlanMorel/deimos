@@ -1,7 +1,6 @@
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 
 export class UgcPacketHelper {
-
     public static writeUgc(packet: PacketWriter): void {
         packet.writeLong();
         packet.writeUnicodeString(""); // UUID (filename)

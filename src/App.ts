@@ -8,7 +8,6 @@ import { HexColor } from "./tools/HexColor";
 import { Logger } from "./tools/Logger";
 
 export class App {
-
     public constructor() {
         Logger.log(Configs.name + " has started", HexColor.YELLOW);
 

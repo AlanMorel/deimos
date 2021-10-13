@@ -4,7 +4,6 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 import { LogSendHelper } from "../helpers/LogSendHelper";
 
 export class LogSendHandler implements ChannelPacketHandler {
-
     public handle(session: Session, packet: PacketReader): void {
         LogSendHelper.handle(session, packet);
     }

@@ -10,7 +10,6 @@ import { ChannelSession } from "../sessions/ChannelSession";
 import { Server } from "./Server";
 
 export class ChannelServer extends Server {
-
     public id: number;
     public world: string;
     public fieldFactory: FieldFactory = new FieldFactory();
@@ -38,17 +37,20 @@ export class ChannelServer extends Server {
     }
 
     public broadcast(packet: Packet): void {
-        World.getInstance().getPlayers().filter(player => {
-            if (!player.session) {
-                return false;
-            }
-            if (player.session.channel.id != this.id) {
-                return false;
-            }
-            return true;
-        }).forEach(player => {
-            player.session?.send(packet);
-        });
+        World.getInstance()
+            .getPlayers()
+            .filter(player => {
+                if (!player.session) {
+                    return false;
+                }
+                if (player.session.channel.id != this.id) {
+                    return false;
+                }
+                return true;
+            })
+            .forEach(player => {
+                player.session?.send(packet);
+            });
     }
 
     protected onData(session: ChannelSession, data: Buffer): void {

@@ -11,7 +11,6 @@ import { SpecialItemStat } from "../../types/item/SpecialItemStat";
 import { UgcPacketHelper } from "./UgcPacketHelper";
 
 export class ItemPacketHelper {
-
     public static writeItem(packet: PacketWriter, item: Item): Packet {
         packet.writeInt(item.amount);
         packet.writeInt();
@@ -157,7 +156,6 @@ export class ItemPacketHelper {
         packet.writeByte();
         packet.writeByte(stats.totalSockets);
         for (let i = 0; i < stats.totalSockets; i++) {
-
             if (i >= stats.gemstones.length) {
                 packet.writeBoolean(false); // Locked
                 continue;
@@ -185,7 +183,6 @@ export class ItemPacketHelper {
     }
 
     private static writeStatDiff(packet: PacketWriter, oldStats: ItemStats, newStats: ItemStats): Packet {
-
         // TODO: Find stat diffs
         const generalStatDiff = new Array<ItemStat>();
         packet.writeByte(generalStatDiff.length);

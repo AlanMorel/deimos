@@ -9,7 +9,6 @@ enum Mode {
 }
 
 export class LoginResultPacket {
-
     public static login(accountId: BigInt): Packet {
         const packet = new PacketWriter();
 

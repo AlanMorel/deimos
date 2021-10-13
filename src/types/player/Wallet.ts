@@ -3,7 +3,6 @@ import { CurrencyType } from "./CurrencyType";
 import { Player } from "./Player";
 
 export class Wallet {
-
     public meso: Currency;
     public meret: Currency;
     public gameMeret: Currency;

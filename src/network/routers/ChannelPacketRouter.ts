@@ -14,7 +14,6 @@ import { RequestItemInventoryhandler } from "../../packets/RequestItemInventoryH
 import { PacketRouter } from "./PacketRouter";
 
 export class ChannelPacketRouter extends PacketRouter {
-
     public registerHandlers(): void {
         this.handlers.set(RecvOp.RESPONSE_VERSION, new ResponseVersionHandler());
         this.handlers.set(RecvOp.RESPONSE_KEY, new ResponseKeyHandler());

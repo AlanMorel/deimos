@@ -9,7 +9,6 @@ enum Mode {
 }
 
 export class MarketInventoryPacket {
-
     public static startList(): Packet {
         const packet = new PacketWriter();
 

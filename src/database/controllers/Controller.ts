@@ -1,7 +1,6 @@
 import { EntityTarget, getRepository, Repository } from "typeorm";
 
 export abstract class Controller<T1, T2> {
-
     protected repository: Repository<T1>;
 
     public constructor(entity: EntityTarget<T1>) {

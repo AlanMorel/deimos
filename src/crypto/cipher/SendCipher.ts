@@ -3,7 +3,6 @@ import { PacketWriter } from "../protocol/PacketWriter";
 import { Cipher } from "./Cipher";
 
 export class SendCipher extends Cipher {
-
     public constructor(version: number, iv: number, blockIV: number) {
         super(version, iv, blockIV);
     }

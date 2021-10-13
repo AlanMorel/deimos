@@ -19,9 +19,8 @@ import { PlayerStats } from "./PlayerStats";
 import { Wallet } from "./Wallet";
 
 export class Player extends FieldObject {
-
     // bypass Key is constant PER ACCOUNT, seems like as long as it's valid, it doesn't matter
-    public readonly unknownId: BigInt = BigInt(0x01EF80C2); // 0x01CC3721;
+    public readonly unknownId: BigInt = BigInt(0x01ef80c2); // 0x01CC3721;
 
     // constants
     public accountId: BigInt = 1n;
@@ -75,7 +74,14 @@ export class Player extends FieldObject {
 
     public session?: ChannelSession;
 
-    public constructor(characterId: BigInt, gender: Gender, job: Job, name: string, skinColor: SkinColor, equips: Map<ItemSlot, Item> = new Map<ItemSlot, Item>()) {
+    public constructor(
+        characterId: BigInt,
+        gender: Gender,
+        job: Job,
+        name: string,
+        skinColor: SkinColor,
+        equips: Map<ItemSlot, Item> = new Map<ItemSlot, Item>()
+    ) {
         super();
         this.characterId = characterId;
         this.gender = gender;
@@ -88,7 +94,14 @@ export class Player extends FieldObject {
     }
 
     public static getInitialPlayer(): Player {
-        return new Player(-1n, Gender.Male, -1, "", new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)), new Map<ItemSlot, Item>());
+        return new Player(
+            -1n,
+            Gender.Male,
+            -1,
+            "",
+            new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)),
+            new Map<ItemSlot, Item>()
+        );
     }
 
     public getJobId(): number {
@@ -100,15 +113,7 @@ export class Player extends FieldObject {
     }
 
     public isBeauty(): boolean {
-        const slots = [
-            ItemSlot.HR,
-            ItemSlot.FA,
-            ItemSlot.FD,
-            ItemSlot.CL,
-            ItemSlot.PA,
-            ItemSlot.SH,
-            ItemSlot.ER
-        ];
+        const slots = [ItemSlot.HR, ItemSlot.FA, ItemSlot.FD, ItemSlot.CL, ItemSlot.PA, ItemSlot.SH, ItemSlot.ER];
         const defaultEquipSlot = this.getDefaultEquipSlot();
         for (const slot of slots) {
             if (defaultEquipSlot == slot) {
@@ -126,7 +131,12 @@ export class Player extends FieldObject {
 
         const hair = new Hair(10200001, 1065353216, 1065353216, Buffer.alloc(24), Buffer.alloc(24));
         hair.itemSlot = ItemSlot.HR;
-        hair.color = new ItemColor(new Color(47, 47, -86, -1), new Color(-37, -123, 76, -1), new Color(19, 19, 96, -1), 0);
+        hair.color = new ItemColor(
+            new Color(47, 47, -86, -1),
+            new Color(-37, -123, 76, -1),
+            new Color(19, 19, 96, -1),
+            0
+        );
 
         const face = new Item(10300014);
         face.itemSlot = ItemSlot.FA;

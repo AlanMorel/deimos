@@ -1,15 +1,19 @@
 import { Skill } from "./Skill";
 
 export class SkillTab {
-
     public id: BigInt;
     public name: string;
     public order: number[];
     public split: number;
     public skills: Map<number, Skill>;
 
-    public constructor(name: string, order: number[] = [], split: number = 8, skills: Map<number, Skill> = new Map<number, Skill>()) {
-        this.id = BigInt(0x000032DF995949B9); // TODO: temporary hard coded id
+    public constructor(
+        name: string,
+        order: number[] = [],
+        split: number = 8,
+        skills: Map<number, Skill> = new Map<number, Skill>()
+    ) {
+        this.id = BigInt(0x000032df995949b9); // TODO: temporary hard coded id
         this.name = name;
         this.order = order;
         this.split = split;

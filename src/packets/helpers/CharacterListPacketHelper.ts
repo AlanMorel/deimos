@@ -7,7 +7,6 @@ import { Player } from "../../types/player/Player";
 import { ItemPacketHelper } from "./ItemPacketHelper";
 
 export class CharacterListPacketHelper {
-
     public static writeCharacterEntry(packet: PacketWriter, player: Player): void {
         CharacterListPacketHelper.writeCharacter(packet, player);
 

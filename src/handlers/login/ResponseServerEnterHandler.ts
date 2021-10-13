@@ -11,13 +11,10 @@ import { Player } from "../../types/player/Player";
 import { LoginPacketHandler } from "../LoginPacketHandler";
 
 export class ResponseServerEnterHandler implements LoginPacketHandler {
-
     public async handle(session: LoginSession, packet: PacketReader): Promise<void> {
         packet.readInt(); // mode: always 2?
 
-        const endpoints = [
-            new Endpoint(Configs.login.host, Configs.login.port)
-        ];
+        const endpoints = [new Endpoint(Configs.login.host, Configs.login.port)];
         const world = Configs.worlds[0];
 
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners

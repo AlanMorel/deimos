@@ -1,5 +1,4 @@
 export class Account {
-
     public id: BigInt;
     public username: string;
     public password: string;

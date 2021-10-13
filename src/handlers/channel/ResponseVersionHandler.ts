@@ -6,7 +6,6 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 import { ResponseVersionHelper } from "../helpers/ResponseVersionHelper";
 
 export class ResponseVersionHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         ResponseVersionHelper.handle(session, packet);
 

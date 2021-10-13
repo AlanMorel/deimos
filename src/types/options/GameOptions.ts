@@ -2,7 +2,6 @@ import { Hotbar } from "./Hotbar";
 import { KeyBind } from "./KeyBind";
 
 export class GameOptions {
-
     private static readonly HOTBARS_AVAILABLE = 3;
 
     public keyBinds: Map<number, KeyBind> = new Map<number, KeyBind>();

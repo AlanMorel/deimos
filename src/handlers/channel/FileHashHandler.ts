@@ -5,7 +5,6 @@ import { Logger } from "../../tools/Logger";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class FileHashHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         packet.readInt();
         const filename = packet.readMapleString();

@@ -5,7 +5,6 @@ import { Player } from "../types/player/Player";
 import { SyncState } from "../types/SyncState";
 
 export class UserSyncPacket {
-
     public static syncUser(player: Player, syncStates: SyncState[]): Packet {
         const packet = new PacketWriter();
 

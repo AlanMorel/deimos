@@ -5,7 +5,6 @@ import { ResponseVersionHelper } from "../helpers/ResponseVersionHelper";
 import { LoginPacketHandler } from "../LoginPacketHandler";
 
 export class ResponseVersionHandler implements LoginPacketHandler {
-
     public handle(session: LoginSession, packet: PacketReader): void {
         ResponseVersionHelper.handle(session, packet);
 

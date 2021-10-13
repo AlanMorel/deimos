@@ -8,9 +8,7 @@ import { Logger } from "../../tools/Logger";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ChannelHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
-
         const authData = AuthStorage.getData(session.player.accountId);
 
         if (!authData) {

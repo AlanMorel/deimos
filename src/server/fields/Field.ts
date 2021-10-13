@@ -8,7 +8,6 @@ import { Timer } from "../../tools/Timer";
 import { FieldState } from "./FieldState";
 
 export class Field {
-
     private static readonly UPDATE_INTERVAL = 1000;
 
     public id: number;
@@ -49,13 +48,14 @@ export class Field {
     }
 
     public broadcast(packet: Packet, sender: ChannelSession | null = null): void {
-        this.sessions.filter(session => !sender || sender.id !== session.id).forEach(session => {
-            session.send(packet);
-        });
+        this.sessions
+            .filter(session => !sender || sender.id !== session.id)
+            .forEach(session => {
+                session.send(packet);
+            });
     }
 
     public addPlayer(session: ChannelSession): void {
-
         for (const existingPlayer of this.state.getPlayers()) {
             session.send(FieldAddUserPacket.addPlayer(existingPlayer));
             session.send(ProxyGameObjectPacket.loadPlayer(existingPlayer));
@@ -82,7 +82,7 @@ export class Field {
         this.state.removePlayer(session.player.objectId);
         this.broadcast(FieldRemoveUserPacket.removePlayer(session.player));
 
-        const index = this.sessions.findIndex(s => s.id = session.id);
+        const index = this.sessions.findIndex(s => (s.id = session.id));
         this.sessions.splice(index, 1);
 
         session.player.objectId = 0;

@@ -3,7 +3,6 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Color } from "./Color";
 
 export class SkinColor {
-
     public primary: Color;
     public secondary: Color;
 

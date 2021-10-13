@@ -3,7 +3,6 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Coord } from "./Coord";
 
 export class CoordF extends Coord {
-
     public static read(packet: PacketReader): CoordF {
         const x = packet.readFloat();
         const y = packet.readFloat();

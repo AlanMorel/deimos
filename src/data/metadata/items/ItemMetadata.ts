@@ -2,7 +2,6 @@ import { InventoryTab } from "../../../types/inventory/InventoryTab";
 import { ItemSlot } from "../../../types/item/ItemSlot";
 
 export class ItemMetadata {
-
     public id: number;
     public slot: ItemSlot;
     public tab: InventoryTab;

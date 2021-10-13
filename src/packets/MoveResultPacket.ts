@@ -3,7 +3,6 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 export class MoveResultPacket {
-
     public static moveResult(): Packet {
         const packet = new PacketWriter();
 

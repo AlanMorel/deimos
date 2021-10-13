@@ -4,7 +4,6 @@ import { FieldObject } from "../server/fields/FieldObject";
 import { RideType } from "./RideType";
 
 export class Mount extends FieldObject {
-
     public type: RideType;
     public id: number;
     public uid: BigInt;

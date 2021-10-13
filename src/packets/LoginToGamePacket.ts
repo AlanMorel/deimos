@@ -9,7 +9,6 @@ enum Mode {
 }
 
 export class LoginToGamePacket {
-
     public static loginToGame(endpoint: Endpoint, authData: AuthData): Packet {
         const packet = new PacketWriter();
 

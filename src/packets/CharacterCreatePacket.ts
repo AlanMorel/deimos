@@ -3,11 +3,10 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 enum Mode {
-    NAME_TAKEN = 0xB
+    NAME_TAKEN = 0xb
 }
 
 export class CharacterCreatePacket {
-
     public static nameTaken(): Packet {
         const packet = new PacketWriter();
 

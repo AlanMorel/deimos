@@ -4,7 +4,6 @@ import { MetadataStorage } from "../MetadataStorage";
 import { ItemMetadata } from "./ItemMetadata";
 
 export class ItemMetadataStorage extends MetadataStorage<ItemMetadata> {
-
     public getTab(id: number): InventoryTab {
         return this.getItem(id)?.tab ?? InventoryTab.Outfit;
     }

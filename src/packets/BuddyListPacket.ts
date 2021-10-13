@@ -3,12 +3,11 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 enum Mode {
-    START_LIST = 0x0F,
+    START_LIST = 0x0f,
     END_LIST = 0x13
 }
 
 export class BuddyListPacket {
-
     public static startList(): Packet {
         const packet = new PacketWriter();
 

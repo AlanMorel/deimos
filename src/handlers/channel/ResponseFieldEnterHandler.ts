@@ -8,7 +8,6 @@ import { Item } from "../../types/item/Item";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         packet.readInt();
 

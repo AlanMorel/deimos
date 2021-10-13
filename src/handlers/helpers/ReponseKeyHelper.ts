@@ -5,7 +5,6 @@ import { MoveResultPacket } from "../../packets/MoveResultPacket";
 import { Logger } from "../../tools/Logger";
 
 export class ResponseKeyHelper {
-
     public static handle(session: Session, packet: PacketReader): void {
         const accountId = packet.readLong();
         const tokenA = packet.readInt();

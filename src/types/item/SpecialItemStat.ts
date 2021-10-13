@@ -2,7 +2,6 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { SpecialItemAttribute } from "./SpecialItemAttribute";
 
 export class SpecialItemStat {
-
     public type: SpecialItemAttribute;
     public value: number;
     public unknown: number;

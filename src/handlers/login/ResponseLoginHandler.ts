@@ -21,7 +21,6 @@ enum Mode {
 }
 
 export class ResponseLoginHandler implements LoginPacketHandler {
-
     public async handle(session: LoginSession, packet: PacketReader): Promise<void> {
         const mode = packet.readByte();
         const username = packet.readUnicodeString();
@@ -35,7 +34,10 @@ export class ResponseLoginHandler implements LoginPacketHandler {
             Logger.log("Account found", HexColor.GREEN);
             session.accountId = account.id;
         } else if (Configs.settings.defaultAccountId > 0n) {
-            Logger.log("Account not found but logging in to default account id " + Configs.settings.defaultAccountId, HexColor.YELLOW);
+            Logger.log(
+                "Account not found but logging in to default account id " + Configs.settings.defaultAccountId,
+                HexColor.YELLOW
+            );
             session.accountId = Configs.settings.defaultAccountId;
         } else {
             Logger.log("Account not found and no default account id found", HexColor.RED);
@@ -45,9 +47,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         switch (mode) {
             case Mode.LOGIN_1:
-                const endpoints = [
-                    new Endpoint(Configs.login.host, Configs.login.port)
-                ];
+                const endpoints = [new Endpoint(Configs.login.host, Configs.login.port)];
                 const world = Configs.worlds[0];
 
                 session.send(NpsInfoPacket.npsInfo());

@@ -5,7 +5,6 @@ import { Player } from "../types/player/Player";
 import { PlayerStats } from "../types/player/PlayerStats";
 
 export class StatPacket {
-
     public static setStats(player: Player): Packet {
         const packet = new PacketWriter();
 

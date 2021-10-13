@@ -5,7 +5,6 @@ import { CurrencyType } from "./CurrencyType";
 import { Player } from "./Player";
 
 export class Currency {
-
     private player: Player;
     private type: CurrencyType;
     public amount: bigint;

@@ -4,7 +4,6 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { ChannelSession } from "../network/sessions/ChannelSession";
 
 export class ServerEnterPacket {
-
     public static enter(session: ChannelSession): Packet {
         const packet = new PacketWriter();
 

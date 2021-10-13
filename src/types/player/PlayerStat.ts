@@ -1,7 +1,6 @@
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 
 export class PlayerStat {
-
     public total: number;
     public min: number;
     public max: number;

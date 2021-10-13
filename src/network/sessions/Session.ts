@@ -14,7 +14,6 @@ import { Logger } from "../../tools/Logger";
 import { PacketRouter } from "../routers/PacketRouter";
 
 export abstract class Session {
-
     private static readonly version: number = 12;
     private static readonly blockIV: number = 12;
 
@@ -63,7 +62,6 @@ export abstract class Session {
     }
 
     public onData(data: Buffer): void {
-
         this.stream.write(data);
 
         let buffer = this.stream.read();

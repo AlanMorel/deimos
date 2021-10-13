@@ -8,7 +8,6 @@ enum Mode {
 }
 
 export class FurnishingInventoryPacket {
-
     public static startList(): Packet {
         const packet = new PacketWriter();
 

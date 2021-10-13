@@ -9,7 +9,6 @@ enum Mode {
 }
 
 export class StatPointPacket {
-
     public static writeTotalStatPoints(player: Player): Packet {
         const packet = new PacketWriter();
 

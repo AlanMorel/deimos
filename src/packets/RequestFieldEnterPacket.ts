@@ -5,11 +5,10 @@ import { CoordF } from "../types/coords/CoordF";
 import { Player } from "../types/player/Player";
 
 enum Mode {
-    ENTER = 0x0,
+    ENTER = 0x0
 }
 
 export class RequestFieldEnterPacket {
-
     public static requestEnter(player: Player): Packet {
         const packet = new PacketWriter();
 

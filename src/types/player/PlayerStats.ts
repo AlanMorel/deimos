@@ -2,7 +2,6 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { PlayerStat } from "./PlayerStat";
 
 export class PlayerStats {
-
     public str: PlayerStat = new PlayerStat(100, 0, 100);
     public dex: PlayerStat = new PlayerStat(100, 0, 100);
     public int: PlayerStat = new PlayerStat(100, 0, 100);
@@ -10,11 +9,11 @@ export class PlayerStats {
     public hp: PlayerStat = new PlayerStat(1000, 0, 1000);
     public currentHp: PlayerStat = new PlayerStat(0, 500, 100);
     public hpRegen: PlayerStat = new PlayerStat(100, 0, 100);
-    public unknown7: PlayerStat = new PlayerStat(100, 0, 100);  // (3000, 3000, 3000)
+    public unknown7: PlayerStat = new PlayerStat(100, 0, 100); // (3000, 3000, 3000)
     public spirit: PlayerStat = new PlayerStat(100, 100, 100);
-    public unknown9: PlayerStat = new PlayerStat(100, 0, 100);  // (10, 10, 10)
+    public unknown9: PlayerStat = new PlayerStat(100, 0, 100); // (10, 10, 10)
     public unknown10: PlayerStat = new PlayerStat(100, 0, 100); // (500, 500, 500)
-    public stamina: PlayerStat = new PlayerStat(100, 0, 100);   // (10, 10, 10)
+    public stamina: PlayerStat = new PlayerStat(100, 0, 100); // (10, 10, 10)
     public unknown12: PlayerStat = new PlayerStat(100, 0, 100); // (500, 500, 500)
     public unknown13: PlayerStat = new PlayerStat(100, 0, 100);
     public atkSpd: PlayerStat = new PlayerStat(100, 1000, 100);
@@ -77,7 +76,7 @@ export class PlayerStats {
             stats.pierce,
             stats.mountSpeed,
             stats.bonusAtk,
-            stats.unknown35,
+            stats.unknown35
         ];
 
         for (const stat of playerStats) {

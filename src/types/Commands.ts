@@ -6,7 +6,6 @@ import { CoordS } from "./coords/CoordS";
 import { SyncState } from "./SyncState";
 
 export class Commands {
-
     public static process(session: ChannelSession, command: string): boolean {
         const args = command.toLowerCase().split(" ");
 

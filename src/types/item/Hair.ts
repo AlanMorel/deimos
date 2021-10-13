@@ -3,14 +3,19 @@ import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 import { Item } from "./Item";
 
 export class Hair extends Item {
-
     public backLength: number;
     public frontLength: number;
 
     public backPositionArray: Buffer;
     public frontPositionArray: Buffer;
 
-    public constructor(id: number, backLength: number, frontLength: number, backPositionArray: Buffer, frontPositionArray: Buffer) {
+    public constructor(
+        id: number,
+        backLength: number,
+        frontLength: number,
+        backPositionArray: Buffer,
+        frontPositionArray: Buffer
+    ) {
         super(id);
 
         this.backLength = backLength;

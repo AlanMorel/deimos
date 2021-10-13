@@ -18,5 +18,5 @@ export enum ItemSlot {
     BE = 121,
     RH = 1,
     LH = 2,
-    OH = 3,
+    OH = 3
 }

@@ -3,14 +3,12 @@ import { MapMetadata } from "./MapMetadata";
 import { MapPortalFlag } from "./portals/MapPortalFlag";
 
 export class MapMetadataStorage extends MetadataStorage<MapMetadata> {
-
     public getMap(id: number): MapMetadata | undefined {
         return this.storage.get(id);
     }
 
     public load(maps: MapMetadata[]): void {
         maps.forEach(map => {
-
             map.portals?.forEach(portal => {
                 const flagName = portal.flags ? portal.flags : MapPortalFlag[MapPortalFlag.None];
                 const flags = MapPortalFlag[flagName as keyof typeof MapPortalFlag];

@@ -1,7 +1,6 @@
 import { Crypter } from "./Crypter";
 
 export class RearrangeCrypter extends Crypter {
-
     public static readonly INDEX: number = 1;
 
     public encrypt(src: Buffer): void {
@@ -22,4 +21,3 @@ export class RearrangeCrypter extends Crypter {
         }
     }
 }
-

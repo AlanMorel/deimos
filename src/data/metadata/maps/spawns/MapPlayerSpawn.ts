@@ -1,7 +1,6 @@
 import { CoordS } from "../../../../types/coords/CoordS";
 
 export class MapPlayerSpawn {
-
     public coord: CoordS;
     public rotation: CoordS;
 

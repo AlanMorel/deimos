@@ -27,7 +27,6 @@ enum Mode {
 }
 
 export class CharacterManagementHandler implements LoginPacketHandler {
-
     public handle(session: LoginSession, packet: PacketReader): void {
         const mode = packet.readByte();
 
@@ -59,7 +58,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         const authData = {
             tokenA: AuthStorage.generateToken(),
             tokenB: AuthStorage.generateToken(),
-            characterId: characterId,
+            characterId: characterId
         };
 
         AuthStorage.setData(session.accountId, authData);

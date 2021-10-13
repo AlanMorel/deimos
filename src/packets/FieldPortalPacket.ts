@@ -9,7 +9,6 @@ enum Mode {
 }
 
 export class FieldPortalPacket {
-
     public static addPortal(portal: Portal): Packet {
         const packet = new PacketWriter();
 

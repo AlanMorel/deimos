@@ -4,7 +4,6 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Player } from "../types/player/Player";
 
 export class PrestigePacket {
-
     public static prestige(player: Player): Packet {
         const packet = new PacketWriter();
 

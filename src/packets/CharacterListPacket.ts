@@ -12,7 +12,6 @@ enum Mode {
 }
 
 export class CharacterListPacket {
-
     public static addEntries(characters: Player[]): Packet {
         const packet = new PacketWriter();
 

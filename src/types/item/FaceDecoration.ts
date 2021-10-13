@@ -2,7 +2,6 @@ import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Item } from "./Item";
 
 export class FaceDecoration extends Item {
-
     public data: Buffer;
 
     public constructor(id: number, data: Buffer) {

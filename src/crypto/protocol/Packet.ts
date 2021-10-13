@@ -1,5 +1,4 @@
 export class Packet {
-
     public buffer: Buffer;
     public length: number;
 
@@ -9,7 +8,11 @@ export class Packet {
     }
 
     public toString(): string {
-        return this.toArray().toString("hex").substring(4).toUpperCase().replace(/(.)(.)/g, "$1$2 ");
+        return this.toArray()
+            .toString("hex")
+            .substring(4)
+            .toUpperCase()
+            .replace(/(.)(.)/g, "$1$2 ");
     }
 
     public toArray(): Buffer {

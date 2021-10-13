@@ -1,5 +1,4 @@
 export abstract class Coord {
-
     public x: number;
     public y: number;
     public z: number;

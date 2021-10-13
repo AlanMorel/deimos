@@ -12,7 +12,6 @@ enum Mode {
 }
 
 export class ProxyGameObjectPacket {
-
     public static loadPlayer(player: Player): Packet {
         const packet = new PacketWriter();
 

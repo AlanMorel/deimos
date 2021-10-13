@@ -5,5 +5,5 @@ export enum TransferFlag {
     Tradeable = 4,
     Binds = 8,
     Unknown2 = 16,
-    Unknown3 = 32,
+    Unknown3 = 32
 }

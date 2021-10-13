@@ -8,7 +8,6 @@ import { Logger } from "../../tools/Logger";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class RequestQuitHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         const mode = packet.readByte();
 

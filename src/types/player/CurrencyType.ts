@@ -7,5 +7,5 @@ export enum CurrencyType {
     Meret,
     GameMeret,
     EventMeret,
-    MesoToken,
+    MesoToken
 }

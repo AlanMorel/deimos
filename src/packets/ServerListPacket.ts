@@ -8,7 +8,6 @@ enum Mode {
 }
 
 export class ServerListPacket {
-
     public static setServers(serverName: string, endpoints: Endpoint[], channels: number): Packet {
         const packet = new PacketWriter();
 

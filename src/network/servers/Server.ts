@@ -3,7 +3,6 @@ import { PacketRouter } from "../routers/PacketRouter";
 import { Session } from "../sessions/Session";
 
 export abstract class Server {
-
     protected server: net.Server = net.createServer();
     protected host: string;
     protected port: number;

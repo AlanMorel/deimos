@@ -6,13 +6,13 @@ import { Item } from "../item/Item";
 import { Player } from "../player/Player";
 import { InventoryTab } from "./InventoryTab";
 
-interface ItemTuple { // TODO: remove/improve
+interface ItemTuple {
+    // TODO: remove/improve
     item1: BigInt;
     item2: number;
 }
 
 export class Inventory {
-
     public size: number;
     private player: Player; // TODO remove after clean up
 
@@ -72,14 +72,14 @@ export class Inventory {
     // Returns false if item doesn't exist or removing more than available
     // TODO: fix return value here
     private remove(uid: BigInt, amount: number = -1): number {
-
         // Removing more than available
         const item = this.items.get(uid);
         if (!item || item.amount < amount) {
             return -1;
         }
 
-        if (amount < 0 || item.amount == amount) { // Remove All
+        if (amount < 0 || item.amount == amount) {
+            // Remove All
             const removedItem = this.removeInternalByUID(uid);
 
             if (!removedItem) {
@@ -101,7 +101,6 @@ export class Inventory {
 
     // Replaces an existing item with an updated copy of itself
     public replace(item: Item): boolean {
-
         if (!this.items.has(item.uid)) {
             return false;
         }
@@ -215,13 +214,15 @@ export class Inventory {
                     continue;
                 }
 
-                if ((i.amount + item.amount) > i.slotMax) { // update inventory for item amount overflow
+                if (i.amount + item.amount > i.slotMax) {
+                    // update inventory for item amount overflow
                     const added = i.slotMax - i.amount;
                     item.amount -= added;
                     i.amount = i.slotMax;
                     session.send(ItemInventoryPacket.update(i.uid, i.amount));
                     session.send(ItemInventoryPacket.markItemNew(i, added));
-                } else { // update item amount
+                } else {
+                    // update item amount
                     i.amount += item.amount;
                     session.send(ItemInventoryPacket.update(i.uid, i.amount));
                     session.send(ItemInventoryPacket.markItemNew(i, item.amount));
@@ -253,22 +254,24 @@ export class Inventory {
 
     // drop item with option to drop bound items
     public dropItem(session: ChannelSession, uid: BigInt, amount: number, isbound: boolean): void {
-
-        if (!isbound) { // drop item
+        if (!isbound) {
+            // drop item
             const remaining = this.remove(uid, amount); // returns remaining amount of item
 
             if (remaining < 0) {
                 return; // removal failed
-            } else if (remaining > 0) { // update item
+            } else if (remaining > 0) {
+                // update item
                 session.send(ItemInventoryPacket.update(uid, remaining));
-            } else { // remove item
+            } else {
+                // remove item
                 session.send(ItemInventoryPacket.remove(uid));
             }
 
             // TODO: Drops item onto floor
             // session.field.addItem(session, droppedItem);
-
-        } else { // drop bound item.
+        } else {
+            // drop bound item.
 
             // TODO: fix return value here
             const droppedItem = this.remove(uid);
@@ -317,7 +320,7 @@ export class Inventory {
             return;
         }
 
-        if ((this.getItemAmount(uid) + amount) >= this.getItemMax(uid)) {
+        if (this.getItemAmount(uid) + amount >= this.getItemMax(uid)) {
             item.amount = item.slotMax;
             session.send(ItemInventoryPacket.update(uid, item.slotMax));
         }

@@ -26,7 +26,6 @@ import { ChannelPacketHandler } from "../ChannelPacketHandler";
 import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
 
 export class ResponseKeyHandler implements ChannelPacketHandler {
-
     public async handle(session: ChannelSession, packet: PacketReader): Promise<void> {
         const accountId = packet.readLong();
         const authData = AuthStorage.getData(accountId);

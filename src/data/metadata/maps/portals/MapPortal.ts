@@ -2,7 +2,6 @@ import { CoordS } from "../../../../types/coords/CoordS";
 import { MapPortalFlag } from "./MapPortalFlag";
 
 export class MapPortal {
-
     public id: number;
     public flags: MapPortalFlag;
     public target: number;

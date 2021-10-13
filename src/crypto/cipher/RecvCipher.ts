@@ -4,7 +4,6 @@ import { PacketReader } from "../protocol/PacketReader";
 import { Cipher } from "./Cipher";
 
 export class RecvCipher extends Cipher {
-
     public constructor(version: number, iv: number, blockIV: number) {
         super(version, iv, blockIV);
         this.cryptSeq.reverse();

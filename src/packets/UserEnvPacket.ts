@@ -3,7 +3,6 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 export class UserEnvPacket {
-
     public static setTitles(titles: number[]): Packet {
         const packet = new PacketWriter();
 
@@ -63,7 +62,7 @@ export class UserEnvPacket {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.USER_ENV);
-        packet.writeByte(0xA); // mode
+        packet.writeByte(0xa); // mode
         packet.writeInt();
 
         return packet;
@@ -73,7 +72,7 @@ export class UserEnvPacket {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.USER_ENV);
-        packet.writeByte(0xC); // mode
+        packet.writeByte(0xc); // mode
         packet.writeInt();
 
         return packet;

@@ -1,5 +1,4 @@
 export class StatDistribution {
-
     public totalStatPoints: number;
     // TODO: implement Dictionary to keep track of points earned from quest, trophy, exploration, prestige
     // naming convention: PointsFromQuest, PointsFromTrophy, PointsFromExploration, PointsFromPrestige

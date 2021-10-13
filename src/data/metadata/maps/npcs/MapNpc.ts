@@ -1,7 +1,6 @@
 import { CoordS } from "../../../../types/coords/CoordS";
 
 export class MapNpc {
-
     public id: number;
     public coord: CoordS;
     public rotation: CoordS;

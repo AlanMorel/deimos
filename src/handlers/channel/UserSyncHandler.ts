@@ -5,7 +5,6 @@ import { SyncState } from "../../types/SyncState";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class UserSyncHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         packet.readByte(); // unknown mode
         session.clientTick = packet.readInt();

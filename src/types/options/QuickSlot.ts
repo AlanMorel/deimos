@@ -1,7 +1,6 @@
 import { PacketWriter } from "../../crypto/protocol/PacketWriter";
 
 export class QuickSlot {
-
     public skillId: number = 0;
     public itemId: number = 0;
     public itemUid: BigInt = 0n;

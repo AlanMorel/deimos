@@ -3,7 +3,6 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 export class RequestLoginPacket {
-
     public static login(): Packet {
         const packet = new PacketWriter();
 

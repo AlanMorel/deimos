@@ -4,7 +4,6 @@ import { GameOptions } from "./GameOptions";
 import { QuickSlot } from "./QuickSlot";
 
 export class Hotbar {
-
     public static readonly MAX_SLOTS = 25;
 
     public slots: QuickSlot[] = new Array<QuickSlot>(Hotbar.MAX_SLOTS);
@@ -58,12 +57,10 @@ export class Hotbar {
     }
 
     public static write(packet: PacketWriter, options: GameOptions): void {
-
         packet.writeShort(options.activeHotbarId);
         packet.writeShort(options.hotbars.length);
 
         for (const hotbar of options.hotbars) {
-
             packet.writeInt(hotbar.slots.length);
 
             for (let slotIndex = 0; slotIndex < hotbar.slots.length; slotIndex++) {

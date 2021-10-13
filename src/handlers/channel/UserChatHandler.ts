@@ -7,7 +7,6 @@ import { Commands } from "../../types/Commands";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
 
 export class UserChatHandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         const type = packet.readInt();
         const message = packet.readUnicodeString();
@@ -35,7 +34,9 @@ export class UserChatHandler implements ChannelPacketHandler {
                 const recipientPlayer = World.getInstance().getPlayerByName(recipient);
 
                 if (!recipientPlayer || !recipientPlayer.session) {
-                    session.send(ChatPacket.send(session, "Player not found or they are not online.", ChatType.WhisperFail));
+                    session.send(
+                        ChatPacket.send(session, "Player not found or they are not online.", ChatType.WhisperFail)
+                    );
                     break;
                 }
 

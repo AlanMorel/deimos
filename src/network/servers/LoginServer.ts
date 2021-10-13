@@ -6,7 +6,6 @@ import { LoginSession } from "../sessions/LoginSession";
 import { Server } from "./Server";
 
 export class LoginServer extends Server {
-
     public constructor(host: string, port: number) {
         super(host, port, new LoginPacketRouter());
         super.start();

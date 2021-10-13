@@ -1,7 +1,6 @@
 import { PacketHandler } from "../../handlers/PacketHandler";
 
 export abstract class PacketRouter {
-
     protected handlers: Map<number, PacketHandler> = new Map<number, PacketHandler>();
 
     public constructor() {

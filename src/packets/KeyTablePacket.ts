@@ -10,7 +10,6 @@ enum Mode {
 }
 
 export class KeyTablePacket {
-
     public static requestDefault(): Packet {
         const packet = new PacketWriter();
 

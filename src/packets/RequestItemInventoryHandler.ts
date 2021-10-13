@@ -7,11 +7,10 @@ enum Mode {
     Move = 0x3,
     Drop = 0x4,
     DropBound = 0x5,
-    Sort = 0xA
+    Sort = 0xa
 }
 
 export class RequestItemInventoryhandler implements ChannelPacketHandler {
-
     public handle(session: ChannelSession, packet: PacketReader): void {
         const mode = packet.readByte();
 

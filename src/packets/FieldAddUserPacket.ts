@@ -12,7 +12,6 @@ import { ItemPacketHelper } from "./helpers/ItemPacketHelper";
 import { JobPacket } from "./JobPacket";
 
 export class FieldAddUserPacket {
-
     public static addPlayer(player: Player): Packet {
         const packet = new PacketWriter();
 
@@ -85,7 +84,6 @@ export class FieldAddUserPacket {
         // This seems to be character appearance encoded as a blob
         const encodeAppearance = true;
         if (encodeAppearance) {
-
             const appearanceBuffer = FieldAddUserPacket.getAppearanceBuffer(packet, player);
             packet.writeDeflated(appearanceBuffer.toArray());
 

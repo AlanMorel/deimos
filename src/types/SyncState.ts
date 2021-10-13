@@ -7,7 +7,6 @@ import { CoordS } from "./coords/CoordS";
 import { SyncStateFlag } from "./SyncStateFlag";
 
 export class SyncState {
-
     public animation1: number = 0;
     public animation2: number = 0;
     public flag: SyncStateFlag = SyncStateFlag.None;
@@ -31,7 +30,7 @@ export class SyncState {
     public flag2Unknown2: string = "";
 
     // Flag3
-    public flag3Unknown1: number = 0
+    public flag3Unknown1: number = 0;
     public flag3Unknown2: string = "";
 
     // Flag4
@@ -64,7 +63,8 @@ export class SyncState {
         state.rotation = packet.readShort(); // CoordS / 10 (Rotation?)
         state.animation3 = packet.readByte();
 
-        if (state.animation3 > 127) { // if animation < 0 (signed)
+        if (state.animation3 > 127) {
+            // if animation < 0 (signed)
             state.unknownFloat1 = packet.readFloat();
             state.unknownFloat2 = packet.readFloat();
         }
@@ -162,4 +162,3 @@ export class SyncState {
         return packet;
     }
 }
-

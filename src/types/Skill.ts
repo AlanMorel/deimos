@@ -1,5 +1,4 @@
 export class Skill {
-
     public id: number;
     public level: number;
     public learned: number;

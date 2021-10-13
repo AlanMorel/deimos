@@ -2,9 +2,7 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { PlayerStats } from "../types/player/PlayerStats";
 
 export class FieldPacket {
-
     public static writeTotalStats(packet: PacketWriter, stats: PlayerStats): void {
-
         packet.writeByte(0x23);
 
         packet.writeLong(stats.hp.total);

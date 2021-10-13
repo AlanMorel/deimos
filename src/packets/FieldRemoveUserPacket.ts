@@ -4,7 +4,6 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Player } from "../types/player/Player";
 
 export class FieldRemoveUserPacket {
-
     public static removePlayer(player: Player): Packet {
         const packet = new PacketWriter();
 

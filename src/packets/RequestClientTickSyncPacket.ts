@@ -4,7 +4,6 @@ import { PacketWriter } from "../crypto/protocol/PacketWriter";
 import { Time } from "../tools/Time";
 
 export class RequestClientTickSyncPacket {
-
     public static tickSync(): Packet {
         const packet = new PacketWriter();
 

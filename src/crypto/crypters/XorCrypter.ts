@@ -2,7 +2,6 @@ import { Rand32 } from "../Rand32";
 import { Crypter } from "./Crypter";
 
 export class XORCrypter extends Crypter {
-
     public static readonly INDEX: number = 2;
 
     private table: Buffer = Buffer.alloc(2);
@@ -29,4 +28,3 @@ export class XORCrypter extends Crypter {
         }
     }
 }
-

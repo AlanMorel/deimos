@@ -3,7 +3,6 @@ import { Packet } from "../crypto/protocol/Packet";
 import { PacketWriter } from "../crypto/protocol/PacketWriter";
 
 export class LoadUgcMapPacket {
-
     public static loadMap(): Packet {
         const packet = new PacketWriter();
 

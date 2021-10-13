@@ -3,7 +3,6 @@ import { Session } from "../../network/sessions/Session";
 import { Logger } from "../../tools/Logger";
 
 export class LogSendHelper {
-
     public static handle(session: Session, packet: PacketReader): void {
         packet.readByte();
         const mode = packet.readByte();
