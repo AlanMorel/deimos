@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Database } from "../../database/Database";
@@ -10,7 +11,6 @@ import { LoginResultPacket } from "../../packets/LoginResultPacket";
 import { NpsInfoPacket } from "../../packets/NpsInfoPacket";
 import { ServerListPacket } from "../../packets/ServerListPacket";
 import { UgcPacket } from "../../packets/UgcPacket";
-import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { Player } from "../../types/player/Player";
 import { LoginPacketHandler } from "../LoginPacketHandler";
@@ -26,21 +26,20 @@ export class ResponseLoginHandler implements LoginPacketHandler {
         const username = packet.readUnicodeString();
         const password = packet.readUnicodeString();
 
-        Logger.log(`Logging in with username: '${username}' pass: '${password}'`, HexColor.PURPLE);
+        Logger.log(`Logging in with username: '${username}' pass: '${password}'`, chalk.magenta);
 
         const account = await Database.getAccounts().getByCredentials(username, password);
 
         if (account) {
-            Logger.log("Account found", HexColor.GREEN);
             session.accountId = account.id;
         } else if (Configs.settings.defaultAccountId > 0n) {
             Logger.log(
                 "Account not found but logging in to default account id " + Configs.settings.defaultAccountId,
-                HexColor.YELLOW
+                chalk.yellow
             );
             session.accountId = Configs.settings.defaultAccountId;
         } else {
-            Logger.log("Account not found and no default account id found", HexColor.RED);
+            Logger.log("Account not found and no default account id found", chalk.red);
             session.send(LoginResultPacket.incorrectID(session.accountId));
             return;
         }
@@ -61,7 +60,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                     player.equips = Player.getTestEquips();
                 });
 
-                Logger.log("Initializing login with account id: " + session.accountId, HexColor.PURPLE);
+                Logger.log("Initializing login with account id: " + session.accountId, chalk.magenta);
 
                 session.send(LoginResultPacket.login(session.accountId));
                 session.send(UgcPacket.setEndpoint("http://127.0.0.1/ws.asmx?wsdl", "http://127.0.0.1"));

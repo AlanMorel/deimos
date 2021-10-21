@@ -1,41 +1,45 @@
+import chalk from "chalk";
 import Configs from "../Configs";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketHandler } from "../handlers/PacketHandler";
-import { HexColor } from "./HexColor";
-
-interface Color {
-    r: number;
-    b: number;
-    g: number;
-}
 
 export class Logger {
-    public static log(message: string, hex: HexColor = HexColor.BLUE): void {
-        const color = this.hexToColor(hex);
-        console.log("\u001b[38;2;" + color.r + ";" + color.g + ";" + color.b + "m" + message + "\u001b[0m");
+    public static log(message: string, chalkConfig: chalk.Chalk = chalk.blue, prefix: string = "log"): void {
+        let content = `${chalkConfig(message)}`;
+
+        if (Configs.settings.logPrefix) {
+            content = `${chalkConfig("[" + prefix.toUpperCase() + "]")} ${content}`;
+        }
+
+        if (Configs.settings.logTimestamps) {
+            const timestamp = this.getTimestamp();
+            content = `${chalk.gray(timestamp)} ${content}`;
+        }
+
+        console.log(`${content}`);
     }
 
     public static error(error: string): void {
-        this.log(error, HexColor.ORANGE);
+        this.log(error, chalk.bgRed.whiteBright, "error");
     }
 
-    public static debug(message: string, hex: HexColor = HexColor.PURPLE): void {
+    public static debug(message: string, chalkConfig: chalk.Chalk = chalk.magenta): void {
         if (Configs.settings.logDebugs) {
-            this.log(message, hex);
+            this.log(message, chalkConfig, "debug");
         }
     }
 
     public static send(opcode: string, packet: Packet): void {
-        this.packet("SEND", opcode, packet, HexColor.RED);
+        this.packet("SEND", opcode, packet, chalk.red);
     }
 
     public static recv(opcode: string, packet: Packet): void {
-        this.packet("RECV", opcode, packet, HexColor.GREEN);
+        this.packet("RECV", opcode, packet, chalk.green);
     }
 
-    public static packet(prefix: string, opcode: string, packet: Packet, color: HexColor): void {
+    public static packet(prefix: string, opcode: string, packet: Packet, chalkConfig: chalk.Chalk): void {
         if (Configs.settings.logPackets) {
-            this.log("[" + prefix + "] " + opcode + ": " + packet.toString(), color);
+            this.log(opcode + " " + packet.toString(), chalkConfig, prefix);
         }
     }
 
@@ -43,11 +47,7 @@ export class Logger {
         this.error("Unknown mode 0x" + mode.toString(16).toUpperCase() + " in " + handler.constructor.name);
     }
 
-    private static hexToColor(color: number): Color {
-        const r = color >> 16;
-        const g = (color >> 8) & 0xff;
-        const b = color & 0xff;
-
-        return { r, g, b };
+    private static getTimestamp(): string {
+        return new Date().toLocaleDateString("en-US", Configs.settings.timestampOptions);
     }
 }

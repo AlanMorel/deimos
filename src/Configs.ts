@@ -5,7 +5,7 @@ export default {
     name: "Deimos",
     version: 12,
     login: {
-        host: "127.0.0.1",
+        host: "0.0.0.0",
         port: 20001
     },
     worlds: [
@@ -13,11 +13,11 @@ export default {
             name: "Paperwood",
             channels: [
                 {
-                    host: "127.0.0.1",
+                    host: "0.0.0.0",
                     port: 21001
                 },
                 {
-                    host: "127.0.0.1",
+                    host: "0.0.0.0",
                     port: 21002
                 }
             ]
@@ -27,6 +27,16 @@ export default {
         logDebugs: true,
         logPackets: true,
         logQueries: false,
+        logPrefix: true,
+        logTimestamps: true,
+        timestampOptions: {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        } as Intl.DateTimeFormatOptions,
         loadMetadata: true,
         defaultAccountId: 1n
     },

@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { Socket } from "net";
 import Configs from "../../Configs";
 import { RecvOp } from "../../constants/RecvOp";
@@ -56,7 +57,7 @@ export abstract class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.debug("[HANDSHAKE]: " + packet.toString());
+        Logger.log("[HANDSHAKE] " + packet.toString(), chalk.cyanBright);
 
         this.socket.write(packet.buffer);
     }

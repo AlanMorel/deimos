@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AuthStorage } from "../../data/storage/AuthStorage";
@@ -8,7 +9,6 @@ import { CharacterCreatePacket } from "../../packets/CharacterCreatePacket";
 import { CharacterListPacket } from "../../packets/CharacterListPacket";
 import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
 import { LoginToGamePacket } from "../../packets/LoginToGamePacket";
-import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ItemColor } from "../../types/color/ItemColor";
 import { SkinColor } from "../../types/color/SkinColor";
@@ -50,7 +50,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         const characterId = packet.readLong();
         packet.readShort(); // 01 00
 
-        Logger.log(`Logging in to game with char id: ${characterId}`, HexColor.PURPLE);
+        Logger.log(`Logging in to game with char id: ${characterId}`, chalk.magenta);
 
         const channel = Configs.worlds[0].channels[0];
         const endpoint = new Endpoint(channel.host, channel.port);

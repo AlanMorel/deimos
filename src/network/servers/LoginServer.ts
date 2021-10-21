@@ -1,5 +1,5 @@
+import chalk from "chalk";
 import { Socket } from "net";
-import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { LoginPacketRouter } from "../routers/LoginPacketRouter";
 import { LoginSession } from "../sessions/LoginSession";
@@ -39,7 +39,7 @@ export class LoginServer extends Server {
     }
 
     protected onStart(): void {
-        Logger.log(`Login Server at ${this.host}:${this.port} is online`, HexColor.GREEN);
+        Logger.log(`Login Server at ${this.host}:${this.port} is online`, chalk.green);
     }
 
     protected onShutdown(): void {

@@ -1,9 +1,9 @@
+import chalk from "chalk";
 import { Socket } from "net";
 import { Packet } from "../../crypto/protocol/Packet";
 import { Database } from "../../database/Database";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
 import { World } from "../../server/World";
-import { HexColor } from "../../tools/HexColor";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
 import { ChannelSession } from "../sessions/ChannelSession";
@@ -61,7 +61,7 @@ export class ChannelServer extends Server {
         if (session.field) {
             Database.getCharacters().save(session.player);
             session.field.removePlayer(session);
-            Logger.log(session.player.name + " saved successfully.", HexColor.YELLOW);
+            Logger.log(session.player.name + " saved successfully.", chalk.yellow);
         }
         Logger.log(`${this.world} Channel ${this.id}: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
@@ -71,7 +71,7 @@ export class ChannelServer extends Server {
     }
 
     protected onStart(): void {
-        Logger.log(`${this.world} Channel ${this.id} at ${this.host}:${this.port} is online`, HexColor.GREEN);
+        Logger.log(`${this.world} Channel ${this.id} at ${this.host}:${this.port} is online`, chalk.green);
     }
 
     protected onShutdown(): void {
