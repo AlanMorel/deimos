@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import dotenv from "dotenv";
 import Configs from "./Configs";
 import { Metadata } from "./data/metadata/Metadata";
 import { Database } from "./database/Database";
@@ -11,22 +10,13 @@ export class App {
     public constructor() {
         Logger.log(Configs.name + " has started", chalk.yellow);
 
-        this.loadEnvironmentVariables();
-        this.loadMetaata();
+        this.loadMetadata();
         this.initializeDatabase();
         this.startLoginServer();
         this.startWorlds();
     }
 
-    private loadEnvironmentVariables(): void {
-        if (dotenv.config().parsed) {
-            Logger.log("Environment variables loaded successfully", chalk.magenta);
-        } else {
-            Logger.error("Failed to load environment variables");
-        }
-    }
-
-    private loadMetaata(): void {
+    private loadMetadata(): void {
         if (Configs.settings.loadMetadata) {
             Metadata.load();
             Logger.log("Metadata loaded successfully", chalk.magenta);

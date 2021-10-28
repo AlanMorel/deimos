@@ -27,11 +27,26 @@ Create a `.env` file
 ```sh
 NODE_ENV=development
 
+NAME=Deimos
+
 DATABASE_HOST=localhost
 DATABASE_PORT=3306
 DATABASE_USERNAME=root
 DATABASE_PASSWORD=
 DATABASE_SCHEMA=deimos
+
+LOGIN_SERVER_HOST=0.0.0.0
+LOGIN_SERVER_PORT=20001
+
+LOG_DEBUGS=true
+LOG_PACKETS=true
+LOG_QUERIES=true
+LOG_PREFIX=true
+LOG_TIMESTAMP=true
+
+LOAD_METADATA=true
+
+FILE_HASH=
 ```
 
 Edit `src/Configs.ts` to your liking, then compile and run the server.
