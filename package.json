@@ -2,13 +2,13 @@
     "name": "deimos",
     "version": "1.0.0",
     "author": "Alan Morel",
-    "license": "ISC",
+    "license": "GNU",
     "private": true,
+    "description": "Deimos",
     "repository": {
         "type": "git",
         "url": "https://github.com/AlanMorel/deimos.git"
     },
-    "main": "index.js",
     "scripts": {
         "build": "tsc --project ./",
         "lint": "eslint ./src --ext .ts --fix",
