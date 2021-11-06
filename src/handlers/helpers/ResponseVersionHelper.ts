@@ -8,7 +8,7 @@ export class ResponseVersionHelper {
         const version = packet.readUInt();
         // +4 Bytes CONST(2F 00 02 00)
 
-        if (version != Configs.version) {
+        if (version !== Configs.version) {
             Logger.error("There was a version mismatch");
         }
     }

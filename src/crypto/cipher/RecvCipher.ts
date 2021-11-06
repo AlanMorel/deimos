@@ -25,7 +25,7 @@ export class RecvCipher extends Cipher {
         const encSeq = packet.readUShort();
         const decSeq = this.decodeSeqBase(encSeq);
 
-        if (decSeq != this.version) {
+        if (decSeq !== this.version) {
             Logger.error("Packet has invalid sequence header: " + decSeq);
         }
 

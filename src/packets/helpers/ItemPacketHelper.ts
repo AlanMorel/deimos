@@ -62,7 +62,7 @@ export class ItemPacketHelper {
         ItemPacketHelper.writeSockets(packet, item.stats);
 
         packet.writeBigInt(item.pairedCharacterId);
-        if (item.pairedCharacterId != 0n) {
+        if (item.pairedCharacterId !== 0n) {
             packet.writeUnicodeString(item.pairedCharacterName);
             packet.writeBoolean(false);
         }
@@ -149,7 +149,6 @@ export class ItemPacketHelper {
                 packet.write(faceDecoration.data);
                 break;
         }
-        return;
     }
 
     private static writeSockets(packet: PacketWriter, stats: ItemStats): Packet {
@@ -165,15 +164,15 @@ export class ItemPacketHelper {
 
             const gem = stats.gemstones[i];
             packet.writeInt(gem.id);
-            packet.writeBoolean(gem.ownerId != 0n);
+            packet.writeBoolean(gem.ownerId !== 0n);
 
-            if (gem.ownerId != 0n) {
+            if (gem.ownerId !== 0n) {
                 packet.writeBigInt(gem.ownerId);
                 packet.writeUnicodeString(gem.ownerName);
             }
 
-            packet.writeBoolean(gem.unknown != 0n);
-            if (gem.unknown != 0n) {
+            packet.writeBoolean(gem.unknown !== 0n);
+            if (gem.unknown !== 0n) {
                 packet.writeByte();
                 packet.writeBigInt(gem.unknown);
             }

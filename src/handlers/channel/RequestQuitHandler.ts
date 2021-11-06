@@ -11,7 +11,7 @@ export class RequestQuitHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {
         const mode = packet.readByte();
 
-        if (mode == 0) {
+        if (mode === 0) {
             const authData = AuthStorage.getData(session.player.accountId);
 
             if (!authData) {

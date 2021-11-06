@@ -115,12 +115,7 @@ export class Player extends FieldObject {
     public isBeauty(): boolean {
         const slots = [ItemSlot.HR, ItemSlot.FA, ItemSlot.FD, ItemSlot.CL, ItemSlot.PA, ItemSlot.SH, ItemSlot.ER];
         const defaultEquipSlot = this.getDefaultEquipSlot();
-        for (const slot of slots) {
-            if (defaultEquipSlot == slot) {
-                return true;
-            }
-        }
-        return false;
+        return slots.some(slot => slot === defaultEquipSlot);
     }
 
     public static getTestEquips(): Map<ItemSlot, Item> {

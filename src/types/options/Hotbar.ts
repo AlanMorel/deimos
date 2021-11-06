@@ -21,7 +21,7 @@ export class Hotbar {
         }
 
         const sourceSlotIndex = this.findQuickSlotIndex(quickSlot.skillId, quickSlot.itemUid);
-        if (sourceSlotIndex != -1) {
+        if (sourceSlotIndex !== -1) {
             // swapping with an existing slot on the hotbar
             const sourceQuickSlot = this.slots[targetSlotIndex];
             this.slots[sourceSlotIndex] = new QuickSlot(
@@ -37,7 +37,7 @@ export class Hotbar {
     private findQuickSlotIndex(skillId: number, itemUid: BigInt = 0n): number {
         for (let i = 0; i < Hotbar.MAX_SLOTS; i++) {
             const currentSlot = this.slots[i];
-            if (currentSlot.skillId == skillId && currentSlot.itemUid == itemUid) {
+            if (currentSlot.skillId === skillId && currentSlot.itemUid === itemUid) {
                 return i;
             }
         }

@@ -17,7 +17,7 @@ export class ResponseKeyHelper {
             return;
         }
 
-        if (tokenA != authData.tokenA || tokenB != authData.tokenB) {
+        if (tokenA !== authData.tokenA || tokenB !== authData.tokenB) {
             Logger.error("Attempted login with invalid tokens.");
             return;
         }

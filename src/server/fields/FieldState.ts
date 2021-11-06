@@ -17,18 +17,17 @@ export class FieldState {
         }
 
         mapMetadata.portals.forEach(portal => {
-            const id = portal.id;
             const isVisible = Enum.hasFlag(portal.flags, MapPortalFlag.Visible);
             const isEnabled = Enum.hasFlag(portal.flags, MapPortalFlag.Enabled);
             const isMiniMapVisible = Enum.hasFlag(portal.flags, MapPortalFlag.MinimapVisible);
             const rotation = portal.rotation;
             const targetMapId = portal.target;
 
-            const newPortal = new Portal(id, isVisible, isEnabled, isMiniMapVisible, rotation, targetMapId);
+            const newPortal = new Portal(portal.id, isVisible, isEnabled, isMiniMapVisible, rotation, targetMapId);
             newPortal.objectId = field.getNewObjectId();
             newPortal.coord = portal.coord;
 
-            this.portals.set(id, newPortal);
+            this.portals.set(portal.id, newPortal);
         });
     }
 

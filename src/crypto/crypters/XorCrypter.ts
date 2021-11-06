@@ -17,12 +17,14 @@ export class XORCrypter extends Crypter {
     }
 
     public encrypt(src: Buffer): void {
-        for (let i = 0; i < src.length; i++) {
-            src[i] ^= this.table[i & 1];
-        }
+        this.transform(src);
     }
 
     public decrypt(src: Buffer): void {
+        this.transform(src);
+    }
+
+    private transform(src: Buffer): void {
         for (let i = 0; i < src.length; i++) {
             src[i] ^= this.table[i & 1];
         }

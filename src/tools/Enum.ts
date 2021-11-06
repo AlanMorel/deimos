@@ -4,6 +4,6 @@ export class Enum {
     }
 
     public static hasFlag(flag: number, bit: number): boolean {
-        return (flag & bit) != 0;
+        return (flag & bit) !== 0;
     }
 }

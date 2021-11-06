@@ -22,16 +22,14 @@ export class Accounts extends Controller<AccountRow, Account> {
 
     protected fromDatabase(from: AccountRow): Account {
         const id = BigInt(from.id);
-        const account = new Account(id, from.username, from.password);
-        return account;
+        return new Account(id, from.username, from.password);
     }
 
     protected toDatabase(to: Account): AccountRow {
-        const accountRow = {
+        return {
             id: to.id.toString(),
             username: to.username,
             password: to.password
         };
-        return accountRow;
     }
 }

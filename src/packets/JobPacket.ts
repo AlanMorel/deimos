@@ -30,7 +30,7 @@ export class JobPacket {
 
         // List of skills for given tab in format (byte zero) (byte learned) (int skill_id) (int skill_level) (byte zero)
         for (const id of skillIds) {
-            if (id == countId) {
+            if (id === countId) {
                 packet.writeByte(split); // Write that there are (split) skills left
             }
             packet.writeByte();

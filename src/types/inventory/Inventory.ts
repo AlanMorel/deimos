@@ -33,8 +33,8 @@ export class Inventory {
     public getItems(tab: InventoryTab): Item[] {
         const uids = Array.from(this.getSlots(tab).values());
         const items = new Array<Item>();
-        for (let i = 0; i < uids.length; i++) {
-            const item = this.items.get(uids[i]);
+        for (const uid of uids) {
+            const item = this.items.get(uid);
             if (item) {
                 items.push(item);
             }
@@ -78,7 +78,7 @@ export class Inventory {
             return -1;
         }
 
-        if (amount < 0 || item.amount == amount) {
+        if (amount < 0 || item.amount === amount) {
             // Remove All
             const removedItem = this.removeInternalByUID(uid);
 
@@ -210,7 +210,7 @@ export class Inventory {
         if (item.slotMax > 1) {
             for (const i of this.items.values()) {
                 // checks to see if item exists in database (dictionary)
-                if (i.id != item.id || i.amount >= i.slotMax) {
+                if (i.id !== item.id || i.amount >= i.slotMax) {
                     continue;
                 }
 
@@ -275,7 +275,7 @@ export class Inventory {
 
             // TODO: fix return value here
             const droppedItem = this.remove(uid);
-            if (droppedItem != 0) {
+            if (droppedItem !== 0) {
                 return; // Removal from inventory failed
             }
 

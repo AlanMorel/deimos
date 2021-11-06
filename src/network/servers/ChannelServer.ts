@@ -43,7 +43,7 @@ export class ChannelServer extends Server {
                 if (!player.session) {
                     return false;
                 }
-                if (player.session.channel.id != this.id) {
+                if (player.session.channel.id !== this.id) {
                     return false;
                 }
                 return true;
