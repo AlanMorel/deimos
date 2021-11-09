@@ -8,8 +8,6 @@ services:
             context: .
             dockerfile: Dockerfile
             target: base
-            args:
-                ENV: ${NODE_ENV}
         restart: always
         environment:
             DOCKER: "true"
