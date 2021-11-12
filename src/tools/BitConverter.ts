@@ -8,7 +8,7 @@ export class BitConverter {
     }
 
     public static intToFloat(int: number): number {
-        return parseFloat(int + "");
+        return parseFloat(`${int}`);
     }
 
     public static intToBytes(int: number): Buffer {

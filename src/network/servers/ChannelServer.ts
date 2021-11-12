@@ -61,7 +61,7 @@ export class ChannelServer extends Server {
         if (session.field) {
             Database.getCharacters().save(session.player);
             session.field.removePlayer(session);
-            Logger.log(session.player.name + " saved successfully.", chalk.yellow);
+            Logger.log(`${session.player.name} saved successfully.`, chalk.yellow);
         }
         Logger.log(`${this.world} Channel ${this.id}: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }

@@ -8,7 +8,7 @@ export class Logger {
         let content = `${chalkConfig(message)}`;
 
         if (Configs.settings.logPrefix) {
-            content = `${chalkConfig("[" + prefix.toUpperCase() + "]")} ${content}`;
+            content = `${chalkConfig(`[${prefix.toUpperCase()}]`)} ${content}`;
         }
 
         if (Configs.settings.logTimestamps) {
@@ -39,12 +39,12 @@ export class Logger {
 
     public static packet(prefix: string, opcode: string, packet: Packet, chalkConfig: chalk.Chalk): void {
         if (Configs.settings.logPackets) {
-            this.log(opcode + " " + packet.toString(), chalkConfig, prefix);
+            this.log(`${opcode} ${packet.toString()}`, chalkConfig, prefix);
         }
     }
 
     public static unknownMode(handler: PacketHandler, mode: number): void {
-        this.error("Unknown mode 0x" + mode.toString(16).toUpperCase() + " in " + handler.constructor.name);
+        this.error(`Unknown mode 0x${mode.toString(16).toUpperCase()} in ${handler.constructor.name}`);
     }
 
     private static getTimestamp(): string {

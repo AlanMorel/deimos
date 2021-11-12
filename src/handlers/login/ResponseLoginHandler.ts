@@ -34,7 +34,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
             session.accountId = account.id;
         } else if (Configs.settings.defaultAccountId > 0n) {
             Logger.log(
-                "Account not found but logging in to default account id " + Configs.settings.defaultAccountId,
+                `Account not found but logging in to default account id ${Configs.settings.defaultAccountId}`,
                 chalk.yellow
             );
             session.accountId = Configs.settings.defaultAccountId;
@@ -60,7 +60,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                     player.equips = Player.getTestEquips();
                 });
 
-                Logger.log("Initializing login with account id: " + session.accountId, chalk.magenta);
+                Logger.log(`Initializing login with account id: ${session.accountId}`, chalk.magenta);
 
                 session.send(LoginResultPacket.login(session.accountId));
                 session.send(UgcPacket.setEndpoint("http://127.0.0.1/ws.asmx?wsdl", "http://127.0.0.1"));

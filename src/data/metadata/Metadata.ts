@@ -26,10 +26,10 @@ export class Metadata {
     }
 
     private static deserialize<T>(slug: string, name: string): T[] {
-        const root = protobuf.loadSync(process.cwd() + "/resources/proto/" + slug + ".proto");
-        const buffer = fs.readFileSync(process.cwd() + "/resources/metadata/ms2-" + slug + "-metadata");
+        const root = protobuf.loadSync(`${process.cwd()}/resources/proto/${slug}.proto`);
+        const buffer = fs.readFileSync(`${process.cwd()}/resources/metadata/ms2-${slug}-metadata`);
 
-        const type = root.lookupType("List" + name + "Metadata");
+        const type = root.lookupType(`List${name}Metadata`);
         return type.decode(buffer).toJSON().items;
     }
 }

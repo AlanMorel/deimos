@@ -10,6 +10,6 @@ export abstract class Coord {
     }
 
     public toString(): string {
-        return "{x: " + this.x + ", y: " + this.y + ", z: " + this.z + "}";
+        return `{x: ${this.x}, y: ${this.y}, z: ${this.z}}`;
     }
 }

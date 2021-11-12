@@ -8,7 +8,7 @@ import { Logger } from "./tools/Logger";
 
 export class App {
     public constructor() {
-        Logger.log(Configs.name + " has started", chalk.yellow);
+        Logger.log(`${Configs.name} has started`, chalk.yellow);
 
         this.loadMetadata();
         this.initializeDatabase();

@@ -57,7 +57,7 @@ export abstract class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.log("[HANDSHAKE] " + packet.toString(), chalk.cyanBright);
+        Logger.log(`[HANDSHAKE] ${packet.toString()}`, chalk.cyanBright);
 
         this.socket.write(packet.buffer);
     }
@@ -83,7 +83,7 @@ export abstract class Session {
         const recvOpcode = RecvOp[opcode];
 
         if (recvOpcode === undefined) {
-            Logger.recv("0x" + opcode.toString(16).toUpperCase(), packet);
+            Logger.recv(`0x${opcode.toString(16).toUpperCase()}`, packet);
             return;
         }
 
