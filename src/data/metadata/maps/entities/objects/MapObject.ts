@@ -1,4 +1,4 @@
-import { CoordB } from "../../../../types/coords/CoordB";
+import { CoordB } from "../../../../../types/coords/CoordB";
 
 export class MapObject {
     public coord: CoordB;

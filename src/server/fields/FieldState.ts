@@ -1,4 +1,4 @@
-import { MapPortalFlag } from "../../data/metadata/maps/portals/MapPortalFlag";
+import { MapPortalFlag } from "../../data/metadata/maps/entities/portals/MapPortalFlag";
 import { Metadata } from "../../data/metadata/Metadata";
 import { Enum } from "../../tools/Enum";
 import { Player } from "../../types/player/Player";
@@ -10,13 +10,13 @@ export class FieldState {
     private portals: Map<number, Portal> = new Map<number, Portal>();
 
     public constructor(field: Field, id: number) {
-        const mapMetadata = Metadata.getMaps().getMap(id);
+        const mapEntities = Metadata.getMapEntities().getMap(id);
 
-        if (!mapMetadata) {
+        if (!mapEntities) {
             return;
         }
 
-        mapMetadata.portals.forEach(portal => {
+        mapEntities.portals.forEach(portal => {
             const isVisible = Enum.hasFlag(portal.flags, MapPortalFlag.Visible);
             const isEnabled = Enum.hasFlag(portal.flags, MapPortalFlag.Enabled);
             const isMiniMapVisible = Enum.hasFlag(portal.flags, MapPortalFlag.MinimapVisible);

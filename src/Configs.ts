@@ -24,6 +24,32 @@ export default {
                     port: 21002
                 }
             ]
+        },
+        {
+            name: "Slimewood",
+            channels: [
+                {
+                    host: "0.0.0.0",
+                    port: 21003
+                },
+                {
+                    host: "0.0.0.0",
+                    port: 21004
+                }
+            ]
+        },
+        {
+            name: "Waterwood",
+            channels: [
+                {
+                    host: "0.0.0.0",
+                    port: 21005
+                },
+                {
+                    host: "0.0.0.0",
+                    port: 21006
+                }
+            ]
         }
     ],
     settings: {

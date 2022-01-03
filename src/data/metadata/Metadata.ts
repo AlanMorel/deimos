@@ -2,26 +2,32 @@ import fs from "fs";
 import protobuf from "protobufjs";
 import { ItemMetadata } from "./items/ItemMetadata";
 import { ItemMetadataStorage } from "./items/ItemMetadataStorage";
+import { MapEntityMetadata } from "./maps/MapEntityMetadata";
+import { MapEntityMetadataStorage } from "./maps/MapEntityMetadataStorage";
 import { MapMetadata } from "./maps/MapMetadata";
 import { MapMetadataStorage } from "./maps/MapMetadataStorage";
 
 export class Metadata {
     private static items = new ItemMetadataStorage();
+    private static mapEntities = new MapEntityMetadataStorage();
     private static maps = new MapMetadataStorage();
 
     public static getItems(): ItemMetadataStorage {
         return this.items;
     }
 
-    public static getMaps(): MapMetadataStorage {
-        return this.maps;
+    public static getMapEntities(): MapEntityMetadataStorage {
+        return this.mapEntities;
     }
 
     public static load(): void {
         const items = this.deserialize<ItemMetadata>("item", "Item");
         this.items.load(items);
 
-        const maps = this.deserialize<MapMetadata>("map-entity", "MapEntity");
+        const mapEntities = this.deserialize<MapEntityMetadata>("map-entity", "MapEntity");
+        this.mapEntities.load(mapEntities);
+
+        const maps = this.deserialize<MapMetadata>("map", "Map");
         this.maps.load(maps);
     }
 
