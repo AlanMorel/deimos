@@ -1,5 +1,7 @@
+import { CoordB } from "../../../types/coords/CoordB";
 import { CoordS } from "../../../types/coords/CoordS";
 import { MetadataStorage } from "../MetadataStorage";
+import { MapBlock } from "./blocks/MapBlock";
 import { MapMetadata } from "./MapMetadata";
 
 export class MapMetadataStorage extends MetadataStorage<MapMetadata> {
@@ -14,8 +16,27 @@ export class MapMetadataStorage extends MetadataStorage<MapMetadata> {
         });
     }
 
-    public blockExists(mapId: number, coord: CoordS) {
+    public getMapBlock(mapId: number, coord: CoordS): MapBlock | null {
         const mapMetadata: MapMetadata | undefined = this.getMap(mapId);
-        // if(mapMetadata.)
+
+        if (!mapMetadata) {
+            return null;
+        }
+
+        const block = mapMetadata.blocks.get(coord);
+        return block ?? null;
+    }
+
+    public blockExists(mapId: number, coord: CoordS): boolean {
+        return !!this.getMapBlock(mapId, coord);
+    }
+
+    public blockExistsAbove(mapId: number, coord: CoordS): boolean {
+        return !!this.getMapBlock(mapId, { ...coord, z: coord.z + 1 } as CoordS);
+    }
+
+    // TODO: Implement getPlotNumber
+    public getPlotNumber(mapId: number, coord: CoordS) {
+        return 0;
     }
 }
