@@ -13,22 +13,22 @@ import { ItemFunction } from "./ItemFunction";
 export class ItemMetadata {
     public id: number;
     public name: string;
-    public slot: ItemSlot;
-    public gem: GemSlot;
-    public medal: MedalSlot;
-    public tab: InventoryTab;
+    public slot: keyof typeof ItemSlot;
+    public gem: keyof typeof GemSlot;
+    public medal: keyof typeof MedalSlot;
+    public tab: keyof typeof InventoryTab;
     public rarity: number;
     public stackLimit: number;
     public enableBreak: boolean;
     public sellable: boolean;
-    public transferType: TransferType;
+    public transferType: keyof typeof TransferType;
     public tradeableCount: number;
     public repackagedCount: number;
     public repackageItemConsumeCount: number;
     public isTwoHand: boolean;
     public isDress: boolean;
     public isTemplate: boolean;
-    public gender: ItemGender;
+    public gender: keyof typeof ItemGender;
     public playCount: number;
     public isCustomScore: number;
     public sellPrice: number[];
@@ -49,7 +49,7 @@ export class ItemMetadata {
     public optionConstant: number;
     public optionLevelFactor: number;
     public isCubeSolid: boolean;
-    public housingCategory: ItemHousingCategory;
+    public housingCategory: keyof typeof ItemHousingCategory;
     public objectId: number;
     public blackMarketCategory: string;
     public category: string;
@@ -57,22 +57,22 @@ export class ItemMetadata {
     public constructor(
         id: number,
         name: string,
-        slot: ItemSlot,
-        gem: GemSlot,
-        medal: MedalSlot,
-        tab: InventoryTab,
+        slot: keyof typeof ItemSlot,
+        gem: keyof typeof GemSlot,
+        medal: keyof typeof MedalSlot,
+        tab: keyof typeof InventoryTab,
         rarity: number,
         stackLimit: number,
         enableBreak: boolean,
         sellable: boolean,
-        transferType: TransferType,
+        transferType: keyof typeof TransferType,
         tradeableCount: number,
         repackagedCount: number,
         repackagedItemConsumeCount: number,
         isTwoHand: boolean,
         isDress: boolean,
         isTemplate: boolean,
-        gender: ItemGender,
+        gender: keyof typeof ItemGender,
         playCount: number,
         isCustomScore: number,
         sellPrice: number[],
@@ -93,7 +93,7 @@ export class ItemMetadata {
         optionConstant: number,
         optionLevelFactor: number,
         isCubeSolid: boolean,
-        housingCategory: ItemHousingCategory,
+        housingCategory: keyof typeof ItemHousingCategory,
         objectId: number,
         blackMarketCategory: string,
         category: string
