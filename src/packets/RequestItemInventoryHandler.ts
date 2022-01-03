@@ -10,7 +10,7 @@ enum Mode {
     Sort = 0xa
 }
 
-export class RequestItemInventoryhandler implements ChannelPacketHandler {
+export class RequestItemInventoryHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {
         const mode = packet.readByte();
 
