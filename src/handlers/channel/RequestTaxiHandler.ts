@@ -1,10 +1,6 @@
 import chalk from "chalk";
-import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AuthStorage } from "../../data/storage/AuthStorage";
-import { Endpoint } from "../../network/Endpoint";
 import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { GameToGamePacket } from "../../packets/GameToGamePacket";
 import { TaxiPacket } from "../../packets/TaxiPacket";
 import { Logger } from "../../tools/Logger";
 import { ChannelPacketHandler } from "../ChannelPacketHandler";
