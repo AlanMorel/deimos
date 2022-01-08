@@ -8,11 +8,14 @@ import { MapEntityMetadata } from "./maps/MapEntityMetadata";
 import { MapEntityMetadataStorage } from "./maps/MapEntityMetadataStorage";
 import { MapMetadata } from "./maps/MapMetadata";
 import { MapMetadataStorage } from "./maps/MapMetadataStorage";
+import { SkillMetadata } from "./skills/SkillMetadata";
+import { SkillMetadataStorage } from "./skills/SkillMetadataStorage";
 
 export class Metadata {
     private static items = new ItemMetadataStorage();
     private static mapEntities = new MapEntityMetadataStorage();
     private static maps = new MapMetadataStorage();
+    private static skills = new SkillMetadataStorage();
 
     public static getItems(): ItemMetadataStorage {
         return this.items;
@@ -41,6 +44,11 @@ export class Metadata {
         const maps = this.deserialize<MapMetadata>("map", "Map");
         this.maps.load(maps);
         Logger.log("Map Metadata Loaded", chalk.green);
+
+        Logger.log("Loading Skill Metadata", chalk.green);
+        const skills = this.deserialize<SkillMetadata>("skill", "Skill");
+        this.skills.load(skills);
+        Logger.log("Skill Metadata loaded", chalk.green);
     }
 
     private static deserialize<T>(slug: string, name: string): T[] {

@@ -1,4 +1,3 @@
-import { CoordB } from "../../../types/coords/CoordB";
 import { CoordS } from "../../../types/coords/CoordS";
 import { MetadataStorage } from "../MetadataStorage";
 import { MapBlock } from "./blocks/MapBlock";
