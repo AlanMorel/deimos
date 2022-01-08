@@ -10,6 +10,7 @@ import { RequestWorldMap } from "../../handlers/channel/RequestWorldMapHandler";
 import { ResponseFieldEnterHandler } from "../../handlers/channel/ResponseFieldEnterHandler";
 import { ResponseKeyHandler } from "../../handlers/channel/ResponseKeyHandler";
 import { ResponseVersionHandler } from "../../handlers/channel/ResponseVersionHandler";
+import { SkillHandler } from "../../handlers/channel/SkillHandler";
 import { StateHandler } from "../../handlers/channel/StateHandler";
 import { StateSkillHandler } from "../../handlers/channel/StateSkillHandler";
 import { UserChatHandler } from "../../handlers/channel/UserChatHandler";
@@ -35,5 +36,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.STATE_SKILL, new StateSkillHandler());
         this.handlers.set(RecvOp.REQUEST_TAXI, new RequestTaxiHandler());
         this.handlers.set(RecvOp.REQUEST_WORLD_MAP, new RequestWorldMap());
+        this.handlers.set(RecvOp.SKILL, new SkillHandler());
     }
 }

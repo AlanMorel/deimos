@@ -12,6 +12,7 @@ import { ItemSlot } from "../item/ItemSlot";
 import { Job } from "../jobs/Job";
 import { Mount } from "../Mount";
 import { GameOptions } from "../options/GameOptions";
+import { SkillCast } from "../skills/SkillCast";
 import { SkillTab } from "../SkillTab";
 import { StatDistribution } from "../StatDistribution";
 import { Gender } from "./Gender";
@@ -57,6 +58,7 @@ export class Player extends FieldObject {
 
     public wallet: Wallet;
 
+    public skillCast?: SkillCast;
     public maxSkillTabs: number = 0;
     public activeSkillTabId: BigInt = 0n;
     public skillTabs = new Array<SkillTab>();
@@ -102,6 +104,18 @@ export class Player extends FieldObject {
             new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)),
             new Map<ItemSlot, Item>()
         );
+    }
+
+    public cast(skillCast: SkillCast): void {
+        this.skillCast = skillCast;
+        if (
+            skillCast.isBuffToOwner() ||
+            skillCast.isBuffToEntity() ||
+            skillCast.isBuffShield() ||
+            skillCast.isDebuffToOwner()
+        ) {
+            // TODO: Handle status change
+        }
     }
 
     public getJobId(): number {
