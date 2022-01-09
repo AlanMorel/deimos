@@ -5,6 +5,7 @@ import { FileHashHandler } from "../../handlers/channel/FileHashHandler";
 import { LogSendHandler } from "../../handlers/channel/LogSendHandler";
 import { ResponseLoadUgcMapHandler } from "../../handlers/channel/RequestLoadUgcMapHandler";
 import { RequestQuitHandler } from "../../handlers/channel/RequestQuitHandler";
+import { RequestSkillBookTreeHandler } from "../../handlers/channel/RequestSkillBookTreeHandler";
 import { RequestTaxiHandler } from "../../handlers/channel/RequestTaxiHandler";
 import { RequestWorldMap } from "../../handlers/channel/RequestWorldMapHandler";
 import { ResponseFieldEnterHandler } from "../../handlers/channel/ResponseFieldEnterHandler";
@@ -37,5 +38,6 @@ export class ChannelPacketRouter extends PacketRouter {
         this.handlers.set(RecvOp.REQUEST_TAXI, new RequestTaxiHandler());
         this.handlers.set(RecvOp.REQUEST_WORLD_MAP, new RequestWorldMap());
         this.handlers.set(RecvOp.SKILL, new SkillHandler());
+        this.handlers.set(RecvOp.REQUEST_SKILL_BOOK_TREE, new RequestSkillBookTreeHandler());
     }
 }

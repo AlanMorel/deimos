@@ -153,11 +153,9 @@ export class PacketWriter extends Packet {
             skillTab => skillTab.tabId === player.activeSkillTabId
         );
 
-        console.log("before if");
         if (!skillTab) {
             return;
         }
-        console.log("after if");
 
         const skillData = skillTab.skillJob;
         const skills = skillTab.skillLevels;
@@ -165,8 +163,6 @@ export class PacketWriter extends Packet {
         const ids = skillTab.order;
         const split = getJobSkillSplitByJobId(player.job);
         const countId = ids[ids.length - split];
-
-        console.log("ids", ids);
 
         this.writeByte(ids.length - split);
 
