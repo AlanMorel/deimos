@@ -1,5 +1,9 @@
 import { deflateSync } from "zlib";
+import { getJobSkillSplitByJobId } from "../../constants/JobSkillSplit";
 import { BitConverter } from "../../tools/BitConverter";
+import { Clamp } from "../../tools/Clamp";
+import { Player } from "../../types/player/Player";
+import { SkillTab } from "../../types/SkillTab";
 import { Packet } from "./Packet";
 
 export class PacketWriter extends Packet {
@@ -142,5 +146,40 @@ export class PacketWriter extends Packet {
             this.writeInt(data.length);
             this.write(data);
         }
+    }
+
+    public writeSkills(player: Player): void {
+        const skillTab: SkillTab | undefined = player.skillTabs.find(
+            skillTab => skillTab.tabId === player.activeSkillTabId
+        );
+
+        console.log("before if");
+        if (!skillTab) {
+            return;
+        }
+        console.log("after if");
+
+        const skillData = skillTab.skillJob;
+        const skills = skillTab.skillLevels;
+
+        const ids = skillTab.order;
+        const split = getJobSkillSplitByJobId(player.job);
+        const countId = ids[ids.length - split];
+
+        console.log("ids", ids);
+
+        this.writeByte(ids.length - split);
+
+        for (const id of ids) {
+            if (id === countId) {
+                this.writeByte(split);
+            }
+            this.writeByte();
+            this.writeBoolean((skills.get(id) ?? 0) > 0);
+            this.writeInt(id);
+            this.writeInt(Clamp.clamp(skills.get(id) ?? 0, skillData.get(id)?.skillLevels[0].level ?? 0, 2147483647));
+            this.writeByte();
+        }
+        this.writeShort();
     }
 }

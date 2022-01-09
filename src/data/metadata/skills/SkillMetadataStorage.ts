@@ -16,7 +16,7 @@ export class SkillMetadataStorage extends MetadataStorage<SkillMetadata> {
     public getEmotes = (): number[] =>
         [...this.storage.entries()].filter(entry => entry[1].skillId / 100000 === 902).map(entry => entry[1].skillId);
 
-    public getJobSkills(job: Job = Job.None) {
+    public getJobSkills(job: Job = Job.None): SkillMetadata[] {
         const jobSkills: SkillMetadata[] = [];
         if (Job.GameMaster === job) {
             return jobSkills;

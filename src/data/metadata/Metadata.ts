@@ -29,6 +29,10 @@ export class Metadata {
         return this.maps;
     }
 
+    public static getSkills(): SkillMetadataStorage {
+        return this.skills;
+    }
+
     public static load(): void {
         Logger.log("Loading Items Metadata", chalk.green);
         const items = this.deserialize<ItemMetadata>("item", "Item");

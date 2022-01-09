@@ -97,7 +97,7 @@ export class Characters extends Controller<CharacterRow, Player> {
     protected toDatabase(player: Player): CharacterRow {
         const character: CharacterRow = {
             id: player.characterId.toString(),
-            accountId: player.accountId.toString(),
+            accountId: "1",
             name: player.name,
             gender: player.gender === 1,
             job: player.job,
