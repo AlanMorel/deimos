@@ -1,45 +1,46 @@
-import chalk from "chalk";
+import { bgRed, blue, gray, green, magenta, red } from "picocolors";
+import { Formatter } from "picocolors/types";
 import Configs from "../Configs";
 import { Packet } from "../crypto/protocol/Packet";
 import { PacketHandler } from "../handlers/PacketHandler";
 
 export class Logger {
-    public static log(message: string, chalkConfig: chalk.Chalk = chalk.blue, prefix: string = "log"): void {
-        let content = `${chalkConfig(message)}`;
+    public static log(message: string, formatter: Formatter = blue, prefix: string = "log"): void {
+        let content = `${formatter(message)}`;
 
         if (Configs.settings.logPrefix) {
-            content = `${chalkConfig(`[${prefix.toUpperCase()}]`)} ${content}`;
+            content = `${formatter(`[${prefix.toUpperCase()}]`)} ${content}`;
         }
 
         if (Configs.settings.logTimestamps) {
             const timestamp = this.getTimestamp();
-            content = `${chalk.gray(timestamp)} ${content}`;
+            content = `${gray(timestamp)} ${content}`;
         }
 
         console.log(`${content}`);
     }
 
     public static error(error: string): void {
-        this.log(error, chalk.bgRed.whiteBright, "error");
+        this.log(error, bgRed, "error");
     }
 
-    public static debug(message: string, chalkConfig: chalk.Chalk = chalk.magenta): void {
+    public static debug(message: string, formatter: Formatter = magenta): void {
         if (Configs.settings.logDebugs) {
-            this.log(message, chalkConfig, "debug");
+            this.log(message, formatter, "debug");
         }
     }
 
     public static send(opcode: string, packet: Packet): void {
-        this.packet("SEND", opcode, packet, chalk.red);
+        this.packet("SEND", opcode, packet, red);
     }
 
     public static recv(opcode: string, packet: Packet): void {
-        this.packet("RECV", opcode, packet, chalk.green);
+        this.packet("RECV", opcode, packet, green);
     }
 
-    public static packet(prefix: string, opcode: string, packet: Packet, chalkConfig: chalk.Chalk): void {
+    public static packet(prefix: string, opcode: string, packet: Packet, formatter: Formatter): void {
         if (Configs.settings.logPackets) {
-            this.log(`${opcode} ${packet.toString()}`, chalkConfig, prefix);
+            this.log(`${opcode} ${packet.toString()}`, formatter, prefix);
         }
     }
 

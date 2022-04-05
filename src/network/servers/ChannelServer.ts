@@ -1,5 +1,5 @@
-import chalk from "chalk";
 import { Socket } from "net";
+import { green, yellow } from "picocolors";
 import { Packet } from "../../crypto/protocol/Packet";
 import { Database } from "../../database/Database";
 import { FieldFactory } from "../../server/fields/FIeldFactory";
@@ -61,7 +61,7 @@ export class ChannelServer extends Server {
         if (session.field) {
             Database.getCharacters().save(session.player);
             session.field.removePlayer(session);
-            Logger.log(`${session.player.name} saved successfully.`, chalk.yellow);
+            Logger.log(`${session.player.name} saved successfully.`, yellow);
         }
         Logger.log(`${this.world} Channel ${this.id}: Session ${session.id} @ ${session.socket.remoteAddress} closed`);
     }
@@ -71,7 +71,7 @@ export class ChannelServer extends Server {
     }
 
     protected onStart(): void {
-        Logger.log(`${this.world} Channel ${this.id} at ${this.host}:${this.port} is online`, chalk.green);
+        Logger.log(`${this.world} Channel ${this.id} at ${this.host}:${this.port} is online`, green);
     }
 
     protected onShutdown(): void {

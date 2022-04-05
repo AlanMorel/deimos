@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { magenta } from "picocolors";
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { AuthStorage } from "../../data/storage/AuthStorage";
@@ -50,7 +50,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         const characterId = packet.readLong();
         packet.readShort(); // 01 00
 
-        Logger.log(`Logging in to game with char id: ${characterId}`, chalk.magenta);
+        Logger.log(`Logging in to game with char id: ${characterId}`, magenta);
 
         const channel = Configs.worlds[0].channels[0];
         const endpoint = new Endpoint(channel.host, channel.port);

@@ -1,5 +1,5 @@
-import chalk from "chalk";
 import { Socket } from "net";
+import { cyan } from "picocolors";
 import Configs from "../../Configs";
 import { RecvOp } from "../../constants/RecvOp";
 import { SendOp } from "../../constants/SendOp";
@@ -57,7 +57,7 @@ export abstract class Session {
         let packet = RequestVersionPacket.handshake(Session.version, ivRecv, ivSend, Session.blockIV, type);
         packet = this.sendCipher.writeHeader(packet.toArray());
 
-        Logger.log(`[HANDSHAKE] ${packet.toString()}`, chalk.cyanBright);
+        Logger.log(`[HANDSHAKE] ${packet.toString()}`, cyan);
 
         this.socket.write(packet.buffer);
     }

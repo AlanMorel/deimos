@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { magenta, red, yellow } from "picocolors";
 import Configs from "../../Configs";
 import { PacketReader } from "../../crypto/protocol/PacketReader";
 import { Database } from "../../database/Database";
@@ -26,7 +26,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
         const username = packet.readUnicodeString();
         const password = packet.readUnicodeString();
 
-        Logger.log(`Logging in with username: '${username}' pass: '${password}'`, chalk.magenta);
+        Logger.log(`Logging in with username: '${username}' pass: '${password}'`, magenta);
 
         const account = await Database.getAccounts().getByCredentials(username, password);
 
@@ -35,11 +35,11 @@ export class ResponseLoginHandler implements LoginPacketHandler {
         } else if (Configs.settings.defaultAccountId > 0n) {
             Logger.log(
                 `Account not found but logging in to default account id ${Configs.settings.defaultAccountId}`,
-                chalk.yellow
+                yellow
             );
             session.accountId = Configs.settings.defaultAccountId;
         } else {
-            Logger.log("Account not found and no default account id found", chalk.red);
+            Logger.log("Account not found and no default account id found", red);
             session.send(LoginResultPacket.incorrectID(session.accountId));
             return;
         }
@@ -60,7 +60,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                     player.equips = Player.getTestEquips();
                 });
 
-                Logger.log(`Initializing login with account id: ${session.accountId}`, chalk.magenta);
+                Logger.log(`Initializing login with account id: ${session.accountId}`, magenta);
 
                 session.send(LoginResultPacket.login(session.accountId));
                 session.send(UgcPacket.setEndpoint("http://127.0.0.1/ws.asmx?wsdl", "http://127.0.0.1"));

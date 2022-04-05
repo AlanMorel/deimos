@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { magenta, yellow } from "picocolors";
 import Configs from "./Configs";
 import { Metadata } from "./data/metadata/Metadata";
 import { Database } from "./database/Database";
@@ -8,7 +8,7 @@ import { Logger } from "./tools/Logger";
 
 export class App {
     public constructor() {
-        Logger.log(`${Configs.name} has started`, chalk.yellow);
+        Logger.log(`${Configs.name} has started`, yellow);
 
         this.loadMetadata();
         this.initializeDatabase();
@@ -19,7 +19,7 @@ export class App {
     private loadMetadata(): void {
         if (Configs.settings.loadMetadata) {
             Metadata.load();
-            Logger.log("Metadata loaded successfully", chalk.magenta);
+            Logger.log("Metadata loaded successfully", magenta);
         } else {
             Logger.error("Metadata loading disabled");
         }
@@ -27,7 +27,7 @@ export class App {
 
     private initializeDatabase(): void {
         Database.connect().then(() => {
-            Logger.log("Database connection established successfully", chalk.magenta);
+            Logger.log("Database connection established successfully", magenta);
         });
     }
 
