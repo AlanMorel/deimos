@@ -16,4 +16,10 @@ export class CoordF extends Coord {
         packet.writeFloat(coords.y);
         packet.writeFloat(coords.z);
     }
+
+    public static writeShort(packet: PacketWriter, coords: CoordF): void {
+        packet.writeShort(coords.x);
+        packet.writeShort(coords.y);
+        packet.writeShort(coords.z);
+    }
 }

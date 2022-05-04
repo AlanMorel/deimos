@@ -22,31 +22,5 @@ export class FieldPacket {
         packet.writeInt(stats.moveSpd.max);
         packet.writeInt(stats.mountSpeed.max);
         packet.writeInt(stats.jumpHeight.max);
-
-        /* Alternative Stat Struct
-        packet.WriteByte(); // Count
-        for (int i = 0; i < count; i++) {
-            packet.WriteByte(); // Type
-            if (type == 4) packet.WriteLong();
-            else packet.WriteInt();
-        }
-        */
-    }
-
-    public static writePassiveSkills(packet: PacketWriter): void {
-        const count = 0;
-        packet.writeShort(count);
-        for (let i = 0; i < count; i++) {
-            packet.writeInt(5963582);
-            packet.writeInt(34759588);
-            packet.writeInt(5963582);
-            packet.writeInt(679834064);
-            packet.writeInt(679834064);
-            packet.writeInt(10500111);
-            packet.writeShort(1);
-            packet.writeInt(1);
-            packet.writeByte(1);
-            packet.writeLong();
-        }
     }
 }

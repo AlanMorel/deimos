@@ -51,32 +51,43 @@ export class CharacterListPacketHelper {
         packet.writeUnicodeString(player.name);
         packet.writeByte(player.gender);
         packet.writeByte(1);
+
         packet.writeLong();
         packet.writeInt();
+
         packet.writeInt(player.mapId);
         packet.writeInt(player.mapId); // Sometimes 0
         packet.writeInt();
+
         packet.writeShort(player.level);
         packet.writeShort();
-        packet.writeInt(player.job / 10);
-        packet.writeInt(player.getJobId());
-        packet.writeInt(); // CurHp?
-        packet.writeInt(); // MaxHp?
+
+        packet.writeInt(player.job);
+        packet.writeInt(player.getJobCode());
+
+        packet.writeInt(); // total HP
+        packet.writeInt(); // Bonus HP
         packet.writeShort();
+
         packet.writeLong();
         packet.writeLong(); // Some timestamp
         packet.writeLong();
-        packet.writeInt();
+
+        packet.writeInt(); // gear score
+
         CoordF.write(packet, player.rotation); // NOT char Coord/UnknownCoord
+
         packet.writeInt();
+
         SkinColor.write(packet, player.skinColor);
+
         packet.writeBigInt(player.creationTime);
 
         for (const trophyCount of player.trophy) {
             packet.writeInt(trophyCount);
         }
 
-        packet.writeLong(); // some uid
+        packet.writeLong(); // guild uid
         packet.writeUnicodeString(player.guildName);
         packet.writeUnicodeString(player.motto);
 
@@ -94,7 +105,7 @@ export class CharacterListPacketHelper {
         }
         packet.writeByte();
         for (let i = 0; i < 12; i++) {
-            packet.writeInt(); // ???
+            packet.writeInt(); // mastery
         }
 
         // Some function call on CCharacterList property

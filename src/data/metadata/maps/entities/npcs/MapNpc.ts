@@ -1,4 +1,4 @@
-import { CoordS } from "../../../../types/coords/CoordS";
+import { CoordS } from "../../../../../types/coords/CoordS";
 
 export class MapNpc {
     public id: number;

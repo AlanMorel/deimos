@@ -1,37 +1,56 @@
-import { Skill } from "./Skill";
+import { SkillTreeOrdered } from "../constants/SkillTreeOrdered";
+import { Metadata } from "../data/metadata/Metadata";
+import { SkillMetadata } from "../data/metadata/skills/SkillMetadata";
+import { Job } from "./jobs/Job";
 
 export class SkillTab {
-    public id: BigInt;
+    public uid: BigInt;
+    public tabId: BigInt;
     public name: string;
+
     public order: number[];
-    public split: number;
-    public skills: Map<number, Skill>;
+    public skillJob: Map<number, SkillMetadata>;
+    public skillLevels: Map<number, number>;
 
-    public constructor(
-        name: string,
-        order: number[] = [],
-        split: number = 8,
-        skills: Map<number, Skill> = new Map<number, Skill>()
-    ) {
-        this.id = BigInt(0x000032df995949b9); // TODO: temporary hard coded id
-        this.name = name;
-        this.order = order;
-        this.split = split;
-        this.skills = skills != null ? skills : new Map<number, Skill>();
-
-        // add default skills
-        this.addOrUpdate(new Skill(20000001, 1, 1)); // swift Swimming
-        this.addOrUpdate(new Skill(20000011, 1, 1)); // wall Climbing
+    public static addOnDictionary(job: Job): Map<number, SkillMetadata> {
+        return new Map(
+            Metadata.getSkills()
+                .getJobSkills(job)
+                .map(skill => [skill.skillId, skill])
+        );
     }
 
-    public addOrUpdate(skill: Skill): void {
-        this.skills.set(skill.id, skill);
+    public constructor(uid: BigInt, tabId: BigInt, jobId: number, name: string, skillLevels?: Map<number, number>) {
+        this.name = name;
+        this.tabId = tabId;
+        this.uid = uid;
+        this.skillLevels = skillLevels ?? new Map();
+        if (!skillLevels) {
+            this.resetSkillTree(jobId as Job);
+        }
+        this.order = SkillTreeOrdered.getListForJob(jobId as Job);
+        this.skillJob = SkillTab.addOnDictionary(jobId as Job);
+    }
 
-        // recursive add or update for sub skills
-        if (skill.sub != null) {
-            for (const sub of skill.sub) {
-                this.addOrUpdate(new Skill(sub, skill.level, skill.learned, skill.feature));
-            }
+    public resetSkillTree(job: Job) {
+        this.order = SkillTreeOrdered.getListForJob(job);
+        this.skillJob = SkillTab.addOnDictionary(job);
+        // TODO: SkillJob thing
+        this.skillLevels = new Map([...this.skillJob.values()].map(entry => [entry.skillId, entry.currentLevel ?? 1]));
+    }
+
+    public getJobFeatureSkills(job: Job) {
+        return Metadata.getSkills().getJobSkills(job);
+    }
+
+    public addOrUpdate(id: number, level: number, isLearned: boolean = true): void {
+        // this.skillLevels[id] = isLearned ? level : 0;
+        if (!this.skillJob.has(id)) {
+            return;
+        }
+
+        for (const sub of this.skillJob.get(id)?.subSkills ?? []) {
+            this.skillLevels.set(sub, level);
         }
     }
 

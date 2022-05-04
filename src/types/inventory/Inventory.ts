@@ -31,6 +31,7 @@ export class Inventory {
     }
 
     public getItems(tab: InventoryTab): Item[] {
+        console.log("GETITEMS FROM TAB", tab);
         const uids = Array.from(this.getSlots(tab).values());
         const items = new Array<Item>();
         for (const uid of uids) {
@@ -146,6 +147,7 @@ export class Inventory {
     }
 
     private sort(tab: InventoryTab): void {
+        console.log("slot tab", tab);
         // Get all this.items in tab and sort by Id
         const slots = this.getSlots(tab);
         const tabItems = this.getItems(tab);

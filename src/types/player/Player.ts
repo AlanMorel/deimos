@@ -10,8 +10,10 @@ import { Hair } from "../item/Hair";
 import { Item } from "../item/Item";
 import { ItemSlot } from "../item/ItemSlot";
 import { Job } from "../jobs/Job";
+import { JobCode } from "../jobs/JobCode";
 import { Mount } from "../Mount";
 import { GameOptions } from "../options/GameOptions";
+import { SkillCast } from "../skills/SkillCast";
 import { SkillTab } from "../SkillTab";
 import { StatDistribution } from "../StatDistribution";
 import { Gender } from "./Gender";
@@ -57,6 +59,7 @@ export class Player extends FieldObject {
 
     public wallet: Wallet;
 
+    public skillCast?: SkillCast;
     public maxSkillTabs: number = 0;
     public activeSkillTabId: BigInt = 0n;
     public skillTabs = new Array<SkillTab>();
@@ -91,6 +94,8 @@ export class Player extends FieldObject {
         this.equips = equips;
         this.inventory = new Inventory(this, 48);
         this.wallet = new Wallet(this);
+        this.activeSkillTabId = BigInt(1);
+        this.skillTabs = [new SkillTab(this.characterId, this.activeSkillTabId, job, "Build 1")];
     }
 
     public static getInitialPlayer(): Player {
@@ -104,8 +109,27 @@ export class Player extends FieldObject {
         );
     }
 
+    public cast(skillCast: SkillCast): void {
+        this.skillCast = skillCast;
+        if (
+            skillCast.isBuffToOwner() ||
+            skillCast.isBuffToEntity() ||
+            skillCast.isBuffShield() ||
+            skillCast.isDebuffToOwner()
+        ) {
+            // TODO: Handle status change
+        }
+    }
+
     public getJobId(): number {
         return this.job + (this.awakened ? 1 : 0);
+    }
+
+    public getJobCode(): JobCode {
+        if (this.job === Job.GameMaster) {
+            return JobCode.GameMaster;
+        }
+        return (this.job * 10 + (this.awakened ? 1 : 0)) as JobCode;
     }
 
     private getDefaultEquipSlot(): ItemSlot {

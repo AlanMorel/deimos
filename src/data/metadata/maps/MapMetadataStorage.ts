@@ -1,6 +1,7 @@
+import { CoordS } from "../../../types/coords/CoordS";
 import { MetadataStorage } from "../MetadataStorage";
+import { MapBlock } from "./blocks/MapBlock";
 import { MapMetadata } from "./MapMetadata";
-import { MapPortalFlag } from "./portals/MapPortalFlag";
 
 export class MapMetadataStorage extends MetadataStorage<MapMetadata> {
     public getMap(id: number): MapMetadata | undefined {
@@ -9,14 +10,32 @@ export class MapMetadataStorage extends MetadataStorage<MapMetadata> {
 
     public load(maps: MapMetadata[]): void {
         maps.forEach(map => {
-            map.portals?.forEach(portal => {
-                const flagName = portal.flags ? portal.flags : MapPortalFlag[MapPortalFlag.None];
-                const flags = MapPortalFlag[flagName as keyof typeof MapPortalFlag];
-                portal.flags = flags;
-            });
-
-            const mapMetadata = new MapMetadata(map.id, map.npcs, map.portals, map.playerSpawns, map.objects);
+            const mapMetadata = new MapMetadata(map.id, map.name, map.blockName, map.blocks);
             this.storage.set(map.id, mapMetadata);
         });
+    }
+
+    public getMapBlock(mapId: number, coord: CoordS): MapBlock | null {
+        const mapMetadata: MapMetadata | undefined = this.getMap(mapId);
+
+        if (!mapMetadata) {
+            return null;
+        }
+
+        const block = mapMetadata.blocks.get(coord);
+        return block ?? null;
+    }
+
+    public blockExists(mapId: number, coord: CoordS): boolean {
+        return !!this.getMapBlock(mapId, coord);
+    }
+
+    public blockExistsAbove(mapId: number, coord: CoordS): boolean {
+        return !!this.getMapBlock(mapId, { ...coord, z: coord.z + 1 } as CoordS);
+    }
+
+    // TODO: Implement getPlotNumber
+    public getPlotNumber(mapId: number, coord: CoordS) {
+        return 0;
     }
 }

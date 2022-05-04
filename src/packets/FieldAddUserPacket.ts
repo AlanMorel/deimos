@@ -13,6 +13,7 @@ import { JobPacket } from "./JobPacket";
 
 export class FieldAddUserPacket {
     public static addPlayer(player: Player): Packet {
+        let i = 0;
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.FIELD_ADD_USER);
@@ -21,27 +22,26 @@ export class FieldAddUserPacket {
         CharacterListPacketHelper.writeCharacter(packet, player);
 
         // Skills
-        packet.writeInt(player.getJobId());
+        packet.writeInt(player.getJobCode());
         packet.writeByte(1);
-        packet.writeInt(player.job / 10);
-        JobPacket.writeSkills(packet, player);
+        packet.writeInt(player.job);
+        packet.writeSkills(player);
 
         // Coords
         CoordF.write(packet, player.coord);
         CoordF.write(packet, player.rotation);
-
         packet.writeByte();
 
+        // Stats
         FieldPacket.writeTotalStats(packet, player.stats);
 
-        packet.writeByte();
-        packet.writeByte();
+        packet.writeBoolean(false);
+        packet.writeBoolean(false);
         packet.writeInt();
         packet.writeLong();
         packet.writeLong();
 
         // ???
-
         const flagA = false;
         packet.writeBoolean(flagA);
         if (flagA) {
@@ -59,7 +59,6 @@ export class FieldAddUserPacket {
         }
 
         packet.writeInt(1);
-
         SkinColor.write(packet, player.skinColor);
         packet.writeUnicodeString(player.profileUrl);
 
@@ -86,33 +85,31 @@ export class FieldAddUserPacket {
         if (encodeAppearance) {
             const appearanceBuffer = FieldAddUserPacket.getAppearanceBuffer(packet, player);
             packet.writeDeflated(appearanceBuffer.toArray());
-
-            packet.writeDeflated(Buffer.from([0])); // unknown
-            packet.writeDeflated(Buffer.from([0])); // badge appearances
-
-            FieldPacket.writePassiveSkills(packet);
-
-            packet.writeInt();
-            packet.writeInt();
-            packet.writeByte();
-            packet.writeInt();
-            packet.writeByte();
-            packet.writeByte();
-            packet.writeInt(player.titleId);
-            packet.writeShort(player.insigniaId);
-            packet.writeByte();
-            packet.writeInt();
-            packet.writeByte();
-            packet.writeLong(); // another timestamp
-            packet.writeInt(Math.pow(2, 31) - 1);
-            packet.writeByte();
-            packet.writeInt();
-            packet.writeInt();
-            packet.writeShort();
         } else {
-            // packet.writeInt(); commented out to remove warning
+            packet.writeDeflated(Buffer.from([0]));
         }
+        packet.writeDeflated(Buffer.from([0])); // unknown
+        packet.writeDeflated(Buffer.from([0])); // badge appearances
 
+        JobPacket.writePassiveSkills(packet, player);
+
+        packet.writeInt();
+        packet.writeInt();
+        packet.writeByte();
+        packet.writeInt();
+        packet.writeByte();
+        packet.writeByte();
+        packet.writeInt(player.titleId);
+        packet.writeShort(player.insigniaId);
+        packet.writeByte();
+        packet.writeInt();
+        packet.writeByte();
+        packet.writeLong(); // another timestamp
+        packet.writeInt(Math.pow(2, 31) - 1);
+        packet.writeByte();
+        packet.writeInt();
+        packet.writeInt();
+        packet.writeShort();
         return packet;
     }
 
