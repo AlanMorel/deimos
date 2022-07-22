@@ -3,7 +3,7 @@ import { Packet } from "@/crypto/protocol/Packet";
 import { PacketWriter } from "@/crypto/protocol/PacketWriter";
 
 export class LoginRequiredPacket {
-    public static loginRequired(accountId: BigInt): Packet {
+    public static loginRequired(accountId: bigint): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.LOGIN_REQUIRED);

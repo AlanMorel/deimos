@@ -15,17 +15,17 @@ export class Item {
     public isTemplate: boolean = false;
 
     public readonly id: number;
-    public uid: BigInt = GuidGenerator.generateLong();
+    public uid: bigint = GuidGenerator.generateLong();
     public slot: number = -1;
     public amount: number = 1;
     public rarity: number = 0;
 
-    public creationTime: BigInt = 0n;
-    public expiryTime: BigInt = 0n;
+    public creationTime: bigint = 0n;
+    public expiryTime: bigint = 0n;
 
     public timesAttributesChanged: number = 0;
     public isLocked: boolean = false;
-    public unlockTime: BigInt = 0n;
+    public unlockTime: bigint = 0n;
     public remainingGlamorForges: number = 0;
     public enchants: number = 0;
 
@@ -37,7 +37,7 @@ export class Item {
     public remainingTrades: number = 0;
 
     // for friendship badges
-    public pairedCharacterId: BigInt = 0n;
+    public pairedCharacterId: bigint = 0n;
     public pairedCharacterName: string = "";
 
     public owner?: Player;

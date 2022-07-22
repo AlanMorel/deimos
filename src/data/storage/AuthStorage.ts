@@ -3,13 +3,13 @@ import { AuthData } from "@/network/AuthData";
 // TODO: This is mostly temporary while I think about how auth really should work
 // It's mostly just required to pass login data to GameSession (which is why it's static)
 export class AuthStorage {
-    private static readonly authStorage = new Map<BigInt, AuthData>();
+    private static readonly authStorage = new Map<bigint, AuthData>();
 
-    public static getData(accountId: BigInt): AuthData | undefined {
+    public static getData(accountId: bigint): AuthData | undefined {
         return this.authStorage.get(accountId);
     }
 
-    public static setData(accountId: BigInt, data: AuthData): void {
+    public static setData(accountId: bigint, data: AuthData): void {
         this.authStorage.set(accountId, data);
     }
 

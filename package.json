@@ -11,7 +11,7 @@
         "url": "https://github.com/AlanMorel/deimos.git"
     },
     "scripts": {
-        "watch": "nodemon --config ./nodemon.config.json ./src/index.ts --watch server",
+        "dev": "nodemon --config ./nodemon.config.json ./src/index.ts --watch server",
         "start": "node --loader @bleed-believer/path-alias/esm --experimental-specifier-resolution=node ./src/index.ts",
         "lint": "eslint ./src --ext .ts --fix"
     },

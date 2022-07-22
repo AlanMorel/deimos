@@ -53,13 +53,13 @@ export class PacketReader extends Packet {
         return uInt;
     }
 
-    public readLong(): BigInt {
+    public readLong(): bigint {
         const long = this.buffer.readBigInt64LE(this.position);
         this.position += 8;
         return long;
     }
 
-    public readULong(): BigInt {
+    public readULong(): bigint {
         const uLong = this.buffer.readBigUInt64LE(this.position);
         this.position += 8;
         return uLong;

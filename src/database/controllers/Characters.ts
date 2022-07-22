@@ -11,7 +11,7 @@ export class Characters extends Controller<CharacterRow, Player> {
         super(CharacterEntity);
     }
 
-    public async getByAccountId(id: BigInt): Promise<Player[]> {
+    public async getByAccountId(id: bigint): Promise<Player[]> {
         const characters = await this.repository.find({
             where: {
                 accountId: id.toString(),
@@ -21,7 +21,7 @@ export class Characters extends Controller<CharacterRow, Player> {
         return characters.map(character => this.fromDatabase(character));
     }
 
-    public async getByCharacterId(id: BigInt): Promise<Player | undefined> {
+    public async getByCharacterId(id: bigint): Promise<Player | undefined> {
         const character = await this.repository.findOne({
             where: {
                 id: id.toString(),
@@ -48,7 +48,7 @@ export class Characters extends Controller<CharacterRow, Player> {
         this.repository.save(character);
     }
 
-    public async delete(id: BigInt): Promise<void> {
+    public async delete(id: bigint): Promise<void> {
         const character = await this.repository.findOne({
             where: {
                 id: id.toString(),

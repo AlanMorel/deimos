@@ -61,15 +61,11 @@ For the best development experience, run the compiler in watch mode to watch for
 
 ## Commands
 
-`yarn build` : Compile the server
+`yarn dev` : Start and watch the server
 
 `yarn start` : Compile and start the server
 
 `yarn lint` : Run the linter
-
-`yarn watch` : Run the compiler in watch mode
-
-`yarn server` : Run the server
 
 ## Community
 

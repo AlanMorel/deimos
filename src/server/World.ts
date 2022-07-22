@@ -4,7 +4,7 @@ import { Player } from "@/types/player/Player";
 export class World {
     private static readonly instance: World = new World();
 
-    private idStorage: Map<BigInt, Player> = new Map<BigInt, Player>();
+    private idStorage: Map<bigint, Player> = new Map<bigint, Player>();
     private nameStorage: Map<string, Player> = new Map<string, Player>();
 
     public static getInstance(): World {
@@ -35,7 +35,7 @@ export class World {
         return this.nameStorage.get(name.toLowerCase());
     }
 
-    public getPlayerById(id: BigInt): Player | undefined {
+    public getPlayerById(id: bigint): Player | undefined {
         return this.idStorage.get(id);
     }
 }

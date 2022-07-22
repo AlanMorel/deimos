@@ -8,7 +8,7 @@ import { Player } from "@/types/player/Player";
 
 interface ItemTuple {
     // TODO: remove/improve
-    item1: BigInt;
+    item1: bigint;
     item2: number;
 }
 
@@ -16,17 +16,17 @@ export class Inventory {
     public size: number;
     private player: Player; // TODO remove after clean up
 
-    private items: Map<BigInt, Item> = new Map<BigInt, Item>(); // all inventory items regardless of tab
-    private slotMaps: Map<number, BigInt>[]; // slot to Uid for each tab
+    private items: Map<bigint, Item> = new Map<bigint, Item>(); // all inventory items regardless of tab
+    private slotMaps: Map<number, bigint>[]; // slot to Uid for each tab
 
     public constructor(player: Player, size: number) {
         this.player = player;
         this.size = size;
 
         const maxTabs = Enum.getLength(InventoryTab);
-        this.slotMaps = new Array<Map<number, BigInt>>(maxTabs + 1);
+        this.slotMaps = new Array<Map<number, bigint>>(maxTabs + 1);
         for (let i = 0; i <= maxTabs; i++) {
-            this.slotMaps[i] = new Map<number, BigInt>();
+            this.slotMaps[i] = new Map<number, bigint>();
         }
     }
 
@@ -71,7 +71,7 @@ export class Inventory {
 
     // Returns false if item doesn't exist or removing more than available
     // TODO: fix return value here
-    private remove(uid: BigInt, amount: number = -1): number {
+    private remove(uid: bigint, amount: number = -1): number {
         // Removing more than available
         const item = this.items.get(uid);
         if (!item || item.amount < amount) {
@@ -119,7 +119,7 @@ export class Inventory {
 
     // Returns null if item doesn't exist
     // Returns the uid and slot of destItem (uid is 0 if empty)
-    private move(uid: BigInt, dstSlot: number): ItemTuple | undefined {
+    private move(uid: bigint, dstSlot: number): ItemTuple | undefined {
         const srcItem = this.removeInternalByUID(uid);
         if (!srcItem) {
             return;
@@ -174,7 +174,7 @@ export class Inventory {
         this.getSlots(item.inventoryTab).set(item.slot, item.uid);
     }
 
-    private removeInternalByUID(uid: BigInt): Item | undefined {
+    private removeInternalByUID(uid: bigint): Item | undefined {
         const item = this.items.get(uid);
 
         if (!item) {
@@ -201,7 +201,7 @@ export class Inventory {
         return this.getSlots(item.inventoryTab).has(slot < 0 ? item.slot : slot);
     }
 
-    private getSlots(tab: InventoryTab): Map<number, BigInt> {
+    private getSlots(tab: InventoryTab): Map<number, bigint> {
         return this.slotMaps[tab];
     }
 
@@ -241,7 +241,7 @@ export class Inventory {
 
     // removes item from inventory by reference
     // TODO: consolidate methods and rename
-    public remove2(session: ChannelSession, uid: BigInt): void {
+    public remove2(session: ChannelSession, uid: bigint): void {
         this.remove(uid);
         session.send(ItemInventoryPacket.remove(uid));
     }
@@ -253,7 +253,7 @@ export class Inventory {
     }
 
     // drop item with option to drop bound items
-    public dropItem(session: ChannelSession, uid: BigInt, amount: number, isbound: boolean): void {
+    public dropItem(session: ChannelSession, uid: bigint, amount: number, isbound: boolean): void {
         if (!isbound) {
             // drop item
             const remaining = this.remove(uid, amount); // returns remaining amount of item
@@ -297,7 +297,7 @@ export class Inventory {
         session.send(ItemInventoryPacket.loadTab(tab));
     }
 
-    public moveItem(session: ChannelSession, uid: BigInt, dstSlot: number): void {
+    public moveItem(session: ChannelSession, uid: bigint, dstSlot: number): void {
         const srcSlot = this.move(uid, dstSlot);
 
         if (srcSlot == null) {
@@ -312,7 +312,7 @@ export class Inventory {
     }
 
     // update item information
-    public update(session: ChannelSession, uid: BigInt, amount: number): void {
+    public update(session: ChannelSession, uid: bigint, amount: number): void {
         const item = this.items.get(uid);
 
         if (!item) {
@@ -329,12 +329,12 @@ export class Inventory {
         session.send(ItemInventoryPacket.update(uid, amount));
     }
 
-    private getItemAmount(uid: BigInt): number {
+    private getItemAmount(uid: bigint): number {
         const item = this.items.get(uid);
         return item ? item.amount : -1;
     }
 
-    private getItemMax(uid: BigInt): number {
+    private getItemMax(uid: bigint): number {
         const item = this.items.get(uid);
         return item ? item.slotMax : -1;
     }

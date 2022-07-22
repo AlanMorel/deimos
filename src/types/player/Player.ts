@@ -20,22 +20,22 @@ import { StatDistribution } from "@/types/StatDistribution";
 
 export class Player extends FieldObject {
     // bypass Key is constant PER ACCOUNT, seems like as long as it's valid, it doesn't matter
-    public readonly unknownId: BigInt = BigInt(0x01ef80c2); // 0x01CC3721;
+    public readonly unknownId: bigint = BigInt(0x01ef80c2); // 0x01CC3721;
 
     // constants
-    public accountId: BigInt = 1n;
-    public characterId: BigInt;
-    public creationTime: BigInt = 0n;
+    public accountId: bigint = 1n;
+    public characterId: bigint;
+    public creationTime: bigint = 0n;
     public name: string;
     public gender: Gender;
 
     // mutable Values
     public mapId: number = 0;
     public level: number = 1;
-    public experience: BigInt = 0n;
-    public restExperience: BigInt = 0n;
+    public experience: bigint = 0n;
+    public restExperience: bigint = 0n;
     public prestigeLevel: number = 100;
-    public prestigeExperience: BigInt = 0n;
+    public prestigeExperience: bigint = 0n;
     public titleId: number = 0;
     public insigniaId: number = 0;
     public animation: number = 0;
@@ -58,7 +58,7 @@ export class Player extends FieldObject {
     public wallet: Wallet;
 
     public maxSkillTabs: number = 0;
-    public activeSkillTabId: BigInt = 0n;
+    public activeSkillTabId: bigint = 0n;
     public skillTabs = new Array<SkillTab>();
     public statPointDistribution: StatDistribution = new StatDistribution();
 
@@ -75,7 +75,7 @@ export class Player extends FieldObject {
     public session?: ChannelSession;
 
     public constructor(
-        characterId: BigInt,
+        characterId: bigint,
         gender: Gender,
         job: Job,
         name: string,

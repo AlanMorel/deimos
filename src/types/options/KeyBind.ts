@@ -1,14 +1,14 @@
 export class KeyBind {
     public keyCode: number;
     public optionType: number;
-    public optionGuid: BigInt;
+    public optionGuid: bigint;
     public unknown1: number; // haven't found a non-zero value for this
     public priority: number;
 
     public constructor(
         keyCode: number,
         optionType: number,
-        optionGuid: BigInt,
+        optionGuid: bigint,
         priority: number,
         unknown1: number = 0
     ) {

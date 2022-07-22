@@ -3,7 +3,7 @@ import { Session } from "@/network/sessions/Session";
 import { Socket } from "net";
 
 export class LoginSession extends Session {
-    public accountId: BigInt = 0n;
+    public accountId: bigint = 0n;
 
     public constructor(id: number, socket: Socket, packetRouter: PacketRouter) {
         super(id, socket, packetRouter);

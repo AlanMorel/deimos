@@ -4,7 +4,7 @@ import { PacketWriter } from "@/crypto/protocol/PacketWriter";
 import { CurrencyType } from "@/types/player/CurrencyType";
 
 export class WalletPacket {
-    public static update(type: CurrencyType, amount: BigInt): Packet {
+    public static update(type: CurrencyType, amount: bigint): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.MONEY_TOKEN);

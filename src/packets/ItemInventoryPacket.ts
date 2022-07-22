@@ -32,7 +32,7 @@ export class ItemInventoryPacket {
         return packet;
     }
 
-    public static remove(uid: BigInt): Packet {
+    public static remove(uid: bigint): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.ITEM_INVENTORY);
@@ -42,7 +42,7 @@ export class ItemInventoryPacket {
         return packet;
     }
 
-    public static update(uid: BigInt, amount: number): Packet {
+    public static update(uid: bigint, amount: number): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.ITEM_INVENTORY);
@@ -53,7 +53,7 @@ export class ItemInventoryPacket {
         return packet;
     }
 
-    public static move(dstUid: BigInt, srcSlot: number, srcUid: BigInt, dstSlot: number): Packet {
+    public static move(dstUid: bigint, srcSlot: number, srcUid: bigint, dstSlot: number): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.ITEM_INVENTORY);

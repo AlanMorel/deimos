@@ -1,7 +1,7 @@
 import { Skill } from "@/types/Skill";
 
 export class SkillTab {
-    public id: BigInt;
+    public id: bigint;
     public name: string;
     public order: number[];
     public split: number;

@@ -95,7 +95,7 @@ export class PacketWriter extends Packet {
         this.length += 8;
     }
 
-    public writeBigInt(long: BigInt = 0n): void {
+    public writeBigInt(long: bigint = 0n): void {
         this.ensureCapacity(8);
         this.buffer.writeBigInt64LE(long.valueOf(), this.length);
         this.length += 8;

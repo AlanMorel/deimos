@@ -34,7 +34,7 @@ export class Hotbar {
         this.slots[targetSlotIndex] = quickSlot;
     }
 
-    private findQuickSlotIndex(skillId: number, itemUid: BigInt = 0n): number {
+    private findQuickSlotIndex(skillId: number, itemUid: bigint = 0n): number {
         for (let i = 0; i < Hotbar.MAX_SLOTS; i++) {
             const currentSlot = this.slots[i];
             if (currentSlot.skillId === skillId && currentSlot.itemUid === itemUid) {
@@ -45,7 +45,7 @@ export class Hotbar {
         return -1;
     }
 
-    public removeQuickSlot(skillId: number, itemUid: BigInt): boolean {
+    public removeQuickSlot(skillId: number, itemUid: bigint): boolean {
         const targetSlotIndex = this.findQuickSlotIndex(skillId, itemUid);
         if (targetSlotIndex < 0 || targetSlotIndex >= Hotbar.MAX_SLOTS) {
             Logger.error(`Failed to remove quick slot. TargetSlotIndex: ${targetSlotIndex}`);

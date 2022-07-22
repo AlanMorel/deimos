@@ -6,9 +6,9 @@ import { RideType } from "@/types/RideType";
 export class Mount extends FieldObject {
     public type: RideType;
     public id: number;
-    public uid: BigInt;
+    public uid: bigint;
 
-    public constructor(type: RideType, id: number, uid: BigInt) {
+    public constructor(type: RideType, id: number, uid: bigint) {
         super();
         this.type = type;
         this.id = id;

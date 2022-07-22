@@ -9,7 +9,7 @@ enum Mode {
 }
 
 export class LoginResultPacket {
-    public static login(accountId: BigInt): Packet {
+    public static login(accountId: bigint): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.LOGIN_RESULT);
@@ -28,7 +28,7 @@ export class LoginResultPacket {
         return packet;
     }
 
-    public static incorrectID(accountId: BigInt): Packet {
+    public static incorrectID(accountId: bigint): Packet {
         const packet = new PacketWriter();
 
         packet.writeShort(SendOp.LOGIN_RESULT);
