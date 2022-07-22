@@ -1,8 +1,8 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Player } from "../types/player/Player";
-import { CharacterListPacketHelper } from "./helpers/CharacterListPacketHelper";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { CharacterListPacketHelper } from "@/packets/helpers/CharacterListPacketHelper";
+import { Player } from "@/types/player/Player";
 
 enum Mode {
     ADD = 0x0,

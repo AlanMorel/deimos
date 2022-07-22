@@ -1,5 +1,5 @@
-import { BitConverter } from "../../tools/BitConverter";
-import { Packet } from "./Packet";
+import { Packet } from "@/crypto/protocol/Packet";
+import { BitConverter } from "@/tools/BitConverter";
 
 export class PacketReader extends Packet {
     private position: number;

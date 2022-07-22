@@ -1,8 +1,8 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { ChannelSession } from "../network/sessions/ChannelSession";
-import { ChatType } from "../types/ChatType";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { ChatType } from "@/types/ChatType";
 
 export class ChatPacket {
     public static send(session: ChannelSession, message: string, type: ChatType): Packet {

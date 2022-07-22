@@ -1,5 +1,5 @@
+import { BitConverter } from "@/tools/BitConverter";
 import { v4 as uuidv4 } from "uuid";
-import { BitConverter } from "./BitConverter";
 
 export class GuidGenerator {
     public static generateLong(): BigInt {

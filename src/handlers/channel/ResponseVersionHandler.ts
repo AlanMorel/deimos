@@ -1,9 +1,9 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { RequestKeyPacket } from "../../packets/RequestKeyPacket";
-import { UnknownSyncPacket } from "../../packets/UnknownSyncPacket";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
-import { ResponseVersionHelper } from "../helpers/ResponseVersionHelper";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { ResponseVersionHelper } from "@/handlers/helpers/ResponseVersionHelper";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { RequestKeyPacket } from "@/packets/RequestKeyPacket";
+import { UnknownSyncPacket } from "@/packets/UnknownSyncPacket";
 
 export class ResponseVersionHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {

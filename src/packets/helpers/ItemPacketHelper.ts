@@ -1,14 +1,14 @@
-import { Packet } from "../../crypto/protocol/Packet";
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { ItemColor } from "../../types/color/ItemColor";
-import { FaceDecoration } from "../../types/item/FaceDecoration";
-import { Hair } from "../../types/item/Hair";
-import { Item } from "../../types/item/Item";
-import { ItemSlot } from "../../types/item/ItemSlot";
-import { ItemStat } from "../../types/item/ItemStat";
-import { ItemStats } from "../../types/item/ItemStats";
-import { SpecialItemStat } from "../../types/item/SpecialItemStat";
-import { UgcPacketHelper } from "./UgcPacketHelper";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { UgcPacketHelper } from "@/packets/helpers/UgcPacketHelper";
+import { ItemColor } from "@/types/color/ItemColor";
+import { FaceDecoration } from "@/types/item/FaceDecoration";
+import { Hair } from "@/types/item/Hair";
+import { Item } from "@/types/item/Item";
+import { ItemSlot } from "@/types/item/ItemSlot";
+import { ItemStat } from "@/types/item/ItemStat";
+import { ItemStats } from "@/types/item/ItemStats";
+import { SpecialItemStat } from "@/types/item/SpecialItemStat";
 
 export class ItemPacketHelper {
     public static writeItem(packet: PacketWriter, item: Item): Packet {

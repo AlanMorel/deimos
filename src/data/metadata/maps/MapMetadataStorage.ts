@@ -1,6 +1,6 @@
-import { MetadataStorage } from "../MetadataStorage";
-import { MapMetadata } from "./MapMetadata";
-import { MapPortalFlag } from "./portals/MapPortalFlag";
+import { MapMetadata } from "@/data/metadata/maps/MapMetadata";
+import { MapPortalFlag } from "@/data/metadata/maps/portals/MapPortalFlag";
+import { MetadataStorage } from "@/data/metadata/MetadataStorage";
 
 export class MapMetadataStorage extends MetadataStorage<MapMetadata> {
     public getMap(id: number): MapMetadata | undefined {

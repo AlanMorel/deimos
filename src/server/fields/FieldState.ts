@@ -1,9 +1,9 @@
-import { MapPortalFlag } from "../../data/metadata/maps/portals/MapPortalFlag";
-import { Metadata } from "../../data/metadata/Metadata";
-import { Enum } from "../../tools/Enum";
-import { Player } from "../../types/player/Player";
-import { Field } from "./Field";
-import { Portal } from "./Portal";
+import { MapPortalFlag } from "@/data/metadata/maps/portals/MapPortalFlag";
+import { Metadata } from "@/data/metadata/Metadata";
+import { Field } from "@/server/fields/Field";
+import { Portal } from "@/server/fields/Portal";
+import { Enum } from "@/tools/Enum";
+import { Player } from "@/types/player/Player";
 
 export class FieldState {
     private players: Map<number, Player> = new Map<number, Player>();

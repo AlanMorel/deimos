@@ -1,19 +1,21 @@
-import { magenta, red, yellow } from "picocolors";
-import Configs from "../../Configs";
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { Database } from "../../database/Database";
-import { Endpoint } from "../../network/Endpoint";
-import { LoginSession } from "../../network/sessions/LoginSession";
-import { BannerListPacket } from "../../packets/BannerListPacket";
-import { CharacterListPacket } from "../../packets/CharacterListPacket";
-import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
-import { LoginResultPacket } from "../../packets/LoginResultPacket";
-import { NpsInfoPacket } from "../../packets/NpsInfoPacket";
-import { ServerListPacket } from "../../packets/ServerListPacket";
-import { UgcPacket } from "../../packets/UgcPacket";
-import { Logger } from "../../tools/Logger";
-import { Player } from "../../types/player/Player";
-import { LoginPacketHandler } from "../LoginPacketHandler";
+import Configs from "@/Configs";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { Database } from "@/database/Database";
+import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
+import { Endpoint } from "@/network/Endpoint";
+import { LoginSession } from "@/network/sessions/LoginSession";
+import { BannerListPacket } from "@/packets/BannerListPacket";
+import { CharacterListPacket } from "@/packets/CharacterListPacket";
+import { CharacterMaxCountPacket } from "@/packets/CharacterMaxCountPacket";
+import { LoginResultPacket } from "@/packets/LoginResultPacket";
+import { NpsInfoPacket } from "@/packets/NpsInfoPacket";
+import { ServerListPacket } from "@/packets/ServerListPacket";
+import { UgcPacket } from "@/packets/UgcPacket";
+import { Logger } from "@/tools/Logger";
+import { Player } from "@/types/player/Player";
+import picocolors from "picocolors";
+
+const { magenta, red, yellow } = picocolors;
 
 enum Mode {
     LOGIN_1 = 0x1,

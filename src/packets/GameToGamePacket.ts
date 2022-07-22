@@ -1,8 +1,8 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { AuthData } from "../network/AuthData";
-import { Endpoint } from "../network/Endpoint";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { AuthData } from "@/network/AuthData";
+import { Endpoint } from "@/network/Endpoint";
 
 enum Mode {
     SUCCESS = 0x0

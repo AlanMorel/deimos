@@ -1,8 +1,8 @@
-import Configs from "../../Configs";
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { Logger } from "../../tools/Logger";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
+import Configs from "@/Configs";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { Logger } from "@/tools/Logger";
 
 export class FileHashHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {

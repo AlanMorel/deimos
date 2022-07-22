@@ -1,8 +1,8 @@
-import { MeretsPacket } from "../../packets/MeretPacket";
-import { MesoPacket } from "../../packets/MesoPacket";
-import { WalletPacket } from "../../packets/WalletPacket";
-import { CurrencyType } from "./CurrencyType";
-import { Player } from "./Player";
+import { MeretsPacket } from "@/packets/MeretPacket";
+import { MesoPacket } from "@/packets/MesoPacket";
+import { WalletPacket } from "@/packets/WalletPacket";
+import { CurrencyType } from "@/types/player/CurrencyType";
+import { Player } from "@/types/player/Player";
 
 export class Currency {
     private player: Player;

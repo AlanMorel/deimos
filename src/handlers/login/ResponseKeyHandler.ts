@@ -1,7 +1,7 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { LoginSession } from "../../network/sessions/LoginSession";
-import { ResponseKeyHelper } from "../helpers/ReponseKeyHelper";
-import { LoginPacketHandler } from "../LoginPacketHandler";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ResponseKeyHelper } from "@/handlers/helpers/ReponseKeyHelper";
+import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
+import { LoginSession } from "@/network/sessions/LoginSession";
 
 export class ResponseKeyHandler implements LoginPacketHandler {
     public handle(session: LoginSession, packet: PacketReader): void {

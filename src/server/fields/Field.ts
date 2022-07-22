@@ -1,11 +1,11 @@
-import { Packet } from "../../crypto/protocol/Packet";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { FieldAddUserPacket } from "../../packets/FieldAddUserPacket";
-import { FieldPortalPacket } from "../../packets/FieldPortalPacket";
-import { FieldRemoveUserPacket } from "../../packets/FieldRemoveUserPacket";
-import { ProxyGameObjectPacket } from "../../packets/ProxyGameObjectPacket";
-import { Timer } from "../../tools/Timer";
-import { FieldState } from "./FieldState";
+import { Packet } from "@/crypto/protocol/Packet";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { FieldAddUserPacket } from "@/packets/FieldAddUserPacket";
+import { FieldPortalPacket } from "@/packets/FieldPortalPacket";
+import { FieldRemoveUserPacket } from "@/packets/FieldRemoveUserPacket";
+import { ProxyGameObjectPacket } from "@/packets/ProxyGameObjectPacket";
+import { FieldState } from "@/server/fields/FieldState";
+import { Timer } from "@/tools/Timer";
 
 export class Field {
     private static readonly UPDATE_INTERVAL = 1000;

@@ -1,4 +1,4 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
 
 export class PlayerStat {
     public total: number;

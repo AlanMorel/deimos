@@ -1,10 +1,10 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { SkinColor } from "../../types/color/SkinColor";
-import { CoordF } from "../../types/coords/CoordF";
-import { Item } from "../../types/item/Item";
-import { ItemSlot } from "../../types/item/ItemSlot";
-import { Player } from "../../types/player/Player";
-import { ItemPacketHelper } from "./ItemPacketHelper";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { ItemPacketHelper } from "@/packets/helpers/ItemPacketHelper";
+import { SkinColor } from "@/types/color/SkinColor";
+import { CoordF } from "@/types/coords/CoordF";
+import { Item } from "@/types/item/Item";
+import { ItemSlot } from "@/types/item/ItemSlot";
+import { Player } from "@/types/player/Player";
 
 export class CharacterListPacketHelper {
     public static writeCharacterEntry(packet: PacketWriter, player: Player): void {

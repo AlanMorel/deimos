@@ -1,7 +1,7 @@
-import { PacketReader } from "../crypto/protocol/PacketReader";
-import { ChannelPacketHandler } from "../handlers/ChannelPacketHandler";
-import { ChannelSession } from "../network/sessions/ChannelSession";
-import { Logger } from "../tools/Logger";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { Logger } from "@/tools/Logger";
 
 enum Mode {
     Move = 0x3,

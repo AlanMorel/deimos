@@ -1,11 +1,11 @@
-import Configs from "../../Configs";
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AuthStorage } from "../../data/storage/AuthStorage";
-import { Endpoint } from "../../network/Endpoint";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { GameToLoginPacket } from "../../packets/GameToLoginPacket";
-import { Logger } from "../../tools/Logger";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
+import Configs from "@/Configs";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { AuthStorage } from "@/data/storage/AuthStorage";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { Endpoint } from "@/network/Endpoint";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { GameToLoginPacket } from "@/packets/GameToLoginPacket";
+import { Logger } from "@/tools/Logger";
 
 export class RequestQuitHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {

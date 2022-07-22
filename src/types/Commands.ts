@@ -1,9 +1,9 @@
-import { ChannelSession } from "../network/sessions/ChannelSession";
-import { ChatPacket } from "../packets/ChatPacket";
-import { UserSyncPacket } from "../packets/UserSyncPacket";
-import { ChatType } from "./ChatType";
-import { CoordS } from "./coords/CoordS";
-import { SyncState } from "./SyncState";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { ChatPacket } from "@/packets/ChatPacket";
+import { UserSyncPacket } from "@/packets/UserSyncPacket";
+import { ChatType } from "@/types/ChatType";
+import { CoordS } from "@/types/coords/CoordS";
+import { SyncState } from "@/types/SyncState";
 
 export class Commands {
     public static process(session: ChannelSession, command: string): boolean {

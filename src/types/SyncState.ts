@@ -1,10 +1,10 @@
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketReader } from "../crypto/protocol/PacketReader";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Enum } from "../tools/Enum";
-import { CoordF } from "./coords/CoordF";
-import { CoordS } from "./coords/CoordS";
-import { SyncStateFlag } from "./SyncStateFlag";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Enum } from "@/tools/Enum";
+import { CoordF } from "@/types/coords/CoordF";
+import { CoordS } from "@/types/coords/CoordS";
+import { SyncStateFlag } from "@/types/SyncStateFlag";
 
 export class SyncState {
     public animation1: number = 0;

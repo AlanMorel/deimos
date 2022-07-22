@@ -1,6 +1,6 @@
+import { Packet } from "@/crypto/protocol/Packet";
+import { BitConverter } from "@/tools/BitConverter";
 import { deflateSync } from "zlib";
-import { BitConverter } from "../../tools/BitConverter";
-import { Packet } from "./Packet";
 
 export class PacketWriter extends Packet {
     private static readonly DEFAULT_SIZE: number = 1 << 6;

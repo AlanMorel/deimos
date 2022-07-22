@@ -1,8 +1,8 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Player } from "../types/player/Player";
-import { SyncState } from "../types/SyncState";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Player } from "@/types/player/Player";
+import { SyncState } from "@/types/SyncState";
 
 export class UserSyncPacket {
     public static syncUser(player: Player, syncStates: SyncState[]): Packet {

@@ -1,6 +1,6 @@
+import { RecvOp } from "@/constants/RecvOp";
+import { SendOp } from "@/constants/SendOp";
 import dotenv from "dotenv";
-import { RecvOp } from "./constants/RecvOp";
-import { SendOp } from "./constants/SendOp";
 
 dotenv.config();
 

@@ -1,5 +1,5 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { SpecialItemAttribute } from "./SpecialItemAttribute";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { SpecialItemAttribute } from "@/types/item/SpecialItemAttribute";
 
 export class SpecialItemStat {
     public type: SpecialItemAttribute;

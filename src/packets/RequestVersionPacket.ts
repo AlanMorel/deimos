@@ -1,5 +1,5 @@
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
 
 export class RequestVersionPacket {
     public static handshake(version: number, ivRecv: number, ivSend: number, blockIv: number, type: number): Packet {

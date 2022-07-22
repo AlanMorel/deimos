@@ -1,6 +1,6 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { BitConverter } from "../../tools/BitConverter";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { BitConverter } from "@/tools/BitConverter";
 
 export class Color {
     private blue: number;

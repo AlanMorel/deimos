@@ -1,15 +1,15 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Time } from "../tools/Time";
-import { SkinColor } from "../types/color/SkinColor";
-import { CoordF } from "../types/coords/CoordF";
-import { Mount } from "../types/Mount";
-import { Player } from "../types/player/Player";
-import { FieldPacket } from "./FieldPacket";
-import { CharacterListPacketHelper } from "./helpers/CharacterListPacketHelper";
-import { ItemPacketHelper } from "./helpers/ItemPacketHelper";
-import { JobPacket } from "./JobPacket";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { FieldPacket } from "@/packets/FieldPacket";
+import { CharacterListPacketHelper } from "@/packets/helpers/CharacterListPacketHelper";
+import { ItemPacketHelper } from "@/packets/helpers/ItemPacketHelper";
+import { JobPacket } from "@/packets/JobPacket";
+import { Time } from "@/tools/Time";
+import { SkinColor } from "@/types/color/SkinColor";
+import { CoordF } from "@/types/coords/CoordF";
+import { Mount } from "@/types/Mount";
+import { Player } from "@/types/player/Player";
 
 export class FieldAddUserPacket {
     public static addPlayer(player: Player): Packet {

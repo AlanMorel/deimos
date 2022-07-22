@@ -1,5 +1,5 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { PlayerStat } from "./PlayerStat";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { PlayerStat } from "@/types/player/PlayerStat";
 
 export class PlayerStats {
     public str: PlayerStat = new PlayerStat(100, 0, 100);

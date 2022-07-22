@@ -1,6 +1,6 @@
+import { PacketRouter } from "@/network/routers/PacketRouter";
+import { Session } from "@/network/sessions/Session";
 import * as net from "net";
-import { PacketRouter } from "../routers/PacketRouter";
-import { Session } from "../sessions/Session";
 
 export abstract class Server {
     protected server: net.Server = net.createServer();

@@ -1,10 +1,10 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { ChatPacket } from "../../packets/ChatPacket";
-import { World } from "../../server/World";
-import { ChatType } from "../../types/ChatType";
-import { Commands } from "../../types/Commands";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { ChatPacket } from "@/packets/ChatPacket";
+import { World } from "@/server/World";
+import { ChatType } from "@/types/ChatType";
+import { Commands } from "@/types/Commands";
 
 export class UserChatHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {

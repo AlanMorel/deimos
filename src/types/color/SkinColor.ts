@@ -1,6 +1,6 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { Color } from "./Color";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Color } from "@/types/color/Color";
 
 export class SkinColor {
     public primary: Color;

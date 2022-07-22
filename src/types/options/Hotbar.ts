@@ -1,7 +1,7 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { Logger } from "../../tools/Logger";
-import { GameOptions } from "./GameOptions";
-import { QuickSlot } from "./QuickSlot";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Logger } from "@/tools/Logger";
+import { GameOptions } from "@/types/options/GameOptions";
+import { QuickSlot } from "@/types/options/QuickSlot";
 
 export class Hotbar {
     public static readonly MAX_SLOTS = 25;

@@ -1,10 +1,12 @@
-import { magenta, yellow } from "picocolors";
-import Configs from "./Configs";
-import { Metadata } from "./data/metadata/Metadata";
-import { Database } from "./database/Database";
-import { ChannelServer } from "./network/servers/ChannelServer";
-import { LoginServer } from "./network/servers/LoginServer";
-import { Logger } from "./tools/Logger";
+import Configs from "@/Configs";
+import { Metadata } from "@/data/metadata/Metadata";
+import { Database } from "@/database/Database";
+import { ChannelServer } from "@/network/servers/ChannelServer";
+import { LoginServer } from "@/network/servers/LoginServer";
+import { Logger } from "@/tools/Logger";
+import picocolors from "picocolors";
+
+const { magenta, yellow } = picocolors;
 
 export class App {
     public constructor() {

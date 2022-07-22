@@ -1,11 +1,11 @@
-import { RecvOp } from "../../constants/RecvOp";
-import { LogSendHandler } from "../../handlers/channel/LogSendHandler";
-import { CharacterManagementHandler } from "../../handlers/login/CharacterManagementHandler";
-import { ResponseKeyHandler } from "../../handlers/login/ResponseKeyHandler";
-import { ResponseLoginHandler } from "../../handlers/login/ResponseLoginHandler";
-import { ResponseServerEnterHandler } from "../../handlers/login/ResponseServerEnterHandler";
-import { ResponseVersionHandler } from "../../handlers/login/ResponseVersionHandler";
-import { PacketRouter } from "./PacketRouter";
+import { RecvOp } from "@/constants/RecvOp";
+import { LogSendHandler } from "@/handlers/channel/LogSendHandler";
+import { CharacterManagementHandler } from "@/handlers/login/CharacterManagementHandler";
+import { ResponseKeyHandler } from "@/handlers/login/ResponseKeyHandler";
+import { ResponseLoginHandler } from "@/handlers/login/ResponseLoginHandler";
+import { ResponseServerEnterHandler } from "@/handlers/login/ResponseServerEnterHandler";
+import { ResponseVersionHandler } from "@/handlers/login/ResponseVersionHandler";
+import { PacketRouter } from "@/network/routers/PacketRouter";
 
 export class LoginPacketRouter extends PacketRouter {
     public registerHandlers(): void {

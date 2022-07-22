@@ -1,13 +1,15 @@
+import { Packet } from "@/crypto/protocol/Packet";
+import { Database } from "@/database/Database";
+import { ChannelPacketRouter } from "@/network/routers/ChannelPacketRouter";
+import { Server } from "@/network/servers/Server";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { FieldFactory } from "@/server/fields/FIeldFactory";
+import { World } from "@/server/World";
+import { Logger } from "@/tools/Logger";
 import { Socket } from "net";
-import { green, yellow } from "picocolors";
-import { Packet } from "../../crypto/protocol/Packet";
-import { Database } from "../../database/Database";
-import { FieldFactory } from "../../server/fields/FIeldFactory";
-import { World } from "../../server/World";
-import { Logger } from "../../tools/Logger";
-import { ChannelPacketRouter } from "../routers/ChannelPacketRouter";
-import { ChannelSession } from "../sessions/ChannelSession";
-import { Server } from "./Server";
+import picocolors from "picocolors";
+
+const { green, yellow } = picocolors;
 
 export class ChannelServer extends Server {
     public id: number;

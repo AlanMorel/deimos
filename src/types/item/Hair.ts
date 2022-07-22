@@ -1,6 +1,6 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { Item } from "./Item";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Item } from "@/types/item/Item";
 
 export class Hair extends Item {
     public backLength: number;

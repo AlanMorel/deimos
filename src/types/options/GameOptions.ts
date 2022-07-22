@@ -1,5 +1,5 @@
-import { Hotbar } from "./Hotbar";
-import { KeyBind } from "./KeyBind";
+import { Hotbar } from "@/types/options/Hotbar";
+import { KeyBind } from "@/types/options/KeyBind";
 
 export class GameOptions {
     private static readonly HOTBARS_AVAILABLE = 3;

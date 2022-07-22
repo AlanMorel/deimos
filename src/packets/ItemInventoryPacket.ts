@@ -1,9 +1,9 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { InventoryTab } from "../types/inventory/InventoryTab";
-import { Item } from "../types/item/Item";
-import { ItemPacketHelper } from "./helpers/ItemPacketHelper";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { ItemPacketHelper } from "@/packets/helpers/ItemPacketHelper";
+import { InventoryTab } from "@/types/inventory/InventoryTab";
+import { Item } from "@/types/item/Item";
 
 enum Mode {
     ADD = 0x0,

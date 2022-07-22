@@ -1,8 +1,8 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { UserSyncPacket } from "../../packets/UserSyncPacket";
-import { SyncState } from "../../types/SyncState";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { UserSyncPacket } from "@/packets/UserSyncPacket";
+import { SyncState } from "@/types/SyncState";
 
 export class UserSyncHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {

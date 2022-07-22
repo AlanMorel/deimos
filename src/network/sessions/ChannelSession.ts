@@ -1,10 +1,10 @@
+import { PacketRouter } from "@/network/routers/PacketRouter";
+import { ChannelServer } from "@/network/servers/ChannelServer";
+import { Session } from "@/network/sessions/Session";
+import { Field } from "@/server/fields/Field";
+import { World } from "@/server/World";
+import { Player } from "@/types/player/Player";
 import { Socket } from "net";
-import { Field } from "../../server/fields/Field";
-import { World } from "../../server/World";
-import { Player } from "../../types/player/Player";
-import { PacketRouter } from "../routers/PacketRouter";
-import { ChannelServer } from "../servers/ChannelServer";
-import { Session } from "./Session";
 
 export class ChannelSession extends Session {
     public player: Player = Player.getInitialPlayer();

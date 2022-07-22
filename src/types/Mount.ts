@@ -1,7 +1,7 @@
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { UgcPacketHelper } from "../packets/helpers/UgcPacketHelper";
-import { FieldObject } from "../server/fields/FieldObject";
-import { RideType } from "./RideType";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { UgcPacketHelper } from "@/packets/helpers/UgcPacketHelper";
+import { FieldObject } from "@/server/fields/FieldObject";
+import { RideType } from "@/types/RideType";
 
 export class Mount extends FieldObject {
     public type: RideType;

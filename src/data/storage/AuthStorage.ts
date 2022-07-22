@@ -1,4 +1,4 @@
-import { AuthData } from "../../network/AuthData";
+import { AuthData } from "@/network/AuthData";
 
 // TODO: This is mostly temporary while I think about how auth really should work
 // It's mostly just required to pass login data to GameSession (which is why it's static)

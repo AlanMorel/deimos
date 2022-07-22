@@ -1,5 +1,5 @@
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Player } from "../types/player/Player";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Player } from "@/types/player/Player";
 
 export class JobPacket {
     public static writeSkills(packet: PacketWriter, character: Player): void {

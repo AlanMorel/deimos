@@ -1,7 +1,7 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Time } from "../tools/Time";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Time } from "@/tools/Time";
 
 export class RequestClientTickSyncPacket {
     public static tickSync(): Packet {

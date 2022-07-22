@@ -1,6 +1,6 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { Coord } from "./Coord";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Coord } from "@/types/coords/Coord";
 
 export class CoordB extends Coord {
     public static read(packet: PacketReader): CoordB {

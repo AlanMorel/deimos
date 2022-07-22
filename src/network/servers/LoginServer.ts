@@ -1,9 +1,11 @@
+import { LoginPacketRouter } from "@/network/routers/LoginPacketRouter";
+import { Server } from "@/network/servers/Server";
+import { LoginSession } from "@/network/sessions/LoginSession";
+import { Logger } from "@/tools/Logger";
 import { Socket } from "net";
-import { green } from "picocolors";
-import { Logger } from "../../tools/Logger";
-import { LoginPacketRouter } from "../routers/LoginPacketRouter";
-import { LoginSession } from "../sessions/LoginSession";
-import { Server } from "./Server";
+import picocolors from "picocolors";
+
+const { green } = picocolors;
 
 export class LoginServer extends Server {
     public constructor(host: string, port: number) {

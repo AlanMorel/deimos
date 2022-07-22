@@ -1,8 +1,8 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AuthStorage } from "../../data/storage/AuthStorage";
-import { Session } from "../../network/sessions/Session";
-import { MoveResultPacket } from "../../packets/MoveResultPacket";
-import { Logger } from "../../tools/Logger";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { AuthStorage } from "@/data/storage/AuthStorage";
+import { Session } from "@/network/sessions/Session";
+import { MoveResultPacket } from "@/packets/MoveResultPacket";
+import { Logger } from "@/tools/Logger";
 
 export class ResponseKeyHelper {
     public static handle(session: Session, packet: PacketReader): void {

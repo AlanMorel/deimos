@@ -1,18 +1,20 @@
+import Configs from "@/Configs";
+import { RecvOp } from "@/constants/RecvOp";
+import { SendOp } from "@/constants/SendOp";
+import { Cipher } from "@/crypto/cipher/Cipher";
+import { RecvCipher } from "@/crypto/cipher/RecvCipher";
+import { SendCipher } from "@/crypto/cipher/SendCipher";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { Stream } from "@/crypto/Stream";
+import { PacketRouter } from "@/network/routers/PacketRouter";
+import { RequestVersionPacket } from "@/packets/RequestVersionPacket";
+import { BitConverter } from "@/tools/BitConverter";
+import { Logger } from "@/tools/Logger";
 import { Socket } from "net";
-import { cyan } from "picocolors";
-import Configs from "../../Configs";
-import { RecvOp } from "../../constants/RecvOp";
-import { SendOp } from "../../constants/SendOp";
-import { Cipher } from "../../crypto/cipher/Cipher";
-import { RecvCipher } from "../../crypto/cipher/RecvCipher";
-import { SendCipher } from "../../crypto/cipher/SendCipher";
-import { Packet } from "../../crypto/protocol/Packet";
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { Stream } from "../../crypto/Stream";
-import { RequestVersionPacket } from "../../packets/RequestVersionPacket";
-import { BitConverter } from "../../tools/BitConverter";
-import { Logger } from "../../tools/Logger";
-import { PacketRouter } from "../routers/PacketRouter";
+import picocolors from "picocolors";
+
+const { cyan } = picocolors;
 
 export abstract class Session {
     private static readonly version: number = 12;

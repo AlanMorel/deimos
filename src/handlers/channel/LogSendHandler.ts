@@ -1,7 +1,7 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { Session } from "../../network/sessions/Session";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
-import { LogSendHelper } from "../helpers/LogSendHelper";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { LogSendHelper } from "@/handlers/helpers/LogSendHelper";
+import { Session } from "@/network/sessions/Session";
 
 export class LogSendHandler implements ChannelPacketHandler {
     public handle(session: Session, packet: PacketReader): void {

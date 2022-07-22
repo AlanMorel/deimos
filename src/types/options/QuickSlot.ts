@@ -1,4 +1,4 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
 
 export class QuickSlot {
     public skillId: number = 0;

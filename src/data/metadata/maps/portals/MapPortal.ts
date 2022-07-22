@@ -1,5 +1,5 @@
-import { CoordS } from "../../../../types/coords/CoordS";
-import { MapPortalFlag } from "./MapPortalFlag";
+import { MapPortalFlag } from "@/data/metadata/maps/portals/MapPortalFlag";
+import { CoordS } from "@/types/coords/CoordS";
 
 export class MapPortal {
     public id: number;

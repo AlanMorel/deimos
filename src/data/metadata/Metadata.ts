@@ -1,9 +1,9 @@
+import { ItemMetadata } from "@/data/metadata/items/ItemMetadata";
+import { ItemMetadataStorage } from "@/data/metadata/items/ItemMetadataStorage";
+import { MapMetadata } from "@/data/metadata/maps/MapMetadata";
+import { MapMetadataStorage } from "@/data/metadata/maps/MapMetadataStorage";
 import fs from "fs";
 import protobuf from "protobufjs";
-import { ItemMetadata } from "./items/ItemMetadata";
-import { ItemMetadataStorage } from "./items/ItemMetadataStorage";
-import { MapMetadata } from "./maps/MapMetadata";
-import { MapMetadataStorage } from "./maps/MapMetadataStorage";
 
 export class Metadata {
     private static items = new ItemMetadataStorage();

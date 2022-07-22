@@ -1,10 +1,10 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { FieldObjectUpdate } from "../server/fields/FieldObjectUpdate";
-import { Enum } from "../tools/Enum";
-import { CoordF } from "../types/coords/CoordF";
-import { Player } from "../types/player/Player";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { FieldObjectUpdate } from "@/server/fields/FieldObjectUpdate";
+import { Enum } from "@/tools/Enum";
+import { CoordF } from "@/types/coords/CoordF";
+import { Player } from "@/types/player/Player";
 
 enum Mode {
     LOAD_PLAYER = 0x3,

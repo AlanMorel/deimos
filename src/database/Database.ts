@@ -1,9 +1,9 @@
+import Configs from "@/Configs";
+import { Accounts } from "@/database/controllers/Accounts";
+import { Characters } from "@/database/controllers/Characters";
+import { AccountEntity } from "@/database/entities/Account";
+import { CharacterEntity } from "@/database/entities/Character";
 import { Connection, getConnectionManager } from "typeorm";
-import Configs from "../Configs";
-import { Accounts } from "./controllers/Accounts";
-import { Characters } from "./controllers/Characters";
-import { AccountEntity } from "./entities/Account";
-import { CharacterEntity } from "./entities/Character";
 
 export class Database {
     private static instance: Database;

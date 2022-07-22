@@ -1,7 +1,7 @@
-import { MapNpc } from "./npcs/MapNpc";
-import { MapObject } from "./objects/MapObject";
-import { MapPortal } from "./portals/MapPortal";
-import { MapPlayerSpawn } from "./spawns/MapPlayerSpawn";
+import { MapNpc } from "@/data/metadata/maps/npcs/MapNpc";
+import { MapObject } from "@/data/metadata/maps/objects/MapObject";
+import { MapPortal } from "@/data/metadata/maps/portals/MapPortal";
+import { MapPlayerSpawn } from "@/data/metadata/maps/spawns/MapPlayerSpawn";
 
 export class MapMetadata {
     public id: number;

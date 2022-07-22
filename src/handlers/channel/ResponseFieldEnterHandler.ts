@@ -1,11 +1,11 @@
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { EmotionPacket } from "../../packets/EmotionPacket";
-import { KeyTablePacket } from "../../packets/KeyTablePacket";
-import { StatPacket } from "../../packets/StatPacket";
-import { StatPointPacket } from "../../packets/StatPointPacket";
-import { Item } from "../../types/item/Item";
-import { ChannelPacketHandler } from "../ChannelPacketHandler";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { EmotionPacket } from "@/packets/EmotionPacket";
+import { KeyTablePacket } from "@/packets/KeyTablePacket";
+import { StatPacket } from "@/packets/StatPacket";
+import { StatPointPacket } from "@/packets/StatPointPacket";
+import { Item } from "@/types/item/Item";
 
 export class ResponseFieldEnterHandler implements ChannelPacketHandler {
     public handle(session: ChannelSession, packet: PacketReader): void {

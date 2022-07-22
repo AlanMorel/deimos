@@ -1,14 +1,14 @@
-import Configs from "../../Configs";
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { Database } from "../../database/Database";
-import { Endpoint } from "../../network/Endpoint";
-import { LoginSession } from "../../network/sessions/LoginSession";
-import { BannerListPacket } from "../../packets/BannerListPacket";
-import { CharacterListPacket } from "../../packets/CharacterListPacket";
-import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
-import { ServerListPacket } from "../../packets/ServerListPacket";
-import { Player } from "../../types/player/Player";
-import { LoginPacketHandler } from "../LoginPacketHandler";
+import Configs from "@/Configs";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { Database } from "@/database/Database";
+import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
+import { Endpoint } from "@/network/Endpoint";
+import { LoginSession } from "@/network/sessions/LoginSession";
+import { BannerListPacket } from "@/packets/BannerListPacket";
+import { CharacterListPacket } from "@/packets/CharacterListPacket";
+import { CharacterMaxCountPacket } from "@/packets/CharacterMaxCountPacket";
+import { ServerListPacket } from "@/packets/ServerListPacket";
+import { Player } from "@/types/player/Player";
 
 export class ResponseServerEnterHandler implements LoginPacketHandler {
     public async handle(session: LoginSession, packet: PacketReader): Promise<void> {

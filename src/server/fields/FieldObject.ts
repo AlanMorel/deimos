@@ -1,4 +1,4 @@
-import { CoordF } from "../../types/coords/CoordF";
+import { CoordF } from "@/types/coords/CoordF";
 
 export abstract class FieldObject {
     public objectId: number = 0;

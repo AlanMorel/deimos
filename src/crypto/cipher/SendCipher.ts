@@ -1,6 +1,6 @@
-import { Packet } from "../protocol/Packet";
-import { PacketWriter } from "../protocol/PacketWriter";
-import { Cipher } from "./Cipher";
+import { Cipher } from "@/crypto/cipher/Cipher";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
 
 export class SendCipher extends Cipher {
     public constructor(version: number, iv: number, blockIV: number) {

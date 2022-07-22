@@ -1,8 +1,10 @@
-import { bgRed, blue, gray, green, magenta, red } from "picocolors";
+import Configs from "@/Configs";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketHandler } from "@/handlers/PacketHandler";
+import picocolors from "picocolors";
 import { Formatter } from "picocolors/types";
-import Configs from "../Configs";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketHandler } from "../handlers/PacketHandler";
+
+const { bgRed, blue, gray, green, magenta, red } = picocolors;
 
 export class Logger {
     public static log(message: string, formatter: Formatter = blue, prefix: string = "log"): void {

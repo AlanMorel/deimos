@@ -1,5 +1,5 @@
-import { PacketWriter } from "../../crypto/protocol/PacketWriter";
-import { ItemAttribute } from "./ItemAttribute";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { ItemAttribute } from "@/types/item/ItemAttribute";
 
 export class ItemStat {
     public type: ItemAttribute;

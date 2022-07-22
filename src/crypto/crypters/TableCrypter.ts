@@ -1,5 +1,5 @@
-import { Rand32 } from "../Rand32";
-import { Crypter } from "./Crypter";
+import { Crypter } from "@/crypto/crypters/Crypter";
+import { Rand32 } from "@/crypto/Rand32";
 
 export class TableCrypter extends Crypter {
     public static readonly INDEX: number = 3;

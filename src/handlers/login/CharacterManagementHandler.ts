@@ -1,24 +1,26 @@
-import { magenta } from "picocolors";
-import Configs from "../../Configs";
-import { PacketReader } from "../../crypto/protocol/PacketReader";
-import { AuthStorage } from "../../data/storage/AuthStorage";
-import { Database } from "../../database/Database";
-import { Endpoint } from "../../network/Endpoint";
-import { LoginSession } from "../../network/sessions/LoginSession";
-import { CharacterCreatePacket } from "../../packets/CharacterCreatePacket";
-import { CharacterListPacket } from "../../packets/CharacterListPacket";
-import { CharacterMaxCountPacket } from "../../packets/CharacterMaxCountPacket";
-import { LoginToGamePacket } from "../../packets/LoginToGamePacket";
-import { Logger } from "../../tools/Logger";
-import { ItemColor } from "../../types/color/ItemColor";
-import { SkinColor } from "../../types/color/SkinColor";
-import { CoordF } from "../../types/coords/CoordF";
-import { FaceDecoration } from "../../types/item/FaceDecoration";
-import { Hair } from "../../types/item/Hair";
-import { Item } from "../../types/item/Item";
-import { ItemSlot } from "../../types/item/ItemSlot";
-import { Player } from "../../types/player/Player";
-import { LoginPacketHandler } from "../LoginPacketHandler";
+import Configs from "@/Configs";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { AuthStorage } from "@/data/storage/AuthStorage";
+import { Database } from "@/database/Database";
+import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
+import { Endpoint } from "@/network/Endpoint";
+import { LoginSession } from "@/network/sessions/LoginSession";
+import { CharacterCreatePacket } from "@/packets/CharacterCreatePacket";
+import { CharacterListPacket } from "@/packets/CharacterListPacket";
+import { CharacterMaxCountPacket } from "@/packets/CharacterMaxCountPacket";
+import { LoginToGamePacket } from "@/packets/LoginToGamePacket";
+import { Logger } from "@/tools/Logger";
+import { ItemColor } from "@/types/color/ItemColor";
+import { SkinColor } from "@/types/color/SkinColor";
+import { CoordF } from "@/types/coords/CoordF";
+import { FaceDecoration } from "@/types/item/FaceDecoration";
+import { Hair } from "@/types/item/Hair";
+import { Item } from "@/types/item/Item";
+import { ItemSlot } from "@/types/item/ItemSlot";
+import { Player } from "@/types/player/Player";
+import picocolors from "picocolors";
+
+const { magenta } = picocolors;
 
 enum Mode {
     LOGIN = 0x0,

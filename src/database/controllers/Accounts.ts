@@ -1,6 +1,6 @@
-import { Account } from "../../types/Account";
-import { AccountEntity, AccountRow } from "../entities/Account";
-import { Controller } from "./Controller";
+import { Controller } from "@/database/controllers/Controller";
+import { AccountEntity, AccountRow } from "@/database/entities/Account";
+import { Account } from "@/types/Account";
 
 export class Accounts extends Controller<AccountRow, Account> {
     public constructor() {

@@ -1,8 +1,8 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { Portal } from "../server/fields/Portal";
-import { CoordF } from "../types/coords/CoordF";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { Portal } from "@/server/fields/Portal";
+import { CoordF } from "@/types/coords/CoordF";
 
 enum Mode {
     ADD = 0x0

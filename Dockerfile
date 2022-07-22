@@ -8,8 +8,6 @@ RUN npx browserslist@latest --update-db && rm -rf node_modules && yarn install -
 
 COPY . .
 
-RUN yarn run build
-
-CMD ["node", "./dist/index.js"]
+CMD ["sh", "-c", "yarn cross-env NODE_ENV=production node --loader @bleed-believer/path-alias/esm --experimental-specifier-resolution=node ./src/index.ts"]
 
 FROM base as production

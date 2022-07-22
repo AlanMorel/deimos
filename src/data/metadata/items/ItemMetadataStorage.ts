@@ -1,7 +1,7 @@
-import { InventoryTab } from "../../../types/inventory/InventoryTab";
-import { ItemSlot } from "../../../types/item/ItemSlot";
-import { MetadataStorage } from "../MetadataStorage";
-import { ItemMetadata } from "./ItemMetadata";
+import { ItemMetadata } from "@/data/metadata/items/ItemMetadata";
+import { MetadataStorage } from "@/data/metadata/MetadataStorage";
+import { InventoryTab } from "@/types/inventory/InventoryTab";
+import { ItemSlot } from "@/types/item/ItemSlot";
 
 export class ItemMetadataStorage extends MetadataStorage<ItemMetadata> {
     public getTab(id: number): InventoryTab {

@@ -1,5 +1,5 @@
-import { Gemstone } from "./Gemstone";
-import { ItemStat } from "./ItemStat";
+import { Gemstone } from "@/types/item/Gemstone";
+import { ItemStat } from "@/types/item/ItemStat";
 
 export class ItemStats {
     public basicAttributes: ItemStat[] = new Array<ItemStat>();

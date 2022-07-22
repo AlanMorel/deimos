@@ -1,0 +1,6 @@
+{
+    "watch": ["./src/"],
+    "ext": "ts, ejs",
+    "ignore": ["**/*.test.ts"],
+    "exec": "node --experimental-specifier-resolution=node --loader @bleed-believer/path-alias/esm"
+}

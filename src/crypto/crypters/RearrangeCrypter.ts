@@ -1,4 +1,4 @@
-import { Crypter } from "./Crypter";
+import { Crypter } from "@/crypto/crypters/Crypter";
 
 export class RearrangeCrypter extends Crypter {
     public static readonly INDEX: number = 1;

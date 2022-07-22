@@ -1,7 +1,7 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { ChannelSession } from "../network/sessions/ChannelSession";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
 
 export class ServerEnterPacket {
     public static enter(session: ChannelSession): Packet {

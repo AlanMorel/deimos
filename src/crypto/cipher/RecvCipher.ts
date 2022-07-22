@@ -1,7 +1,7 @@
-import { Logger } from "../../tools/Logger";
-import { Packet } from "../protocol/Packet";
-import { PacketReader } from "../protocol/PacketReader";
-import { Cipher } from "./Cipher";
+import { Cipher } from "@/crypto/cipher/Cipher";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketReader } from "@/crypto/protocol/PacketReader";
+import { Logger } from "@/tools/Logger";
 
 export class RecvCipher extends Cipher {
     public constructor(version: number, iv: number, blockIV: number) {

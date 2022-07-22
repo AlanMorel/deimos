@@ -1,7 +1,7 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { CurrencyType } from "../types/player/CurrencyType";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { CurrencyType } from "@/types/player/CurrencyType";
 
 export class WalletPacket {
     public static update(type: CurrencyType, amount: BigInt): Packet {

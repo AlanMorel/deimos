@@ -1,4 +1,4 @@
-import { BitConverter } from "../tools/BitConverter";
+import { BitConverter } from "@/tools/BitConverter";
 
 export class Stream {
     private static readonly DEFAULT_SIZE: number = 1 << 12;

@@ -1,4 +1,4 @@
-import { Skill } from "./Skill";
+import { Skill } from "@/types/Skill";
 
 export class SkillTab {
     public id: BigInt;

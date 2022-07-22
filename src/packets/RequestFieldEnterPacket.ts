@@ -1,8 +1,8 @@
-import { SendOp } from "../constants/SendOp";
-import { Packet } from "../crypto/protocol/Packet";
-import { PacketWriter } from "../crypto/protocol/PacketWriter";
-import { CoordF } from "../types/coords/CoordF";
-import { Player } from "../types/player/Player";
+import { SendOp } from "@/constants/SendOp";
+import { Packet } from "@/crypto/protocol/Packet";
+import { PacketWriter } from "@/crypto/protocol/PacketWriter";
+import { CoordF } from "@/types/coords/CoordF";
+import { Player } from "@/types/player/Player";
 
 enum Mode {
     ENTER = 0x0

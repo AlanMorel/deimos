@@ -1,6 +1,6 @@
-import { Currency } from "./Currency";
-import { CurrencyType } from "./CurrencyType";
-import { Player } from "./Player";
+import { Currency } from "@/types/player/Currency";
+import { CurrencyType } from "@/types/player/CurrencyType";
+import { Player } from "@/types/player/Player";
 
 export class Wallet {
     public meso: Currency;

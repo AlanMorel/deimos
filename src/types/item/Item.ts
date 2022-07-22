@@ -1,12 +1,12 @@
-import { Metadata } from "../../data/metadata/Metadata";
-import { GuidGenerator } from "../../tools/GuidGenerator";
-import { Color } from "../color/Color";
-import { ItemColor } from "../color/ItemColor";
-import { InventoryTab } from "../inventory/InventoryTab";
-import { Player } from "../player/Player";
-import { ItemSlot } from "./ItemSlot";
-import { ItemStats } from "./ItemStats";
-import { TransferFlag } from "./TransferFlag";
+import { Metadata } from "@/data/metadata/Metadata";
+import { GuidGenerator } from "@/tools/GuidGenerator";
+import { Color } from "@/types/color/Color";
+import { ItemColor } from "@/types/color/ItemColor";
+import { InventoryTab } from "@/types/inventory/InventoryTab";
+import { ItemSlot } from "@/types/item/ItemSlot";
+import { ItemStats } from "@/types/item/ItemStats";
+import { TransferFlag } from "@/types/item/TransferFlag";
+import { Player } from "@/types/player/Player";
 
 export class Item {
     public inventoryTab: InventoryTab;

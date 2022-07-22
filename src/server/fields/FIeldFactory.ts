@@ -1,4 +1,4 @@
-import { Field } from "./Field";
+import { Field } from "@/server/fields/Field";
 
 export class FieldFactory {
     private fields: Map<number, Field> = new Map<number, Field>();

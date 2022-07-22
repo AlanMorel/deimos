@@ -1,6 +1,6 @@
+import { PacketRouter } from "@/network/routers/PacketRouter";
+import { Session } from "@/network/sessions/Session";
 import { Socket } from "net";
-import { PacketRouter } from "../routers/PacketRouter";
-import { Session } from "./Session";
 
 export class LoginSession extends Session {
     public accountId: BigInt = 0n;

@@ -1,5 +1,5 @@
-import { CoordF } from "../../types/coords/CoordF";
-import { FieldObject } from "./FieldObject";
+import { FieldObject } from "@/server/fields/FieldObject";
+import { CoordF } from "@/types/coords/CoordF";
 
 export class Portal extends FieldObject {
     public id: number;

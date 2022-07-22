@@ -1,10 +1,10 @@
-import { Color } from "../../types/color/Color";
-import { SkinColor } from "../../types/color/SkinColor";
-import { CoordF } from "../../types/coords/CoordF";
-import { Gender } from "../../types/player/Gender";
-import { Player } from "../../types/player/Player";
-import { CharacterEntity, CharacterRow } from "../entities/Character";
-import { Controller } from "./Controller";
+import { Controller } from "@/database/controllers/Controller";
+import { CharacterEntity, CharacterRow } from "@/database/entities/Character";
+import { Color } from "@/types/color/Color";
+import { SkinColor } from "@/types/color/SkinColor";
+import { CoordF } from "@/types/coords/CoordF";
+import { Gender } from "@/types/player/Gender";
+import { Player } from "@/types/player/Player";
 
 export class Characters extends Controller<CharacterRow, Player> {
     public constructor() {

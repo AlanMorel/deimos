@@ -1,10 +1,10 @@
-import { ChannelSession } from "../../network/sessions/ChannelSession";
-import { ItemInventoryPacket } from "../../packets/ItemInventoryPacket";
-import { Enum } from "../../tools/Enum";
-import { Logger } from "../../tools/Logger";
-import { Item } from "../item/Item";
-import { Player } from "../player/Player";
-import { InventoryTab } from "./InventoryTab";
+import { ChannelSession } from "@/network/sessions/ChannelSession";
+import { ItemInventoryPacket } from "@/packets/ItemInventoryPacket";
+import { Enum } from "@/tools/Enum";
+import { Logger } from "@/tools/Logger";
+import { InventoryTab } from "@/types/inventory/InventoryTab";
+import { Item } from "@/types/item/Item";
+import { Player } from "@/types/player/Player";
 
 interface ItemTuple {
     // TODO: remove/improve

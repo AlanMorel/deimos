@@ -1,9 +1,9 @@
+import { Crypter } from "@/crypto/crypters/Crypter";
+import { RearrangeCrypter } from "@/crypto/crypters/RearrangeCrypter";
+import { TableCrypter } from "@/crypto/crypters/TableCrypter";
+import { XORCrypter } from "@/crypto/crypters/XorCrypter";
+import { Rand32 } from "@/crypto/Rand32";
 import * as crypto from "crypto";
-import { Crypter } from "../crypters/Crypter";
-import { RearrangeCrypter } from "../crypters/RearrangeCrypter";
-import { TableCrypter } from "../crypters/TableCrypter";
-import { XORCrypter } from "../crypters/XorCrypter";
-import { Rand32 } from "../Rand32";
 
 export abstract class Cipher {
     protected static readonly HEADER_SIZE: number = 6;
