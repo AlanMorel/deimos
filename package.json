@@ -36,6 +36,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-security": "^1.5.0",
         "eslint-plugin-vue": "^9.3.0",
+        "husky": "^8.0.1",
         "nodemon": "^2.0.19",
         "prettier": "^2.7.1",
         "ts-node": "^10.9.1",
