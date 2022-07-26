@@ -12,13 +12,18 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:security/recommended"
     ],
+    parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module"
+    },
     rules: {
         "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "@typescript-eslint/explicit-function-return-type": ["error"],
         "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/explicit-member-accessibility": ["error"],
-        indent: [
+        indent: "off",
+        "@typescript-eslint/indent": [
             "error",
             4,
             {
@@ -26,7 +31,14 @@ module.exports = {
             }
         ],
         semi: 2,
-        quotes: 2,
+        quotes: [
+            2,
+            "double",
+            {
+                avoidEscape: true,
+                allowTemplateLiterals: true
+            }
+        ],
         "no-trailing-spaces": "error",
         "no-case-declarations": "off",
         "prefer-template": "error",
