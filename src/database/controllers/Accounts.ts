@@ -1,33 +1,32 @@
 import { Controller } from "@/database/controllers/Controller";
-import { AccountEntity, AccountRow } from "@/database/entities/Account";
+import prisma from "@/database/Prisma";
+import { AccountRow } from "@/database/RowTypes";
 import { Account } from "@/types/Account";
 
 export class Accounts extends Controller<AccountRow, Account> {
-    public constructor() {
-        super(AccountEntity);
-    }
-
-    public async getByCredentials(username: string, password: string): Promise<Account | undefined> {
-        const account = await this.repository.findOne({
+    public async getByCredentials(username: string, password: string): Promise<Account | null> {
+        const account = await prisma.accounts.findFirst({
             where: {
                 username: username,
                 password: password
             }
         });
+
         if (!account) {
-            return;
+            return null;
         }
+
         return this.fromDatabase(account);
     }
 
-    protected fromDatabase(from: AccountRow): Account {
+    public fromDatabase(from: AccountRow): Account {
         const id = BigInt(from.id);
         return new Account(id, from.username, from.password);
     }
 
-    protected toDatabase(to: Account): AccountRow {
+    public toDatabase(to: Account): AccountRow {
         return {
-            id: to.id.toString(),
+            id: to.id,
             username: to.username,
             password: to.password
         };

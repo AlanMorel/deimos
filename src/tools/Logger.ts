@@ -1,4 +1,4 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { Packet } from "@/crypto/protocol/Packet";
 import { PacketHandler } from "@/handlers/PacketHandler";
 import picocolors from "picocolors";
@@ -10,11 +10,11 @@ export class Logger {
     public static log(message: string, formatter: Formatter = blue, prefix: string = "log"): void {
         let content = `${formatter(message)}`;
 
-        if (Configs.settings.logPrefix) {
+        if (Config.settings.logPrefix) {
             content = `${formatter(`[${prefix.toUpperCase()}]`)} ${content}`;
         }
 
-        if (Configs.settings.logTimestamps) {
+        if (Config.settings.logTimestamps) {
             const timestamp = this.getTimestamp();
             content = `${gray(timestamp)} ${content}`;
         }
@@ -26,8 +26,12 @@ export class Logger {
         this.log(error, bgRed, "error");
     }
 
+    public static critical(error: string): void {
+        this.log(error, bgRed, "error");
+    }
+
     public static debug(message: string, formatter: Formatter = magenta): void {
-        if (Configs.settings.logDebugs) {
+        if (Config.settings.logDebugs) {
             this.log(message, formatter, "debug");
         }
     }
@@ -41,7 +45,7 @@ export class Logger {
     }
 
     public static packet(prefix: string, opcode: string, packet: Packet, formatter: Formatter): void {
-        if (Configs.settings.logPackets) {
+        if (Config.settings.logPackets) {
             this.log(`${opcode} ${packet.toString()}`, formatter, prefix);
         }
     }
@@ -51,6 +55,6 @@ export class Logger {
     }
 
     private static getTimestamp(): string {
-        return new Date().toLocaleDateString("en-US", Configs.settings.timestampOptions);
+        return new Date().toLocaleDateString("en-US", Config.settings.timestampOptions);
     }
 }

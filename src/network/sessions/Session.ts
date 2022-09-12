@@ -1,4 +1,4 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { RecvOp } from "@/constants/RecvOp";
 import { SendOp } from "@/constants/SendOp";
 import { Cipher } from "@/crypto/cipher/Cipher";
@@ -47,7 +47,7 @@ export abstract class Session {
         const opcode = BitConverter.toInt16(packet.buffer);
         const sendOpcode = SendOp[opcode];
 
-        if (!Configs.block.send.includes(opcode)) {
+        if (!Config.block.send.includes(opcode)) {
             Logger.send(sendOpcode, packet);
         }
 
@@ -89,7 +89,7 @@ export abstract class Session {
             return;
         }
 
-        if (!Configs.block.recv.includes(opcode)) {
+        if (!Config.block.recv.includes(opcode)) {
             Logger.recv(recvOpcode, packet);
         }
 

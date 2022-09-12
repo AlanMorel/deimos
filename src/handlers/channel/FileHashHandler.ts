@@ -1,4 +1,4 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
 import { ChannelSession } from "@/network/sessions/ChannelSession";
@@ -12,7 +12,7 @@ export class FileHashHandler implements ChannelPacketHandler {
 
         Logger.log(`Hash for ${filename}: ${md5}`);
 
-        if (md5 !== Configs.hash) {
+        if (md5 !== Config.hash) {
             Logger.error("There has been a hash mismatch");
         }
     }

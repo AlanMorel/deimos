@@ -1,7 +1,7 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { AuthStorage } from "@/data/storage/AuthStorage";
-import { Database } from "@/database/Database";
+import Database from "@/database/Database";
 import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
 import { Endpoint } from "@/network/Endpoint";
 import { LoginSession } from "@/network/sessions/LoginSession";
@@ -54,7 +54,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         Logger.log(`Logging in to game with char id: ${characterId}`, magenta);
 
-        const channel = Configs.worlds[0].channels[0];
+        const channel = Config.worlds[0].channels[0];
         const endpoint = new Endpoint(channel.host, channel.port);
 
         const authData = {

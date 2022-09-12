@@ -1,4 +1,4 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { Session } from "@/network/sessions/Session";
 import { Logger } from "@/tools/Logger";
@@ -8,7 +8,7 @@ export class ResponseVersionHelper {
         const version = packet.readUInt();
         // +4 Bytes CONST(2F 00 02 00)
 
-        if (version !== Configs.version) {
+        if (version !== Config.version) {
             Logger.error("There was a version mismatch");
         }
     }

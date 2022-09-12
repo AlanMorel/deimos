@@ -1,6 +1,6 @@
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { AuthStorage } from "@/data/storage/AuthStorage";
-import { Database } from "@/database/Database";
+import Database from "@/database/Database";
 import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
 import { ResponseKeyHelper } from "@/handlers/helpers/ReponseKeyHelper";
 import { ChannelSession } from "@/network/sessions/ChannelSession";

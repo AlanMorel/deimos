@@ -1,4 +1,4 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { AuthStorage } from "@/data/storage/AuthStorage";
 import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
@@ -18,7 +18,7 @@ export class ChannelHandler implements ChannelPacketHandler {
 
         const channelId = packet.readShort();
 
-        const channel = Configs.worlds[0].channels[channelId - 1];
+        const channel = Config.worlds[0].channels[channelId - 1];
 
         const endpoint = new Endpoint(channel.host, channel.port);
 

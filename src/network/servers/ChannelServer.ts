@@ -1,5 +1,5 @@
 import { Packet } from "@/crypto/protocol/Packet";
-import { Database } from "@/database/Database";
+import Database from "@/database/Database";
 import { ChannelPacketRouter } from "@/network/routers/ChannelPacketRouter";
 import { Server } from "@/network/servers/Server";
 import { ChannelSession } from "@/network/sessions/ChannelSession";

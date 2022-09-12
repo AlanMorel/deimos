@@ -1,5 +1,6 @@
 import { Controller } from "@/database/controllers/Controller";
-import { CharacterEntity, CharacterRow } from "@/database/entities/Character";
+import prisma from "@/database/Prisma";
+import { CharacterRow } from "@/database/RowTypes";
 import { Color } from "@/types/color/Color";
 import { SkinColor } from "@/types/color/SkinColor";
 import { CoordF } from "@/types/coords/CoordF";
@@ -7,52 +8,58 @@ import { Gender } from "@/types/player/Gender";
 import { Player } from "@/types/player/Player";
 
 export class Characters extends Controller<CharacterRow, Player> {
-    public constructor() {
-        super(CharacterEntity);
-    }
-
     public async getByAccountId(id: bigint): Promise<Player[]> {
-        const characters = await this.repository.find({
+        const characters = await prisma.characters.findMany({
             where: {
-                accountId: id.toString(),
-                deleted: false
+                accountId: id,
+                deleted: 0
             }
         });
+
+        if (!characters) {
+            return [];
+        }
+
         return characters.map(character => this.fromDatabase(character));
     }
 
     public async getByCharacterId(id: bigint): Promise<Player | undefined> {
-        const character = await this.repository.findOne({
+        const character = await prisma.characters.findFirst({
             where: {
-                id: id.toString(),
-                deleted: false
+                accountId: id,
+                deleted: 0
             }
         });
+
         if (!character) {
             return;
         }
+
         return this.fromDatabase(character);
     }
 
     public async isNameFree(name: string): Promise<boolean> {
-        const character = await this.repository.findOne({
+        const character = await prisma.characters.findFirst({
             where: {
                 name: name
             }
         });
+
         return character === undefined;
     }
 
     public async insert(player: Player): Promise<void> {
         const character = this.toDatabase(player);
-        this.repository.save(character);
+        prisma.characters.create({
+            data: character
+        });
     }
 
     public async delete(id: bigint): Promise<void> {
-        const character = await this.repository.findOne({
+        const character = await prisma.characters.findFirst({
             where: {
-                id: id.toString(),
-                deleted: false
+                id: id,
+                deleted: 0
             }
         });
 
@@ -60,23 +67,36 @@ export class Characters extends Controller<CharacterRow, Player> {
             return;
         }
 
-        character.deleted = true;
-        this.repository.save(character);
+        character.deleted = 1;
+
+        await prisma.characters.update({
+            where: {
+                id: id
+            },
+            data: character
+        });
     }
 
     public async save(player: Player): Promise<void> {
-        const character = await this.repository.findOne({
+        const character = await prisma.characters.findFirst({
             where: {
-                id: player.characterId.toString(),
-                deleted: false
+                id: player.characterId,
+                deleted: 0
             }
         });
+
         if (!character) {
             return;
         }
         const row = this.toDatabase(player);
         const newCharacter = Object.assign(character, row);
-        this.repository.save(newCharacter);
+
+        await prisma.characters.update({
+            where: {
+                id: newCharacter.id
+            },
+            data: newCharacter
+        });
     }
 
     protected fromDatabase(character: CharacterRow): Player {
@@ -96,17 +116,17 @@ export class Characters extends Controller<CharacterRow, Player> {
 
     protected toDatabase(player: Player): CharacterRow {
         const character: CharacterRow = {
-            id: player.characterId.toString(),
-            accountId: player.accountId.toString(),
+            id: player.characterId,
+            accountId: player.accountId,
             name: player.name,
-            gender: player.gender === 1,
+            gender: player.gender,
             job: player.job,
             skinColor: Color.toValue(player.skinColor.primary),
             mapId: player.mapId,
             x: player.coord.x,
             y: player.coord.y,
             z: player.coord.z,
-            deleted: false
+            deleted: 0
         };
 
         return character;

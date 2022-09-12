@@ -1,6 +1,6 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
-import { Database } from "@/database/Database";
+import Database from "@/database/Database";
 import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
 import { Endpoint } from "@/network/Endpoint";
 import { LoginSession } from "@/network/sessions/LoginSession";
@@ -34,12 +34,12 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         if (account) {
             session.accountId = account.id;
-        } else if (Configs.settings.defaultAccountId > 0n) {
+        } else if (Config.settings.defaultAccountId > 0n) {
             Logger.log(
-                `Account not found but logging in to default account id ${Configs.settings.defaultAccountId}`,
+                `Account not found but logging in to default account id ${Config.settings.defaultAccountId}`,
                 yellow
             );
-            session.accountId = Configs.settings.defaultAccountId;
+            session.accountId = Config.settings.defaultAccountId;
         } else {
             Logger.log("Account not found and no default account id found", red);
             session.send(LoginResultPacket.incorrectID(session.accountId));
@@ -48,8 +48,8 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         switch (mode) {
             case Mode.LOGIN_1:
-                const endpoints = [new Endpoint(Configs.login.host, Configs.login.port)];
-                const world = Configs.worlds[0];
+                const endpoints = [new Endpoint(Config.login.host, Config.login.port)];
+                const world = Config.worlds[0];
 
                 session.send(NpsInfoPacket.npsInfo());
                 session.send(BannerListPacket.setBanner(0)); // TODO: load banners

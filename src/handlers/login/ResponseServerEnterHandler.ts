@@ -1,6 +1,6 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
-import { Database } from "@/database/Database";
+import Database from "@/database/Database";
 import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
 import { Endpoint } from "@/network/Endpoint";
 import { LoginSession } from "@/network/sessions/LoginSession";
@@ -14,8 +14,8 @@ export class ResponseServerEnterHandler implements LoginPacketHandler {
     public async handle(session: LoginSession, packet: PacketReader): Promise<void> {
         packet.readInt(); // mode: always 2?
 
-        const endpoints = [new Endpoint(Configs.login.host, Configs.login.port)];
-        const world = Configs.worlds[0];
+        const endpoints = [new Endpoint(Config.login.host, Config.login.port)];
+        const world = Config.worlds[0];
 
         session.send(BannerListPacket.setBanner(0)); // TODO: load banners
         session.send(ServerListPacket.setServers(world.name, endpoints, world.channels.length));

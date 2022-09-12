@@ -1,4 +1,4 @@
-import Configs from "@/Configs";
+import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { AuthStorage } from "@/data/storage/AuthStorage";
 import { ChannelPacketHandler } from "@/handlers/ChannelPacketHandler";
@@ -19,7 +19,7 @@ export class RequestQuitHandler implements ChannelPacketHandler {
                 return;
             }
 
-            const endpoint = new Endpoint(Configs.login.host, Configs.login.port);
+            const endpoint = new Endpoint(Config.login.host, Config.login.port);
 
             session.send(GameToLoginPacket.gameToLogin(endpoint, authData));
         }
