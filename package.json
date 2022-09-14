@@ -28,9 +28,9 @@
         "uuid": "^9.0.0"
     },
     "devDependencies": {
-        "@babel/eslint-parser": "7.18.9",
+        "@babel/eslint-parser": "7.19.1",
         "@babel/preset-typescript": "^7.18.6",
-        "@types/node": "^18.7.16",
+        "@types/node": "^18.7.18",
         "@typescript-eslint/eslint-plugin": "^5.37.0",
         "@typescript-eslint/parser": "^5.37.0",
         "eslint": "^8.23.1",
