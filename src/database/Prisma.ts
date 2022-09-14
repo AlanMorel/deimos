@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 
 const credentials = Config.database;
 
-const DATABASE_URL = `mysql://${credentials.username}:${credentials.password}@${credentials.host}:${credentials.port}/${credentials.table}`;
+const DATABASE_URL = `${credentials.source}://${credentials.username}:${credentials.password}@${credentials.host}:${credentials.port}/${credentials.table}`;
 
 const prisma = new PrismaClient({
     datasources: {

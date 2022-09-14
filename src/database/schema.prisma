@@ -3,26 +3,26 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model accounts {
   id       BigInt @id @default(autoincrement())
-  username String @db.TinyText
-  password String @db.TinyText
+  username String
+  password String
 }
 
 model characters {
   id        BigInt @id @default(autoincrement())
-  accountId BigInt
-  name      String @db.TinyText
-  gender    Int    @db.TinyInt
+  accountid BigInt
+  name      String
+  gender    Int    @db.SmallInt
   job       Int
-  skinColor Int
-  mapId     Int
+  skincolor Int
+  mapid     Int
   x         Int
   y         Int
   z         Int
-  deleted   Int    @db.TinyInt
+  deleted   Int    @db.SmallInt
 }

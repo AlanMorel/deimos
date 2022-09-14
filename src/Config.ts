@@ -44,6 +44,7 @@ export default {
         } as Intl.DateTimeFormatOptions
     },
     database: {
+        source: process.env.DATABASE_SOURCE || "",
         host: process.env.DATABASE_HOST || "localhost",
         port: parseInt(process.env.DATABASE_PORT || "3306"),
         username: process.env.DATABASE_USERNAME || "root",

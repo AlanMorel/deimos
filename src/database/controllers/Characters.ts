@@ -11,7 +11,7 @@ export class Characters extends Controller<CharacterRow, Player> {
     public async getByAccountId(id: bigint): Promise<Player[]> {
         const characters = await prisma.characters.findMany({
             where: {
-                accountId: id,
+                accountid: id,
                 deleted: 0
             }
         });
@@ -26,7 +26,7 @@ export class Characters extends Controller<CharacterRow, Player> {
     public async getByCharacterId(id: bigint): Promise<Player | undefined> {
         const character = await prisma.characters.findFirst({
             where: {
-                accountId: id,
+                id: id,
                 deleted: 0
             }
         });
@@ -100,7 +100,7 @@ export class Characters extends Controller<CharacterRow, Player> {
     }
 
     protected fromDatabase(character: CharacterRow): Player {
-        const color = Color.fromValue(character.skinColor);
+        const color = Color.fromValue(character.skincolor);
         const skinColor = new SkinColor(color, color);
 
         const id = BigInt(character.id);
@@ -108,7 +108,7 @@ export class Characters extends Controller<CharacterRow, Player> {
 
         const player = new Player(id, gender, character.job, character.name, skinColor);
         player.equips = Player.getTestEquips();
-        player.mapId = character.mapId;
+        player.mapId = character.mapid;
         player.coord = new CoordF(character.x, character.y, character.z);
 
         return player;
@@ -117,12 +117,12 @@ export class Characters extends Controller<CharacterRow, Player> {
     protected toDatabase(player: Player): CharacterRow {
         const character: CharacterRow = {
             id: player.characterId,
-            accountId: player.accountId,
+            accountid: player.accountId,
             name: player.name,
             gender: player.gender,
             job: player.job,
-            skinColor: Color.toValue(player.skinColor.primary),
-            mapId: player.mapId,
+            skincolor: Color.toValue(player.skinColor.primary),
+            mapid: player.mapId,
             x: player.coord.x,
             y: player.coord.y,
             z: player.coord.z,

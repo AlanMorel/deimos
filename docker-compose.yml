@@ -11,7 +11,7 @@ services:
         restart: always
         environment:
             DOCKER: "true"
-            DATABASE_HOST: "mysql"
+            DATABASE_HOST: "postgres"
         ports:
             - "20001:20001"
             - "21001:21001"
