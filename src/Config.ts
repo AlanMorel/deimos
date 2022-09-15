@@ -46,8 +46,8 @@ export default {
     database: {
         source: process.env.DATABASE_SOURCE || "",
         host: process.env.DATABASE_HOST || "localhost",
-        port: parseInt(process.env.DATABASE_PORT || "3306"),
-        username: process.env.DATABASE_USERNAME || "root",
+        port: parseInt(process.env.DATABASE_PORT || "5432"),
+        username: process.env.DATABASE_USERNAME || "postgres",
         password: process.env.DATABASE_PASSWORD || "",
         table: process.env.DATABASE_TABLE || "deimos"
     },
