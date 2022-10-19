@@ -1,15 +1,17 @@
 FROM node:alpine as base
 
+RUN npm install -g pnpm
+
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml ./
 
-RUN npx browserslist@latest --update-db && rm -rf node_modules && yarn install --production=true --frozen-lockfile && yarn cache clean
+RUN pnpm install --frozen-lockfile --prod
 
 COPY . .
 
-RUN yarn prisma generate && yarn ts:check
+RUN pnpm prisma generate && pnpm ts:check
 
-CMD ["sh", "-c", "yarn cross-env NODE_ENV=production node --loader @bleed-believer/path-alias/esm --experimental-specifier-resolution=node ./src/index.ts"]
+CMD ["sh", "-c", "pnpm cross-env NODE_ENV=production node --loader @bleed-believer/path-alias/esm ./src/index.ts"]
 
 FROM base as production

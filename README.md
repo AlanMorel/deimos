@@ -15,11 +15,11 @@ cd deimos
 ```
 
 ```sh
-npm install yarn -g
+npm install pnpm -g
 ```
 
 ```sh
-yarn install
+pnpm install
 ```
 
 Create a `.env` file
@@ -56,7 +56,7 @@ FILE_HASH=
 Edit `src/Configs.ts` to your liking, then compile and run the server.
 
 ```sh
-yarn start
+pnpm start
 ```
 
 ## Development
@@ -65,11 +65,11 @@ For the best development experience, run the compiler in watch mode to watch for
 
 ## Commands
 
-`yarn dev` : Start and watch the server
+`pnpm dev` : Start and watch the server
 
-`yarn start` : Compile and start the server
+`pnpm start` : Compile and start the server
 
-`yarn lint` : Run the linter
+`pnpm lint` : Run the linter
 
 ## Community
 
