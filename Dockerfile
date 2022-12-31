@@ -12,6 +12,6 @@ COPY . .
 
 RUN pnpm prisma generate && pnpm ts:check
 
-CMD ["sh", "-c", "pnpm cross-env NODE_ENV=production node --loader @bleed-believer/path-alias/esm ./src/index.ts"]
+CMD ["sh", "-c", "pnpm cross-env NODE_ENV=production node --loader ts-paths-esm-loader --experimental-specifier-resolution=node ./src/index.ts"]
 
 FROM base as production
