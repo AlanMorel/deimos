@@ -97,7 +97,7 @@ export class Player extends FieldObject {
         return new Player(
             -1n,
             Gender.Male,
-            -1,
+            Job.None,
             "",
             new SkinColor(new Color(0, 0, 0, -1), new Color(0, 0, 0, -1)),
             new Map<ItemSlot, Item>()
