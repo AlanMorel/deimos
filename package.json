@@ -12,15 +12,14 @@
     },
     "scripts": {
         "dev": "nodemon --config ./nodemon.config.json",
+        "lint": "eslint ./src --fix",
         "start": "node --loader ts-paths-esm-loader --experimental-specifier-resolution=node ./src/index.ts",
-        "ts:check": "tsc --noEmit",
-        "lint": "eslint ./src --fix"
+        "ts:check": "tsc --noEmit"
     },
     "dependencies": {
         "@prisma/client": "^4.11.0",
         "@types/node": "^18.15.10",
         "@types/uuid": "^9.0.1",
-        "cross-env": "^7.0.3",
         "dotenv": "^16.0.3",
         "picocolors": "^1.0.0",
         "prisma": "^4.11.0",
@@ -32,8 +31,6 @@
         "uuid": "^9.0.0"
     },
     "devDependencies": {
-        "@babel/eslint-parser": "7.21.3",
-        "@babel/preset-typescript": "^7.21.0",
         "@commitlint/cli": "^17.5.1",
         "@commitlint/config-conventional": "^17.4.4",
         "@typescript-eslint/eslint-plugin": "^5.57.0",
