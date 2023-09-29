@@ -13,34 +13,34 @@
     "scripts": {
         "dev": "nodemon --config ./nodemon.config.json",
         "lint": "eslint ./src --fix",
-        "start": "node --loader ts-paths-esm-loader --experimental-specifier-resolution=node ./src/index.ts",
+        "start": "node --loader ts-paths-esm-loader ./src/index.ts",
         "ts:check": "tsc --noEmit"
     },
     "dependencies": {
-        "@prisma/client": "^4.13.0",
-        "@types/node": "^20.1.1",
-        "@types/uuid": "^9.0.1",
-        "dotenv": "^16.0.3",
+        "@prisma/client": "^5.3.1",
+        "@types/node": "^20.7.1",
+        "@types/uuid": "^9.0.4",
+        "dotenv": "^16.3.1",
         "picocolors": "^1.0.0",
-        "prisma": "^4.13.0",
-        "protobufjs": "^7.2.3",
+        "prisma": "^5.3.1",
+        "protobufjs": "^7.2.5",
         "ts-node": "^10.9.1",
         "ts-paths-esm-loader": "^1.4.3",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.0.4",
-        "uuid": "^9.0.0"
+        "typescript": "^5.2.2",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
-        "@commitlint/cli": "^17.6.3",
-        "@commitlint/config-conventional": "^17.6.3",
-        "@typescript-eslint/eslint-plugin": "^5.59.5",
-        "@typescript-eslint/parser": "^5.59.5",
-        "eslint": "^8.40.0",
-        "eslint-plugin-prettier": "^4.2.1",
+        "@commitlint/cli": "^17.7.2",
+        "@commitlint/config-conventional": "^17.7.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.3",
+        "@typescript-eslint/parser": "^6.7.3",
+        "eslint": "^8.50.0",
+        "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-security": "^1.7.1",
         "husky": "^8.0.3",
-        "nodemon": "^2.0.22",
-        "prettier": "^2.8.8"
+        "nodemon": "^3.0.1",
+        "prettier": "^3.0.3"
     },
     "prisma": {
         "schema": "./src/database/schema.prisma"

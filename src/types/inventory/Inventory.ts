@@ -307,10 +307,6 @@ export class Inventory {
         session.send(ItemInventoryPacket.move(srcSlot.item1, srcSlot.item2, uid, dstSlot));
     }
 
-    public split(session: ChannelSession, item: Item): void {
-        // TODO: implement when storage and trade is implemented
-    }
-
     // update item information
     public update(session: ChannelSession, uid: bigint, amount: number): void {
         const item = this.items.get(uid);

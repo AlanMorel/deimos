@@ -10,13 +10,13 @@
         "resolveJsonModule": true,
         "strict": true,
         "paths": {
-            "@/*": [
-                "./src/*"
-            ]
+            "@/*": ["./src/*"]
         }
     },
     "ts-node": {
-        "esm": true
+        "esm": true,
+        "experimentalSpecifierResolution": "node",
+        "transpileOnly": true
     },
     "lib": ["esnext"]
 }
