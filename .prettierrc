@@ -12,7 +12,6 @@
     "requirePragma": false,
     "semi": true,
     "singleQuote": false,
-    "vueIndentScriptAndStyle": true,
     "arrowParens": "avoid",
     "bracketSpacing": true
 }

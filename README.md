@@ -4,7 +4,7 @@
 
 ## Requirements
 
-Install node, npm, clone this repository, then install the dependencies
+Install node, pnpm, clone this repository, then install the dependencies
 
 ```sh
 git clone https://github.com/AlanMorel/deimos deimos
@@ -30,12 +30,12 @@ TZ=America/New_York
 
 NAME=Deimos
 
-DATABASE_SOURCE=postgres
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USERNAME=postgres
+DATABASE_SOURCE=
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_USERNAME=
 DATABASE_PASSWORD=
-DATABASE_TABLE=deimos
+DATABASE_TABLE=
 
 DATABASE_URL=${DATABASE_SOURCE}://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_TABLE}
 
@@ -58,18 +58,6 @@ Edit `src/Configs.ts` to your liking, then compile and run the server.
 ```sh
 pnpm start
 ```
-
-## Development
-
-For the best development experience, run the compiler in watch mode to watch for any changes automatically. Also, make sure to run the linter to ensure your code complies with the code standards of this project.
-
-## Commands
-
-`pnpm dev` : Start and watch the server
-
-`pnpm start` : Compile and start the server
-
-`pnpm lint` : Run the linter
 
 ## Community
 

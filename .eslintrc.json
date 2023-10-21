@@ -1,21 +1,10 @@
 {
-    "root": true,
     "env": {
-        "node": true,
-        "es2021": true
+        "node": true
     },
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "security", "prettier"],
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:security/recommended"
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
+    "plugins": ["@typescript-eslint", "security", "prettier", "no-relative-import-paths"],
+    "extends": ["plugin:@typescript-eslint/recommended", "plugin:security/recommended", "prettier"],
     "rules": {
         "no-console": "warn",
         "no-debugger": "warn",
@@ -47,6 +36,13 @@
         "eol-last": "error",
         "no-undef": 1,
         "no-prototype-builtins": 1,
-        "prettier/prettier": ["error"]
+        "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "export" }],
+        "prettier/prettier": ["error"],
+        "no-relative-import-paths/no-relative-import-paths": [
+            "error",
+            {
+                "prefix": "@"
+            }
+        ]
     }
 }
