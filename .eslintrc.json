@@ -8,22 +8,10 @@
     "rules": {
         "no-console": "warn",
         "no-debugger": "warn",
-        "@typescript-eslint/explicit-function-return-type": ["error"],
-        "@typescript-eslint/no-inferrable-types": "off",
-        "@typescript-eslint/explicit-member-accessibility": ["error"],
-        "@typescript-eslint/no-explicit-any": "warn",
-        "@typescript-eslint/no-unused-vars": "warn",
         "indent": "off",
-        "@typescript-eslint/indent": [
-            "error",
-            4,
-            {
-                "SwitchCase": 1
-            }
-        ],
-        "semi": 2,
+        "semi": "error",
         "quotes": [
-            2,
+            "error",
             "double",
             {
                 "avoidEscape": true,
@@ -34,10 +22,22 @@
         "no-case-declarations": "off",
         "prefer-template": "error",
         "eol-last": "error",
-        "no-undef": 1,
-        "no-prototype-builtins": 1,
+        "no-undef": "warn",
+        "no-prototype-builtins": "warn",
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/explicit-member-accessibility": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": "warn",
+        "prettier/prettier": "error",
         "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "export" }],
-        "prettier/prettier": ["error"],
         "no-relative-import-paths/no-relative-import-paths": [
             "error",
             {
