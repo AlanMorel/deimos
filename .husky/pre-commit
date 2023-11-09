@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm lint && pnpm ts:check
+echo "Running pre-commit hook..."
+
+pnpm ts:check && pnpx lint-staged
