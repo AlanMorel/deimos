@@ -1,6 +1,6 @@
 import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
-import Database from "@/database/Database";
+import db from "@/database/Database";
 import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
 import { Endpoint } from "@/network/Endpoint";
 import { LoginSession } from "@/network/sessions/LoginSession";
@@ -30,7 +30,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
 
         Logger.log(`Logging in with username: '${username}' pass: '${password}'`, magenta);
 
-        const account = await Database.getAccounts().getByCredentials(username, password);
+        const account = await db.getAccounts().getByCredentials(username, password);
 
         if (account) {
             session.accountId = account.id;
@@ -56,7 +56,7 @@ export class ResponseLoginHandler implements LoginPacketHandler {
                 session.send(ServerListPacket.setServers(world.name, endpoints, world.channels.length));
                 break;
             case Mode.LOGIN_2:
-                const players = await Database.getCharacters().getByAccountId(session.accountId);
+                const players = await db.getCharacters().getByAccountId(session.accountId);
 
                 players.forEach(player => {
                     player.equips = Player.getTestEquips();

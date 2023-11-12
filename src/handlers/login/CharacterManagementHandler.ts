@@ -1,7 +1,7 @@
 import Config from "@/Config";
 import { PacketReader } from "@/crypto/protocol/PacketReader";
 import { AuthStorage } from "@/data/storage/AuthStorage";
-import Database from "@/database/Database";
+import db from "@/database/Database";
 import { LoginPacketHandler } from "@/handlers/LoginPacketHandler";
 import { Endpoint } from "@/network/Endpoint";
 import { LoginSession } from "@/network/sessions/LoginSession";
@@ -110,7 +110,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
 
         packet.readInt(); // constant 4?
 
-        const isNameFree = await Database.getCharacters().isNameFree(name);
+        const isNameFree = await db.getCharacters().isNameFree(name);
 
         if (!isNameFree) {
             session.send(CharacterCreatePacket.nameTaken());
@@ -122,7 +122,7 @@ export class CharacterManagementHandler implements LoginPacketHandler {
         newCharacter.mapId = 52000065;
         newCharacter.coord = new CoordF(-800, 600, 500);
 
-        Database.getCharacters().insert(newCharacter);
+        db.getCharacters().insert(newCharacter);
 
         session.send(CharacterMaxCountPacket.setMax(4, 6));
         session.send(CharacterListPacket.append(newCharacter));
@@ -131,8 +131,8 @@ export class CharacterManagementHandler implements LoginPacketHandler {
     private async handleDelete(session: LoginSession, packet: PacketReader): Promise<void> {
         const characterId = packet.readLong();
 
-        const results = await Database.getCharacters().delete(characterId);
-        const players = await Database.getCharacters().getByAccountId(session.accountId);
+        const results = await db.getCharacters().delete(characterId);
+        const players = await db.getCharacters().getByAccountId(session.accountId);
 
         players.forEach(player => {
             player.equips = Player.getTestEquips();

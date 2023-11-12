@@ -1,5 +1,5 @@
 import { Packet } from "@/crypto/protocol/Packet";
-import Database from "@/database/Database";
+import db from "@/database/Database";
 import { ChannelPacketRouter } from "@/network/routers/ChannelPacketRouter";
 import { Server } from "@/network/servers/Server";
 import { ChannelSession } from "@/network/sessions/ChannelSession";
@@ -61,7 +61,7 @@ export class ChannelServer extends Server {
 
     protected onClose(session: ChannelSession, hadError: boolean): void {
         if (session.field) {
-            Database.getCharacters().save(session.player);
+            db.getCharacters().save(session.player);
             session.field.removePlayer(session);
             Logger.log(`${session.player.name} saved successfully.`, yellow);
         }
